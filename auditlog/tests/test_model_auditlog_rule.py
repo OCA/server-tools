@@ -7,6 +7,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestModelAuditlogRule(BaseCommon):
+    _test_user_groups = ("base.group_user", "auditlog.group_auditlog_manager")
+
     def test_model_required(self):
         """Model is required, but not as a field property."""
         model_id = self.env.ref("base.model_res_groups").id

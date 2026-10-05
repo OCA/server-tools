@@ -15,7 +15,7 @@ class AuditlogHTTPRequest(models.Model):
     display_name = fields.Char("Name", compute="_compute_display_name", store=True)
     name = fields.Char("Path")
     root_url = fields.Char("Root URL")
-    user_id = fields.Many2one("res.users", string="User")
+    user_id = fields.Many2one("res.users")
     http_session_id = fields.Many2one(
         "auditlog.http.session", string="Session", index=True
     )

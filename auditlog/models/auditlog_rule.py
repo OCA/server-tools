@@ -61,13 +61,13 @@ class ThrowAwayCache:
 
     # List of attributes of the transaction object that need to be set aside for
     # a (temporary) clean slate.
-    transaction_attributes = [
+    transaction_attributes = (
         "field_data",
         "field_data_patches",
         "field_dirty",
         "protected",
         "tocompute",
-    ]
+    )
 
     def __init__(self, env):
         self._transaction = env.transaction
@@ -126,7 +126,6 @@ class AuditlogRule(models.Model):
     name = fields.Char(required=True)
     model_id = fields.Many2one(
         "ir.model",
-        "Model",
         help="Select model for which you want to generate log.",
         ondelete="set null",
         index=True,
@@ -201,7 +200,6 @@ class AuditlogRule(models.Model):
     )
     action_id = fields.Many2one(
         "ir.actions.act_window",
-        string="Action",
     )
     capture_record = fields.Boolean(
         string="Log values on deletion",
@@ -237,9 +235,8 @@ class AuditlogRule(models.Model):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, "_auditlog_model_cache"):
             self.pool._auditlog_model_cache = {}
-        if not self:
-            self = self.search([("state", "=", "confirmed")])
-        return self._patch_methods()
+        rules = self or self.search([("state", "=", "confirmed")])
+        return rules._patch_methods()
 
     def _patch_method(self, model, method_name, check_attr):
         result = new_method = False
@@ -351,11 +348,11 @@ class AuditlogRule(models.Model):
         By default it is all stored fields only, but you can
         override this.
         """
-        return list(
+        return [
             n
             for n, f in model._fields.items()
             if (not f.compute and not f.related) or f.store
-        )
+        ]
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
