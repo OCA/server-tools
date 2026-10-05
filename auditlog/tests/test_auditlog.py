@@ -290,6 +290,19 @@ class AuditlogCommon:
             1,
         )
 
+    def test_LogLongResourceName(self):
+        """Resource names longer than 64 characters are logged in full"""
+        self.groups_rule.set_to_confirmed()
+        group = self.env["res.groups"].create({"name": "x" * 100})
+        log = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "create"),
+                ("res_id", "=", group.id),
+            ]
+        )
+        self.assertEqual(log.name, group.display_name)
+
 
 class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
@@ -307,6 +320,26 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
                 "log_type": "full",
             }
         )
+
+    def test_full_log_keeps_pending_writes(self):
+        """Pending writes survive a full log write.
+
+        The throwaway cache swaps the transaction containers. Environments
+        memoize `_field_dirty`, so an environment that first touches it while
+        the disposable containers are active must not keep pointing to them,
+        or pending writes are not flushed when that environment flushes.
+        """
+        self.groups_rule.set_to_confirmed()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        category = self.env["res.partner.category"].create({"name": "before"})
+        group.write({"name": "testgroup2"})
+        # Not flushed yet
+        category.write({"name": "after"})
+        name_field = category._fields["name"]
+        self.assertIn(category.id, self.env.transaction.field_dirty.get(name_field, ()))
+        # Any of these environments may end up flushing the transaction
+        for env in self.env.transaction.envs:
+            self.assertIn(category.id, env._field_dirty.get(name_field, ()))
 
 
 class TestAuditlogExportData(AuditLogRuleCommon):
