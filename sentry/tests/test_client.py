@@ -1,13 +1,16 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
+# Copyright 2026 Therp BV <https://therp.nl/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+import inspect
 import logging
 import sys
 from unittest.mock import patch
 
 from sentry_sdk.integrations.logging import _IGNORED_LOGGERS
+from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 from sentry_sdk.transport import HttpTransport
 
+import odoo.http
 from odoo import exceptions
 from odoo.tests import TransactionCase
 from odoo.tools import config
@@ -266,3 +269,71 @@ class TestClientSetup(TransactionCase):
             RELEASE,
             "Failed to use 'sentry_release' parameter appropriately",
         )
+
+    def test_initialize_sentry_patches_application_call_when_server_missing(self):
+        original_root = odoo.http.root
+        original_application = odoo.http.Application
+
+        class DummyRoot:
+            def __init__(self):
+                self.session_store = object()
+
+        class DummyApplication:
+            def __call__(self, environ, start_response):
+                return "ok"
+
+        try:
+            dummy_root = DummyRoot()
+            original_call = DummyApplication.__call__
+            odoo.http.root = dummy_root
+            odoo.http.Application = DummyApplication
+            with (
+                patch("odoo.addons.sentry.hooks.server", new=None),
+                patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
+            ):
+                initialize_sentry(config)
+            self.assertTrue(inspect.isclass(odoo.http.Application))
+            self.assertIs(odoo.http.root, dummy_root)
+            self.assertTrue(hasattr(odoo.http.root, "session_store"))
+            self.assertIs(odoo.http.root.session_store, dummy_root.session_store)
+            self.assertIsNot(odoo.http.Application.__call__, original_call)
+        finally:
+            odoo.http.root = original_root
+            odoo.http.Application = original_application
+
+    def test_initialize_sentry_wraps_server_app_and_patches_application_call(self):
+        original_root = odoo.http.root
+        original_application = odoo.http.Application
+
+        class DummyRoot:
+            def __init__(self):
+                self.session_store = object()
+
+        class DummyApplication:
+            def __call__(self, environ, start_response):
+                return "ok"
+
+        class DummyServer:
+            def __init__(self):
+                self.app = lambda environ, start_response: "server-ok"
+
+        dummy_server = DummyServer()
+        try:
+            dummy_root = DummyRoot()
+            original_call = DummyApplication.__call__
+            odoo.http.root = dummy_root
+            odoo.http.Application = DummyApplication
+            with (
+                patch("odoo.addons.sentry.hooks.server", new=dummy_server),
+                patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
+            ):
+                initialize_sentry(config)
+            self.assertIsInstance(dummy_server.app, SentryWsgiMiddleware)
+            self.assertTrue(inspect.isclass(odoo.http.Application))
+            self.assertIs(odoo.http.root, dummy_root)
+            self.assertTrue(hasattr(odoo.http.root, "session_store"))
+            self.assertIs(odoo.http.root.session_store, dummy_root.session_store)
+            self.assertIsNot(odoo.http.Application.__call__, original_call)
+        finally:
+            odoo.http.root = original_root
+            odoo.http.Application = original_application
