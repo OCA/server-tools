@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="view_auditlog_rule_form">
+    <record id="view_auditlog_rule_form" model="ir.ui.view">
         <field name="name">auditlog.rule.form</field>
         <field name="model">auditlog.rule</field>
         <field name="arch" type="xml">
@@ -81,7 +81,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_auditlog_rule_tree">
+    <record id="view_auditlog_rule_tree" model="ir.ui.view">
         <field name="name">auditlog.rule.list</field>
         <field name="model">auditlog.rule</field>
         <field name="arch" type="xml">
@@ -129,7 +129,7 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_auditlog_rule_tree">
+    <record id="action_auditlog_rule_tree" model="ir.actions.act_window">
         <field name="name">Rules</field>
         <field name="res_model">auditlog.rule</field>
         <field name="type">ir.actions.act_window</field>

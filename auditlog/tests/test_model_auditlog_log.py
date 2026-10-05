@@ -12,12 +12,14 @@ class TestModelAuditlogLog(BaseCommon):
         model_id = self.env.ref("base.model_res_groups").id
         field_id = self.env.ref("base.field_res_groups__name").id
         # Test log create
-        with self.assertRaisesRegex(
-            UserError,
-            "No model defined to create log",
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                "No model defined to create log",
+            ),
+            self.env.cr.savepoint(),
         ):
-            with self.env.cr.savepoint():
-                self.env["auditlog.log"].create({})
+            self.env["auditlog.log"].create({})
         log = self.env["auditlog.log"].create(
             {
                 "model_id": model_id,
@@ -25,24 +27,28 @@ class TestModelAuditlogLog(BaseCommon):
         )
         self.assertEqual(log.model_model, "res.groups")
         # Test log write
-        with self.assertRaisesRegex(
-            UserError,
-            "'model_id' cannot be empty",
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                "'model_id' cannot be empty",
+            ),
+            self.env.cr.savepoint(),
         ):
-            with self.env.cr.savepoint():
-                log.model_id = False
+            log.model_id = False
 
         # Test line create
-        with self.assertRaisesRegex(
-            UserError,
-            "No field defined to create line",
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                "No field defined to create line",
+            ),
+            self.env.cr.savepoint(),
         ):
-            with self.env.cr.savepoint():
-                line = self.env["auditlog.log.line"].create(
-                    {
-                        "log_id": log.id,
-                    },
-                )
+            line = self.env["auditlog.log.line"].create(
+                {
+                    "log_id": log.id,
+                },
+            )
         line = self.env["auditlog.log.line"].create(
             {
                 "log_id": log.id,
@@ -50,9 +56,11 @@ class TestModelAuditlogLog(BaseCommon):
             },
         )
         # Test line write
-        with self.assertRaisesRegex(
-            UserError,
-            "'field_id' cannot be empty",
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                "'field_id' cannot be empty",
+            ),
+            self.env.cr.savepoint(),
         ):
-            with self.env.cr.savepoint():
-                line.field_id = False
+            line.field_id = False

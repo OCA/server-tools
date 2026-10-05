@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_auditlog_http_session_form" model="ir.ui.view">
         <field name="name">auditlog.http.session.form</field>
@@ -54,7 +54,7 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_auditlog_http_session_tree">
+    <record id="action_auditlog_http_session_tree" model="ir.actions.act_window">
         <field name="name">User sessions</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">auditlog.http.session</field>
