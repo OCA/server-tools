@@ -82,7 +82,9 @@ wins:
 
 So a module may ship a global parameter as a default value, and a
 company may override it by creating its own parameter with the same
-code.
+code. A parameter with no company and its versions are visible to the
+users of every company; a parameter of a company only to the users of
+that company.
 
 What decides is the version, not its value: the most specific parameter
 that has a version in force at the requested date (one starting on or
