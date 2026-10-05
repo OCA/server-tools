@@ -1,7 +1,7 @@
 # Copyright 2016 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from odoo import api, fields, models
 
@@ -22,7 +22,7 @@ class AuditlogAutovacuum(models.TransientModel):
         Called from a cron.
         """
         days = (days > 0) and int(days) or 0
-        deadline = datetime.now() - timedelta(days=days)
+        deadline = fields.Datetime.now() - timedelta(days=days)
         data_models = ("auditlog.log", "auditlog.http.request", "auditlog.http.session")
         for data_model in data_models:
             records = self.env[data_model].search(

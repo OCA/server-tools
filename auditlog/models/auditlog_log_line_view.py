@@ -1,4 +1,5 @@
 from odoo import fields, models
+from odoo.tools import SQL
 
 
 class AuditlogLogLineView(models.Model):
@@ -60,5 +61,9 @@ class AuditlogLogLineView(models.Model):
         """
 
     @property
-    def _table_query(self):
-        return f"SELECT {self._select_query()} FROM {self._from_query()}"
+    def _table_sql(self):
+        return SQL(
+            "(SELECT %s FROM %s)",
+            SQL(self._select_query()),
+            SQL(self._from_query()),
+        )
