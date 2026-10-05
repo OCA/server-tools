@@ -313,3 +313,40 @@ class TestTimeParameter(TransactionCase):
             )
             value = parameter._get(date(2023, 1, 1))
             self.assertEqual(value, partner, "The referenced record is returned")
+
+    def test_08_get_version(self):
+        parameter = self.name_string_us_parameter
+        self.assertFalse(
+            parameter._get_version(date(1999, 1, 1)),
+            "No version is in force before the first one starts",
+        )
+        version = parameter._get_version(date(2018, 1, 1))
+        self.assertEqual(version.value, "Donald Trump", DONALD_TRUMP)
+        # A version is in force from its very first day.
+        version = parameter._get_version(date(2021, 1, 20))
+        self.assertEqual(version.value, "Joe Biden", JOE_BIDEN)
+        # No date: today.
+        self.assertEqual(parameter._get_version().value, "Joe Biden", JOE_BIDEN)
+
+    def test_09_lookup_domain_is_a_hook(self):
+        Parameter = self.env["base.time.parameter"]
+        model = self.env.ref("base.model_res_country")
+        self.assertEqual(
+            Parameter.search(Parameter._get_lookup_domain(model, "US President")),
+            self.name_string_us_parameter,
+        )
+        # A parameter with a code is not found by its name.
+        self.code_string_parameter.name = "Named"
+        self.assertFalse(Parameter.search(Parameter._get_lookup_domain(model, "Named")))
+
+        # A module restricting the domain keeps a parameter out of the lookup.
+        def restricted_domain(self, model, code):
+            return original_domain(self, model, code) + [("description", "=", False)]
+
+        original_domain = type(Parameter)._get_lookup_domain
+        self.name_string_us_parameter.description = "Not part of the lookup"
+        with patch.object(type(Parameter), "_get_lookup_domain", restricted_domain):
+            value = self.env["res.country"].get_time_parameter("US President")
+        self.assertIsNone(value, "The parameter is excluded by the domain")
+        value = self.env["res.country"].get_time_parameter("US President")
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)

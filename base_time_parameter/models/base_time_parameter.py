@@ -52,15 +52,18 @@ class TimeParameter(models.Model):
     )
 
     @api.model
-    def _get_from_model_code_date(
-        self, model_name, code, date=None, raise_if_not_found=True, get="value"
-    ):
-        # Filter on company, model, code/name
-        model = self.env["ir.model"].search([("model", "=", model_name)])
-        domain = [
-            "&",
+    def _get_lookup_domain(self, model, code):
+        """Return the domain of the parameters a lookup may use.
+
+        The parameters of the current company and those with no company, the
+        parameters of ``model`` (an ``ir.model`` record) and those with no
+        model, by code -- or by name, for a parameter that has no code.
+
+        This is a hook: a module that adds parameters which must not take
+        part in the lookup extends the domain here.
+        """
+        return [
             ("company_id", "in", (self.env.company.id, False)),
-            "&",
             ("model_id", "in", (model.id, False)),
             "|",
             ("code", "=", code),
@@ -68,7 +71,14 @@ class TimeParameter(models.Model):
             ("code", "=", False),
             ("name", "=", code),
         ]
-        parameters = self.env["base.time.parameter"].search(domain)
+
+    @api.model
+    def _get_from_model_code_date(
+        self, model_name, code, date=None, raise_if_not_found=True, get="value"
+    ):
+        # Filter on company, model, code/name
+        model = self.env["ir.model"].search([("model", "=", model_name)])
+        parameters = self.search(self._get_lookup_domain(model, code))
         # The domain matches the parameters of the current company together
         # with the global ones (no company), and the parameters of the model
         # together with those that apply to any model. Sort the most specific
@@ -94,16 +104,24 @@ class TimeParameter(models.Model):
             )
         )
 
-    def _get(self, date=None, get="value"):
+    def _get_version(self, date=None):
+        """Return the version in force at ``date`` (today by default).
+
+        That is the latest version starting on or before that date; an empty
+        recordset when the parameter has none.
+        """
         self.ensure_one()
         if not date:
             date = fields.Date.today()
-        versions = self.version_ids.filtered(lambda v: v.date_from <= date).sorted(
+        return self.version_ids.filtered(lambda v: v.date_from <= date).sorted(
             key=lambda v: v.date_from, reverse=True
-        )
-        if not versions:
+        )[:1]
+
+    def _get(self, date=None, get="value"):
+        self.ensure_one()
+        version = self._get_version(date)
+        if not version:
             return False
-        version = versions[0]
         if get == "value":
             if self.type == "boolean":
                 return _validate_boolean(version.value or "") == "True"
