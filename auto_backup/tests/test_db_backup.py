@@ -7,7 +7,7 @@
 import logging
 import os
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from unittest.mock import PropertyMock, patch
 
 import pysftp
@@ -37,23 +37,28 @@ class TestDbBackup(common.TransactionCase):
     def mock_assets(self):
         """It provides mocked core assets"""
         self.path_join_val = "/this/is/a/path"
-        with patch(f"{model}.db") as db, patch(f"{model}.os") as os:
-            with patch(f"{model}.shutil") as shutil:
-                os.path.join.return_value = self.path_join_val
-                yield {
-                    "db": db,
-                    "os": os,
-                    "shutil": shutil,
-                }
+        with (
+            patch(f"{model}.db") as db,
+            patch(f"{model}.os") as os,
+            patch(f"{model}.shutil") as shutil,
+        ):
+            os.path.join.return_value = self.path_join_val
+            yield {
+                "db": db,
+                "os": os,
+                "shutil": shutil,
+            }
 
     @contextmanager
     def patch_filtered_sftp(self, record):
         """It patches filtered record and provides a mock"""
         with patch(f"{class_name}.filtered") as filtered:
             filtered.side_effect = [], [record]
-            with patch(f"{class_name}.backup_log"):
-                with patch(f"{class_name}.sftp_connection"):
-                    yield filtered
+            with (
+                patch(f"{class_name}.backup_log"),
+                patch(f"{class_name}.sftp_connection"),
+            ):
+                yield filtered
 
     def new_record(self, method="sftp"):
         vals = {"name": "Têst backup", "method": method, "days_to_keep": 1}
@@ -111,7 +116,7 @@ class TestDbBackup(common.TransactionCase):
     def test_action_backup_local(self):
         """It should backup local database"""
         rec_id = self.new_record("local")
-        filename = rec_id.filename(datetime.now())
+        filename = rec_id.filename(datetime.now(tz=timezone.utc).astimezone())
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
@@ -119,7 +124,7 @@ class TestDbBackup(common.TransactionCase):
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
         rec_id = self.new_record("local")
-        old_date = datetime.now() - timedelta(days=3)
+        old_date = datetime.now(tz=timezone.utc).astimezone() - timedelta(days=3)
         filename = rec_id.filename(old_date)
         with patch(f"{model}.datetime") as mock_date:
             mock_date.now.return_value = old_date
@@ -127,7 +132,7 @@ class TestDbBackup(common.TransactionCase):
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(2, len(generated_backup))
 
-        filename = rec_id.filename(datetime.now())
+        filename = rec_id.filename(datetime.now(tz=timezone.utc).astimezone())
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
@@ -135,31 +140,40 @@ class TestDbBackup(common.TransactionCase):
     def _test_action_backup_sftp_mkdirs(self):
         """It should create remote dirs"""
         rec_id = self.new_record()
-        with self.mock_assets(), self.patch_filtered_sftp(rec_id):
-            with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.makedirs.assert_called_once_with(rec_id.folder)
+        with (
+            self.mock_assets(),
+            self.patch_filtered_sftp(rec_id),
+            patch(f"{class_name}.cleanup", new_callable=PropertyMock),
+        ):
+            conn = rec_id.sftp_connection().__enter__()
+            rec_id.action_backup()
+            conn.makedirs.assert_called_once_with(rec_id.folder)
 
     def _test_action_backup_sftp_mkdirs_conn_exception(self):
         """It should guard from ConnectionException on remote.mkdirs"""
         rec_id = self.new_record()
-        with self.mock_assets(), self.patch_filtered_sftp(rec_id):
-            with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
-                conn = rec_id.sftp_connection().__enter__()
-                conn.makedirs.side_effect = TestConnectionException
-                rec_id.action_backup()
-                # No error was raised, test pass
-                self.assertTrue(True)
+        with (
+            self.mock_assets(),
+            self.patch_filtered_sftp(rec_id),
+            patch(f"{class_name}.cleanup", new_callable=PropertyMock),
+        ):
+            conn = rec_id.sftp_connection().__enter__()
+            conn.makedirs.side_effect = TestConnectionException
+            rec_id.action_backup()
+            # No error was raised, test pass
+            self.assertTrue(True)
 
     def test_action_backup_sftp_remote_open(self):
         """It should open remote file w/ proper args"""
         rec_id = self.new_record()
-        with self.mock_assets() as assets, self.patch_filtered_sftp(rec_id):
-            with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
+        with (
+            self.mock_assets() as assets,
+            self.patch_filtered_sftp(rec_id),
+            patch(f"{class_name}.cleanup", new_callable=PropertyMock),
+        ):
+            conn = rec_id.sftp_connection().__enter__()
+            rec_id.action_backup()
+            conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
 
     def test_action_backup_all_search(self):
         """It should search all records"""
@@ -213,18 +227,18 @@ class TestDbBackup(common.TransactionCase):
 
     def test_filename_default(self):
         """It should not error and should return a .dump.zip file str"""
-        now = datetime.now()
+        now = datetime.now(tz=timezone.utc).astimezone()
         res = self.Model.filename(now)
         self.assertTrue(res.endswith(".dump.zip"))
 
     def test_filename_zip(self):
         """It should return a dump.zip filenam"""
-        now = datetime.now()
+        now = datetime.now(tz=timezone.utc).astimezone()
         res = self.Model.filename(now, ext="zip")
         self.assertTrue(res.endswith(".dump.zip"))
 
     def test_filename_dump(self):
         """It should return a dump filenam"""
-        now = datetime.now()
+        now = datetime.now(tz=timezone.utc).astimezone()
         res = self.Model.filename(now, ext="dump")
         self.assertTrue(res.endswith(".dump"))
