@@ -169,9 +169,7 @@ class DbBackup(models.Model):
         sftp = self.filtered(lambda r: r.method == "sftp")
         if sftp:
             for rec in sftp:
-                filename = self.filename(
-                    datetime.now(), ext=rec.backup_format
-                )
+                filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
                     with tempfile.TemporaryFile() as cached:
                         db.dump(
@@ -185,9 +183,7 @@ class DbBackup(models.Model):
                             try:
                                 remote.makedirs(rec.folder)
                             except pysftp.ConnectionException as exc:
-                                _logger.exception(
-                                    f"pysftp ConnectionException: {exc}"
-                                )
+                                _logger.exception(f"pysftp ConnectionException: {exc}")
 
                             # Copy cached backup to remote server
                             with remote.open(
@@ -261,7 +257,7 @@ class DbBackup(models.Model):
                 body=(
                     f"<p>{self.env._('Cleanup of old database backups failed.')}</p>"
                     f"<pre>{escaped_tb}</pre>"
-                  ),
+                ),
                 subtype_id=self.env.ref("auto_backup.failure").id,
             )
         else:
