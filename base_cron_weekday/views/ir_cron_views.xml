@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="ir_cron_view_form" model="ir.ui.view">
+        <field name="name">ir.cron.form.weekday</field>
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form" />
+        <field name="arch" type="xml">
+            <field name="nextcall" position="after">
+                <label for="run_monday" string="Run on Weekdays" />
+                <div class="o_row">
+                    <field name="run_monday" />
+                    <label for="run_monday" string="Mon" class="me-3" />
+                    <field name="run_tuesday" />
+                    <label for="run_tuesday" string="Tue" class="me-3" />
+                    <field name="run_wednesday" />
+                    <label for="run_wednesday" string="Wed" class="me-3" />
+                    <field name="run_thursday" />
+                    <label for="run_thursday" string="Thu" class="me-3" />
+                    <field name="run_friday" />
+                    <label for="run_friday" string="Fri" class="me-3" />
+                    <field name="run_saturday" />
+                    <label for="run_saturday" string="Sat" class="me-3" />
+                    <field name="run_sunday" />
+                    <label for="run_sunday" string="Sun" class="me-3" />
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
