@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ai_chatgpt_oauth_wizard_view_form" model="ir.ui.view">
+        <field name="name">ai.chatgpt.oauth.wizard.form</field>
+        <field name="model">ai.chatgpt.oauth.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Connect ChatGPT Subscription">
+                <field name="state" invisible="1"/>
+                <field name="device_auth_id" invisible="1"/>
+                <field name="interval" invisible="1"/>
+
+                <div invisible="state != 'authorizing'">
+                    <div class="alert alert-info" role="status">
+                        Sign in with OpenAI to use your eligible ChatGPT subscription for Odoo AI chat and agents.
+                    </div>
+                    <group>
+                        <separator string="Authorization"/>
+                        <field name="verification_url" widget="url"/>
+                        <field name="user_code" class="font-monospace"/>
+                    </group>
+                    <p class="text-muted">
+                        Open the verification link, enter the one-time code, approve access, then click Verify &amp; Connect.
+                    </p>
+
+                    <div invisible="not status_message" class="alert alert-warning mb-0" role="status">
+                        <i class="fa fa-exclamation-triangle me-2" title="Warning"/>
+                        <field name="status_message" readonly="1"/>
+                    </div>
+                </div>
+
+                <div invisible="state != 'done'">
+                    <div class="alert alert-success" role="status">
+                        ChatGPT is connected for Odoo AI chat and agents. Select the model on each AI Agent. Knowledge sources and voice features use the optional OpenAI API key.
+                    </div>
+                    <group>
+                        <field name="account_id" string="ChatGPT Account ID" readonly="1"/>
+                    </group>
+                </div>
+
+                <div invisible="state != 'error'">
+                    <div class="alert alert-danger" role="alert">
+                        <field name="status_message" readonly="1"/>
+                    </div>
+                </div>
+
+                <footer>
+                    <button string="Verify &amp; Connect"
+                            name="action_verify_and_complete"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'authorizing'"/>
+                    <button string="Retry"
+                            name="action_retry"
+                            type="object"
+                            class="btn-warning"
+                            invisible="state != 'error'"/>
+                    <button string="Done"
+                            class="btn-primary"
+                            special="cancel"
+                            invisible="state != 'done'"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            invisible="state == 'done'"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
