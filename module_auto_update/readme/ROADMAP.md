@@ -1,0 +1,2 @@
+- Load `modules_auto_update_disabled` from config; default to [`studio_customization`].
+- Support config `module_auto_update_type` = `checksum`.
