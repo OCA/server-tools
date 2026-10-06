@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="global_undo_action_view_list" model="ir.ui.view">
+        <field name="name">global.undo.action.list</field>
+        <field name="model">global.undo.action</field>
+        <field name="arch" type="xml">
+            <list string="Undoable Actions" editable="bottom">
+                <field name="model_id" options="{'no_create': True}" />
+                <field name="method" />
+                <field name="undo_methods" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="global_undo_action_action" model="ir.actions.act_window">
+        <field name="name">Undoable Actions</field>
+        <field name="res_model">global.undo.action</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Make a business action undoable</p>
+            <p>Give the method to record and the methods that revert it, in order.
+               Confirming a sales order, a purchase order and posting a journal entry
+               are handled out of the box; add a line here to change one of those
+               inverses, to switch it off, or to cover a method of your own.</p>
+            <p>Changes take effect once the registry reloads.</p>
+        </field>
+    </record>
+</odoo>
