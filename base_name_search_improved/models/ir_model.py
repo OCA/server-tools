@@ -82,9 +82,10 @@ class Base(models.AbstractModel):
     @api.model
     def _search_smart_search(self, operator, value):
         if value and operator in ALLOWED_OPS:
+            total_items = self.search_count([])
             matching_records = self.with_context(
                 force_smart_name_search=True
-            ).name_search(name=value, operator=operator)
+            ).name_search(name=value, operator=operator, limit=total_items)
             if matching_records:
                 record_ids = [record[0] for record in matching_records]
                 return [("id", "in", record_ids)]
