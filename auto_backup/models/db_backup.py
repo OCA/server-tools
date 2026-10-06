@@ -6,15 +6,15 @@
 import logging
 import os
 import shutil
-import traceback
 import tempfile
+import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
 import pysftp
 
-from odoo import _, api, exceptions, fields, models, tools
+from odoo import api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.modules import db
 

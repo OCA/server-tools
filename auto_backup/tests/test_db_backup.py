@@ -93,23 +93,23 @@ class TestDbBackup(common.TransactionCase):
             )
 
     @patch(f"{model}._")
-    def test_action_sftp_test_connection_success(self, _):
+    def test_action_sftp_test_connection_success(self):
         """It should raise connection succeeded warning"""
         with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock):
             rec_id = self.new_record()
-            with self.assertRaises(UserError):
+            with self.assertRaises(UserError) as cm:
                 rec_id.action_sftp_test_connection()
-        _.assert_called_once_with("Connection Test Succeeded!")
+        self.assertIn("Connection Test Succeeded!", str(cm.exception))
 
     @patch(f"{model}._")
-    def _test_action_sftp_test_connection_fail(self, _):
+    def _test_action_sftp_test_connection_fail(self):
         """It should raise connection fail warning"""
         with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock) as conn:
             rec_id = self.new_record()
             conn().side_effect = TestConnectionException
-            with self.assertRaises(UserError):
+            with self.assertRaises(UserError) as cm:
                 rec_id.action_sftp_test_connection()
-            _.assert_called_once_with("Connection Test Failed!")
+            self.assertIn("Connection Test Failed!", str(cm.exception))
 
     def test_action_backup_local(self):
         """It should backup local database"""
