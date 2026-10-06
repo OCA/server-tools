@@ -16,7 +16,7 @@ class EmailExact:
         return [addr.lower() for addr in mailaddresses]
 
     def _get_mailaddress_search_domain(
-        self, folder, message_dict, operator="=", values=None
+        self, folder, message_dict, operator="=ilike", values=None
     ):
         mailaddresses = values or self._get_mailaddresses(folder, message_dict)
         if not mailaddresses:
