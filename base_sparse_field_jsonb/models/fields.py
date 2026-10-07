@@ -6,7 +6,10 @@ Modules like queue_job or server_environment import it directly from
 column as well. Patching the class also covers field instances that were
 created before this module got imported.
 
-A GIN index is only created when the field asks for one with ``index``.
+A GIN index is only created when the field asks for one with ``index``. It
+gets the name Odoo would give to the index of the field, and
+``Registry.check_indexes`` is wrapped so Odoo does not replace it with a
+btree index, which is of no use on JSONB.
 """
 
 import json
@@ -14,6 +17,7 @@ import logging
 
 from psycopg2.extras import Json
 
+from odoo.orm.registry import Registry
 from odoo.tools import SQL, sql
 
 from odoo.addons.base_sparse_field.models.fields import Serialized
@@ -100,10 +104,7 @@ def convert_column_to_text(cr, table_name, column_name):
 def update_gin_index(cr, table_name, column_name, index):
     """Create a GIN index on the column when ``index`` is set.
 
-    The index gets the name Odoo would give it, so ``check_indexes`` finds it
-    and does not try to add a btree or trigram index, neither of which is
-    useful on JSONB. An existing index with that name using another method is
-    replaced.
+    An existing index with the same name using another method is replaced.
     """
     if not index:
         return
@@ -135,12 +136,6 @@ def _update_db_column(self, model, column):
     super(Serialized, self).update_db_column(model, column)
 
 
-def _update_db(self, model, columns):
-    result = super(Serialized, self).update_db(model, columns)
-    update_gin_index(model.env.cr, model._table, self.name, self.index)
-    return result
-
-
 def _convert_to_column(self, value, record, values=None, validate=True):
     cache_value = self.convert_to_cache(value, record, validate=validate)
     if cache_value is None:
@@ -158,10 +153,39 @@ def _convert_to_record(self, value, record):
 
 Serialized.column_type = ("jsonb", "jsonb")
 Serialized.update_db_column = _update_db_column
-Serialized.update_db = _update_db
 Serialized.convert_to_column = _convert_to_column
 Serialized.convert_to_column_insert = _convert_to_column
 Serialized.convert_to_record = _convert_to_record
+
+_check_indexes = Registry.check_indexes
+
+
+def check_indexes(self, cr, model_names):
+    """Manage the index of serialized fields as a GIN index.
+
+    Odoo creates a btree index for ``index=True``, and replaces an index of
+    another method by a btree one. The ``index`` attribute of serialized fields
+    is hidden while Odoo checks the indexes.
+    """
+    serialized_fields = [
+        (model._table, field, field.index)
+        for model in map(self.models.get, model_names)
+        if model is not None and model._auto and not model._abstract
+        for field in model._fields.values()
+        if field.type == "serialized" and field.store and field.index
+    ]
+    for _table, field, _index in serialized_fields:
+        field.index = False
+    try:
+        _check_indexes(self, cr, model_names)
+    finally:
+        for _table, field, index in serialized_fields:
+            field.index = index
+    for table, field, index in serialized_fields:
+        update_gin_index(cr, table, field.name, index)
+
+
+Registry.check_indexes = check_indexes
 
 # Kept for code importing the previous replacement class
 SerializedJsonb = Serialized

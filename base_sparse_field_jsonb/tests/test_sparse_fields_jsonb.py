@@ -565,6 +565,21 @@ class TestSparseFieldsJsonb(TransactionCase):
 
         self.assertEqual(self._index_method(index_name), "gin")
 
+    def test_check_indexes_keeps_gin(self):
+        """Odoo's index check does not turn the GIN index into a btree one."""
+        index_name = f"{_TABLE}__indexed_data_index"
+        self.registry.check_indexes(self.env.cr, ["sparse_fields_jsonb.test"])
+        self.assertEqual(self._index_method(index_name), "gin")
+        field = self.env["sparse_fields_jsonb.test"]._fields["indexed_data"]
+        self.assertTrue(field.index)
+
+    def test_check_indexes_creates_gin(self):
+        """Odoo's index check creates a missing GIN index."""
+        index_name = f"{_TABLE}__indexed_data_index"
+        self.env.cr.execute(SQL("DROP INDEX %s", SQL.identifier(index_name)))
+        self.registry.check_indexes(self.env.cr, ["sparse_fields_jsonb.test"])
+        self.assertEqual(self._index_method(index_name), "gin")
+
     # Hooks
 
     def test_post_init_hook_converts_text_column(self):
