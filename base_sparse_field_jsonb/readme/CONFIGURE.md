@@ -24,5 +24,5 @@ Expected output:
 SELECT indexname, indexdef
 FROM pg_indexes
 WHERE tablename = 'product_template'
-  AND indexname LIKE '%gin%';
+  AND indexdef LIKE '%USING gin%';
 ```

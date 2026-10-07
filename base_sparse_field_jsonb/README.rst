@@ -48,11 +48,11 @@ text in a TEXT column. While functional, this has limitations:
 **What this module provides:**
 
 - **JSONB Storage**: Serialized fields use PostgreSQL JSONB column type
-- **GIN Indexes**: Automatic creation of GIN indexes for fast key/value
-  lookups
+- **GIN Indexes**: Serialized fields defined with ``index=True`` get a
+  GIN index for fast key/value lookups
 - **Transparent Upgrade**: Drop-in replacement, no code changes needed
-- **Migration Support**: Automatically converts existing TEXT columns to
-  JSONB
+- **Migration Support**: Converts existing TEXT columns to JSONB, also
+  for modules installed later on, and back to TEXT when uninstalled
 
 **Performance Benefits:**
 
@@ -107,7 +107,7 @@ Optional: Verify GIN Index
    SELECT indexname, indexdef
    FROM pg_indexes
    WHERE tablename = 'product_template'
-     AND indexname LIKE '%gin%';
+     AND indexdef LIKE '%USING gin%';
 
 Usage
 =====
@@ -117,9 +117,14 @@ Installation
 
 Simply install this module. It will:
 
-1. Override the ``Serialized`` field class to use JSONB
-2. Migrate any existing TEXT columns to JSONB
-3. Create GIN indexes on all serialized field columns
+1. Patch the ``Serialized`` field class to use JSONB, including for
+   modules importing it directly from ``base_sparse_field``
+2. Migrate the existing TEXT columns of serialized fields to JSONB
+3. Create a GIN index on serialized fields defined with ``index=True``
+
+Uninstalling the module converts the columns back to TEXT. Restart the
+server afterwards, as the field class stays patched in the running
+process.
 
 No configuration is required.
 
@@ -156,11 +161,17 @@ After:
 GIN Index
 ~~~~~~~~~
 
-The module creates GIN indexes for fast lookups:
+No index is created by default. Set ``index=True`` on the serialized
+field to get a GIN index, which supports the ``?``, ``?|``, ``?&`` and
+``@>`` operators:
+
+.. code:: python
+
+   x_custom_json_attrs = fields.Serialized(index=True)
 
 .. code:: sql
 
-   CREATE INDEX idx_product_template_x_custom_json_attrs_gin
+   CREATE INDEX product_template__x_custom_json_attrs_index
    ON product_template USING GIN (x_custom_json_attrs);
 
 Querying JSONB (Advanced)
@@ -194,7 +205,9 @@ automatically handles the migration:
    ALTER COLUMN x_custom_json_attrs TYPE jsonb
    USING x_custom_json_attrs::jsonb;
 
-Empty strings and NULL values are handled gracefully.
+Empty strings and NULL values are handled gracefully. Indexes on the
+converted column are dropped first, as indexes built for TEXT can not be
+rebuilt on JSONB. Indexes on other columns are left untouched.
 
 Known issues / Roadmap
 ======================

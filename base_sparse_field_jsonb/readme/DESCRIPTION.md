@@ -13,9 +13,11 @@ TEXT column. While functional, this has limitations:
 **What this module provides:**
 
 - **JSONB Storage**: Serialized fields use PostgreSQL JSONB column type
-- **GIN Indexes**: Automatic creation of GIN indexes for fast key/value lookups
+- **GIN Indexes**: Serialized fields defined with `index=True` get a GIN index
+  for fast key/value lookups
 - **Transparent Upgrade**: Drop-in replacement, no code changes needed
-- **Migration Support**: Automatically converts existing TEXT columns to JSONB
+- **Migration Support**: Converts existing TEXT columns to JSONB, also for
+  modules installed later on, and back to TEXT when uninstalled
 
 **Performance Benefits:**
 
