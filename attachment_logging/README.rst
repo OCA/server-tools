@@ -91,7 +91,7 @@ Contributors
   - Ivan Sokolov
   - Maksim Shurupov
 
-- Binhex <`www.binhex.com\\> <http://www.binhex.com\>>`__
+- `Binhex <https://binhex.cloud/>`__:
 
   - Adasat Torres de León a.torres@binhex.cloud
 
