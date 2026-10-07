@@ -13,7 +13,13 @@ async function popUpException(env, _action) {
     // Do a soft reload before displaying the popup to display the exception
     // on the Form view
     await env.services.action.restore(controller.jsId);
-    await env.services.action.doAction(popupAction);
+    await env.services.action.doAction(popupAction, {
+        onClose: () =>
+            env.services.action.doAction({
+                type: "ir.actions.client",
+                tag: "soft_reload",
+            }),
+    });
 }
 
 function baseExceptionErrorHandler(env, uncaughtError, originalError) {
