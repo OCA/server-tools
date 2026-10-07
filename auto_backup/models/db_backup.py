@@ -159,9 +159,9 @@ class DbBackup(models.Model):
                     pass
 
                 with open(os.path.join(rec.folder, filename), "wb") as destiny:
-                    # Copy the cached backup
-                    if backup:
-                        with open(backup) as cached:
+                    # Copy the cached backup, ensuring that it is in the same format
+                    if backup and backup.endswith(rec.backup_format):
+                        with open(backup, "rb") as cached:
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
