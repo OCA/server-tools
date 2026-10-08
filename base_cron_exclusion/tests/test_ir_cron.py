@@ -88,8 +88,8 @@ class TestIrCron(TransactionCase):
                 "odoo.addons.base.models.ir_cron.IrCron._process_job",
                 side_effect=RuntimeError("job failed"),
             ),
+            self.assertRaises(RuntimeError),
         ):
-            with self.assertRaises(RuntimeError):
-                IrCron._process_job(self.env.cr, job)
+            IrCron._process_job(self.env.cr, job)
 
         mock_lock_cr.close.assert_called_once()
