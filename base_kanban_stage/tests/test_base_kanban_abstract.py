@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import models
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -97,3 +98,20 @@ class TestBaseKanbanAbstract(TransactionCase):
         )
         self.assertEqual(result[0], expected[0])
         self.assertEqual(result[1], expected[1])
+
+    def test_ir_model_is_kanban(self):
+        """It should reflect is_kanban=True on models inheriting base.kanban.abstract"""
+        test_model_record = self.env["ir.model"].search(
+            [("model", "=", self.test_model._name)],
+            limit=1,
+        )
+        self.assertTrue(test_model_record.is_kanban)
+
+    def test_ir_model_is_kanban_non_manual_write_error(self):
+        """It should prevent modifying is_kanban on non-manual models"""
+        test_model_record = self.env["ir.model"].search(
+            [("model", "=", self.test_model._name)],
+            limit=1,
+        )
+        with self.assertRaises(UserError):
+            test_model_record.write({"is_kanban": False})

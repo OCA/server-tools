@@ -78,5 +78,10 @@ class BaseKanbanStage(models.Model):
         action_id = self.env.context.get("params", {}).get("action")
         action = self.env["ir.actions.act_window"].browse(action_id)
         default_model = action.res_model
-        if default_model != self._name:
-            return self.env["ir.model"].sudo().search([("model", "=", default_model)])
+        if default_model and default_model != self._name:
+            return (
+                self.env["ir.model"]
+                .sudo()
+                .search([("model", "=", default_model)], limit=1)
+            )
+        return self.env["ir.model"]

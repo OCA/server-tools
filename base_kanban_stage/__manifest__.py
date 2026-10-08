@@ -4,14 +4,14 @@
 {
     "name": "Kanban - Stage Support",
     "summary": "Provides stage model and abstract logic for inheritance",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "LasLabs, Odoo Community Association (OCA)",
     "category": "base",
     "depends": ["base"],
     "website": "https://github.com/OCA/server-tools",
     "license": "LGPL-3",
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/base_kanban_abstract.xml",
         "views/base_kanban_stage.xml",
         "views/ir_model_views.xml",

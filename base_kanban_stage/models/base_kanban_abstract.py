@@ -108,6 +108,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         # allow tracking on models inheriting from 'base.kanban.stage'
         return name == "tracking" or super()._valid_field_parameter(field, name)
 
+    @api.model
     def _read_group_stage_ids(self, stages, domain):
         search_domain = [("res_model_id.model", "=", self._name)]
         return stages.search(search_domain)
