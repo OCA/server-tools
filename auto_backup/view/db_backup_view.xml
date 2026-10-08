@@ -42,7 +42,7 @@
                                 name="action_sftp_test_connection"
                                 type="object"
                                 string="Test SFTP Connection"
-                                icon="fa-television"
+                                icon="link"
                             />
                         </group>
                     </div>

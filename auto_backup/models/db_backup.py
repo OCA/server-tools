@@ -6,6 +6,7 @@
 import logging
 import os
 import shutil
+import tempfile
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
@@ -15,7 +16,28 @@ import pysftp
 
 from odoo import api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
-from odoo.service import db
+from odoo.modules import db
+
+
+def _dump_db(db_name, stream, backup_format):
+    """Dump the database into ``stream``, or into a temporary file if None.
+
+    ``odoo.service.db.dump_db`` is gone in Odoo 20, ``odoo.modules.db.dump``
+    only writes into an existing file object.
+    """
+    is_temporary = stream is None
+    if is_temporary:
+        stream = tempfile.TemporaryFile(mode="w+b")  # noqa: SIM115 - returned
+    db.dump(
+        db_name,
+        stream,
+        backup_format=backup_format,
+        with_filestore=backup_format == "zip",
+    )
+    if is_temporary:
+        stream.seek(0)
+    return stream
+
 
 _logger = logging.getLogger(__name__)
 
@@ -167,9 +189,7 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(
-                            self.env.cr.dbname, destiny, backup_format=rec.backup_format
-                        )
+                        _dump_db(self.env.cr.dbname, destiny, rec.backup_format)
                         backup = backup or destiny.name
                 successful |= rec
 
@@ -181,9 +201,7 @@ class DbBackup(models.Model):
                     datetime.now(timezone.utc), ext=rec.backup_format
                 )
                 with rec.backup_log():
-                    cached = db.dump_db(
-                        self.env.cr.dbname, None, backup_format=rec.backup_format
-                    )
+                    cached = _dump_db(self.env.cr.dbname, None, rec.backup_format)
 
                     with cached:
                         with rec.sftp_connection() as remote:
