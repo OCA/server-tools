@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2016 LasLabs Inc.
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
@@ -26,15 +26,15 @@
                     <t t-name="menu" name="card_dropdown_menu">
                         <a
                             t-if="widget.editable"
+                            class="dropdown-item"
                             role="menuitem"
                             type="edit"
-                            class="dropdown-item"
                         >Edit</a>
                         <a
                             t-if="widget.deletable"
+                            class="dropdown-item"
                             role="menuitem"
                             type="delete"
-                            class="dropdown-item"
                         >Delete</a>
                         <div role="separator" class="dropdown-divider" />
                         <field name="kanban_color" widget="kanban_color_picker" />
