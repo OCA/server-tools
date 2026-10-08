@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_auditlog_log_form" model="ir.ui.view">
+        <field name="name">auditlog.log.form - auditlog_auth_method</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='http_request_id']" position="after">
+                <field
+                    name="http_request_remote_addr"
+                    invisible="not http_request_remote_addr"
+                />
+                <field
+                    name="http_request_user_agent"
+                    invisible="not http_request_user_agent"
+                />
+                <field name="auth_method_id" />
+                <field name="auth_mfa_method" invisible="not auth_mfa_method" />
+                <field name="auth_api_key_name" invisible="not auth_api_key_name" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_auditlog_log_tree" model="ir.ui.view">
+        <field name="name">auditlog.log.tree - auditlog_auth_method</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="auth_method_id" optional="show" />
+                <field name="auth_api_key_name" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_auditlog_log_search" model="ir.ui.view">
+        <field name="name">auditlog.log.search - auditlog_auth_method</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="auth_method_id" />
+                <field name="auth_api_key_name" />
+                <filter
+                    name="filter_auth_web"
+                    string="Web Session"
+                    domain="[('auth_method_id.code', '=like', 'web_%')]"
+                />
+                <filter
+                    name="filter_auth_rpc"
+                    string="External RPC"
+                    domain="[('auth_method_id.code', '=like', 'rpc_%')]"
+                />
+                <filter
+                    name="filter_auth_api_key"
+                    string="API Key"
+                    domain="[('auth_method_id.code', '=', 'rpc_api_key')]"
+                />
+            </xpath>
+            <xpath expr="//filter[@name='group_by_user_id']" position="after">
+                <filter
+                    name="group_by_auth_method_id"
+                    string="Authentication Method"
+                    domain="[]"
+                    context="{'group_by': 'auth_method_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
