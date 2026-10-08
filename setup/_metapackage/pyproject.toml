@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "18.0.20260928.0"
+version = "18.0.20261008.0"
 dependencies = [
     "odoo-addon-attachment_delete_restrict==18.0.*",
     "odoo-addon-attachment_queue==18.0.*",
@@ -53,6 +53,7 @@ dependencies = [
     "odoo-addon-rpc_helper==18.0.*",
     "odoo-addon-scheduler_error_mailer==18.0.*",
     "odoo-addon-sentry==18.0.*",
+    "odoo-addon-sentry_client==18.0.*",
     "odoo-addon-sequence_python==18.0.*",
     "odoo-addon-session_db==18.0.*",
     "odoo-addon-test_auditlog==18.0.*",
