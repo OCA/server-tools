@@ -1,0 +1,1 @@
+- Icon: [Odoo Community Association](https://odoo-community.org/logo.png).
