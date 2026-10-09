@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [base_time_parameter](base_time_parameter/) | 18.0.1.0.0 | <a href='https://github.com/appstogrow'><img src='https://github.com/appstogrow.png' width='32' height='32' style='border-radius:50%;' alt='appstogrow'/></a> <a href='https://github.com/nimarosa'><img src='https://github.com/nimarosa.png' width='32' height='32' style='border-radius:50%;' alt='nimarosa'/></a> | Time dependent parameters Adds the feature to define parameters with time based versions.
 [base_time_window](base_time_window/) | 18.0.1.1.1 |  | Base model to handle time windows
 [base_url](base_url/) | 18.0.1.0.0 | <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | Abstract module/mixin to manage clean url on odoo record
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 18.0.1.0.2 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 18.0.1.0.3 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 18.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [database_autovacuum_tuning](database_autovacuum_tuning/) | 18.0.1.0.1 |  | Scheduled checks for Odoo autovacuum thresholds and scale factors
 [database_cleanup](database_cleanup/) | 18.0.1.0.2 |  | Database cleanup
