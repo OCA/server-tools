@@ -11,6 +11,7 @@ from lxml import etree
 from odoo import api, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Domain
+from odoo.tools.misc import SKIPPED_ELEMENT_TYPES, html_escape
 
 
 def ast_dict_update(source, update):
@@ -53,24 +54,41 @@ class IrUiView(models.Model):
     _inherit = "ir.ui.view"
 
     @api.model
-    def apply_inheritance_specs(self, source, specs_tree, pre_locate=lambda s: True):
-        for specs, handled_by in self._iter_inheritance_specs(specs_tree):
-            pre_locate(specs)
-            source = handled_by(source, specs)
+    def apply_inheritance_specs(self, source, specs_tree, pre_locate=None):
+        pre_locate = pre_locate or (lambda s: True)
+        try:
+            for specs, handled_by in self._iter_inheritance_specs(specs_tree):
+                pre_locate(specs)
+                source = handled_by(source, specs)
+        except ValueError as e:
+            self._raise_view_error(str(e), specs_tree)
         return source
 
     @api.model
     def _iter_inheritance_specs(self, spec):
+        if isinstance(spec, list):
+            for child in spec:
+                for node, handler in self._iter_inheritance_specs(child):
+                    yield node, handler
+            return
+        if isinstance(spec, SKIPPED_ELEMENT_TYPES):
+            return
         if spec.tag == "data":
             for child in spec:
                 for node, handler in self._iter_inheritance_specs(child):
                     yield node, handler
             return
         if spec.get("position") == "attributes":
-            if all(not c.get("operation") for c in spec):
+            if all(
+                not c.get("operation")
+                for c in spec
+                if not isinstance(c, SKIPPED_ELEMENT_TYPES)
+            ):
                 yield spec, self._get_inheritance_handler(spec)
                 return
             for child in spec:
+                if isinstance(child, SKIPPED_ELEMENT_TYPES):
+                    continue
                 node = etree.Element(spec.tag, **spec.attrib)
                 node.insert(0, child)
                 yield node, self._get_inheritance_handler_attributes(child)
@@ -173,6 +191,21 @@ class IrUiView(models.Model):
         return handler
 
     @api.model
+    def _locate_spec_node(self, source, specs):
+        node = self.locate_node(source, specs)
+        if node is None:
+            attrs = "".join(
+                f' {attr}="{html_escape(specs.get(attr))}"'
+                for attr in specs.attrib
+                if attr != "position"
+            )
+            tag = f"<{specs.tag}{attrs}>"
+            raise ValueError(
+                self.env._("Element '%s' cannot be located in parent view", tag)
+            )
+        return node
+
+    @api.model
     def _inheritance_handler_attributes_update(self, source, specs):
         """Implement dict `update` operation on the attribute node.
 
@@ -186,7 +219,7 @@ class IrUiView(models.Model):
                 </attribute>
             </field>
         """
-        node = self.locate_node(source, specs)
+        node = self._locate_spec_node(source, specs)
         for spec in specs:
             attr_name = spec.get("name")
             # Parse ast from both node and spec
@@ -211,13 +244,12 @@ class IrUiView(models.Model):
                 $text_before {old_value} $text_after
             </attribute>
         </$node>"""
-        node = self.locate_node(source, specs)
+        node = self._locate_spec_node(source, specs)
         for attribute_node in specs:
             attribute_name = attribute_node.get("name")
             old_value = node.get(attribute_name) or ""
-            node.attrib[attribute_name] = attribute_node.text.format(
-                old_value=old_value
-            )
+            text = (attribute_node.text or "").strip()
+            node.attrib[attribute_name] = text.format(old_value=old_value)
         return source
 
     @api.model
@@ -229,7 +261,7 @@ class IrUiView(models.Model):
                 $domain_to_add
             </attribute>
         </$node>"""
-        node = self.locate_node(source, specs)
+        node = self._locate_spec_node(source, specs)
         for attribute_node in specs:
             attribute_name = attribute_node.get("name")
             condition = attribute_node.get("condition")

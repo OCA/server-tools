@@ -155,6 +155,31 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             "Client Customer",
         )
 
+    def test_text_add_operation_multiline(self):
+        source = etree.fromstring(
+            """
+            <form>
+                <field name="customer_id" string="Client"/>
+            </form>
+            """
+        )
+
+        specs = etree.fromstring(
+            """
+            <field name="customer_id" position="attributes">
+                <attribute name="string" operation="text_add">
+                    {old_value} Customer
+                </attribute>
+            </field>
+            """
+        )
+
+        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+        self.assertEqual(
+            res.xpath('//field[@name="customer_id"]')[0].attrib["string"],
+            "Client Customer",
+        )
+
     def test_update_operation_not_a_dict(self):
         """We should get an error if we try to update a dict with a non-dict spec"""
         source = etree.fromstring(
