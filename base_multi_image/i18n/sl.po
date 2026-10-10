@@ -9,26 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2023-03-31 21:26+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
 msgid " Wizard for base multi image "
-msgstr ""
+msgstr " Čarovnik za osnovno podporo več slikam "
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
 msgid " image model for multiple image functionality "
-msgstr ""
+msgstr " Model slik za podporo več slikam "
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
@@ -45,7 +45,7 @@ msgstr "Priponka"
 #. module: base_multi_image
 #: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
-msgstr ""
+msgstr "Kliknite za dodajanje slike, pripete določenemu zapisu."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
@@ -86,12 +86,12 @@ msgstr "Naziv datoteke"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
 msgid "Filestore"
-msgstr ""
+msgstr "Shramba datotek"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Slika v polni velikosti"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
@@ -154,12 +154,12 @@ msgstr "Glavna slika"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Srednja slika"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Slika srednje velikosti"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
@@ -168,6 +168,9 @@ msgid ""
 "with aspect ratio preserved, only when the image exceeds one of those sizes. "
 "Use this field in form views or kanban views."
 msgstr ""
+"Slika srednje velikosti. Samodejno se zmanjša na 128 x 128 slikovnih pik ob "
+"ohranitvi razmerja stranic, vendar le, če presega eno od teh mer. To polje "
+"uporabite v obrazcih ali prikazih kanban."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
@@ -199,7 +202,7 @@ msgstr "Lastnik"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
 msgid "Owner Model"
-msgstr ""
+msgstr "Model lastnika"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -214,7 +217,7 @@ msgstr "Slike proizvoda"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
-msgstr ""
+msgstr "Sklic na lastnika"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
@@ -224,17 +227,17 @@ msgstr "Zaporedje"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
 msgid "Show Technical"
-msgstr ""
+msgstr "Prikaži tehnične podatke"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
 msgid "Small image"
-msgstr ""
+msgstr "Majhna slika"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
 msgid "Small-sized image"
-msgstr ""
+msgstr "Slika majhne velikosti"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
@@ -242,6 +245,9 @@ msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
 msgstr ""
+"Slika majhne velikosti. Samodejno se prilagodi na 64 x 64 slikovnih pik ob "
+"ohranitvi razmerja stranic. To polje uporabite povsod, kjer je potrebna "
+"majhna slika."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
@@ -257,25 +263,25 @@ msgstr "URL"
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide a file path for the image."
-msgstr ""
+msgstr "Navesti morate pot do datoteke slike."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an URL for the image."
-msgstr ""
+msgstr "Navesti morate URL naslov slike."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attached file for the image."
-msgstr ""
+msgstr "Za sliko morate navesti pripeto datoteko."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attachment for the image."
-msgstr ""
+msgstr "Za sliko morate navesti priponko."
 
 #~ msgid "Owner model"
 #~ msgstr "Model lastnika"
