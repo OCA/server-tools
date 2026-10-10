@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2026-06-07 11:46+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -64,27 +64,27 @@ msgstr "Revizijski dnevnik - pravila"
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_manager
 msgid "Auditlog Manager"
-msgstr ""
+msgstr "Upravitelj revizijskega dnevnika"
 
 #. module: auditlog
 #: model:ir.module.category,name:auditlog.security_auditlog_groups
 msgid "Auditlog Rights"
-msgstr ""
+msgstr "Pravice revizijskega dnevnika"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_user
 msgid "Auditlog User"
-msgstr ""
+msgstr "Uporabnik revizijskega dnevnika"
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
 msgid "Auto-vacuum audit logs"
-msgstr ""
+msgstr "Samodejno čiščenje revizijskih dnevnikov"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
 msgid "Capture Record"
-msgstr ""
+msgstr "Zajemi zapis"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
@@ -147,7 +147,7 @@ msgstr "Osnutek"
 #: code:addons/auditlog/models/log.py:0
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Exported Records"
-msgstr ""
+msgstr "Izvoženi zapisi"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
@@ -166,12 +166,12 @@ msgstr "Polje"
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 msgid "Field 'model_id' cannot be empty."
-msgstr ""
+msgstr "Polje 'model_id' ne sme biti prazno."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__fields_to_exclude_ids
 msgid "Fields to Exclude"
-msgstr ""
+msgstr "Polja za izključitev"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
@@ -289,14 +289,14 @@ msgstr "Dnevnik brisanja"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
 msgid "Log Exports"
-msgstr ""
+msgstr "Dnevnik izvozov"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 msgid "Log Lines"
-msgstr ""
+msgstr "Vrstice dnevnika"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_read
@@ -335,14 +335,14 @@ msgstr "Model"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
 msgid "Model Model"
-msgstr ""
+msgstr "Tehnični naziv modela"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_name
 msgid "Model Name"
-msgstr ""
+msgstr "Naziv modela"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__display_name
@@ -368,19 +368,19 @@ msgstr "Nova vrednost tekstualno"
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 msgid "No field defined to create line."
-msgstr ""
+msgstr "Za ustvarjanje vrstice ni določeno polje."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 msgid "No model defined to create line."
-msgstr ""
+msgstr "Za ustvarjanje vrstice ni določen model."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 msgid "No model defined to create log."
-msgstr ""
+msgstr "Za ustvarjanje dnevnika ni določen model."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value
@@ -403,7 +403,7 @@ msgstr "Pot"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
 msgid "Res"
-msgstr ""
+msgstr "Vir"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
@@ -415,7 +415,7 @@ msgstr "ID vira"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
 msgid "Resource IDs"
-msgstr ""
+msgstr "ID-ji virov"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
@@ -448,7 +448,7 @@ msgstr "Izbira modela za katerega ustvarjate dnevnik."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
-msgstr ""
+msgstr "Izberite to možnost, če želite beležiti brisanje zapisov"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -457,7 +457,7 @@ msgid ""
 "of this rule"
 msgstr ""
 "Izberite, če želite slediti ustvarjanju kateregakoli zapisa na modelu, na "
-"katerega se nanaša to pravilo."
+"katerega se nanaša to pravilo"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
@@ -466,13 +466,13 @@ msgid ""
 "of this rule"
 msgstr ""
 "Izberite, če želite slediti brisanju kateregakoli zapisa na modelu, na "
-"katerega se nanaša to pravilo."
+"katerega se nanaša to pravilo"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
 msgid ""
 "Select this if you want to keep track of exports of the model of this rule"
-msgstr ""
+msgstr "Izberite to možnost, če želite beležiti izvoze modela tega pravila"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -481,7 +481,7 @@ msgid ""
 "model of this rule"
 msgstr ""
 "Izberite, če želite slediti spreminjanju kateregakoli zapisa na modelu, na "
-"katerega se nanaša to pravilo."
+"katerega se nanaša to pravilo"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
@@ -490,7 +490,7 @@ msgid ""
 "model of this rule"
 msgstr ""
 "Izberite, če želite slediti branju/odpiranju kateregakoli zapisa na modelu, "
-"na katerega se nanaša to pravilo."
+"na katerega se nanaša to pravilo"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
@@ -525,7 +525,7 @@ msgstr "Naročen"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_model
 msgid "Technical Model Name"
-msgstr ""
+msgstr "Tehnični naziv modela"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
@@ -537,13 +537,13 @@ msgstr "Tehnični naziv"
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 msgid "The field 'field_id' cannot be empty."
-msgstr ""
+msgstr "Polje 'field_id' ne sme biti prazno."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 msgid "The field 'model_id' cannot be empty."
-msgstr ""
+msgstr "Polje 'model_id' ne sme biti prazno."
 
 #. module: auditlog
 #: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
@@ -601,7 +601,7 @@ msgstr "Uporabniki"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__users_to_exclude_ids
 msgid "Users to Exclude"
-msgstr ""
+msgstr "Uporabniki za izključitev"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
@@ -617,7 +617,7 @@ msgstr "Prikaz dnevnikov"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if no user is added then it will applicable for all users"
-msgstr ""
+msgstr "Če ni dodan noben uporabnik, bo veljalo za vse uporabnike"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
