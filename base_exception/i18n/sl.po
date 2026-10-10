@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2023-03-31 21:29+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "<code>self</code>: Record on which the rule is evaluated."
-msgstr ""
+msgstr "<code>self</code>: zapis, na katerem se pravilo ovrednoti."
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__active
@@ -33,32 +33,32 @@ msgstr "Aktivno"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Uporabi za"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "As well as all the libraries provided in safe_eval."
-msgstr ""
+msgstr "Na voljo so tudi vse knjižnice, ki jih zagotavlja safe_eval."
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
 msgid "By domain"
-msgstr ""
+msgstr "Po domeni"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
 msgid "By method"
-msgstr ""
+msgstr "Po metodi"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 msgid "By python code"
-msgstr ""
+msgstr "S kodo Python"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__exception_type
@@ -69,11 +69,16 @@ msgid ""
 "with several records\n"
 "By method: allow to select an existing check method"
 msgstr ""
+"S kodo Python: omogoča določitev poljubnega preverjanja\n"
+"Po domeni: omejeno na izbor z domeno Odoo:\n"
+"           zmogljivost je lahko boljša, ko se izjeme ovrednotijo za več "
+"zapisov\n"
+"Po metodi: omogoča izbiro obstoječe metode preverjanja"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Close"
-msgstr ""
+msgstr "Zapri"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -98,7 +103,7 @@ msgstr "Prikazani naziv"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domena"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -106,6 +111,8 @@ msgid ""
 "Enter Python code here. Help about Python expression is available in the "
 "help tab of this document."
 msgstr ""
+"Tu vnesite kodo Python. Pomoč za izraze Python je na voljo na zavihku za "
+"pomoč tega dokumenta."
 
 #. module: base_exception
 #. odoo-python
@@ -115,84 +122,85 @@ msgid ""
 " %(rule_name)s \n"
 "(%(error)s)"
 msgstr ""
+"Napaka pri vrednotenju pravila exception.rule:\n"
+" %(rule_name)s \n"
+"(%(error)s)"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
-#, fuzzy
 msgid "Exception"
-msgstr "Opis"
+msgstr "Izjema"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__name
 msgid "Exception Name"
-msgstr ""
+msgstr "Naziv izjeme"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
 msgid "Exception Rule"
-msgstr ""
+msgstr "Pravilo izjeme"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 msgid "Exception Rule Confirm Wizard"
-msgstr ""
+msgstr "Čarovnik za potrditev pravila izjeme"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 msgid "Exception Rule Methods"
-msgstr ""
+msgstr "Metode pravil izjem"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Exception Rule Setup"
-msgstr ""
+msgstr "Nastavitve pravil izjem"
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_list
 #: model:ir.ui.menu,name:base_exception.menu_action_exception
 msgid "Exception Rules"
-msgstr ""
+msgstr "Pravila izjem"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
 msgid "Exception Type"
-msgstr ""
+msgstr "Tip izjeme"
 
 #. module: base_exception
 #: model:res.groups,name:base_exception.group_exception_rule_manager
 msgid "Exception manager"
-msgstr ""
+msgstr "Upravitelj izjem"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
 msgid "Exceptions"
-msgstr ""
+msgstr "Izjeme"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
-#, fuzzy
 msgid "Exceptions Summary"
-msgstr "Opis"
+msgstr "Povzetek izjem"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
 msgid "Exceptions to resolve"
-msgstr ""
+msgstr "Izjeme za razrešitev"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__sequence
 msgid "Gives the sequence order when applying the test"
-msgstr ""
+msgstr "Določa vrstni red izvajanja preverjanja"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Help"
-msgstr ""
+msgstr "Pomoč"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Help with Python expressions"
-msgstr ""
+msgstr "Pomoč za izraze Python"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
@@ -203,12 +211,12 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__ignore_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__ignore
 msgid "Ignore Exceptions"
-msgstr ""
+msgstr "Prezri izjeme"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
 msgid "Is Blocking"
-msgstr ""
+msgstr "Je blokirajoča"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
@@ -223,34 +231,34 @@ msgstr "Zadnjič posodobljeno"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__main_exception_id
 msgid "Main Exception"
-msgstr ""
+msgstr "Glavna izjema"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
 msgid "Method"
-msgstr ""
+msgstr "Metoda"
 
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
 msgid "Only 1 ID accepted, got %r."
-msgstr ""
+msgstr "Dovoljen je le en ID, prejeto: %r."
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
 msgid "Outstanding exceptions to manage"
-msgstr ""
+msgstr "Nerazrešene izjeme za obravnavo"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Outstanding exceptions to manager"
-msgstr ""
+msgstr "Nerazrešene izjeme za obravnavo"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__code
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Python Code"
-msgstr ""
+msgstr "Koda Python"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__code
@@ -258,12 +266,13 @@ msgid ""
 "Python code executed to check if the exception apply or not. Use failed = "
 "True to block the exception"
 msgstr ""
+"Koda Python, ki se izvede za preverjanje, ali izjema velja. Za blokiranje "
+"uporabite failed = True"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__related_model_id
-#, fuzzy
 msgid "Related Model"
-msgstr "Ustvarjeno"
+msgstr "Povezani model"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
@@ -276,13 +285,13 @@ msgstr "Zaporedje"
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 msgid "The exceptions can not be ignored, because some of them are blocking."
-msgstr ""
+msgstr "Izjem ni mogoče prezreti, ker so nekatere blokirajoče."
 
 #. module: base_exception
 #. odoo-python
@@ -291,11 +300,13 @@ msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
 msgstr ""
+"Nastavitve so neustrezne: manjka koda Python, domena ali metoda, ki ustreza "
+"tipu izjeme."
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
-msgstr ""
+msgstr "Za blokiranje uporabite: <code>failed = True</code>"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -303,11 +314,13 @@ msgid ""
 "Various fields may use Python code or Python expressions. The following "
 "variables can be used:"
 msgstr ""
+"Različna polja lahko uporabljajo kodo Python ali izraze Python. Uporabite "
+"lahko naslednje spremenljivke:"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
 msgid "When checked the exception can not be ignored"
-msgstr ""
+msgstr "Če je označeno, izjeme ni mogoče prezreti"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
