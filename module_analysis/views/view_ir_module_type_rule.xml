@@ -11,7 +11,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <list editable="bottom">
                 <field name="sequence" widget="handle" />
                 <field name="module_type_id" />
-                <field name="module_domain" />
+                <field
+                    name="module_domain"
+                    widget="domain"
+                    options="{'model': 'ir.module.module', 'in_dialog': True}"
+                />
             </list>
         </field>
     </record>
