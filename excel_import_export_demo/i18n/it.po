@@ -1,0 +1,298 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* excel_import_export_demo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-01-16 16:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,print_report_name:excel_import_export_demo.action_report_saleorder_excel
+msgid ""
+"(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
+"'Order - %s' % (object.name)"
+msgstr ""
+"(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
+"'Order - %s' % (object.name)"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__state
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__state
+msgid ""
+"* Choose: wizard show in user selection mode\n"
+"* Get: wizard show results from user action"
+msgstr ""
+"* Choose: wizard mostrato in modalità selezione utente\n"
+"* Get: wizard mostra i risultati dall'azione dell'utente"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__choose_template
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__choose_template
+msgid "Allow Choose Template"
+msgstr "Consente selezione modello"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Modifiche dell'insieme di modifiche"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_ids
+msgid "Changesets"
+msgstr "Insiemi di modifiche"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_changesets
+msgid "Count Changesets"
+msgstr "Conta insiemi di modifiche"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conteggio insieme di modifiche in attesa"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__display_name
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__display_name
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Execute"
+msgstr "Esegui"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__data
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__data
+msgid "File"
+msgstr "File"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__name
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__name
+msgid "File Name"
+msgstr "Nome file"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__id
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__id
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_purchase_order_import_xlsx
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_import_xlsx
+msgid "Import Excel"
+msgstr "Importa Excel"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead____last_update
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list____last_update
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__write_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__write_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__partner_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__partner_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_partner_excel
+msgid "Partner List (.xlsx)"
+msgstr "Elenco partner (.xlsx)"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_partner_list
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_partner_list
+msgid "Partner List Report"
+msgstr "Resoconto lista partner"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_saleorder_excel
+msgid "Quotation / Order (.xlsx)"
+msgstr "Preventivo / Ordine (.xlsx)"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__results
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__results
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__results
+msgid "Results"
+msgstr "Risultati"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__revenue_by_country
+msgid "Revenue By Country"
+msgstr "Ricavo per nazione"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__revenue_by_team
+msgid "Revenue By Team"
+msgstr "Ricavo per team"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__team_id
+msgid "Sales Team"
+msgstr "Team di vendita"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_import_sale_order
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_import_sale_order
+msgid "Sample Import Sale Order"
+msgstr "Esempio importazione ordine di vendita"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_crm_lead
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_crm_lead
+msgid "Sample Lead Report"
+msgstr "Esempio resoconto contatti"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_sale_order
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_sale_order
+msgid "Sample Sales Report"
+msgstr "Esempio resoconto vendite"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__smart_search
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__smart_search
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__state
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
+msgid "State"
+msgstr "Stato"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__template_id
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
+msgid "Template"
+msgstr "Modello"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Numero di modifiche di questo record in attesa"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Numero di insiemi di modifiche in attesa di questo record"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__count_changesets
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_changesets
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Numero totale di insiemi di modifiche di questo record"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
+msgid "Use compute fields, so there is nothing store in database"
+msgstr "Usa campi calcolati, così non viene conservato nulla nel database"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
+msgid "Use compute fields, so there is nothing stored in database"
+msgstr "Usa campi calcolati, così non viene conservato nulla nel database"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utente può vedere l'insieme delle modifiche"
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_crm_lead
+msgid "Wizard for report.crm.lead"
+msgstr "Procedura guidata per report.crm.lead"
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_partner_list
+msgid "Wizard for report.partner.list"
+msgstr "Procedura guidata per report.partner.list"
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_sale_order
+msgid "Wizard for report.sale.order"
+msgstr "Procedura guidata per report.sale.order"
+
+#~ msgid "Export Excel"
+#~ msgstr "Esporta Excel"
