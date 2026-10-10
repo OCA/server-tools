@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2026-01-22 18:41+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -33,12 +33,12 @@ msgstr "Absolutna pot za shranjevanje varnostnih kopij"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Potrebno je ukrepanje"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Število prilog"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
@@ -54,22 +54,22 @@ msgstr "Samodejne varnostne kopije podatkovne baze se lahko razporedi na:"
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
-msgstr ""
+msgstr "Varnostno kopiranje ni uspelo"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
 msgid "Backup Format"
-msgstr ""
+msgstr "Format varnostne kopije"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
 msgid "Backup Scheduler"
-msgstr ""
+msgstr "Razporejevalnik varnostnih kopiranj"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
-msgstr ""
+msgstr "Varnostno kopiranje je uspelo"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__days_to_keep
@@ -92,9 +92,8 @@ msgstr "Nastavitev ne morete podvojiti."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
-#, fuzzy
 msgid "Choose the format for this backup."
-msgstr "Izberite metodo shranjevanja za to varnostno kopiranje."
+msgstr "Izberite format te varnostne kopije."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
@@ -126,7 +125,7 @@ msgstr "Ustvarjeno"
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
 msgid "Database Backup"
-msgstr ""
+msgstr "Varnostna kopija podatkovne baze"
 
 #. module: auto_backup
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
@@ -143,7 +142,7 @@ msgstr "Varnostno kopiranje podatkovne baze uspešno."
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
 msgid "Days To Keep"
-msgstr ""
+msgstr "Število dni hrambe"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
@@ -162,7 +161,7 @@ msgstr ""
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Execute backup"
-msgstr ""
+msgstr "Izvedi varnostno kopiranje"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
@@ -177,22 +176,22 @@ msgstr "Mapa"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Sledilci"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Sledilci (partnerji)"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "Pojdi na Nastavitve / Tehnično / Avtomatizacija / Planirana dejanja"
+msgstr "Pojdi na Nastavitve / Tehnično / Avtomatizacija / Planirana dejanja."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ima sporočilo"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -212,17 +211,17 @@ msgstr "ID"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Če je označeno, nova sporočila zahtevajo vašo pozornost."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Če je označeno, je pri dostavi nekaterih sporočil prišlo do napake."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Je sledilec"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
@@ -242,12 +241,12 @@ msgstr "Lokalni disk"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Napaka pri dostavi sporočila"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__method
@@ -262,22 +261,22 @@ msgstr "Naziv"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Število dejanj"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Število napak"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Število sporočil, ki zahtevajo ukrepanje"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Število sporočil z napako pri dostavi"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_private_key
@@ -321,7 +320,7 @@ msgstr "SFTP nastavitve"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'"
+msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -334,7 +333,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -395,12 +394,12 @@ msgstr "Opozorilo:"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Sporočila spletne strani"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Zgodovina komunikacije na spletni strani"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -410,7 +409,7 @@ msgstr "john"
 #. module: auto_backup
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__dump
 msgid "pg_dump custom format (without filestore)"
-msgstr ""
+msgstr "Format po meri pg_dump (brez shrambe datotek)"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -420,7 +419,7 @@ msgstr "sftp.example.com"
 #. module: auto_backup
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
-msgstr ""
+msgstr "zip (vključuje shrambo datotek)"
 
 #, python-format
 #~ msgid "Cleanup of old database backups failed."
