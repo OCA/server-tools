@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:46+0000\n"
-"PO-Revision-Date: 2026-07-25 09:07+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -33,37 +33,38 @@ msgstr "Dni do izbrisa"
 #. module: mail_cleanup
 #: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_days
 msgid "Expiration days"
-msgstr ""
+msgstr "Dni do poteka"
 
 #. module: mail_cleanup
 #: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_folder
 msgid "Expiration folder"
-msgstr ""
+msgstr "Mapa za pretečeno pošto"
 
 #. module: mail_cleanup
 #: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_folder
 msgid "Folder where an e-mail marked as read will be moved."
 msgstr ""
+"Mapa, v katero bo premaknjeno e-poštno sporočilo, označeno kot prebrano."
 
 #. module: mail_cleanup
 #: model:ir.model,name:mail_cleanup.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr ""
+msgstr "Strežnik za prejemanje pošte"
 
 #. module: mail_cleanup
 #: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_days
 msgid "Number of days before marking an e-mail as read"
-msgstr ""
+msgstr "Število dni pred označitvijo e-poštnega sporočila kot prebranega"
 
 #. module: mail_cleanup
 #: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__purge_days
 msgid "Number of days before removing an e-mail"
-msgstr ""
+msgstr "Število dni pred odstranitvijo e-poštnega sporočila"
 
 #. module: mail_cleanup
 #: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #~ msgid "POP/IMAP Server"
 #~ msgstr "POP/IMAP strežnik"
