@@ -1,0 +1,225 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* module_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-05-24 12:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: module_analysis
+#: model:ir.ui.menu,name:module_analysis.menu_module_analysis
+msgid "Analysis"
+msgstr "Analisi"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__author_ids
+msgid "Authors"
+msgstr "Autori"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__css_code_qty
+msgid "CSS Code Quantity"
+msgstr "Quantità Codice CSS"
+
+#. module: module_analysis
+#: model_terms:ir.ui.view,arch_db:module_analysis.view_ir_module_module_form
+msgid "Code Size"
+msgstr "Dimensione Codice"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__create_uid
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__create_uid
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__create_date
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__create_date
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__display_name
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__display_name
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__id
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__id
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__installed_module_ids
+msgid "Installed Modules"
+msgstr "Moduli Installati"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__installed_module_qty
+msgid "Installed Modules Quantity"
+msgstr "Quantità Moduli Installati"
+
+#. module: module_analysis
+#: model:ir.actions.act_window,name:module_analysis.action_ir_module_module_by_type
+#: model:ir.ui.menu,name:module_analysis.menu_module_by_type
+msgid "Installed Modules by Types"
+msgstr "Moduli Installati per Tipo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__js_code_qty
+msgid "JS Code Quantity"
+msgstr "Quantità Codice JS"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__write_uid
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__write_uid
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__write_date
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__write_date
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: module_analysis
+#: model:ir.model,name:module_analysis.model_ir_module_module
+msgid "Module"
+msgstr "Modulo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__module_domain
+msgid "Module Domain"
+msgstr "Dominio modulo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__module_type_id
+msgid "Module Type"
+msgstr "Tipo Modulo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__module_type_id
+msgid "Module type"
+msgstr "Tipo Modulo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__installed_module_ids
+msgid "Modules"
+msgstr "Moduli"
+
+#. module: module_analysis
+#: model:ir.actions.act_window,name:module_analysis.action_ir_module_author
+#: model:ir.model,name:module_analysis.model_ir_module_author
+#: model:ir.ui.menu,name:module_analysis.menu_module_authors
+msgid "Modules Authors"
+msgstr "Autori Moduli"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__installed_module_qty
+msgid "Modules Quantity"
+msgstr "Quantità moduli"
+
+#. module: module_analysis
+#: model:ir.actions.act_window,name:module_analysis.action_ir_module_type
+#: model:ir.model,name:module_analysis.model_ir_module_type
+#: model:ir.ui.menu,name:module_analysis.menu_module_types
+msgid "Modules Types"
+msgstr "Tipologia Moduli"
+
+#. module: module_analysis
+#: model:ir.actions.act_window,name:module_analysis.action_ir_module_type_rule
+#: model:ir.model,name:module_analysis.model_ir_module_type_rule
+#: model:ir.ui.menu,name:module_analysis.menu_module_type_rules
+msgid "Modules Types Rules"
+msgstr "Regole Tipologie Moduli"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__name
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__python_code_qty
+msgid "Python Code Quantity"
+msgstr "Quantità Codice Python"
+
+#. module: module_analysis
+#: model_terms:ir.ui.view,arch_db:module_analysis.view_ir_module_module_form
+msgid "Refresh Code Analysis"
+msgstr "Aggiorna Analisi Codice"
+
+#. module: module_analysis
+#: model:ir.ui.menu,name:module_analysis.menu_module_analysis_reporting
+msgid "Reporting"
+msgstr "Rendicontazione"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__scss_code_qty
+msgid "SCSS Code Quantity"
+msgstr "SCSS Quantità codice"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__sequence
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: module_analysis
+#: model:ir.ui.menu,name:module_analysis.menu_module_analysis_settings
+msgid "Settings"
+msgstr "Impostazioni"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: module_analysis
+#: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
+msgid "The name of the modules author should be unique per database!"
+msgstr "Il nome dell'autore del modulo deve essere unico nel database!"
+
+#. module: module_analysis
+#: model_terms:ir.ui.view,arch_db:module_analysis.view_ir_module_module_form
+msgid "Type and Authors"
+msgstr "Tipologia e Autori"
+
+#. module: module_analysis
+#: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
+msgid "Update Module Analysis"
+msgstr "Aggiorna analisi modulo"
+
+#. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
+msgid "XML Code Quantity"
+msgstr "Quantità Codice XML"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Analyse Installed Modules"
+#~ msgstr "Analizza Moduli Installati"
+
+#~ msgid "Update Module"
+#~ msgstr "Aggiorna Modulo"
