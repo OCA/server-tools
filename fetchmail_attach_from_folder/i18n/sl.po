@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2026-06-07 11:46+0000\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/sl/)\n"
@@ -29,12 +29,12 @@ msgstr "Aktivno"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__all
 msgid "After Processing"
-msgstr ""
+msgstr "Po obdelavi"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
 msgid "Archive Folder"
-msgstr ""
+msgstr "Arhivska mapa"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
@@ -42,12 +42,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Dodeljene priponke"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/wizard/attach_mail_manually.py:0
-#, fuzzy
 msgid "Attach emails manually"
 msgstr "Ročno pripenjanje e-pošte"
 
@@ -60,22 +59,22 @@ msgstr "Ročno pripenjanje e-pošte"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_attach_mail_manually
 msgid "Attach mail to selected documents."
-msgstr ""
+msgstr "Pripni e-pošto izbranim dokumentom."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_attach_mail_manually_mail
 msgid "Attach single mail to selected documents."
-msgstr ""
+msgstr "Pripni posamezno e-poštno sporočilo izbranim dokumentom."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_available
 msgid "Available folders"
-msgstr ""
+msgstr "Razpoložljive mape"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__body
 msgid "Body"
-msgstr ""
+msgstr "Vsebina"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_last_day_only
@@ -84,6 +83,9 @@ msgid ""
 "only fetch emails received in the last 24 hours. This helps avoid "
 "reprocessing emails if they are not deleted after processing."
 msgstr ""
+"Privzeto se preiščejo vsa e-poštna sporočila v mapi. Omogočite to možnost za "
+"pridobivanje le sporočil, prejetih v zadnjih 24 urah. Tako preprečite "
+"ponovno obdelavo sporočil, ki po obdelavi niso izbrisana."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
@@ -91,6 +93,8 @@ msgid ""
 "By default, all undeleted emails are retrieved. Enable this option to fetch "
 "only unread emails."
 msgstr ""
+"Privzeto se pridobijo vsa neizbrisana e-poštna sporočila. Omogočite to "
+"možnost za pridobivanje le neprebranih sporočil."
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -101,18 +105,19 @@ msgstr "Preklic"
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
 msgid "Confirm connection first."
-msgstr ""
+msgstr "Najprej potrdite povezavo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__state__done
 msgid "Confirmed"
-msgstr ""
+msgstr "Potrjeno"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 msgid "Could not create archive folder %(folder)s on server %(server)s"
 msgstr ""
+"Arhivske mape %(folder)s na strežniku %(server)s ni bilo mogoče ustvariti"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
@@ -120,23 +125,25 @@ msgstr ""
 msgid ""
 "Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
 msgstr ""
+"Sporočila %(message_uid)s v mapi %(folder)s na strežniku %(server)s ni bilo "
+"mogoče pridobiti"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 msgid "Could not open folder %(folder)s on server %(server)s"
-msgstr ""
+msgstr "Mape %(folder)s na strežniku %(server)s ni bilo mogoče odpreti"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 msgid "Could not search folder %(folder)s on server %(server)s"
-msgstr ""
+msgstr "Mape %(folder)s na strežniku %(server)s ni bilo mogoče preiskati"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__object_id
 msgid "Create a New Record"
-msgstr ""
+msgstr "Ustvari nov zapis"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__create_uid
@@ -161,38 +168,39 @@ msgstr "Datum"
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
 msgid "Define a search filter to narrow down objects for email matching."
 msgstr ""
+"Določite iskalni filter za omejitev objektov pri iskanju ujemanj z e-pošto."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server_folder
 msgid "Define folders (IMAP mailboxes) from which to fetch mail."
-msgstr ""
+msgstr "Določitev map (nabiralnikov IMAP), iz katerih se pridobiva pošta."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__delete_matching
 msgid "Delete Matched Emails"
-msgstr ""
+msgstr "Izbriši ujemajoča se e-poštna sporočila"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__display_name
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__display_name
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_domain
 msgid "Domain of Email Address"
-msgstr ""
+msgstr "Domena e-poštnega naslova"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
 msgid "Email Field"
-msgstr ""
+msgstr "Polje e-poštnega sporočila"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Email Post-Processing Actions"
-msgstr ""
+msgstr "Dejanja po obdelavi e-pošte"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__mail_ids
@@ -205,6 +213,8 @@ msgid ""
 "Enable this option to delete emails after they are successfully processed "
 "and matched."
 msgstr ""
+"Omogočite to možnost za brisanje e-poštnih sporočil po uspešni obdelavi in "
+"najdenem ujemanju."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
@@ -212,6 +222,8 @@ msgid ""
 "Enable this option to ignore the default IMAP inbox processing and retrieve "
 "emails only from the specified folders."
 msgstr ""
+"Omogočite to možnost za preskok privzete obdelave mape Prejeto IMAP in "
+"pridobivanje e-pošte le iz določenih map."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
@@ -219,41 +231,43 @@ msgid ""
 "Enable this option to mark emails as important if they do not match any "
 "object in Odoo."
 msgstr ""
+"Omogočite to možnost za označevanje e-poštnih sporočil kot pomembnih, če se "
+"ne ujemajo z nobenim objektom v Odoo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_exact
 msgid "Exact Email Address"
-msgstr ""
+msgstr "Točen e-poštni naslov"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_last_day_only
 msgid "Fetch Last 24 Hours Only"
-msgstr ""
+msgstr "Pridobi le sporočila zadnjih 24 ur"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Fetch Options"
-msgstr ""
+msgstr "Možnosti pridobivanja"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
 msgid "Fetch Unseen Only"
-msgstr ""
+msgstr "Pridobi le neprebrana sporočila"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Fetch folder now"
-msgstr ""
+msgstr "Pridobi pošto iz mape zdaj"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid "Fetch from Folder"
-msgstr ""
+msgstr "Pridobi iz mape"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
 msgid "Flag Non-Matching Emails"
-msgstr ""
+msgstr "Označi neujemajoča se e-poštna sporočila"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__folder_id
@@ -268,7 +282,7 @@ msgstr "Mape"
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Folders available on server"
-msgstr ""
+msgstr "Mape, ki so na voljo na strežniku"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
@@ -278,7 +292,7 @@ msgstr "Mape za nadziranje"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__email_from
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__id
@@ -298,22 +312,24 @@ msgid ""
 "If there are multiple matches, use the first one. If disabled, multiple "
 "matches will be considered as no match."
 msgstr ""
+"Če je več ujemanj, uporabi prvo. Če je onemogočeno, se več ujemanj "
+"obravnava, kot da ujemanja ni."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__on_fetch
 msgid "Immediately on Fetch"
-msgstr ""
+msgstr "Takoj ob pridobitvi"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr ""
+msgstr "Strežnik za prejemanje pošte"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 msgid "Invalid folder %s!"
-msgstr ""
+msgstr "Neveljavna mapa %s!"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__write_uid
@@ -332,22 +348,22 @@ msgstr "Zadnjič posodobljeno"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__seen
 msgid "Mark email as seen"
-msgstr ""
+msgstr "Označi e-poštno sporočilo kot prebrano"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
 msgid "Matching Algorithm"
-msgstr ""
+msgstr "Algoritem ujemanja"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
 msgid "Matching Domain"
-msgstr ""
+msgstr "Domena ujemanja"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Matching Options"
-msgstr ""
+msgstr "Možnosti ujemanja"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__message_uid
@@ -362,32 +378,32 @@ msgstr "Stanje sporočila"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
 msgid "Model Field"
-msgstr ""
+msgstr "Polje modela"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
 msgid "Model Order"
-msgstr ""
+msgstr "Vrstni red zapisov modela"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Model Post-Processing Actions"
-msgstr ""
+msgstr "Dejanja modela po obdelavi"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__none
 msgid "Never"
-msgstr ""
+msgstr "Nikoli"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__state__draft
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Ni potrjeno"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__object_id
@@ -397,12 +413,12 @@ msgstr "Objekt"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__odoo_standard
 msgid "Odoo Standard"
-msgstr ""
+msgstr "Standardni način Odoo"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
 msgid "Process Only Specified Folders"
-msgstr ""
+msgstr "Obdelaj le določene mape"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__object_id
@@ -411,6 +427,9 @@ msgid ""
 "document type. This will create new documents for new conversations, or "
 "attach follow-up emails to the existing conversations (documents)."
 msgstr ""
+"Vsako prejeto e-poštno sporočilo obdelaj kot del pogovora, ki ustreza temu "
+"tipu dokumenta. Za nove pogovore bodo ustvarjeni novi dokumenti, nadaljnja "
+"sporočila pa bodo pripeta obstoječim pogovorom (dokumentom)."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__msg_state__received
@@ -420,7 +439,7 @@ msgstr "Prejeto"
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Reset Confirmation"
-msgstr ""
+msgstr "Ponastavi potrditev"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -431,6 +450,8 @@ msgstr "Shrani"
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
 msgid "Select the algorithm used to determine which object an email matches."
 msgstr ""
+"Izberite algoritem za določanje objekta, s katerim se ujema e-poštno "
+"sporočilo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__msg_state__sent
@@ -450,17 +471,17 @@ msgstr "Strežnik"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Strežniško dejanje"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type
 msgid "Server Type"
-msgstr ""
+msgstr "Tip strežnika"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__x_server_type_env_default
 msgid "Server Type Env Default"
-msgstr ""
+msgstr "Privzeti tip strežnika iz okolja"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__smart_search
@@ -468,7 +489,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__smart_search
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
@@ -476,6 +497,9 @@ msgid ""
 "Specify an optional custom server action to trigger for each incoming email. "
 "The action will run on the record that was created or updated by this email."
 msgstr ""
+"Po želji določite strežniško dejanje po meri, ki se sproži za vsako prejeto "
+"e-poštno sporočilo. Dejanje se izvede na zapisu, ki ga je sporočilo "
+"ustvarilo ali posodobilo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
@@ -483,6 +507,8 @@ msgid ""
 "Specify the IMAP folder path to retrieve emails from. Typically, this would "
 "be something like 'INBOX.myfolder'."
 msgstr ""
+"Določite pot do mape IMAP, iz katere se pridobiva e-pošta. Običajno je "
+"podobna 'INBOX.myfolder'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
@@ -490,6 +516,8 @@ msgid ""
 "Specify the field in the email used for matching. Typically, this is 'to', "
 "'from' or 'reply_to'."
 msgstr ""
+"Določite polje e-poštnega sporočila, ki se uporablja za iskanje ujemanj. "
+"Običajno je to 'to', 'from' ali 'reply_to'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
@@ -499,6 +527,10 @@ msgid ""
 "- 'email' if your model is res.partner\n"
 "- 'partner_id.email' if matching sale orders."
 msgstr ""
+"Določite polje modela, ki se uporablja za iskanje ujemanj z e-pošto.\n"
+"Primeri:\n"
+"- 'email', če je model res.partner\n"
+"- 'partner_id.email' za ujemanje s prodajnimi nalogi."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
@@ -506,6 +538,8 @@ msgid ""
 "Specify the field(s) to order by when matching emails. This is mostly useful "
 "in conjunction with 'Use 1st Match'."
 msgstr ""
+"Določite polja za razvrščanje pri iskanju ujemanj z e-pošto. To je uporabno "
+"predvsem v povezavi z možnostjo 'Uporabi prvo ujemanje'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
@@ -513,11 +547,13 @@ msgid ""
 "Specify the folder where successfully retrieved emails will be moved after "
 "processing. If left empty, emails will remain in the original folder."
 msgstr ""
+"Določite mapo, v katero bodo uspešno pridobljena e-poštna sporočila "
+"premaknjena po obdelavi. Če je prazno, bodo sporočila ostala v izvorni mapi."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__state
 msgid "Status"
-msgstr ""
+msgstr "Stanje"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__subject
@@ -527,12 +563,12 @@ msgstr "Zadeva"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_id
 msgid "Target Model"
-msgstr ""
+msgstr "Ciljni model"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Test & Confirm"
-msgstr ""
+msgstr "Preizkusi in potrdi"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_id
@@ -542,28 +578,28 @@ msgstr "Model, ki mu pripenjamo e-pošto"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__msg_state
 msgid "The state messages fetched from this folder should be assigned in Odoo"
-msgstr "Stanje, ki se dodeli sporočilom prenesenim iz te mape."
+msgstr "Stanje, ki se dodeli sporočilom prenesenim iz te mape"
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
 msgid "Unable to retrieve folders."
-msgstr ""
+msgstr "Map ni mogoče pridobiti."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_first
 msgid "Use First Match"
-msgstr ""
+msgstr "Uporabi prvo ujemanje"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__matching
 msgid "When matching"
-msgstr ""
+msgstr "Ob ujemanju"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Čarovnik"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
@@ -578,7 +614,7 @@ msgstr "e-pošta"
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "name asc"
-msgstr ""
+msgstr "name asc"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
