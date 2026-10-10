@@ -9,78 +9,79 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:43+0000\n"
-"PO-Revision-Date: 2017-07-21 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Are you sure you want to launch module auto-update?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite zagnati samodejno posodobitev modulov?"
 
 #. module: module_auto_update
 #: model:ir.actions.act_window,name:module_auto_update.base_module_upgrade_wizard_action
 #: model:ir.model,name:module_auto_update.model_module_auto_update
 #: model:ir.ui.menu,name:module_auto_update.menu_base_module_upgrade_wizard_action
 msgid "Auto-Upgrade Modules"
-msgstr ""
+msgstr "Samodejno nadgradi module"
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Cancel"
-msgstr ""
+msgstr "Preklic"
 
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
 msgid "Checksum upgrade complete."
-msgstr ""
+msgstr "Nadgradnja na podlagi kontrolnih vsot je končana."
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Confirm"
-msgstr ""
+msgstr "Potrdi"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Impacted Apps"
-msgstr ""
+msgstr "Zadevne aplikacije"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
@@ -90,7 +91,7 @@ msgstr "Modul"
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__modules_to_update_ids
 msgid "Modules to Update"
-msgstr ""
+msgstr "Moduli za posodobitev"
 
 #. module: module_auto_update
 #. odoo-python
@@ -99,14 +100,16 @@ msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
 msgstr ""
+"V nameščenih modulih ni zaznanih sprememb kontrolnih vsot in vsi moduli so "
+"nameščeni. Ničesar ni treba storiti."
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Show Modules to Update"
-msgstr ""
+msgstr "Prikaži module za posodobitev"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
