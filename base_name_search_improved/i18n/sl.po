@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -25,6 +26,8 @@ msgid ""
 "<b>IMPORTANT:</b> Please note that enabling smart search may affect the "
 "performance of searches and the system in general."
 msgstr ""
+"<b>POMEMBNO:</b> Omogočanje pametnega iskanja lahko vpliva na zmogljivost "
+"iskanja in sistema na splošno."
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -33,6 +36,9 @@ msgid ""
 "through the m2o/m2m widgets, for example when adding a Product in a Sales "
 "Order Line or when selecting a Contact in an Invoice."
 msgstr ""
+"<b>Pametno iskanje po nazivu</b>: pri iskanju zapisa iz drugega zapisa prek "
+"gradnikov m2o/m2m, na primer pri dodajanju proizvoda v postavko prodajnega "
+"naloga ali izbiri stika na računu."
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -40,6 +46,8 @@ msgid ""
 "<b>Smart Search Fields</b>. You can define a set of fields by which we want "
 "to search"
 msgstr ""
+"<b>Polja pametnega iskanja</b>. Določite lahko nabor polj, po katerih želite "
+"iskati"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -47,32 +55,34 @@ msgid ""
 "<b>Smart Search</b>: when searching in list, kanban and other views, the "
 "first option will be to search using \"Smart Search\""
 msgstr ""
+"<b>Pametno iskanje</b>: pri iskanju v seznamih, prikazih kanban in drugih "
+"prikazih bo prva možnost iskanje s funkcijo \"Pametno iskanje\""
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search"
-msgstr ""
+msgstr "Dodaj pametno iskanje"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,help:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search on search views"
-msgstr ""
+msgstr "Dodaj pametno iskanje v iskalne prikaze"
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_base
 msgid "Base"
-msgstr ""
+msgstr "Osnova"
 
 #. module: base_name_search_improved
 #. odoo-python
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 msgid "Couldn't eval Name Search Domain (%s)"
-msgstr ""
+msgstr "Domene iskanja po nazivu ni bilo mogoče ovrednotiti (%s)"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Custom Search"
-msgstr ""
+msgstr "Iskanje po meri"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -80,11 +90,13 @@ msgid ""
 "Define a <b>Smart Search Domain</b> (for example, only show internal users "
 "and not portal users)"
 msgstr ""
+"Določite <b>domeno pametnega iskanja</b> (na primer za prikaz le notranjih "
+"uporabnikov in izključitev uporabnikov portala)"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Domain"
-msgstr ""
+msgstr "Domena"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
@@ -103,6 +115,18 @@ msgid ""
 "                        By enabling Smart Search you can also add configure "
 "these two optional behaviours:"
 msgstr ""
+"Če je omogočeno \"Pametno iskanje\", je iskanje manj strogo. Odoo privzeto "
+"išče zapise, ki vsebujejo vnesene besedne zveze v točno takšni obliki. Če "
+"omogočite to možnost, bo iskal zapise, ki vsebujejo vnesene besede ne glede "
+"na njihov vrstni red. Če na primer iščete stik \"Fred Flinstone\", Odoo "
+"privzeto vrne le zapise, ki vsebujejo točno to besedno zvezo. Če je pametno "
+"iskanje omogočeno, bo vrnjen vsak zapis, ki vsebuje besedi \"Fred\" in "
+"\"Flinstone\".\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"\n"
+"                        Z omogočanjem pametnega iskanja lahko nastavite tudi "
+"naslednji dodatni možnosti:"
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_ir_model
@@ -113,25 +137,24 @@ msgstr "Modeli"
 #. odoo-python
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 msgid "Name Search Domain must be a list of tuples"
-msgstr ""
+msgstr "Domena iskanja po nazivu mora biti seznam n-teric"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
-#, fuzzy
 msgid "Search Fields"
-msgstr "Polja iskanja po imenu"
+msgstr "Iskalna polja"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Smart Name Search"
-msgstr ""
+msgstr "Pametno iskanje po nazivu"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__use_smart_name_search
 msgid "Smart Name Search Enabled?"
-msgstr ""
+msgstr "Pametno iskanje po nazivu omogočeno?"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
@@ -475,39 +498,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Smart Search (search view)"
-msgstr ""
+msgstr "Pametno iskanje (iskalni prikaz)"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
 msgid "Smart Search Domain"
-msgstr ""
+msgstr "Domena pametnega iskanja"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Smart Search Fields"
-msgstr ""
+msgstr "Polja pametnega iskanja"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__smart_search_warning
 msgid "Smart Search Warning"
-msgstr ""
+msgstr "Opozorilo za pametno iskanje"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Smart Search can be activated in two complementary ways:"
-msgstr ""
+msgstr "Pametno iskanje je mogoče omogočiti na dva dopolnjujoča se načina:"
 
 #. module: base_name_search_improved
 #: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
 #: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
 msgid "Smart Searches"
-msgstr ""
+msgstr "Pametna iskanja"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,help:base_name_search_improved.field_ir_model__use_smart_name_search
@@ -515,6 +538,8 @@ msgid ""
 "Use Smart Search for 'name_search', this will affect when searching from "
 "other records (for eg. from m2o fields"
 msgstr ""
+"Uporabi pametno iskanje za 'name_search'; to vpliva na iskanje iz drugih "
+"zapisov (npr. iz polj m2o)"
 
 #, fuzzy
 #~ msgid "Custom Searches"
