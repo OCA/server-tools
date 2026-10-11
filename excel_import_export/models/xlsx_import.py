@@ -206,7 +206,7 @@ class XLSXImport(models.AbstractModel):
                     row, col = co.pos2idx(rc)
                     if is_xlsx:  # openpyxl
                         # openpyxl uses 1-based indexing
-                        cell_value = st.cell(row=row + 1, column=col + 1).value
+                        cell_value = st.cell(row=row + 1, column=col + 1)
                     else:  # xlrd
                         cell_value = st.cell(row, col)
                     value = co._get_cell_value(cell_value, field_type=field_type)
@@ -249,7 +249,7 @@ class XLSXImport(models.AbstractModel):
             out_st.write(0, 0, "id")
             out_st.write(1, 0, xml_id)
             header_fields = ["id"]
-            is_xlsx = self._is_xlsx_file()
+            is_xlsx = self._is_xlsx_file(decoded_data)
             wb = self._load_workbook(decoded_data, is_xlsx)
             # Process on all worksheets
             self._process_worksheet(
@@ -279,10 +279,15 @@ class XLSXImport(models.AbstractModel):
             or "{}.{}".format("__excel_import_export__", uuid.uuid4())
         )
 
-    def _is_xlsx_file(self):
-        if xlrd and parse_version(xlrd.__VERSION__) < parse_version("2.0"):
+    def _is_xlsx_file(self, content):
+        if not content:
             return False
-        return True
+        # Check for Zip signature (PK..). Used by .xlsx, .xlsm
+        if content[:4] == b"\x50\x4b\x03\x04":
+            if xlrd and parse_version(xlrd.__VERSION__) < parse_version("2.0"):
+                return False
+            return True
+        return False
 
     def _load_workbook(self, decoded_data, is_xlsx):
         if not is_xlsx:
