@@ -15,6 +15,14 @@
         <field name="arch" type="xml">
             <field name="doall" position="after">
                 <field name="email_template_id" />
+                <field
+                    name="email_retries"
+                    attrs="{'invisible': [('email_template_id', '=', False)]}"
+                />
+                <field
+                    name="failure_count"
+                    attrs="{'invisible': [('email_template_id', '=', False)]}"
+                />
             </field>
         </field>
     </record>

@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ======================
 Scheduler Error Mailer
 ======================
@@ -13,7 +17,7 @@ Scheduler Error Mailer
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -43,6 +47,7 @@ To configure this module, you need to:
 
 #. Go to Settings -> Technical -> Automation -> Scheduled Actions
 #. Choose the scheduled Actions you want to send the error email and select the E-mail Template in the Error E-mail Template field.
+#. Optionally set the Email Retries field to the number of consecutive failures allowed before the error email is sent (1 by default, i.e. the email is sent on the first failure).
 
 Bug Tracker
 ===========

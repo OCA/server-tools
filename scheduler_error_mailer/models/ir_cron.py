@@ -20,6 +20,24 @@ class IrCron(models.Model):
         help="Select the email template that will be sent when "
         "this scheduler fails.",
     )
+    email_retries = fields.Integer(
+        string="Email Retries",
+        default=1,
+        help="Number of consecutive failures allowed "
+        "before the error email is sent.",
+    )
+
+    @api.model
+    def _callback(self, cron_name, server_action_id, job_id):
+        # failure_count is stored on the delegated ir.actions.server row:
+        # the scheduler locks the ir_cron row while the job runs, so the
+        # cron record itself cannot be written from within the job
+        action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        failures_before = action.failure_count
+        res = super()._callback(cron_name, server_action_id, job_id)
+        if failures_before and action.failure_count == failures_before:
+            action.failure_count = 0
+        return res
 
     @api.model
     def _handle_callback_exception(
@@ -31,6 +49,12 @@ class IrCron(models.Model):
         my_cron = self.browse(job_id)
 
         if my_cron.email_template_id:
+            action = my_cron.ir_actions_server_id.sudo()
+            action.failure_count += 1
+            if action.failure_count < my_cron.email_retries:
+                return
+            action.failure_count = 0
+
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
