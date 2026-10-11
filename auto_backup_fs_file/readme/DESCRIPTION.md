@@ -1,0 +1,3 @@
+This module enhances the database backup functionality in Odoo by introducing support for storing backups as files using the `fsspec` library. It is designed to address the need for reliable and flexible backup solutions, enabling businesses to safeguard their data by storing backups on various filesystems, including cloud storage providers, network drives, and local secure storage.
+
+By integrating with the `fs_file` addon from the OCA storage repository, this module allows users to automate the backup process and store the resulting files in a configured filesystem. It provides an easy-to-use interface for configuring backup methods, managing stored backups, and ensuring data integrity for disaster recovery or multi-environment setups.
