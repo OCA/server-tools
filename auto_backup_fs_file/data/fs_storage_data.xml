@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="fs_storage_auto_backup" model="fs.storage">
+        <field name="name">Odoo Filesystem Auto Backups Backend</field>
+        <field name="protocol">odoofs</field>
+        <field name="code">odoobackupfs</field>
+        <field
+            name="field_xmlids"
+        >auto_backup_fs_file.field_db_backup_fs_file__backup_file</field>
+    </record>
+</odoo>
