@@ -9,3 +9,4 @@
 - Alex Comba \<<alex.comba@agilebg.com>\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
+- Anatol Mueller \<<git@am16.ch>\>
