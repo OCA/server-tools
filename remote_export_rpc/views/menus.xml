@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_remote_export_root"
+        name="Remote Export"
+        parent="base.menu_custom"
+        sequence="100"
+    />
+
+    <menuitem
+        id="menu_remote_odoo_instance"
+        name="Instances"
+        parent="menu_remote_export_root"
+        action="remote_odoo_instance_action"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_remote_odoo_match_config"
+        name="Configuration"
+        parent="menu_remote_export_root"
+        action="remote_odoo_match_config_action"
+        sequence="20"
+    />
+</odoo>
