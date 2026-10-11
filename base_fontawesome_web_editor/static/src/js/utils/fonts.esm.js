@@ -78,7 +78,7 @@ patch(fonts, {
         }
         this.cacheCssSelectors[filter] = [];
         const seenUnicodes = new Set();
-        // eslint-disable-next-line no-undef
+
         const sheets = document.styleSheets;
         for (let i = 0; i < sheets.length; i++) {
             let rules = null;
