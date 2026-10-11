@@ -234,3 +234,29 @@ class TestDbBackup(common.TransactionCase):
         now = datetime.now()
         res = self.Model.filename(now, ext="dump")
         self.assertTrue(res.endswith(".dump"))
+
+    @patch(f"{model}.pysftp")
+    def test_sftp_connection_without_ignore_hostkey(self, mock_pysftp):
+        """It should NOT pass cnopts when sftp_ignore_hostkey is False"""
+        rec_id = self.new_record()
+        rec_id.write({"sftp_ignore_hostkey": False})
+        rec_id.sftp_connection()
+        # Verify cnopts is NOT passed when ignore_hostkey is False
+        call_kwargs = mock_pysftp.Connection.call_args.kwargs
+        self.assertNotIn("cnopts", call_kwargs)
+
+    @patch(f"{model}.pysftp")
+    def test_sftp_connection_with_ignore_hostkey(self, mock_pysftp):
+        """It should pass cnopts with hostkeys=None when sftp_ignore_hostkey is True"""
+        rec_id = self.new_record()
+        rec_id.write({"sftp_ignore_hostkey": True})
+        rec_id.sftp_connection()
+        # Verify cnopts IS passed when ignore_hostkey is True
+        call_kwargs = mock_pysftp.Connection.call_args.kwargs
+        self.assertIn("cnopts", call_kwargs)
+        self.assertIsNone(call_kwargs["cnopts"].hostkeys)
+
+    def test_sftp_ignore_hostkey_default_value(self):
+        """It should have sftp_ignore_hostkey defaulting to False"""
+        rec_id = self.new_record()
+        self.assertFalse(rec_id.sftp_ignore_hostkey)
