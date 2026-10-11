@@ -55,17 +55,17 @@ Configuration
 Please keep in mind that the standard odoo dbfilter configuration is
 still applied before looking at the regular expression in the header.
 
--  For nginx, use:
+- For nginx, use:
 
-   ``proxy_set_header X-Odoo-dbfilter [your filter regex];``
+  ``proxy_set_header X-Odoo-dbfilter [your filter regex];``
 
--  For caddy, use:
+- For caddy, use:
 
-   ``proxy_header X-Odoo-dbfilter [your filter regex]``
+  ``proxy_header X-Odoo-dbfilter [your filter regex]``
 
--  For Apache, use:
+- For Apache, use:
 
-   ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
+  ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
 
 And make sure that proxy mode is enabled in Odoo's configuration file:
 
@@ -98,17 +98,17 @@ Authors
 Contributors
 ------------
 
--  Stéphane Bidoul <stephane.bidoul@acsone.eu>
--  Yannick Vaucher <yannick.vaucher@camptocamp.com>
--  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
--  Holger Brunn <hbrunn@therp.nl>
--  Laurent Mignon (aka lmi) <laurent.mignon@acsone.eu>
--  Sandy Carter <sandy.carter@savoirfairelinux.com>
--  Fabio Vilchez <fabio.vilchez@clearcorp.co.cr>
--  Jos De Graeve <Jos.DeGraeve@apertoso.be>
--  Lai Tim Siu (Quaritle Limited) <info@quartile.co>
--  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
--  Eric Antones <eantones@nuobit.com>
+- Stéphane Bidoul <stephane.bidoul@acsone.eu>
+- Yannick Vaucher <yannick.vaucher@camptocamp.com>
+- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+- Holger Brunn <hbrunn@therp.nl>
+- Laurent Mignon (aka lmi) <laurent.mignon@acsone.eu>
+- Sandy Carter <sandy.carter@savoirfairelinux.com>
+- Fabio Vilchez <fabio.vilchez@clearcorp.co.cr>
+- Jos De Graeve <Jos.DeGraeve@apertoso.be>
+- Lai Tim Siu (Quaritle Limited) <info@quartile.co>
+- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+- Eric Antones <eantones@nuobit.com>
 
 Maintainers
 -----------
@@ -122,6 +122,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-hbrunn| image:: https://github.com/hbrunn.png?size=40px
+    :target: https://github.com/hbrunn
+    :alt: hbrunn
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-hbrunn| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/dbfilter_from_header>`_ project on GitHub.
 
