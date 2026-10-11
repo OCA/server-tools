@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_deterministic_session_gc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-21 22:42+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Archivos Adjuntos Asignados"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model,name:base_deterministic_session_gc.model_ir_autovacuum
+msgid "Automatic Vacuum"
+msgstr "Vacío Automático"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el Conjunto de Modificaciones"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__changeset_ids
+msgid "Changesets"
+msgstr "Conjuntos de Cambios"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar los Cambios del Conjunto de Cambios Pendientes"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Recuento de Cambios Pendientes"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_deterministic_session_gc
+#: model:ir.actions.server,name:base_deterministic_session_gc.deterministic_session_gc_ir_actions_server
+#: model:ir.cron,cron_name:base_deterministic_session_gc.deterministic_session_gc
+#: model:ir.cron,name:base_deterministic_session_gc.deterministic_session_gc
+msgid "Garbage collection of expired sessions"
+msgstr "Recogida de basura de sesiones caducadas"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: base_deterministic_session_gc
+#: model:ir.model.fields,field_description:base_deterministic_session_gc.field_ir_autovacuum__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Usuario Puede ver Conjunto de Cambios"
