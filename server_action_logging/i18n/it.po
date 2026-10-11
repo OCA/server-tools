@@ -1,0 +1,34 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* server_action_logging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-08 10:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: server_action_logging
+#: model:ir.model.fields,field_description:server_action_logging.field_ir_actions_server__enable_sql_debug
+#: model:ir.model.fields,field_description:server_action_logging.field_ir_cron__enable_sql_debug
+msgid "Enable SQL Debug"
+msgstr "Abilita debug SQL"
+
+#. module: server_action_logging
+#: model:ir.model.fields,help:server_action_logging.field_ir_actions_server__enable_sql_debug
+#: model:ir.model.fields,help:server_action_logging.field_ir_cron__enable_sql_debug
+msgid "Enable SQL Debug for this action"
+msgstr "Abilita debug SQL per questa azione"
+
+#. module: server_action_logging
+#: model:ir.model,name:server_action_logging.model_ir_actions_server
+msgid "Server Action"
+msgstr "Azione server"
