@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="config_parameter_reload" model="ir.config_parameter" forcecreate="True">
+        <field name="key">letsencrypt.reload_command</field>
+        <field name="value">sudo /usr/sbin/service nginx reload</field>
+    </record>
+    <record id="letsencrypt_backoff" model="ir.config_parameter" forcecreate="True">
+        <field name="key">letsencrypt.backoff</field>
+        <field name="value">3</field>
+    </record>
+</odoo>
