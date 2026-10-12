@@ -146,7 +146,11 @@ class DbBackup(models.Model):
 
     def action_backup(self):
         """Run selected backups."""
-        backup = None
+        # One dump per format, reused by every local configuration asking for
+        # that same format. A dump is only interchangeable with another of its
+        # own format: zip carries the filestore, dump is pg_dump's custom
+        # format, and a file has to be what its name says it is.
+        cached_backups = {}
         successful = self.browse()
 
         # Start with local storage
@@ -160,17 +164,18 @@ class DbBackup(models.Model):
                     _logger.exception(f"Action backup - OSError: {exc}")
 
                 with open(os.path.join(rec.folder, filename), "wb") as destiny:
-                    # Copy the cached backup
-                    if backup:
+                    # Copy a backup already dumped in this same format
+                    cached_backup = cached_backups.get(rec.backup_format)
+                    if cached_backup:
                         # Ensure binary read to avoid unicode decoding errors
-                        with open(backup, "rb") as cached:
+                        with open(cached_backup, "rb") as cached:
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
                         db.dump_db(
                             self.env.cr.dbname, destiny, backup_format=rec.backup_format
                         )
-                        backup = backup or destiny.name
+                        cached_backups[rec.backup_format] = destiny.name
                 successful |= rec
 
         # Ensure a local backup exists if we are going to write it remotely

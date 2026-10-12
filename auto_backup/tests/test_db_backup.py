@@ -7,6 +7,7 @@
 import logging
 import os
 import shutil
+import zipfile
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
@@ -122,6 +123,40 @@ class TestDbBackup(common.TransactionCase):
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
+
+    def test_action_backup_local_each_format(self):
+        """Each format should get a backup in its own format"""
+        zip_record = self.new_record("local")
+        zip_record.backup_format = "zip"
+        # A configuration's name is unique, so the second one writes to a
+        # folder of its own.
+        dump_record = self.Model.create(
+            {
+                "name": "Têst backup dump",
+                "method": "local",
+                "days_to_keep": 1,
+                "folder": os.path.join(zip_record.folder, "custom"),
+                "backup_format": "dump",
+            }
+        )
+
+        (zip_record + dump_record).action_backup()
+
+        zip_names = [
+            f for f in os.listdir(zip_record.folder) if f.endswith(".dump.zip")
+        ]
+        dump_names = os.listdir(dump_record.folder)
+        self.assertEqual(1, len(zip_names), zip_names)
+        self.assertEqual(1, len(dump_names), dump_names)
+        # A dump cached for one format must not be reused for another: the zip
+        # format carries the filestore, the dump format is pg_dump's own custom
+        # format, and each file has to be what its name says.
+        self.assertTrue(
+            zipfile.is_zipfile(os.path.join(zip_record.folder, zip_names[0])),
+            zip_names[0],
+        )
+        with open(os.path.join(dump_record.folder, dump_names[0]), "rb") as dumped:
+            self.assertEqual(b"PGDMP", dumped.read(5), dump_names[0])
 
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
