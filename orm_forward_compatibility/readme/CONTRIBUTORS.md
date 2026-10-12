@@ -1,0 +1,2 @@
+- [Camptocamp](https://www.camptocamp.com):
+  - David Gallay \<<david.gallay@camptocamp.com>\>
