@@ -5,6 +5,7 @@ import logging
 from datetime import datetime
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -22,21 +23,21 @@ def _validate_date(value, date_format):
         try:
             return datetime.strptime(value, date_format).strftime("%Y-%m-%d")
         except ValueError as e:
-            _logger.debug(_("Error occurred while validating date: %s", str(e)))
+            _logger.debug("Error occurred while validating date: %s", e)
 
 
 def _validate_float(value):
     try:
         return str(float(value))
     except ValueError as e:
-        _logger.debug(_("Error occurred while validating float: %s", str(e)))
+        _logger.debug("Error occurred while validating float: %s", e)
 
 
 def _validate_integer(value):
     try:
         return str(int(round(float(value))))
     except ValueError as e:
-        _logger.debug(_("Error occurred while validating integer: %s", str(e)))
+        _logger.debug("Error occurred while validating integer: %s", e)
 
 
 def _validate_json(value):
@@ -44,7 +45,7 @@ def _validate_json(value):
         json.loads(value)
         return value
     except ValueError as e:
-        _logger.debug(_("Error occurred while validating json: %s", str(e)))
+        _logger.debug("Error occurred while validating json: %s", e)
 
 
 class TimeParameterVersion(models.Model):
@@ -73,6 +74,37 @@ class TimeParameterVersion(models.Model):
             "A parameter cannot have two versions starting the same day.",
         ),
     ]
+
+    @api.constrains("value")
+    def _check_value(self):
+        """Refuse a value the type of the parameter cannot parse.
+
+        The form view normalizes the value in `_onchange_value`, but a record
+        created by an import, by data or by another module never goes through
+        an onchange: without this constraint such a value is stored as is and
+        only explodes later, when `base.time.parameter._get` parses it.
+        """
+        for version in self:
+            if not version.value or version.type in ("record", "string"):
+                continue
+            validate = globals().get(f"_validate_{version.type}")
+            if validate is None:
+                continue
+            if version.type == "date":
+                # `_get` reads the value back with the "%Y-%m-%d" format only.
+                valid = _validate_date(version.value, "%Y-%m-%d")
+            else:
+                valid = validate(version.value)
+            if valid is None:
+                raise ValidationError(
+                    _(
+                        "'%(value)s' is not a valid value for the "
+                        "'%(type)s' parameter '%(parameter)s'.",
+                        value=version.value,
+                        type=version.type,
+                        parameter=version.parameter_id.display_name,
+                    )
+                )
 
     @api.onchange("value")
     def _onchange_value(self):
