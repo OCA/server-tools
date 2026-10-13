@@ -2,6 +2,8 @@
 # Copyright 2024 360ERP (https://www.360erp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from unittest.mock import patch
+
 from odoo.tests.common import tagged
 
 from .common import Common, environment
@@ -21,15 +23,25 @@ class TestCleanupPurgeFields(Common):
                 "model": cls.model_name,
             }
             cls.model = env["ir.model"].create(cls.model_values)
-            env.cr.execute(
-                """
-                insert into ir_attachment
-                (name, res_model, res_id, store_fname, type)
-                values
-                ('test attachment', %(model_name)s, 42, 'dummy', 'binary');
-                """,
-                {"model_name": cls.model_name},
-            )
+            cls.attachment_content = b"Database cleanup field-purge attachment"
+            # Use a real stored file: model deletion schedules it for garbage
+            # collection, which requires a valid filestore path.
+            with patch.object(
+                type(env["ir.attachment"]), "_storage", return_value="file"
+            ):
+                attachment = (
+                    env["ir.attachment"]
+                    .sudo()
+                    .create(
+                        {
+                            "name": "test attachment",
+                            "res_model": cls.model_name,
+                            "res_id": 42,
+                            "raw": cls.attachment_content,
+                        }
+                    )
+                )
+            cls.attachment_id = attachment.id
 
             # create a nonexistent field
             cls.field_name = "x_database_cleanup_test_field"
@@ -49,6 +61,9 @@ class TestCleanupPurgeFields(Common):
 
     def test_empty_field(self):
         with environment() as env:
+            attachment = env["ir.attachment"].sudo().browse(self.attachment_id)
+            self.assertTrue(attachment.store_fname)
+            self.assertEqual(attachment.raw.content, self.attachment_content)
             wizard = env["cleanup.purge.wizard.field"].create({})
             wizard.purge_all()
             # must be removed by the wizard
@@ -67,3 +82,7 @@ class TestCleanupPurgeFields(Common):
             model = env["ir.model"].search([("model", "=", self.model_name)])
             if model:
                 model.unlink()
+        # Run after committing the model deletion, as the web test suite does.
+        # An invalid attachment path must not break a later suite's teardown.
+        with environment() as env:
+            env["ir.attachment"]._gc_file_store_unsafe(grace_period=0)

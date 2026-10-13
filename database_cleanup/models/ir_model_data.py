@@ -4,8 +4,6 @@
 # pylint: disable=consider-merging-classes-inherited
 from odoo import api, models
 
-from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
-
 
 class IrModelData(models.Model):
     _inherit = "ir.model.data"
@@ -18,7 +16,7 @@ class IrModelData(models.Model):
             if this.model == "ir.model.fields":
                 field = (
                     self.env[this.model]
-                    .with_context(**{MODULE_UNINSTALL_FLAG: True})
+                    .with_context(force_delete=True)
                     .browse(this.res_id)
                 )
                 if not field.exists() or field.model not in self.env:

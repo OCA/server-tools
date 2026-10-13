@@ -3,8 +3,6 @@
 # pylint: disable=consider-merging-classes-inherited
 from odoo import fields, models
 
-from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
-
 from ..identifier_adapter import IdentifierAdapter
 
 
@@ -36,7 +34,7 @@ class CleanupPurgeLineField(models.TransientModel):
         Unlink fields upon manual confirmation.
         """
         context_flags = {
-            MODULE_UNINSTALL_FLAG: True,
+            "force_delete": True,
             "purge": True,
         }
         if self:

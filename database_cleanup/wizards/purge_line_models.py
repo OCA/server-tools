@@ -6,8 +6,6 @@ import logging
 
 from odoo import fields, models
 
-from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
-
 _logger = logging.getLogger(__name__)
 
 
@@ -25,7 +23,7 @@ class CleanupPurgeLineModel(models.TransientModel):
         Unlink models upon manual confirmation.
         """
         context_flags = {
-            MODULE_UNINSTALL_FLAG: True,
+            "force_delete": True,
             "purge": True,
         }
 

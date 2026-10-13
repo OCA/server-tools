@@ -9,7 +9,8 @@
                 <button
                     type="object"
                     name="purge"
-                    icon="fa-times-circle text-danger"
+                    icon="cancel"
+                    class="text-danger"
                     string="Purge this record"
                     invisible="purged"
                 />
