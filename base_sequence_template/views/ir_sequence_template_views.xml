@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_ir_sequence_template_tree" model="ir.ui.view">
+        <field name="name">view.ir.sequence.template.list</field>
+        <field name="model">ir.sequence.template</field>
+        <field name="arch" type="xml">
+            <list string="Sequence Templates">
+                <header>
+                    <button
+                        name="action_generate_sequences"
+                        string="Generate Sequences"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </header>
+                <field name="code" />
+                <field name="name" />
+                <field name="prefix" />
+                <field name="padding" />
+                <field name="number_increment" />
+                <field name="implementation" />
+            </list>
+        </field>
+    </record>
+    <record id="view_ir_sequence_template_form" model="ir.ui.view">
+        <field name="name">view.ir.sequence.template.form</field>
+        <field name="model">ir.sequence.template</field>
+        <field name="arch" type="xml">
+            <form string="Sequence Templates">
+                <header>
+                    <button
+                        name="action_generate_sequences"
+                        string="Generate Sequences"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_sequences"
+                            type="object"
+                            invisible="sequence_count == 0"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        >
+                            <field
+                                name="sequence_count"
+                                widget="statinfo"
+                                string="Sequences"
+                            />
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="implementation" />
+                        </group>
+                        <group>
+                            <field name="code" />
+                            <field name="active" widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sequence" name="sequence">
+                            <group>
+                                <group>
+                                    <field name="prefix" />
+                                    <field name="suffix" />
+                                </group>
+                                <group>
+                                    <field name="padding" />
+                                    <field name="number_increment" />
+                                </group>
+                            </group>
+                            <group col="3" string="Legend (for prefix, suffix)">
+                                <group>
+                                    <span
+                                        colspan="2"
+                                    >Current Year with Century: %%(year)s</span>
+                                    <span
+                                        colspan="2"
+                                    >Current Year without Century: %%(y)s</span>
+                                    <span colspan="2">Month: %%(month)s</span>
+                                    <span colspan="2">Day: %%(day)s</span>
+                                </group>
+                                <group>
+                                    <span colspan="2">Day of the Year: %%(doy)s</span>
+                                    <span colspan="2">Week of the Year: %%(woy)s</span>
+                                    <span
+                                        colspan="2"
+                                    >Day of the Week (0:Monday): %%(weekday)s</span>
+                                </group>
+                                <group>
+                                    <span colspan="2">Hour 00->24: %%(h24)s</span>
+                                    <span colspan="2">Hour 00->12: %%(h12)s</span>
+                                    <span colspan="2">Minute: %%(min)s</span>
+                                    <span colspan="2">Second: %%(sec)s</span>
+                                </group>
+                            </group>
+                            <group col="2" string="Company legend (for prefix, suffix)">
+                                <group>
+                                    <span colspan="4">
+                                        <strong>Company Fields</strong>
+                                    </span>
+                                    <span
+                                        colspan="4"
+                                    >You can use any company flat field in your prefix or suffix</span>
+                                </group>
+                                <group>
+                                    <span
+                                        colspan="4"
+                                    >Company ID: %%(company_id.id)s</span>
+                                    <span
+                                        colspan="4"
+                                    >Company Name: %%(company_id.name)s</span>
+                                    <span
+                                        colspan="4"
+                                    >Company Registry: %%(company_id.company_registry)s</span>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ir_sequence_template" model="ir.actions.act_window">
+        <field name="name">Sequence Templates</field>
+        <field name="res_model">ir.sequence.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_ir_sequence_template_tree" />
+    </record>
+    <record id="action_open_generate_sequences_wizard" model="ir.actions.server">
+        <field name="name">Generate Sequences</field>
+        <field
+            name="model_id"
+            ref="base_sequence_template.model_ir_sequence_template"
+        />
+        <field
+            name="binding_model_id"
+            ref="base_sequence_template.model_ir_sequence_template"
+        />
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.open_generate_sequences_wizard()
+        </field>
+    </record>
+
+    <menuitem
+        name="Sequence Templates"
+        id="menu_ir_sequence_template"
+        action="action_ir_sequence_template"
+        parent="base.next_id_5"
+        sequence="20"
+    />
+</odoo>
