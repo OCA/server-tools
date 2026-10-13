@@ -115,8 +115,38 @@ class TestTrackingManager(TransactionCase):
 
     def test_o2m_create_indirectly(self):
         self.partner.write({"user_ids": [(Command.CREATE, 0, {"login": "1234567890"})]})
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New"), 1)
+        self.assertFalse(self.messages.tracking_value_ids)
+
+    def test_o2m_excluded_from_standard_tracking(self):
+        tracked_fields = self.env["res.partner"]._track_get_fields()
+        self.assertNotIn("user_ids", tracked_fields)
+        self.assertIn("category_id", tracked_fields)
+
+    def test_only_o2m_tracked(self):
+        self.partner_model.field_id.filtered(
+            lambda f: f.name != "user_ids"
+        ).custom_tracking = False
+        self.assertEqual(self.env["res.partner"]._track_get_fields(), set())
+        self.partner.write({"name": "Bar"})
+        self.assertFalse(self.messages)
+
+    def test_o2m_and_m2m_write(self):
+        self.partner.write(
+            {
+                "category_id": [(Command.LINK, self.partner_categ_2.id, 0)],
+                "user_ids": [(Command.CREATE, 0, {"login": "1234567890"})],
+            }
+        )
         self.assertEqual(len(self.messages), 2)
-        self.assertEqual(self.messages[0].body.count("New"), 1)
+        tracking = self.messages.tracking_value_ids
+        self.assertEqual(len(tracking), 1)
+        self.assertEqual(tracking.field_id.name, "category_id")
+        self.assertEqual(set(tracking.new_value_char.split(", ")), {"FOO", "BAR"})
+        self.assertEqual(
+            len(self.messages.filtered(lambda m: "New" in (m.body or ""))), 1
+        )
 
     @mute_logger("odoo.models.unlink")
     def test_o2m_unlink_indirectly(self):

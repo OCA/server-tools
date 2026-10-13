@@ -12,6 +12,14 @@ class MailThread(models.AbstractModel):
     def _track_get_fields(self):
         fields_per_models = self.env["ir.model"]._get_custom_tracked_fields_per_model()
         if self._name in fields_per_models:
-            return set(self.fields_get(fields_per_models[self._name]))
+            # One2many fields are tracked by tracking_manager itself (see
+            # _tm_notify_owner), exclude them from the standard tracking to
+            # avoid logging the full list of related records
+            fnames = [
+                fname
+                for fname in fields_per_models[self._name]
+                if self._fields[fname].type != "one2many"
+            ]
+            return set(self.fields_get(fnames)) if fnames else set()
         else:
             return super()._track_get_fields()
