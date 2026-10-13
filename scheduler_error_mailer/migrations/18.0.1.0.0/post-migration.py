@@ -23,7 +23,6 @@ def migrate(cr, version):
     }
     module, xml_id = external_id.split(".")
     fullpath = file_path("scheduler_error_mailer/data/ir_cron_email_tpl.xml")
-    template.update_field_translations("body_html", lang_false)
     doc = etree.parse(fullpath)
     for rec in doc.xpath(expr, tag="record", xml_id=xml_id, external_id=external_id):
         for node in rec.findall("field"):
@@ -31,6 +30,10 @@ def migrate(cr, version):
                 rec.remove(node)
         obj = xml_import(template.env, module, {}, mode="init", xml_filename=fullpath)
         obj._tag_record(rec)
+        # Reset translations only once the legacy body is replaced: writing
+        # translations validates that the template renders, and the legacy body
+        # uses ir.cron fields removed in 18.0 (numbercall, doall)
+        template.update_field_translations("body_html", lang_false)
         template._override_translation_term(module, [xml_id, external_id])
 
     logger.info(
