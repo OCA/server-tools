@@ -4,30 +4,28 @@ from odoo.tests.common import TransactionCase
 
 
 class AuditLogRuleCommon(TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.models = set()
+    """Rules must be subscribed in `setUp` or in the test itself, not in
+    `setUpClass`: patched methods are reverted after each test."""
 
     @classmethod
     def create_rule(cls, vals):
-        rule = cls.env["auditlog.rule"].with_context(tracking_disable=True).create(vals)
-        # Keep track of patched models
-        cls.models |= set(rule.model_id.mapped("model"))
-        return rule
+        return cls.env["auditlog.rule"].with_context(tracking_disable=True).create(vals)
 
-    @classmethod
-    def tearDownClass(cls):
-        for rule in cls.env["auditlog.rule"].search([]):
+    def setUp(self):
+        super().setUp()
+        # A cleanup also runs when setUp fails after subscribing a rule,
+        # unlike tearDown.
+        self.addCleanup(self._unsubscribe_rules)
+
+    def _unsubscribe_rules(self):
+        for rule in self.env["auditlog.rule"].search([]):
             try:
                 rule.set_to_draft()
             except KeyError:  # pragma: no cover
-                continue  # Model not loaded yet
-
+                continue  # Preexisting rule for model not loaded yet
         # Assert no patched methods remain
-        for model in cls.models:
-            for method in ["create", "read", "write", "unlink"]:
-                assert not hasattr(getattr(cls.env[model], method), "origin"), (
-                    f"{model} {method} still patched"
+        for model_class in self.env.registry.values():
+            for method in ["create", "read", "write", "unlink", "export_data"]:
+                assert not hasattr(model_class, f"auditlog_ruled_{method}"), (
+                    f"{model_class._name} {method} still patched"
                 )
-        super().tearDownClass()
