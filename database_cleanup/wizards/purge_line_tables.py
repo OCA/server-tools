@@ -32,7 +32,7 @@ class CleanupPurgeLineTable(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.table"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         tables = objs.mapped("name")
         for line in objs:

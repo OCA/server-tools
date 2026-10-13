@@ -31,7 +31,7 @@ class CleanupPurgeLineModel(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.model"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         for line in objs:
             self.env.cr.execute(
@@ -41,14 +41,19 @@ class CleanupPurgeLineModel(models.TransientModel):
             if not row:
                 continue
             self.logger.info("Purging model %s", row[1])
-            attachments = self.env["ir.attachment"].search(
-                [("res_model", "=", line.name)]
+            # Missing models hide record attachments from non-superusers.
+            # Detach all ordinary attachments before Odoo deletes the model,
+            # independently of the current user's attachment visibility.
+            attachments = self.env["ir.attachment"]
+            attachments.flush_model(["res_model", "res_field"])
+            self.env.cr.execute(
+                "UPDATE ir_attachment SET res_model = NULL "
+                "WHERE res_model = %s AND res_field IS NULL RETURNING id",
+                (line.name,),
             )
-            if attachments:
-                self.env.cr.execute(
-                    "UPDATE ir_attachment SET res_model = NULL WHERE id in %s",
-                    (tuple(attachments.ids),),
-                )
+            detached = attachments.browse([row[0] for row in self.env.cr.fetchall()])
+            detached.invalidate_recordset()
+            detached.modified(["res_model"])
             self.env["ir.model.constraint"].search(
                 [
                     ("model", "=", line.name),

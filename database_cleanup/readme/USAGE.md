@@ -7,13 +7,14 @@ or sweep all entries in one big step (if you are *really* confident).
 
 Always back up both the database and its filestore before purging data.
 
-When purging a model in Odoo 20.0, ordinary attachments returned by the
-attachment search are detached from the model. Attachments stored for binary
-fields are excluded from that search. Access rules can also hide attachments
-whose model no longer exists. Odoo deletes any attachments still linked to the
-purged model, including field attachments, and schedules their stored files for
-garbage collection. Unlike in 19.0, field attachments therefore do not survive
-the model purge.
+When purging a model, all ordinary attachments (those not stored for a binary
+field) are preserved and detached from the model, including attachments linked
+to records that no longer exist. This does not depend on which attachments the
+user can see. Attachments belonging to other models are not changed.
+
+Attachments stored for binary fields of the purged model are deleted by Odoo
+20.0, and their stored files are scheduled for garbage collection. Unlike in
+19.0, these field attachments do not survive the model purge.
 
 Model and field purges use `force_delete=True` to allow removal of non-manual
 metadata. This does not simulate a module uninstall: Odoo 20.0 still executes

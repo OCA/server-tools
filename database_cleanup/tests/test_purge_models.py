@@ -12,69 +12,101 @@ from .common import Common, environment
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        with environment() as env:
-            # create a nonexistent model
-            cls.model_name = "x_database.cleanup.test.model"
-            cls.model_values = {
-                "name": "Database cleanup test model",
-                "model": cls.model_name,
-            }
-            cls.model = env["ir.model"].create(cls.model_values)
-            attachments = (
-                env["ir.attachment"]
-                .sudo()
-                .create(
+    def _check_model_attachments(self, superuser=False):
+        suffix = "superuser" if superuser else "settings"
+        model_name = f"x_database.cleanup.test.{suffix}"
+        contents = (
+            b"Visible model attachment",
+            b"Shared ordinary and binary-field attachment",
+            b"Shared ordinary and binary-field attachment",
+            b"Unrelated partner attachment",
+        )
+        with environment() as admin_env:
+            model = admin_env["ir.model"].create(
+                {"name": "Database cleanup test model", "model": model_name}
+            )
+            Attachment = admin_env["ir.attachment"]
+            partner_id = admin_env.ref("base.partner_admin").id
+            with patch.object(type(Attachment), "_storage", return_value="file"):
+                attachments = Attachment.create(
                     [
                         {
                             "name": "Visible model attachment",
-                            "res_model": cls.model_name,
+                            "res_model": model_name,
+                            "raw": contents[0],
                         },
                         {
                             "name": "Orphaned record attachment",
-                            "res_model": cls.model_name,
+                            "res_model": model_name,
                             "res_id": 42,
+                            "raw": contents[1],
                         },
                         {
                             "name": "Binary field attachment",
-                            "res_model": cls.model_name,
+                            "res_model": model_name,
                             "res_field": "x_binary",
                             "res_id": 42,
+                            "raw": contents[2],
+                        },
+                        {
+                            "name": "Unrelated partner attachment",
+                            "res_model": "res.partner",
+                            "res_id": partner_id,
+                            "raw": contents[3],
                         },
                     ]
                 )
+            attachment_ids = attachments.ids
+            self.assertTrue(all(attachment.store_fname for attachment in attachments))
+            self.assertEqual(attachments[1].store_fname, attachments[2].store_fname)
+            # Prime the cache before SQL detachment; purge must invalidate it.
+            self.assertEqual(attachments[:2].mapped("res_model"), [model_name] * 2)
+            admin_env.registry.models.pop(model_name)
+            env = (
+                admin_env
+                if superuser
+                else admin_env(user=admin_env.ref("base.user_admin"), su=False)
             )
-            cls.attachment_ids = attachments.ids
-            env.registry.models.pop(cls.model_name)
-
-    def test_empty_model(self):
-        with environment() as admin_env:
-            env = admin_env(user=admin_env.ref("base.user_admin"), su=False)
-            # Settings access is not sudo: attachments of missing records are
-            # hidden, and binary-field attachments are excluded by the search.
-            self.assertFalse(env.su)
+            self.assertEqual(env.su, superuser)
             self.assertTrue(env.is_system())
+            # Settings users cannot see the orphaned record attachment, and
+            # the default search excludes field attachments even for root.
             self.assertEqual(
-                env["ir.attachment"].search([("res_model", "=", self.model_name)]).ids,
-                self.attachment_ids[:1],
+                set(env["ir.attachment"].search([("res_model", "=", model_name)]).ids),
+                set(attachment_ids[:2] if superuser else attachment_ids[:1]),
             )
             wizard = env["cleanup.purge.wizard.model"].create({})
             wizard.purge_all()
-            # must be removed by the wizard
-            self.assertFalse(
-                env["ir.model"].search(
-                    [
-                        ("model", "=", self.model_name),
-                    ]
-                )
+            self.assertFalse(model.exists())
+            self.assertEqual(
+                attachments.exists().ids, attachment_ids[:2] + attachment_ids[3:]
             )
-            env.invalidate_all()
-            remaining = env["ir.attachment"].sudo().browse(self.attachment_ids).exists()
-            self.assertEqual(remaining.ids, self.attachment_ids[:1])
-            self.assertFalse(remaining.res_model)
+            self.assertEqual(attachments[:2].mapped("res_model"), [False, False])
+            self.assertEqual(attachments[1].res_id, 42)
+            self.assertEqual(attachments[3].res_model, "res.partner")
+            self.assertEqual(attachments[3].res_id, partner_id)
+
+        # Model deletion is committed before GC. In particular, deleting the
+        # field attachment must not remove the file still used by its sibling.
+        with environment() as env:
+            env["ir.attachment"]._gc_file_store_unsafe(grace_period=0)
+        with environment() as env:
+            remaining = env["ir.attachment"].browse(attachment_ids).exists()
+            self.assertEqual(remaining.ids, attachment_ids[:2] + attachment_ids[3:])
+            self.assertEqual(remaining[:2].mapped("res_model"), [False, False])
+            self.assertEqual(remaining[-1].res_model, "res.partner")
+            self.assertEqual(remaining[-1].res_id, partner_id)
+            self.assertEqual(
+                [attachment.raw.content for attachment in remaining],
+                [contents[0], contents[1], contents[3]],
+            )
             remaining.unlink()
+
+    def test_empty_model(self):
+        self._check_model_attachments()
+
+    def test_empty_model_as_superuser(self):
+        self._check_model_attachments(superuser=True)
 
     def test_force_delete_keeps_ondelete_hooks(self):
         with environment() as env:
