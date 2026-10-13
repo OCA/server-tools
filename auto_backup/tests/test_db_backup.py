@@ -12,6 +12,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
 
+import psutil
 import pysftp
 
 from odoo import tools
@@ -62,7 +63,7 @@ class TestDbBackup(common.TransactionCase):
                 with patch(f"{class_name}.sftp_connection"):
                     yield filtered
 
-    def new_record(self, method="sftp"):
+    def new_record(self, method="sftp", **overrides):
         vals = {"name": "Têst backup", "method": method, "days_to_keep": 1}
         if method == "sftp":
             vals.update(
@@ -74,6 +75,7 @@ class TestDbBackup(common.TransactionCase):
                     "folder": "/folder/",
                 }
             )
+        vals.update(overrides)
         self.vals = vals
         return self.Model.create(vals)
 
@@ -126,18 +128,14 @@ class TestDbBackup(common.TransactionCase):
 
     def test_action_backup_local_each_format(self):
         """Each format should get a backup in its own format"""
-        zip_record = self.new_record("local")
-        zip_record.backup_format = "zip"
-        # A configuration's name is unique, so the second one writes to a
-        # folder of its own.
-        dump_record = self.Model.create(
-            {
-                "name": "Têst backup dump",
-                "method": "local",
-                "days_to_keep": 1,
-                "folder": os.path.join(zip_record.folder, "custom"),
-                "backup_format": "dump",
-            }
+        zip_record = self.new_record("local", backup_format="zip")
+        # A configuration's name is unique, so the second one needs a name and
+        # a folder of its own.
+        dump_record = self.new_record(
+            "local",
+            name="Têst backup dump",
+            folder=os.path.join(zip_record.folder, "custom"),
+            backup_format="dump",
         )
 
         (zip_record + dump_record).action_backup()
@@ -145,7 +143,7 @@ class TestDbBackup(common.TransactionCase):
         zip_names = [
             f for f in os.listdir(zip_record.folder) if f.endswith(".dump.zip")
         ]
-        dump_names = os.listdir(dump_record.folder)
+        dump_names = [f for f in os.listdir(dump_record.folder) if f.endswith(".dump")]
         self.assertEqual(1, len(zip_names), zip_names)
         self.assertEqual(1, len(dump_names), dump_names)
         # A dump cached for one format must not be reused for another: the zip
@@ -157,6 +155,13 @@ class TestDbBackup(common.TransactionCase):
         )
         with open(os.path.join(dump_record.folder, dump_names[0]), "rb") as dumped:
             self.assertEqual(b"PGDMP", dumped.read(5), dump_names[0])
+        # Odoo dumps the custom format through Popen and never waits for the
+        # child, while the zip path uses subprocess.run; the leftover pg_dump
+        # process makes the runner's child-process check fail the build. Reap
+        # it here, since nothing in this module holds that process.
+        for child in psutil.Process().children():
+            if child.name() == "pg_dump":
+                child.wait(timeout=30)
 
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
