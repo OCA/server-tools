@@ -18,7 +18,7 @@
                     <setting
                         id="sentry_client_connection"
                         string="Connection"
-                        help="Browser DSN, environment, and release tags. Leave blank to inherit from the sentry_* options in odoo.conf — useful when the same Sentry project is shared with the server-side OCA `sentry` module. Sentry recommends a separate project per platform; set a dedicated Browser DSN here to split JavaScript events from backend Python events."
+                        help="Browser DSN, environment, and release tags. Leave blank to inherit from the [sentry] section of odoo.conf — useful when the same Sentry project is shared with the server-side OCA `sentry` module. Sentry recommends a separate project per platform; set a dedicated Browser DSN here to split JavaScript events from backend Python events."
                     >
                         <div class="row mt-2">
                             <label
@@ -54,8 +54,8 @@
                     <setting
                         id="sentry_client_tier0"
                         string="Capture browser errors (Tier 0)"
-                        help="Loads the Sentry browser SDK on every page; reports uncaught JS errors and unhandled promise rejections. ~30KB bundle, negligible runtime cost. Requires a Browser DSN above or in the sentry_* options in odoo.conf."
-                        documentation="https://github.com/OCA/server-tools/tree/18.0/sentry_client"
+                        help="Loads the Sentry browser SDK on every page; reports uncaught JS errors and unhandled promise rejections. ~30KB bundle, negligible runtime cost. Requires a Browser DSN above or in the [sentry] section of odoo.conf."
+                        documentation="https://github.com/OCA/server-tools/tree/19.0/sentry_client"
                     >
                         <field name="sentry_client_enabled" />
                         <div
@@ -92,13 +92,14 @@
                         >
                             <div class="alert alert-warning mt-2" role="alert">
                                 <i
-                                class="fa fa-exclamation-triangle me-1"
-                                aria-hidden="true"
-                            />
-                                Adds roughly 5–10% per-request overhead at sample
-                                rate 1.0 and instruments every fetch/XHR.
-                                Recommended in production: 0.05 or below. In
-                                development, 1.0 is fine.
+                                    class="fa fa-exclamation-triangle"
+                                    aria-hidden="true"
+                                />
+                                <field
+                                    name="sentry_client_tier1_warning"
+                                    readonly="1"
+                                    nolabel="1"
+                                />
                             </div>
                             <div class="row">
                                 <label
@@ -122,14 +123,14 @@
                         >
                             <div class="alert alert-warning mt-2" role="alert">
                                 <i
-                                class="fa fa-exclamation-triangle me-1"
-                                aria-hidden="true"
-                            />
-                                Adds ~100KB to every page and records DOM mutations
-                                + console + network activity. Keep Healthy-session
-                                sample at 0.0 and On-error sample at 1.0 so
-                                recording only kicks in for sessions that already
-                                broke.
+                                    class="fa fa-exclamation-triangle"
+                                    aria-hidden="true"
+                                />
+                                <field
+                                    name="sentry_client_tier2_warning"
+                                    readonly="1"
+                                    nolabel="1"
+                                />
                             </div>
                             <div class="row">
                                 <label
@@ -166,19 +167,16 @@
                             class="content-group"
                             invisible="not sentry_client_tier3_profiling_enabled"
                         >
-                            <div
-                                class="alert alert-warning mt-2"
-                                role="alert"
-                                invisible="sentry_client_tier1_tracing_enabled"
-                            >
+                            <div class="alert alert-warning mt-2" role="alert">
                                 <i
-                                class="fa fa-exclamation-triangle me-1"
-                                aria-hidden="true"
-                            />
-                                Browser CPU profiling is enabled but Tier 1 tracing
-                                is OFF. Profiles only attach to traced transactions
-                                — with tracing off, no profiles will be collected.
-                                Enable Tier 1 to use profiling.
+                                    class="fa fa-exclamation-triangle"
+                                    aria-hidden="true"
+                                />
+                                <field
+                                    name="sentry_client_tier3_profiling_warning"
+                                    readonly="1"
+                                    nolabel="1"
+                                />
                             </div>
                             <div class="row">
                                 <label

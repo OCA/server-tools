@@ -4,7 +4,7 @@
     "name": "Sentry — Browser SDK",
     "summary": "Capture Odoo web-client JS errors in Sentry, "
     "with tiered opt-in for tracing and session replay",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Ledoent, Odoo Community Association (OCA)",

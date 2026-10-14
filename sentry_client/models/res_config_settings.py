@@ -61,14 +61,14 @@ class ResConfigSettings(models.TransientModel):
                 )
 
     # Connection — DSN and tag overrides. All three are optional; when blank,
-    # the controller falls back to the `sentry_*` options in odoo.conf so a
+    # the controller falls back to the [sentry] section of odoo.conf so a
     # single-project deployment shared with the OCA `sentry` server-side
     # module keeps working without UI clicks.
     sentry_client_browser_dsn = fields.Char(
         string="Browser DSN",
         config_parameter="sentry_client.browser_dsn",
         help="Public Sentry DSN for the browser project. Leave blank to "
-        "reuse the `sentry_dsn` option from odoo.conf. Sentry "
+        "reuse the DSN from the [sentry] section of odoo.conf. Sentry "
         "recommends a separate project per platform (Python vs. "
         "JavaScript-Browser); set this to that project's DSN. Browser "
         "DSNs are public by design and safe to expose to end users.",
@@ -78,22 +78,22 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="sentry_client.environment",
         help="Tags every browser event with this environment "
         "(e.g. 'production-web', 'staging-web'). Leave blank to inherit "
-        "from the `sentry_*` options in odoo.conf.",
+        "from the [sentry] section of odoo.conf.",
     )
     sentry_client_release = fields.Char(
         string="Release tag",
         config_parameter="sentry_client.release",
         help="Tags every browser event with this release identifier "
         "(e.g. the asset-bundle hash or a deploy SHA). Leave blank to "
-        "inherit from the `sentry_*` options in odoo.conf.",
+        "inherit from the [sentry] section of odoo.conf.",
     )
 
     # Tier 0 — always-free essentials
     sentry_client_enabled = fields.Boolean(
         string="Enable browser error reporting",
         config_parameter="sentry_client.enabled",
-        help="When enabled and a DSN is configured (either above or via the "
-        "`sentry_dsn` option in odoo.conf), the Sentry browser SDK is loaded "
+        help="When enabled and a DSN is configured (either above or in the "
+        "[sentry] section of odoo.conf), the Sentry browser SDK is loaded "
         "into the Odoo web client and captures uncaught JS errors and "
         "unhandled promise rejections.",
     )
@@ -124,6 +124,10 @@ class ResConfigSettings(models.TransientModel):
         help="Fraction of requests to record performance traces for. "
         "0.0 = none, 1.0 = all. Recommended in production: 0.05 or below.",
     )
+    sentry_client_tier1_warning = fields.Char(
+        compute="_compute_sentry_client_tier1_warning"
+    )
+
     # Tier 2 — session replay
     sentry_client_tier2_replay_enabled = fields.Boolean(
         string="Enable session replay (Tier 2)",
@@ -143,6 +147,10 @@ class ResConfigSettings(models.TransientModel):
         help="Fraction of sessions that hit an error to record. 1.0 means "
         "every errored session is captured for replay.",
     )
+    sentry_client_tier2_warning = fields.Char(
+        compute="_compute_sentry_client_tier2_warning"
+    )
+
     # Tier 3 — niche extras
     sentry_client_tier3_feedback_enabled = fields.Boolean(
         string="Enable user feedback widget",
@@ -168,3 +176,49 @@ class ResConfigSettings(models.TransientModel):
         string="Capture console logs",
         config_parameter="sentry_client.tier3_logs_enabled",
     )
+    sentry_client_tier3_profiling_warning = fields.Char(
+        compute="_compute_sentry_client_tier3_profiling_warning"
+    )
+
+    @api.depends("sentry_client_tier1_tracing_enabled")
+    def _compute_sentry_client_tier1_warning(self):
+        for rec in self:
+            if rec.sentry_client_tier1_tracing_enabled:
+                rec.sentry_client_tier1_warning = self.env._(
+                    "Adds roughly 5–10%% per-request overhead at sample rate 1.0 "
+                    "and instruments every fetch/XHR. Recommended in production: "
+                    "0.05 or below. In development, 1.0 is fine."
+                )
+            else:
+                rec.sentry_client_tier1_warning = False
+
+    @api.depends("sentry_client_tier2_replay_enabled")
+    def _compute_sentry_client_tier2_warning(self):
+        for rec in self:
+            if rec.sentry_client_tier2_replay_enabled:
+                rec.sentry_client_tier2_warning = self.env._(
+                    "Adds ~100KB to every page and records DOM mutations + console "
+                    "+ network activity. Keep Healthy-session sample at 0.0 and "
+                    "On-error sample at 1.0 so recording only kicks in for sessions "
+                    "that already broke."
+                )
+            else:
+                rec.sentry_client_tier2_warning = False
+
+    @api.depends(
+        "sentry_client_tier1_tracing_enabled",
+        "sentry_client_tier3_profiling_enabled",
+    )
+    def _compute_sentry_client_tier3_profiling_warning(self):
+        for rec in self:
+            if (
+                rec.sentry_client_tier3_profiling_enabled
+                and not rec.sentry_client_tier1_tracing_enabled
+            ):
+                rec.sentry_client_tier3_profiling_warning = self.env._(
+                    "Browser CPU profiling is enabled but Tier 1 tracing is OFF. "
+                    "Profiles only attach to traced transactions — with tracing off, "
+                    "no profiles will be collected. Enable Tier 1 to use profiling."
+                )
+            else:
+                rec.sentry_client_tier3_profiling_warning = False

@@ -1,4 +1,4 @@
-Once Tier 0 is enabled and a DSN is configured, the next page load injects
+Once Tier 0 is enabled and a DSN is in `[sentry]`, the next page load injects
 the (vendored) Sentry browser SDK and starts capturing errors. No further
 user action needed.
 

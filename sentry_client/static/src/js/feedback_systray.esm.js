@@ -4,15 +4,12 @@
 // Replaces Sentry's autoInject feedback widget — which would collide with
 // Odoo's Discuss bubble + activity systray icons — with a navbar launcher
 // button that opens the same modal dialog. The trigger is a plain
-// `o_nav_entry` button (the idiom the burger menu uses for a non-dropdown
-// navbar launcher — it picks up the navbar entry height/padding/hover
-// styling), not a Dropdown, since clicking it opens a Sentry modal rather
-// than an Owl Dropdown menu. Icon is fa-bullhorn (Sentry's own feedback
-// iconography) — deliberately NOT fa-bug, which is the debug-mode systray
-// icon sitting right next to it.
-/* global window, document */
+// `btn btn-link` (the launcher idiom used by the messaging-menu and
+// user-menu systray items), not a Dropdown, since clicking it opens a
+// Sentry modal rather than an Owl Dropdown menu.
+/* global window */
 
-import {Component, useExternalListener, useState} from "@odoo/owl";
+import {Component} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 import {registry} from "@web/core/registry";
 import {useService} from "@web/core/utils/hooks";
@@ -24,15 +21,6 @@ export class SentryFeedbackSystray extends Component {
     setup() {
         this.notification = useService("notification");
         this.title = _t("Report a bug");
-        // The loader flips the flag (and fires the event) only after the SDK
-        // initialised with the feedback integration active — so the button
-        // never renders when feedback is disabled or the SDK failed to load.
-        this.state = useState({
-            available: Boolean(window.__sentry_client_feedback_ready__),
-        });
-        useExternalListener(document, "sentry_client:feedback-ready", () => {
-            this.state.available = true;
-        });
     }
 
     async open() {
