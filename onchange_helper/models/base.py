@@ -15,7 +15,16 @@ class Base(models.AbstractModel):
         for fieldname, value in vals.items():
             if fieldname not in record:
                 column = self._fields[fieldname]
-                if value and column.type == "many2one":
+                if column.type == "one2many":
+                    submodel = self.env[column.comodel_name]
+                    for vals in value:
+                        if vals[0] == 0:
+                            # CREATE command
+                            for elem in vals[2]:
+                                subcolumn = submodel._fields[elem]
+                                if subcolumn.type == "many2one" and vals[2][elem]:
+                                    vals[2][elem] = vals[2][elem][0]
+                elif value and column.type == "many2one":
                     value = value[0]  # many2one are tuple (id, name)
                 new_values[fieldname] = value
         return new_values
@@ -33,7 +42,12 @@ class Base(models.AbstractModel):
         # _onchange_spec() will return onchange fields from the default view
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
-        onchange_specs = {field_name: "1" for field_name, field in self._fields.items()}
+        onchange_specs = {}
+        for field_name, field in self._fields.items():
+            onchange_specs[field_name] = "1"
+            if field.type == "one2many":
+                for sub_field_name in self.env[field.comodel_name]._fields.keys():
+                    onchange_specs[f"{field_name}.{sub_field_name}"] = "1"
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
