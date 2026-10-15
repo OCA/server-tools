@@ -24,6 +24,14 @@ class TestAttachmentUnindexContent(TransactionCase):
         cls.test_text_content = b"This is a test file content for indexing verification"
         cls.test_text_b64 = base64.b64encode(cls.test_text_content)
 
+    def _stored_index_content(self, attachment):
+        """Return the ``index_content`` stored, not the one the field reads."""
+        attachment.flush_recordset()
+        self.env.cr.execute(
+            "SELECT index_content FROM ir_attachment WHERE id = %s", (attachment.id,)
+        )
+        return self.env.cr.fetchone()[0]
+
     def test_attachment_index_content_disabled(self):
         """Test that index_content is not populated when creating attachment.
 
@@ -39,7 +47,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         )
 
         self.assertFalse(
-            attachment.index_content,
+            self._stored_index_content(attachment),
             "index_content should be False (empty) when creating attachment "
             "because the module disables content indexation",
         )
@@ -118,7 +126,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         # Verify that none of the attachments have index_content populated
         for attachment in attachments:
             self.assertFalse(
-                attachment.index_content,
+                self._stored_index_content(attachment),
                 f"Attachment {attachment.name} should not have indexed content",
             )
 
@@ -151,7 +159,7 @@ class TestAttachmentUnindexContent(TransactionCase):
                 )
 
                 self.assertFalse(
-                    attachment.index_content,
+                    self._stored_index_content(attachment),
                     f"Attachment {name} with mimetype {mimetype} should not be indexed",
                 )
 
@@ -174,4 +182,65 @@ class TestAttachmentUnindexContent(TransactionCase):
             "Should find attachment by name even without content indexing",
         )
         self.assertEqual(found.id, attachment.id)
-        self.assertFalse(found.index_content, "Found attachment should not be indexed")
+        self.assertFalse(
+            self._stored_index_content(found), "Found attachment should not be indexed"
+        )
+
+    def test_index_content_is_read_from_the_file(self):
+        """The field reads the content of the file, which is not stored."""
+        attachment = self.Attachment.create(
+            {
+                "name": "readable.txt",
+                "datas": self.test_text_b64,
+                "mimetype": "text/plain",
+            }
+        )
+        attachment.invalidate_recordset()
+        self.assertEqual(
+            attachment.index_content, self.test_text_content.decode(), "Read the file"
+        )
+        self.assertFalse(
+            self._stored_index_content(attachment), "Nothing is stored in the database"
+        )
+
+    def test_index_content_is_read_from_the_file_for_several_records(self):
+        attachments = self.Attachment.create(
+            [
+                {
+                    "name": f"readable_{i}.txt",
+                    "raw": f"content number {i}".encode(),
+                    "mimetype": "text/plain",
+                }
+                for i in range(3)
+            ]
+        )
+        attachments.invalidate_recordset()
+        self.assertEqual(
+            attachments.mapped("index_content"),
+            [f"content number {i}" for i in range(3)],
+        )
+        self.assertEqual(
+            [row["index_content"] for row in attachments.read(["index_content"])],
+            [f"content number {i}" for i in range(3)],
+        )
+
+    def test_index_content_of_an_attachment_without_file_is_empty(self):
+        attachment = self.Attachment.create(
+            {
+                "name": "link",
+                "type": "url",
+                "url": "https://example.com",
+                "mimetype": "text/plain",
+            }
+        )
+        attachment.invalidate_recordset()
+        self.assertFalse(attachment.index_content)
+
+    def test_index_content_written_by_hand_is_kept(self):
+        attachment = self.Attachment.create(
+            {"name": "ocr.txt", "raw": b"from the file", "mimetype": "text/plain"}
+        )
+        attachment.index_content = "from the ocr"
+        attachment.flush_recordset()
+        attachment.invalidate_recordset()
+        self.assertEqual(attachment.index_content, "from the ocr")
