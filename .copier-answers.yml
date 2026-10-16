@@ -16,7 +16,7 @@ odoo_test_flavor: Both
 odoo_version: 20.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-postgres_image: ''
+postgres_image: 'pgvector/pgvector:pg16'
 rebel_module_groups: []
 repo_description: server-tools
 repo_name: server-tools
