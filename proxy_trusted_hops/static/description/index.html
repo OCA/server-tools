@@ -410,13 +410,19 @@ website visitors.</p>
 <div class="section" id="configuration">
 <h2><a class="toc-backref" href="#toc-entry-2">Configuration</a></h2>
 <p>Set the number of reverse proxies in front of Odoo, either with the
-<tt class="docutils literal">ODOO_TRUSTED_PROXIES</tt> environment variable or in the Odoo configuration
-file:</p>
+<tt class="docutils literal">ODOO_TRUSTED_PROXIES</tt> environment variable or in a <tt class="docutils literal">[proxy_trusted_hops]</tt>
+section of the Odoo configuration file:</p>
 <pre class="code cfg literal-block">
-<span class="na">proxy_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w">
+<span class="k">[options]</span><span class="w">
+</span><span class="na">proxy_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w">
+
+</span><span class="k">[proxy_trusted_hops]</span><span class="w">
 </span><span class="na">trusted_proxies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
 </pre>
-<p>The environment variable takes precedence over the configuration file.</p>
+<p>The environment variable takes precedence over the configuration file. When
+the <tt class="docutils literal">server_environment</tt> module is on the addons path, the section is read
+through it, so it can also come from its environment files; the Odoo
+configuration file is still included there.</p>
 <p>As in Odoo itself, the header is only used when <tt class="docutils literal">proxy_mode</tt> is enabled and
 the request contains an <tt class="docutils literal"><span class="pre">X-Forwarded-Host</span></tt> header.</p>
 <p>With <tt class="docutils literal">trusted_proxies = N</tt>, Odoo uses the N-th address from the end of the
