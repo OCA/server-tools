@@ -7,25 +7,11 @@ from odoo.exceptions import MissingError
 def pre_init_hook(env):
     """setup vector"""
     cr = env.cr
-    cr.execute(
-        """
-        SELECT
-            tablename
-        FROM
-            pg_tables
-        WHERE
-            tablename='spatial_ref_sys';
-    """
-    )
-    check = cr.fetchone()
-    if check:
-        return {}
+    cr.execute("SELECT 1 FROM pg_extension WHERE extname = 'vector';")
+    if cr.fetchone():
+        return
     try:
-        cr.execute(
-            """
-        CREATE EXTENSION IF NOT EXISTS vector;
-    """
-        )
+        cr.execute("CREATE EXTENSION IF NOT EXISTS vector;")
     except Exception as exc:
         raise MissingError(
             env._(

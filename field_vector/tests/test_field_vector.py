@@ -1,9 +1,9 @@
 # Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 import numpy as np
-from psycopg2.extensions import AsIs
 
 from odoo.orm.model_classes import add_to_registry
+from odoo.tools import SQL
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -26,6 +26,15 @@ class TestFieldVector(BaseCommon):
             {"models_to_check": True},
         )
         cls.addClassCleanup(cls.registry.__delitem__, "vector.model")
+
+        cls.env["ir.access"].create(
+            {
+                "name": "vector.model access",
+                "model_id": cls.env["ir.model"]._get_id(TestModel._name),
+                "group_id": cls.env.ref("base.group_user").id,
+                "operation": "crud",
+            }
+        )
 
         cls.TestModel = cls.env[TestModel._name]
 
@@ -66,11 +75,11 @@ class TestFieldVector(BaseCommon):
         record = self.TestModel.create({"vector": [1, 2, 3]})
         record.flush_recordset()
         self.env.cr.execute(
-            "SELECT vector FROM %s WHERE id = %s",
-            (
-                AsIs(record._table),
+            SQL(
+                "SELECT vector FROM %s WHERE id = %s",
+                SQL.identifier(record._table),
                 record.id,
-            ),
+            )
         )
         val = self.env.cr.fetchone()[0]
         # Even if we use plain SQL, the value is still a VectorValue
@@ -84,12 +93,12 @@ class TestFieldVector(BaseCommon):
         record.flush_recordset()
         # as VectorValue
         self.env.cr.execute(
-            "UPDATE %s SET vector = %s WHERE id = %s",
-            (
-                AsIs(record._table),
+            SQL(
+                "UPDATE %s SET vector = %s WHERE id = %s",
+                SQL.identifier(record._table),
                 VectorValue([4, 5, 6]),
                 record.id,
-            ),
+            )
         )
         record.invalidate_model()
         new_record = self.TestModel.browse(record.id)
@@ -99,12 +108,12 @@ class TestFieldVector(BaseCommon):
 
         # as list
         self.env.cr.execute(
-            "UPDATE %s SET vector = %s WHERE id = %s",
-            (
-                AsIs(record._table),
+            SQL(
+                "UPDATE %s SET vector = %s WHERE id = %s",
+                SQL.identifier(record._table),
                 [7, 8, 9],
                 record.id,
-            ),
+            )
         )
         record.invalidate_model()
         new_record = self.TestModel.browse(record.id)
@@ -114,12 +123,12 @@ class TestFieldVector(BaseCommon):
 
         # as numpy array
         self.env.cr.execute(
-            "UPDATE %s SET vector = %s WHERE id = %s",
-            (
-                AsIs(record._table),
+            SQL(
+                "UPDATE %s SET vector = %s WHERE id = %s",
+                SQL.identifier(record._table),
                 np.array([10, 11, 12]),
                 record.id,
-            ),
+            )
         )
         record.invalidate_model()
         new_record = self.TestModel.browse(record.id)
@@ -150,3 +159,14 @@ class TestFieldVector(BaseCommon):
         new_record = self.TestModel.browse(record.id)
         val = new_record.read(["vector"])[0]["vector"]
         self.assertEqual(val, [1, 2, 3])
+
+    def test_create_from_string(self):
+        record = self.TestModel.create({"vector": "[1.5, 2.5, 3.5]"})
+        self.assertListEqual([1.5, 2.5, 3.5], record.vector.to_list())
+        record2 = self.TestModel.create({"vector": "4, 5, 6"})
+        self.assertListEqual([4.0, 5.0, 6.0], record2.vector.to_list())
+
+    def test_write_string(self):
+        record = self.TestModel.create({"vector": [1, 2, 3]})
+        record.write({"vector": "[7.0, 8.0, 9.0]"})
+        self.assertListEqual([7.0, 8.0, 9.0], record.vector.to_list())

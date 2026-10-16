@@ -2,13 +2,13 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 from __future__ import annotations
 
+import contextlib
 from operator import attrgetter
 
 import numpy as np
-from psycopg2.extensions import AsIs
 
 from odoo import fields
-from odoo.tools import sql
+from odoo.tools import SQL, sql
 from odoo.tools.misc import SENTINEL, Sentinel
 
 
@@ -135,29 +135,48 @@ class Vector(fields.Field):
 
     def _setup_attrs__(self, model_class, name):
         res = super()._setup_attrs__(model_class, name)
+        if not self.related and (
+            not isinstance(self.dimensions, int) or self.dimensions <= 0
+        ):
+            raise ValueError("The size of the vector field must be a positive integer.")
+        return res
+
+    def setup_related(self, model):
+        res = super().setup_related(model)
         if not isinstance(self.dimensions, int) or self.dimensions <= 0:
             raise ValueError("The size of the vector field must be a positive integer.")
         return res
 
     @property
     def _column_type(self):
+        if not self.dimensions:
+            return None
         return ("vector", f"vector({self.dimensions})")
 
     def get_current_vector_size(self, cr, table, column):
-        """Fetch the current vector size from pg_typeof()"""
-        cr.execute(
-            "SELECT pg_typeof(%s)::text FROM %s LIMIT 1;", (AsIs(column), AsIs(table))
+        """Fetch the current vector size from pg_attribute"""
+        query = SQL(
+            """
+            SELECT format_type(a.atttypid, a.atttypmod)
+            FROM pg_attribute a
+            JOIN pg_class c ON a.attrelid = c.oid
+            JOIN pg_namespace nc ON c.relnamespace = nc.oid
+            WHERE nc.nspname = current_schema
+              AND c.relname = %s
+              AND a.attname = %s
+              AND a.attnum > 0
+              AND NOT a.attisdropped
+            """,
+            table,
+            column,
         )
+        cr.execute(query)
         result = cr.fetchone()
-        if result and result[0] == "vector":
-            cr.execute(
-                "SELECT vector_dims(%s) FROM %s"
-                " WHERE vector_dims(%s) IS NOT NULL LIMIT 1;",
-                (AsIs(column), AsIs(table), AsIs(column)),
-            )
-            result = cr.fetchone()
-            if result and result[0]:
-                return int(result[0])
+        if result and result[0]:
+            type_str = result[0]
+            if type_str.startswith("vector(") and type_str.endswith(")"):
+                with contextlib.suppress(ValueError):
+                    return int(type_str[7:-1])
         return None
 
     def update_db_column(self, model, column):
@@ -167,19 +186,37 @@ class Vector(fields.Field):
             )
             if db_size is not None and db_size != self.dimensions:
                 sql.convert_column(
-                    model.env.cr, model._table, self.name, self._column_type[1]
+                    model.env.cr, model._table, self.name, self.stored_sql_column_type
                 )
         return super().update_db_column(model, column)
 
     _related_dimensions = property(attrgetter("dimensions"))
     _description_dimensions = property(attrgetter("dimensions"))
+    _related_autopad = property(attrgetter("autopad"))
+    _description_autopad = property(attrgetter("autopad"))
 
     def convert_to_export(self, value: VectorValue, record):
         return value.to_list() if value else None
 
     def convert_to_cache(self, value, record, validate=True):
-        if value is None or value is False:
+        if (
+            value is None
+            or value is False
+            or (isinstance(value, str) and not value.strip())
+        ):
             return None
+        if isinstance(value, str):
+            clean_str = value.strip()
+            try:
+                value = [
+                    float(x.strip())
+                    for x in clean_str.strip("[]()").split(",")
+                    if x.strip()
+                ]
+            except Exception as err:
+                raise ValueError(
+                    f"Invalid vector string format for {self.name}: '{value}'"
+                ) from err
         if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
             raise TypeError(
                 f"Invalid type '{type(value)}' for {self.name}: "
@@ -197,8 +234,14 @@ class Vector(fields.Field):
         return value
 
     def convert_to_record(self, value, record):
-        if value is None or value is False:
+        if (
+            value is None
+            or value is False
+            or (isinstance(value, str) and not value.strip())
+        ):
             return None
+        if isinstance(value, str):
+            value = self.convert_to_cache(value, record, validate=False)
         if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
             raise TypeError(
                 f"Invalid type '{type(value)}' for {self.name}: "
@@ -215,7 +258,7 @@ class Vector(fields.Field):
             )
         return value
 
-    def convert_to_read(self, value, record, use_name_get=True):
+    def convert_to_read(self, value, record, use_display_name=True):
         return self.convert_to_export(value, record)
 
     def convert_to_column(self, value, record, values=None, validate=True):
