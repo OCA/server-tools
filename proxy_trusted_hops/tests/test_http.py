@@ -4,6 +4,8 @@
 import json
 import logging
 import os
+import sys
+import tempfile
 from unittest.mock import patch
 
 from odoo import http
@@ -20,10 +22,16 @@ class TestHttp(HttpCase):
         self.startPatcher(patch.object(http, "ProxyFix", http.ProxyFix))
         self.startPatcher(patch.dict(os.environ))
         os.environ.pop("ODOO_TRUSTED_PROXIES", None)
-        self.startPatcher(
-            patch.dict(config.options, proxy_mode=True, trusted_proxies="2")
-        )
-        post_load()
+        handle, path = tempfile.mkstemp(suffix=".conf")
+        with os.fdopen(handle, "w") as config_file:
+            config_file.write("[proxy_trusted_hops]\ntrusted_proxies = 2\n")
+        self.addCleanup(os.remove, path)
+        self.startPatcher(patch.object(config, "rcfile", path))
+        self.startPatcher(patch.dict(config.options, proxy_mode=True))
+        # Only while reading the configuration: restoring sys.modules after the
+        # request would drop the modules it imported.
+        with patch.dict(sys.modules, {"odoo.addons.server_environment": None}):
+            post_load()
         payload = {
             "jsonrpc": "2.0",
             "method": "call",

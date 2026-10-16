@@ -64,15 +64,21 @@ Configuration
 =============
 
 Set the number of reverse proxies in front of Odoo, either with the
-``ODOO_TRUSTED_PROXIES`` environment variable or in the Odoo configuration
-file:
+``ODOO_TRUSTED_PROXIES`` environment variable or in a ``[proxy_trusted_hops]``
+section of the Odoo configuration file:
 
 .. code-block:: cfg
 
+    [options]
     proxy_mode = True
+
+    [proxy_trusted_hops]
     trusted_proxies = 2
 
-The environment variable takes precedence over the configuration file.
+The environment variable takes precedence over the configuration file. When
+the ``server_environment`` module is on the addons path, the section is read
+through it, so it can also come from its environment files; the Odoo
+configuration file is still included there.
 
 As in Odoo itself, the header is only used when ``proxy_mode`` is enabled and
 the request contains an ``X-Forwarded-Host`` header.
