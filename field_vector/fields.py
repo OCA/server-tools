@@ -25,7 +25,7 @@ class VectorValue:
 
     def __init__(self, value: list | tuple | np.ndarray, dimensions=None, autopad=True):
         if not isinstance(value, (list, tuple, np.ndarray)):
-            raise ValueError(
+            raise TypeError(
                 f"Invalid type '{type(value)}' for VectorValue: "
                 "Only list, tuple or np.ndarray are allowed."
             )
@@ -95,7 +95,7 @@ class VectorValue:
         if isinstance(value, list | tuple | np.ndarray):
             value = cls(value)
         if not isinstance(value, cls):
-            raise ValueError(
+            raise TypeError(
                 f"Invalid type '{type(value)}' for VectorValue: "
                 "Only list, tuple or np.ndarray or VectoreValue are allowed."
             )
@@ -181,7 +181,7 @@ class Vector(fields.Field):
         if value is None or value is False:
             return None
         if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
-            raise ValueError(
+            raise TypeError(
                 f"Invalid type '{type(value)}' for {self.name}: "
                 "Only np.ndarray or list of floats/int are allowed."
             )
@@ -200,7 +200,7 @@ class Vector(fields.Field):
         if value is None or value is False:
             return None
         if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
-            raise ValueError(
+            raise TypeError(
                 f"Invalid type '{type(value)}' for {self.name}: "
                 "Only np.ndarray, list of floats/int or VectorValue are allowed."
             )
