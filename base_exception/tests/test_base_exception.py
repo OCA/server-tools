@@ -8,14 +8,14 @@ from odoo_test_helper import FakeModelLoader
 
 from odoo import SUPERUSER_ID
 from odoo.api import Environment
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
 from ..exceptions import BaseExceptionError
 from .common import (
+    expect_base_exception_error,
     mock_base_exception_method_env,
     patch_base_exception_method_env,
-    swallow_base_exception_error,
 )
 
 
@@ -74,15 +74,14 @@ class TestBaseException(TransactionCase):
         self.assertFalse(self.exception_rule_confirm.exception_ids)
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_fail_by_py(self):
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_fail_by_domain(self):
         self.exception_rule.write(
             {
@@ -90,13 +89,13 @@ class TestBaseException(TransactionCase):
                 "exception_type": "by_domain",
             }
         )
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_fail_by_method(self):
         self.exception_rule.write(
             {
@@ -104,18 +103,19 @@ class TestBaseException(TransactionCase):
                 "exception_type": "by_method",
             }
         )
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_ignorable_exception(self):
         # Block because of exception during validation
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         # Test that we have linked exceptions
         self.assertTrue(self.po.exception_ids)
         # Test ignore exeception make possible for the po to validate
@@ -147,28 +147,30 @@ class TestBaseException(TransactionCase):
         self.assertEqual(self.po.state, "cancel")
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_detect_exceptions(self):
-        self.po.detect_exceptions()
+        with expect_base_exception_error(self):
+            self.po.detect_exceptions()
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     @patch_base_exception_method_env
-    @swallow_base_exception_error
     def test_blocking_exception(self):
         self.exception_rule.is_blocking = True
         # Block because of exception during validation
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
         # Test that we have linked exceptions
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
         # Test cannot ignore blocked exception
         with self.assertRaises(UserError):
             self.po.action_ignore_exceptions()
         self.assertFalse(self.po.ignore_exception)
-        with self.assertRaises(ValidationError):
+        with expect_base_exception_error(self):
             self.po.button_confirm()
-        self.po.with_context(raise_exception=False).button_confirm()
+        with expect_base_exception_error(self):
+            self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
 
