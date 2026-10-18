@@ -11,6 +11,7 @@
                 <field name="active" invisible="1" />
                 <field name="name" />
                 <field name="state" />
+                <field name="output_format" />
             </tree>
         </field>
     </record>
@@ -34,8 +35,17 @@
                         <field name="active" widget="boolean_toggle" />
                         <field name="verbose" widget="boolean_toggle" />
                         <field name="token" />
+                        <field name="output_format" />
                         <field name="mail_template_id" />
                         <field name="mail_sent" widget="boolean_toggle" />
+                    </group>
+
+                    <group
+                        string="Prometheus"
+                        attrs="{'invisible': [('output_format', '!=', 'prometheus')]}"
+                    >
+                        <field name="prometheus_metric" />
+                        <field name="prometheus_label" />
                     </group>
 
                     <notebook>
