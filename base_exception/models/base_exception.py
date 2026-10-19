@@ -66,17 +66,22 @@ class BaseExceptionModel(models.AbstractModel):
             else:
                 rec.exceptions_summary = False
 
+    def _must_popup_exception(self):
+        """Hook to redefine if the exception pop up must be shown"""
+        return False
+
+    def action_popup_exceptions(self):
+        if self._must_popup_exception():
+            return self._popup_exceptions()
+        return {"type": "ir.actions.client", "tag": "soft_reload"}
+
     def _popup_exceptions(self):
         """This method is used to show the popup action view.
         Used in several dependent modules."""
-        record = self._get_popup_action()
-        action = record.sudo().read()[0]
-        action = {
-            field: value
-            for field, value in action.items()
-            if field in record._get_readable_fields()
-        }
-        action.update(
+        # TODO: When migrating, use _for_xml_id instead of this
+        action = self._get_popup_action()
+        action_dict = action.sudo()._get_action_dict()
+        action_dict.update(
             {
                 "context": {
                     "active_id": self.ids[0],
@@ -85,7 +90,7 @@ class BaseExceptionModel(models.AbstractModel):
                 }
             }
         )
-        return action
+        return action_dict
 
     @api.model
     def _get_popup_action(self):
