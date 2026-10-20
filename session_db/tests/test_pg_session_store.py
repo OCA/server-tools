@@ -3,12 +3,12 @@ from unittest import mock
 
 import psycopg2
 
-from odoo import http
+from odoo.http import session as http_session
 from odoo.sql_db import connection_info_for
-from odoo.tests import TransactionCase
+from odoo.tests import TransactionCase, new_test_user
 from odoo.tools import config
 
-from odoo.addons.session_db.pg_session_store import PGSessionStore
+from odoo.addons.session_db.pg_session_store import PGSessionStore, check_sessions
 
 
 def _make_postgres_uri(
@@ -34,9 +34,8 @@ class TestPGSessionStore(TransactionCase):
     def setUp(self):
         super().setUp()
         _, connection_info = connection_info_for(config["db_name"][0])
-        self.session_store = PGSessionStore(
-            _make_postgres_uri(**connection_info), session_class=http.Session
-        )
+        self.session_store = PGSessionStore(uri=_make_postgres_uri(**connection_info))
+        self.sid = self.session_store.generate_key()
 
     def test_session_crud(self):
         session = self.session_store.new()
@@ -47,6 +46,40 @@ class TestPGSessionStore(TransactionCase):
         self.session_store.delete(session)
         assert self.session_store.get(session.sid).get("test") is None
 
+    def test_get_missing_session(self):
+        session = self.session_store.get(self.sid)
+        self.assertTrue(session.is_new)
+        self.assertNotEqual(session.sid, self.sid)
+        session = self.session_store.get(self.sid, keep_sid=True)
+        self.assertFalse(session.is_new)
+        self.assertEqual(session.sid, self.sid)
+
+    def test_get_invalid_sid(self):
+        session = self.session_store.get("abc", keep_sid=True)
+        self.assertTrue(session.is_new)
+        self.assertNotEqual(session.sid, "abc")
+
+    def test_get_many(self):
+        session = self.session_store.new()
+        session["test"] = "test"
+        self.session_store.save(session)
+        sessions = self.session_store.get_many({session.sid, self.sid})
+        self.assertEqual(list(sessions), [session.sid])
+        self.assertEqual(sessions[session.sid]["test"], "test")
+
+    def test_check_sessions(self):
+        user = new_test_user(self.env, "session_db_user")
+        session = self.session_store.new()
+        session.uid = user.id
+        session.session_token = user._compute_session_token(session.sid)
+        self.session_store.save(session)
+        with mock.patch.object(
+            http_session, "session_store", return_value=self.session_store
+        ):
+            self.assertIn(session.sid, check_sessions(self.env.cr, [session]))
+            self.session_store.delete(session)
+            self.assertNotIn(session.sid, check_sessions(self.env.cr, [session]))
+
     def test_retry(self):
         """Test that session operations are retried before failing"""
         with (
@@ -55,7 +88,7 @@ class TestPGSessionStore(TransactionCase):
         ):
             mock_execute.side_effect = psycopg2.OperationalError()
             try:
-                self.session_store.get("abc")
+                self.session_store.get(self.sid)
             except psycopg2.OperationalError:  # pylint: disable=except-pass
                 pass
             else:
@@ -67,7 +100,7 @@ class TestPGSessionStore(TransactionCase):
             self.assertEqual(logs.records[0].levelno, logging.WARNING)
             self.assertIn("operation try 5/5 failed, aborting", logs.output[0])
         # when the error is resolved, it works again
-        self.session_store.get("abc")
+        self.session_store.get(self.sid)
 
     def test_retry_connect_fail(self):
         with (
@@ -78,7 +111,7 @@ class TestPGSessionStore(TransactionCase):
             mock_db_connect.side_effect = RuntimeError("connection failed")
             # get fails, and a RuntimeError is raised when trying to reconnect
             try:
-                self.session_store.get("abc")
+                self.session_store.get(self.sid)
             except RuntimeError as e:  # pylint: disable=except-pass
                 assert str(e) == "connection failed"
             else:
@@ -87,7 +120,7 @@ class TestPGSessionStore(TransactionCase):
                 raise AssertionError("expected RuntimeError")
             assert mock_execute.call_count == 1
         # when the error is resolved, it works again
-        self.session_store.get("abc")
+        self.session_store.get(self.sid)
 
     def test_make_postgres_uri(self):
         connection_info = {
