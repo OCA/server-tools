@@ -44,12 +44,19 @@ class CleanupPurgeLineColumn(models.TransientModel):
             )
             if not self.env.cr.fetchone()[0]:
                 continue
+            if line._is_inherited_column(model_pool._table, line.name):
+                self.logger.info(
+                    "Skipping inherited column %s on table %s",
+                    line.name,
+                    model_pool._table,
+                )
+                continue
 
             self.logger.info(
                 "Dropping column %s from table %s", line.name, model_pool._table
             )
             self.env.cr.execute(
-                "ALTER TABLE %s DROP COLUMN %s",
+                "ALTER TABLE %s DROP COLUMN %s CASCADE",
                 (IdentifierAdapter(model_pool._table), IdentifierAdapter(line.name)),
             )
             line.write({"purged": True})
@@ -57,6 +64,17 @@ class CleanupPurgeLineColumn(models.TransientModel):
             # we still have a pending transaction
             self.env.cr.commit()  # pylint: disable=invalid-commit
         return True
+
+    def _is_inherited_column(self, table, column):
+        self.env.cr.execute(
+            "SELECT attislocal FROM pg_attribute a "
+            "JOIN pg_class c ON c.oid = a.attrelid "
+            "WHERE c.relname = %s AND a.attname = %s "
+            "AND a.attnum > 0 AND NOT a.attisdropped",
+            (table, column),
+        )
+        row = self.env.cr.fetchone()
+        return bool(row and not row[0])
 
 
 class CleanupPurgeWizardColumn(models.TransientModel):
