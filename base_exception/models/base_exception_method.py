@@ -105,7 +105,7 @@ class BaseExceptionMethod(models.AbstractModel):
         try:
             safe_eval(expr, space, mode="exec")
         except Exception as e:
-            _logger.exception(e)
+            _logger.exception("Error when evaluating exception rule %s", rule_info.name)
             raise UserError(
                 self.env._(
                     "Error when evaluating the exception.rule"
