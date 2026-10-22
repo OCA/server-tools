@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_exception_rule_list" model="ir.ui.view">
         <field name="name">exception.rule.list</field>
@@ -99,8 +99,8 @@
         <field name="context">{'active_test': False}</field>
     </record>
     <menuitem
-        action="action_exception_rule_list"
         id="menu_action_exception"
+        action="action_exception_rule_list"
         parent="base.menu_custom"
         sequence="90"
         groups="base_exception.group_exception_rule_manager"
