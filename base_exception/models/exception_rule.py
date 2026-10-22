@@ -7,7 +7,7 @@
 
 import logging
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -81,7 +81,7 @@ class ExceptionRule(models.Model):
         return self._get_cached_rules_for_domain(tuple(domain))
 
     @api.model
-    @tools.ormcache("domain", "self.env.lang")
+    @api.ormcache("domain", "self.env.lang")
     def _get_cached_rules_for_domain(self, domain):
         """This method is used to get the rules that match the domain.
 
@@ -124,15 +124,15 @@ class ExceptionRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return res
 
     def write(self, vals):
         res = super().write(vals)
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return res

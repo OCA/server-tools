@@ -23,7 +23,6 @@ class BaseExceptionModel(models.AbstractModel):
     main_exception_id = fields.Many2one(
         "exception.rule",
         compute="_compute_main_error",
-        string="Main Exception",
         store=True,
     )
     exceptions_summary = fields.Html(compute="_compute_exceptions_summary")

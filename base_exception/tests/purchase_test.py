@@ -38,7 +38,7 @@ class PurchaseTest(models.Model):
         default="draft",
     )
     active = fields.Boolean(default=True)
-    partner_id = fields.Many2one("res.partner", string="Partner")
+    partner_id = fields.Many2one("res.partner")
     line_ids = fields.One2many("base.exception.test.purchase.line", "lead_id")
     amount_total = fields.Float(compute="_compute_amount_total", store=True)
 

@@ -5,12 +5,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Exception Rule",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Mature",
     "category": "Generic Modules",
-    "summary": """
-    This module provide an abstract model to manage customizable
-    exceptions to be applied on different models (sale order, invoice, ...)""",
+    "summary": "Manage customizable exceptions on any model (sale order, invoice, ...)",
     "author": """Akretion, Sodexis, Camptocamp,
     ACSONE SA/NV, Odoo Community Association (OCA)""",
     "website": "https://github.com/OCA/server-tools",
@@ -19,7 +17,7 @@
     "license": "AGPL-3",
     "data": [
         "security/base_exception_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizard/base_exception_confirm_view.xml",
         "views/base_exception_view.xml",
     ],
