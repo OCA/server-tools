@@ -119,6 +119,18 @@ class TestDbBackup(common.TransactionCase):
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
 
+    def test_cleanup_log_failure(self):
+        """It reports a failed cleanup with the failure subtype"""
+        rec_id = self.new_record("local")
+        with rec_id.cleanup_log():
+            raise Exception("Cleanup failed on purpose")
+        message = rec_id.message_ids[:1]
+        self.assertIn("Cleanup of old database backups failed", message.body)
+        self.assertEqual(
+            message.subtype_id,
+            self.env.ref("auto_backup.mail_message_subtype_failure"),
+        )
+
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
         rec_id = self.new_record("local")
