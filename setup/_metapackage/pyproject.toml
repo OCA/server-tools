@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-server-tools"
+version = "20.0.20261023.0"
+dependencies = [
+    "odoo-addon-base_view_inheritance_extension==20.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 20.0",
+]
