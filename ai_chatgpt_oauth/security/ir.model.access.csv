@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_chatgpt_oauth_wizard_admin,ai.chatgpt.oauth.wizard.admin,model_ai_chatgpt_oauth_wizard,base.group_system,1,1,1,1
+access_ai_chatgpt_model_user,ai.chatgpt.model.user,model_ai_chatgpt_model,base.group_user,1,0,0,0
+access_ai_chatgpt_model_admin,ai.chatgpt.model.admin,model_ai_chatgpt_model,base.group_system,1,1,1,1
