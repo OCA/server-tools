@@ -6,6 +6,15 @@ from ast import literal_eval
 
 from odoo import api, fields, models
 
+# Field types mail.tracking.value cannot store (it raises NotImplementedError)
+UNTRACKABLE_TYPES = {
+    "binary",
+    "json",
+    "many2one_reference",
+    "properties_definition",
+    "reference",
+}
+
 
 class IrModelFields(models.Model):
     _inherit = "ir.model.fields"
@@ -38,7 +47,7 @@ class IrModelFields(models.Model):
         for record in self:
             record.native_tracking = bool(record.tracking)
 
-    @api.depends("related", "store")
+    @api.depends("related", "store", "ttype")
     def _compute_trackable(self):
         blacklists = [
             "activity_ids",
@@ -49,7 +58,12 @@ class IrModelFields(models.Model):
         ]
 
         for rec in self:
-            rec.trackable = rec.name not in blacklists and rec.store and not rec.related
+            rec.trackable = (
+                rec.name not in blacklists
+                and rec.store
+                and not rec.related
+                and rec.ttype not in UNTRACKABLE_TYPES
+            )
 
     def write(self, vals):
         custom_tracking = None
