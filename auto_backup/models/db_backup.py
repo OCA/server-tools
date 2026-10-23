@@ -11,6 +11,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
+import paramiko
 import pysftp
 
 from odoo import api, exceptions, fields, models, tools
@@ -82,6 +83,18 @@ class DbBackup(models.Model):
         "Private key location",
         help="Path to the private key file. Only the Odoo user should have "
         "read permissions for that file.",
+    )
+    sftp_host_key_verification = fields.Boolean(
+        "Enable host key verification",
+        help="Enable verification of SFTP Server host key. This verifies"
+        "the external servers identity.",
+        default=True,
+    )
+    sftp_host_key = fields.Char(
+        "Host key of SFTP Server",
+        help="Host key string unique to the SFTP Server. The external servers "
+        "identity is verified using this.",
+        default="",
     )
 
     backup_format = fields.Selection(
@@ -285,14 +298,30 @@ class DbBackup(models.Model):
     def sftp_connection(self):
         """Return a new SFTP connection with found parameters."""
         self.ensure_one()
+
+        cnopts = pysftp.CnOpts()
+        if self.sftp_host_key_verification:
+            entry = paramiko.hostkeys.HostKeyEntry.from_line(self.sftp_host_key)
+
+            if entry is None:
+                raise ValueError("Could not parse hostkey:")
+
+            for self.sftp_host in entry.hostnames:
+                cnopts.hostkeys.add(self.sftp_host, entry.key.get_name(), entry.key)
+        else:
+            cnopts.hostkeys = None
+
         params = {
             "host": self.sftp_host,
             "username": self.sftp_user,
             "port": self.sftp_port,
+            "cnopts": cnopts,
         }
+
         _logger.debug(
             "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
         )
+
         if self.sftp_private_key:
             params["private_key"] = self.sftp_private_key
             if self.sftp_password:
