@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<odoo>
+    <record id="view_ir_module_module_form" model="ir.ui.view">
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']/.." position="after">
+                <button
+                    name="button_analyse_code"
+                    invisible="state != 'installed'"
+                    string="Refresh Code Analysis"
+                    type="object"
+                    class="btn btn-primary"
+                />
+                <group string="Code Size" col="4">
+                    <field name="python_code_qty" />
+                    <field name="xml_code_qty" />
+                    <field name="js_code_qty" />
+                    <field name="css_code_qty" />
+                    <field name="scss_code_qty" />
+                </group>
+                <group string="Type and Authors">
+                    <field name="author_ids" widget="many2many_tags" />
+                    <field name="module_type_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_ir_module_module_pivot" model="ir.ui.view">
+        <field name="model">ir.module.module</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="module_type_id" type="row" />
+                <field name="python_code_qty" type="measure" />
+                <field name="xml_code_qty" type="measure" />
+                <field name="js_code_qty" type="measure" />
+                <field name="css_code_qty" type="measure" />
+                <field name="scss_code_qty" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="view_ir_module_module_graph" model="ir.ui.view">
+        <field name="model">ir.module.module</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="module_type_id" type="row" />
+            </graph>
+        </field>
+    </record>
+    <record id="action_ir_module_module_by_type" model="ir.actions.act_window">
+        <field name="name">Installed Modules by Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.module.module</field>
+        <field name="domain">[('state', '=', 'installed')]</field>
+        <field name="view_mode">pivot,graph</field>
+    </record>
+    <menuitem
+        id="menu_module_by_type"
+        parent="menu_module_analysis_reporting"
+        sequence="5"
+        action="action_ir_module_module_by_type"
+        groups="base.group_no_one"
+    />
+</odoo>
