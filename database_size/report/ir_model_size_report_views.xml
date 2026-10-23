@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_size_report_view_search" model="ir.ui.view">
+        <field name="model">ir.model.size.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="measurement_date" />
+                <field name="historical_measurement_date" />
+                <field name="model" />
+                <separator />
+                <filter
+                    string="One Year Ago"
+                    name="filter_one_year_ago"
+                    domain="[('historical_measurement_date', '=', (context_today() - relativedelta(years=1)).strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="One Month Ago"
+                    name="filter_one_month_ago"
+                    domain="[('historical_measurement_date', '=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+                <filter
+                    string="Notable Change"
+                    name="filter_diff_total_model_size"
+                    domain="[('diff_total_model_size', '>', 5)]"
+                />
+                <separator />
+            </search>
+        </field>
+    </record>
+    <record id="ir_model_size_report_view_tree" model="ir.ui.view">
+        <field name="model">ir.model.size.report</field>
+        <field name="arch" type="xml">
+            <list
+                editable="bottom"
+                create="false"
+                delete="false"
+                edit="false"
+                class="ir_model_size_wrap_header"
+            >
+                <field name="model" optional="hide" />
+                <field name="model_name" />
+                <field name="historical_measurement_date" />
+                <field name="measurement_date" optional="hide" />
+                <button
+                    name="action_open_model_sizes"
+                    type="object"
+                    icon="fa-arrow-right"
+                    title="Details"
+                    context="{'measurement_date': measurement_date, 'historical_measurement_date': historical_measurement_date}"
+                />
+                <field name="historical_total_model_size" optional="hide" />
+                <field name="total_model_size" optional="hide" />
+                <field name="diff_total_model_size" />
+                <field name="historical_total_database_size" optional="hide" />
+                <field name="total_database_size" optional="hide" />
+                <field name="diff_total_database_size" />
+                <field name="historical_table_size" optional="hide" />
+                <field name="table_size" optional="hide" />
+                <field name="historical_indexes_size" optional="hide" />
+                <field name="indexes_size" optional="hide" />
+                <field name="historical_tuples" optional="hide" />
+                <field name="tuples" optional="hide" />
+                <field name="historical_attachment_size" optional="hide" />
+                <field name="attachment_size" optional="hide" />
+            </list>
+        </field>
+    </record>
+    <record id="ir_model_size_report_action" model="ir.actions.act_window">
+        <field name="name">Compare Database Size per Model</field>
+        <field name="res_model">ir.model.size.report</field>
+        <field name="view_mode">list</field>
+        <field name="context">{"search_default_filter_diff_total_model_size": 1}</field>
+    </record>
+    <menuitem
+        action="ir_model_size_report_action"
+        id="ir_model_size_report_menu"
+        name="Compare Size per Model"
+        parent="database_size_menu"
+        sequence="20"
+    />
+</odoo>
