@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_view_inheritance_extension
+#
+# Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2023-09-03 00:14+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_view_inheritance_extension
+#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__id
+msgid "ID"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
+msgid "View"
+msgstr "Vista"
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext elements cannot have children"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: nothing found for expression %r"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: the only valid positions are 'text' or 'tail'"
+msgstr ""
+
+#~ msgid "Partner form"
+#~ msgstr "Formulario de socio"
+
+#~ msgid "Phone numbers"
+#~ msgstr "Números de teléfono"
+
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda inteligente"
+
+#~ msgid "ir.ui.view"
+#~ msgstr "ir.ui.view"
