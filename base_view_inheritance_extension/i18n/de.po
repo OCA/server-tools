@@ -24,6 +24,12 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "Element '%s' cannot be located in parent view"
+msgstr ""
+
+#. module: base_view_inheritance_extension
 #: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__id
 msgid "ID"
 msgstr ""
