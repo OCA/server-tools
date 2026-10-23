@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t
+        t-name="json_export_engine.JsonExportFieldSelector"
+        t-inherit="web.Many2OneField"
+        owl="1"
+    >
+        <xpath expr="//div[hasclass('o_field_many2one_extra')]" position="after">
+            <div>
+                <button
+                    t-on-click="openFieldSelector"
+                    icon="fa-list"
+                    class="btn btn-link p-0 text-left"
+                >
+                    <t t-if="props.value">Edit Field Selection</t>
+                    <t t-else="">Select Fields to Export</t>
+                </button>
+            </div>
+        </xpath>
+    </t>
+    <t
+        t-name="json_export_engine.JsonExportDialog"
+        t-inherit="web.ExportDataDialog"
+        owl="1"
+    >
+        <xpath expr="//div[hasclass('o_import_compat')]" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('o_export_format')]" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set-slot='footer']" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+        <xpath expr="//Dialog" position="inside">
+            <t t-set-slot="footer" t-if="state.showApplyTemplateButton">
+                <button
+                    class="btn btn-primary o_select_button"
+                    data-hotkey="v"
+                    t-on-click.stop="onClickApplyTemplateButton"
+                    t-att-disabled="state.disabled"
+                >Apply selected template and close
+                </button>
+            </t>
+        </xpath>
+        <xpath
+            expr="//button[@t-on-click.stop='onCancelExportTemplate']"
+            position="after"
+        >
+            <button
+                t-if="state.templateId != 'new_template'"
+                type="button"
+                class="btn btn-secondary ms-1 o_save_list_btn"
+                t-on-click.stop="onUpdateExportTemplate"
+            >
+                <i class="fa fa-floppy-o" />
+            </button>
+        </xpath>
+    </t>
+</templates>

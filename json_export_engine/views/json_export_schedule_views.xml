@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form View -->
+    <record id="json_export_schedule_form_view" model="ir.ui.view">
+        <field name="name">json.export.schedule.form</field>
+        <field name="model">json.export.schedule</field>
+        <field name="arch" type="xml">
+            <form string="JSON Export Schedule">
+                <header>
+                    <button
+                        name="action_run_now"
+                        string="Run Now"
+                        type="object"
+                        class="oe_highlight"
+                        icon="fa-play"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Schedule">
+                            <field name="name" />
+                            <field name="schema_id" options="{'no_create': True}" />
+                            <field name="active" />
+                            <label for="interval_number" string="Run Every" />
+                            <div class="o_row">
+                                <field name="interval_number" class="oe_inline" />
+                                <field name="interval_type" class="oe_inline" />
+                            </div>
+                        </group>
+                        <group string="Output">
+                            <field name="destination_type" />
+                            <field
+                                name="destination_url"
+                                invisible="destination_type != 'http_post'"
+                                required="destination_type == 'http_post'"
+                                widget="url"
+                            />
+                            <field name="file_format" />
+                            <field name="incremental" />
+                            <field name="async_export" />
+                        </group>
+                    </group>
+                    <group string="Last Run" invisible="last_run_date == False">
+                        <group>
+                            <field name="last_run_date" />
+                            <field name="last_run_status" />
+                            <field name="last_run_count" />
+                        </group>
+                        <group>
+                            <field
+                                name="last_run_error"
+                                invisible="last_run_status != 'error'"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="cron_id" readonly="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="json_export_schedule_tree_view" model="ir.ui.view">
+        <field name="name">json.export.schedule.list</field>
+        <field name="model">json.export.schedule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="schema_id" />
+                <field name="interval_number" />
+                <field name="interval_type" />
+                <field name="destination_type" />
+                <field name="file_format" />
+                <field name="incremental" />
+                <field name="last_run_date" />
+                <field
+                    name="last_run_status"
+                    decoration-success="last_run_status == 'success'"
+                    decoration-danger="last_run_status == 'error'"
+                    widget="badge"
+                />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="json_export_schedule_action" model="ir.actions.act_window">
+        <field name="name">Scheduled Exports</field>
+        <field name="res_model">json.export.schedule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
