@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Record rules for mail.server.account -->
+
+    <!-- Users can only see their own mail account -->
+    <record id="mail_server_manager_rule_account_user" model="ir.rule">
+        <field name="name">Mail Account: User sees own account only</field>
+        <field name="model_id" ref="model_mail_server_account" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <!-- System admins can see all accounts -->
+    <record id="mail_server_manager_rule_account_admin" model="ir.rule">
+        <field name="name">Mail Account: Admin sees all</field>
+        <field name="model_id" ref="model_mail_server_account" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+</odoo>
