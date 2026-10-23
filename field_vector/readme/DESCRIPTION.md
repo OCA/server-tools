@@ -1,0 +1,1 @@
+This addon provides a new field type called "Vector" that allows you to store and manage vector into your Odoo database.
