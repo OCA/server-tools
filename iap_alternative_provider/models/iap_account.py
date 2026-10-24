@@ -13,7 +13,7 @@ class IapAccount(models.Model):
     def _get_service_from_provider(self):
         """In case that the provider only propose one service you can
         return the service in your module to simplify the user interface"""
-        return None
+        return
 
     def _set_service_from_provider(self):
         for record in self:
