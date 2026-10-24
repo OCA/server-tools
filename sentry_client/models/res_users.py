@@ -13,12 +13,5 @@ class ResUsers(models.Model):
         "Enable this to keep that recording off for your own sessions, "
         "regardless of the database-wide Tier 2 toggle. Server-wide error "
         "capture (Tier 0) is unaffected.",
+        user_writeable=True,
     )
-
-    @property
-    def SELF_READABLE_FIELDS(self):
-        return super().SELF_READABLE_FIELDS + ["sentry_client_replay_optout"]
-
-    @property
-    def SELF_WRITEABLE_FIELDS(self):
-        return super().SELF_WRITEABLE_FIELDS + ["sentry_client_replay_optout"]
