@@ -376,7 +376,8 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/20.0/sentry"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-20-0/server-tools-20-0-sentry"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows painless <a class="reference external" href="https://sentry.io/">Sentry</a> integration
-with Odoo.</p>
+with Odoo. It covers the server side; the <tt class="docutils literal">sentry_client</tt> addon in
+this repository covers the web client.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -463,13 +464,14 @@ are necessary.</p>
 all Odoo logging records in a running Odoo process. This means that
 once installed in one database, it will intercept and report errors
 for all Odoo databases, which are used on that Odoo server.</li>
-<li><strong>Frontend integration</strong> – In the future, it would be nice to add
-Odoo client-side error reporting to this module as well, by
-integrating <a class="reference external" href="https://github.com/getsentry/raven-js">raven-js</a>.
-Additionally, <a class="reference external" href="https://docs.sentry.io/learn/user-feedback/">Sentry user feedback
-form</a> could be
-integrated into the Odoo client error dialog window to allow users
-shortly describe what they were doing when things went wrong.</li>
+<li><strong>Server side only</strong> – This module reports what the Odoo Python
+process raises. Uncaught JavaScript errors in the web client,
+performance traces, session replays and the <a class="reference external" href="https://docs.sentry.io/product/user-feedback/">Sentry user feedback
+form</a> are covered by
+the companion
+<tt class="docutils literal">`sentry_client</tt> &lt;<a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/sentry_client">https://github.com/OCA/server-tools/tree/18.0/sentry_client</a>&gt;`__
+addon in this repository. The two can share a single Sentry project or
+report into one project each; Sentry recommends one per platform.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
