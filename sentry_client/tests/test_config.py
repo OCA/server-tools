@@ -1,11 +1,13 @@
 # Copyright 2026 Ledoent
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
+import tempfile
+import textwrap
 from unittest.mock import patch
 
-from odoo.tests import HttpCase, tagged
+from odoo.tests import HttpCase, new_test_user, tagged
 
-from ..controllers.main import _bundle_name, _public_dsn, _read_sentry_config
+from ..controllers.main import _bundle_name, _public_dsn, _read_sentry_section
 
 
 @tagged("post_install", "-at_install")
@@ -43,47 +45,39 @@ class TestBundleName(HttpCase):
 
 
 @tagged("post_install", "-at_install")
-class TestPublicDsn(HttpCase):
-    def test_public_dsn_untouched(self):
-        self.assertEqual(
-            _public_dsn("https://key@o1.ingest.sentry.io/42"),
-            "https://key@o1.ingest.sentry.io/42",
-        )
-
-    def test_secret_stripped(self):
-        self.assertEqual(
-            _public_dsn("https://key:secret@sentry.example.com:9000/42"),
-            "https://key@sentry.example.com:9000/42",
-        )
-
-
-@tagged("post_install", "-at_install")
-class TestReadSentryConfig(HttpCase):
-    def test_returns_empty_when_no_sentry_options(self):
+class TestReadSentrySection(HttpCase):
+    def test_returns_empty_when_no_config_path(self):
         with patch("odoo.addons.sentry_client.controllers.main.odoo_config") as cfg:
-            cfg.get.side_effect = {"db_host": "localhost"}.get
-            self.assertEqual(_read_sentry_config(), {})
+            cfg.get.return_value = None
+            self.assertEqual(_read_sentry_section(), {})
 
-    def test_reads_sentry_options_from_odoo_config(self):
-        # The 18.0 server-side `sentry` module reads plain `sentry_*` keys
-        # from odoo.conf's [options] section (via odoo.tools.config); the
-        # fallback must read the same keys. The [sentry] section only
-        # exists from 19.0.
-        options = {
-            "db_host": "localhost",
-            "sentry_dsn": "https://abc@example.com/1",
-            "sentry_release": "1.2.3",
-        }
+    def test_returns_empty_when_conf_has_no_sentry_section(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".conf", delete=False) as fh:
+            fh.write("[options]\ndb_host = localhost\n")
+            path = fh.name
         with patch("odoo.addons.sentry_client.controllers.main.odoo_config") as cfg:
-            cfg.get.side_effect = options.get
-            conf = _read_sentry_config()
-        self.assertEqual(
-            conf,
-            {
-                "sentry_dsn": "https://abc@example.com/1",
-                "sentry_release": "1.2.3",
-            },
-        )
+            cfg.get.return_value = path
+            self.assertEqual(_read_sentry_section(), {})
+
+    def test_reads_sentry_section_from_odoo_conf(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".conf", delete=False) as fh:
+            fh.write(
+                textwrap.dedent(
+                    """\
+                    [options]
+                    db_host = localhost
+                    [sentry]
+                    sentry_dsn = https://abc@example.com/1
+                    sentry_release = 1.2.3
+                    """
+                )
+            )
+            path = fh.name
+        with patch("odoo.addons.sentry_client.controllers.main.odoo_config") as cfg:
+            cfg.get.return_value = path
+            section = _read_sentry_section()
+        self.assertEqual(section.get("sentry_dsn"), "https://abc@example.com/1")
+        self.assertEqual(section.get("sentry_release"), "1.2.3")
 
 
 @tagged("post_install", "-at_install")
@@ -93,7 +87,7 @@ class TestConfigEndpoint(HttpCase):
         self.params = self.env["ir.config_parameter"].sudo()
 
     def _set(self, key, value):
-        self.params.set_param(key, value)
+        self.params.set_str(key, value)
 
     def _get_config(self):
         resp = self.url_open("/sentry_client/config.json")
@@ -103,7 +97,7 @@ class TestConfigEndpoint(HttpCase):
     def test_disabled_when_master_off(self):
         self._set("sentry_client.enabled", "False")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -112,7 +106,7 @@ class TestConfigEndpoint(HttpCase):
     def test_disabled_when_dsn_missing(self):
         self._set("sentry_client.enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={},
         ):
             payload = self._get_config()
@@ -121,7 +115,7 @@ class TestConfigEndpoint(HttpCase):
     def test_tier0_only_bundle(self):
         self._set("sentry_client.enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -135,7 +129,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.tier1_tracing_enabled", "True")
         self._set("sentry_client.tier1_traces_sample_rate", "0.05")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -149,7 +143,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.tier2_session_sample_rate", "0.0")
         self._set("sentry_client.tier2_error_sample_rate", "1.0")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -163,7 +157,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.tier2_replay_enabled", "True")
         self._set("sentry_client.tier3_feedback_enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -174,7 +168,7 @@ class TestConfigEndpoint(HttpCase):
     def test_anonymous_payload_omits_user_keys(self):
         self._set("sentry_client.enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -187,7 +181,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self.authenticate("admin", "admin")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -198,7 +192,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self.authenticate("admin", "admin")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -209,7 +203,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self._set("sentry_client.browser_dsn", "")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://key:secret@example.com/1"},
         ):
             payload = self._get_config()
@@ -220,16 +214,26 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self._set("sentry_client.browser_dsn", "https://key:secret@example.com/2")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={},
         ):
             payload = self._get_config()
         self.assertEqual(payload["dsn"], "https://key@example.com/2")
 
+    def test_public_dsn(self):
+        self.assertEqual(
+            _public_dsn("https://key@o1.ingest.sentry.io/42"),
+            "https://key@o1.ingest.sentry.io/42",
+        )
+        self.assertEqual(
+            _public_dsn("https://key:secret@sentry.example.com:9000/42"),
+            "https://key@sentry.example.com:9000/42",
+        )
+
     def test_bundle_url_defaults_to_vendored_path(self):
         self._set("sentry_client.enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -242,7 +246,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.tier3_profiling_enabled", "True")
         self._set("sentry_client.tier3_profiles_sample_rate", "0.1")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -256,7 +260,7 @@ class TestConfigEndpoint(HttpCase):
     def test_profiling_addon_absent_when_off(self):
         self._set("sentry_client.enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -267,7 +271,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.tier1_traces_sample_rate", "2.5")  # > 1.0
         self._set("sentry_client.tier2_session_sample_rate", "-0.5")  # < 0.0
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()
@@ -281,7 +285,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self._set("sentry_client.browser_dsn", "https://browser@example.com/2")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://backend@example.com/1"},
         ):
             payload = self._get_config()
@@ -292,7 +296,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.enabled", "True")
         self._set("sentry_client.browser_dsn", "")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://backend@example.com/1"},
         ):
             payload = self._get_config()
@@ -304,7 +308,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.environment", "production-web")
         self._set("sentry_client.release", "asset-bundle-deadbeef")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={
                 "sentry_environment": "production",
                 "sentry_release": "1.3.2",
@@ -320,7 +324,7 @@ class TestConfigEndpoint(HttpCase):
         self._set("sentry_client.environment", "")
         self._set("sentry_client.release", "")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={
                 "sentry_dsn": "https://x@example.com/1",
                 "sentry_environment": "production",
@@ -355,13 +359,38 @@ class TestConfigEndpoint(HttpCase):
         settings.sentry_client_browser_dsn = "https://abc123@sentry.example.com/42"
         settings._check_sentry_client_browser_dsn()  # no raise
 
+    def test_replay_optout_writeable_by_plain_employee(self):
+        """A normal employee must be able to set their own opt-out.
+
+        Every other test here runs as superuser, which bypasses field access.
+        """
+        employee = new_test_user(
+            self.env, login="sentry_employee", groups="base.group_user"
+        )
+        as_self = self.env["res.users"].with_user(employee).browse(employee.id)
+
+        field = as_self._fields["sentry_client_replay_optout"]
+        self.assertTrue(
+            getattr(field, "user_writeable", False),
+            "sentry_client_replay_optout must carry user_writeable=True",
+        )
+        self.assertFalse(
+            as_self.fields_get(["sentry_client_replay_optout"])[
+                "sentry_client_replay_optout"
+            ]["readonly"],
+            "the field must not come back readonly for a plain employee",
+        )
+
+        as_self.write({"sentry_client_replay_optout": True})
+        self.assertTrue(as_self.sentry_client_replay_optout)
+
     def test_replay_optout_only_when_replay_on(self):
         self._set("sentry_client.enabled", "True")
         self.authenticate("admin", "admin")
         admin = self.env.ref("base.user_admin")
         admin.sentry_client_replay_optout = True
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             # Replay tier off → no replay_optout in payload at all
@@ -370,7 +399,7 @@ class TestConfigEndpoint(HttpCase):
         # Replay tier on → opt-out surfaces
         self._set("sentry_client.tier2_replay_enabled", "True")
         with patch(
-            "odoo.addons.sentry_client.controllers.main._read_sentry_config",
+            "odoo.addons.sentry_client.controllers.main._read_sentry_section",
             return_value={"sentry_dsn": "https://x@example.com/1"},
         ):
             payload = self._get_config()

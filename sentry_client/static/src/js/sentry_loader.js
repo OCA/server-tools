@@ -1,6 +1,6 @@
 // Copyright 2026 Ledoent
 // License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-/* global window, document, console, fetch, crypto, setInterval, clearInterval, Event */
+/* global window, document, console, fetch, crypto, setInterval, clearInterval */
 
 (function () {
     "use strict";
@@ -265,16 +265,6 @@
         Sentry.setTag("surface", deriveSurface());
         attachUserContext(Sentry, conf);
         wireWorkflowTracking(Sentry);
-        // Tell the navbar feedback launcher it has something to open. The
-        // systray component renders nothing until this flag/event arrives.
-        if (
-            conf.integrations.feedback &&
-            typeof Sentry.getFeedback === "function" &&
-            Sentry.getFeedback()
-        ) {
-            window.__sentry_client_feedback_ready__ = true;
-            document.dispatchEvent(new Event("sentry_client:feedback-ready"));
-        }
     }
 
     // Defer to avoid blocking first paint; gate via DOMContentLoaded so the
