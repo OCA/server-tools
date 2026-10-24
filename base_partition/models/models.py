@@ -24,9 +24,9 @@ class Base(models.AbstractModel):
 
         if isinstance(accessor, str):
             if "." not in accessor:
-                func = lambda r: r[accessor]  # noqa: E731
+                func = lambda r: r[accessor]
             else:
-                func = lambda r: r.mapped(accessor)  # noqa: E731
+                func = lambda r: r.mapped(accessor)
         else:
             func = accessor
 
