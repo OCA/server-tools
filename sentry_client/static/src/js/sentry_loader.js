@@ -94,8 +94,8 @@
         const loader = window.odoo && window.odoo.loader;
         return Boolean(
             loader &&
-                loader.factories &&
-                loader.factories.has("@web/core/errors/error_service")
+            loader.factories &&
+            loader.factories.has("@web/core/errors/error_service")
         );
     }
 

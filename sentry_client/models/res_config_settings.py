@@ -13,11 +13,7 @@ class ResConfigSettings(models.TransientModel):
     def _check_sentry_client_cdn_base(self):
         for rec in self:
             url = rec.sentry_client_cdn_base or ""
-            if url and not (
-                url.startswith("/")
-                or url.startswith("http://")
-                or url.startswith("https://")
-            ):
+            if url and not url.startswith(("/", "http://", "https://")):
                 raise ValidationError(
                     self.env._(
                         "Sentry SDK source URL must start with '/', 'http://', "
@@ -35,7 +31,7 @@ class ResConfigSettings(models.TransientModel):
             # Sentry DSNs look like https://<public_key>@<host>[:port]/<project_id>
             # Public DSNs are safe to embed in client code per Sentry's docs;
             # we still validate shape to fail fast on typos.
-            if not (dsn.startswith("http://") or dsn.startswith("https://")):
+            if not dsn.startswith(("http://", "https://")):
                 raise ValidationError(
                     self.env._(
                         "Sentry Browser DSN must start with 'http://' or "
