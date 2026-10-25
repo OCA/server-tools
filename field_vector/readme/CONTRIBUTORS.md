@@ -1,0 +1,3 @@
+- Laurent Mignon <laurent.mignon@acsone.eu> (https://www.acsone.eu)
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
