@@ -30,6 +30,12 @@ class DataImportLog(models.Model):
         ) as fh:
             fh.write(content)
 
+    def _is_imported_copy(self, path):
+        """Return whether the file at ``path`` is the one this log imported."""
+        self.ensure_one()
+        with self.pickup_id.backend_id.fs.open(path, "rb") as fh:
+            return self._content_hash(fh.read()) == self.content_hash
+
     def _finalize_file(self):
         """Release the source file once the import is over.
 
@@ -41,9 +47,14 @@ class DataImportLog(models.Model):
         if not pickup:
             return
         fs = pickup.backend_id.fs
-        source = f"{pickup.path_processing}/{self.file_name}"
+        source = pickup._held_path(self.file_name)
         if not fs.exists(source):
             _logger.warning("%s is gone, nothing to move.", source)
+            return
+        if not pickup.path_processing and not self._is_imported_copy(source):
+            # Left in the incoming directory, the file was replaced while it
+            # was being imported. The new copy is for the next scan to take.
+            _logger.info("%s was replaced during its import, left in place.", source)
             return
         if self.file_error:
             fs.mv(source, f"{pickup.path_error}/{self.file_name}")

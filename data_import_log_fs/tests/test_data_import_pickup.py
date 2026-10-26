@@ -209,6 +209,60 @@ class TestDataImportPickup(TransactionCase):
             self.pickup._scan()
         self.assertEqual(self._names("error"), [])
 
+    def _without_processing_path(self):
+        # A storage offering no directory to hold the file in.
+        self.pickup.path_processing = False
+        self.fs.rm("processing", recursive=True)
+
+    def test_without_processing_path_file_is_filed_from_incoming(self):
+        self._without_processing_path()
+        self._put("feed.csv")
+        with patch(f"{LOG_MODEL}._import_unit", return_value=[]):
+            logs = self.pickup._scan()
+        self.assertEqual(logs.state, "done")
+        self.assertEqual(self._names("in"), [])
+        self.assertEqual(self._names("done"), ["feed.csv"])
+        self.assertFalse(self.fs.exists("processing"))
+
+    def test_without_processing_path_file_in_flight_is_not_taken_again(self):
+        self._without_processing_path()
+        self._put("feed.csv")
+        with patch(f"{LOG_MODEL}._enqueue_unit"):
+            first = self.pickup._scan()
+        self.assertEqual(first.state, "processing")
+        self.assertEqual(self._names("in"), ["feed.csv"])
+        self.assertFalse(self.pickup._scan())
+
+    def test_without_processing_path_file_replaced_in_flight_waits(self):
+        self._without_processing_path()
+        self._put("feed.csv")
+        with patch(f"{LOG_MODEL}._enqueue_unit"):
+            first = self.pickup._scan()
+        # The sender resends the same name with corrected content.
+        self._put("feed.csv", b"key,qty\nD-9,9\n")
+        with patch(f"{LOG_MODEL}._import_unit", return_value=[]):
+            fieldnames, rows = first._read_rows()
+            for key, unit in first._group_rows(fieldnames, rows).items():
+                first._run_unit(key, unit)
+        self.assertEqual(first.state, "done")
+        # The new copy was not filed in place of the one imported ...
+        self.assertEqual(self._names("done"), [])
+        self.assertEqual(self._names("in"), ["feed.csv"])
+        # ... and the next scan takes it.
+        with patch(f"{LOG_MODEL}._import_unit", return_value=[]):
+            second = self.pickup._scan()
+        self.assertEqual(second.unit_total, 1)
+        self.assertEqual(self._names("done"), ["feed.csv"])
+
+    @mute_logger("odoo.addons.data_import_log.models.data_import_log")
+    def test_without_processing_path_unreadable_file_is_isolated(self):
+        self._without_processing_path()
+        self._put("feed.csv", "réf,qty\nD-1,2\n".encode("iso-8859-1"))
+        logs = self.pickup._scan()
+        self.assertEqual(logs.state, "error")
+        self.assertEqual(self._names("in"), [])
+        self.assertEqual(self._names("error"), ["feed.csv"])
+
     @mute_logger("odoo.addons.data_import_log_fs.models.data_import_pickup")
     def test_one_broken_pickup_does_not_stop_the_others(self):
         # A backend that cannot be reached: no host for the sftp protocol.

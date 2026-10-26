@@ -41,9 +41,10 @@ class DataImportPickup(models.Model):
     )
     path_processing = fields.Char(
         "Processing Path",
-        required=True,
         default="processing",
-        help="Directory a file is held in while it is being imported.",
+        help="Directory a file is held in while it is being imported. Leave "
+        "empty to leave it in the incoming directory, where its open import log "
+        "keeps a later scan from taking it again.",
     )
     path_done = fields.Char("Done Path", required=True, default="done")
     path_error = fields.Char(
@@ -83,6 +84,30 @@ class DataImportPickup(models.Model):
             if not name.endswith(INCOMPLETE_SUFFIX) and pattern.match(name)
         )
 
+    def _held_path(self, name):
+        """Return where a file is while it is being imported."""
+        self.ensure_one()
+        return f"{self.path_processing or self.path_in}/{name}"
+
+    def _is_being_imported(self, name):
+        """Return whether an import of a file of this name is still running."""
+        self.ensure_one()
+        if self.path_processing:
+            # Taking it in would overwrite the copy the running import holds,
+            # and both logs would then claim one path.
+            return self.backend_id.fs.exists(self._held_path(name))
+        # The file never left the incoming directory, so only its log tells.
+        return bool(
+            self.env["data.import.log"].search_count(
+                [
+                    ("pickup_id", "=", self.id),
+                    ("file_name", "=", name),
+                    ("state", "in", ["pending", "processing"]),
+                ],
+                limit=1,
+            )
+        )
+
     def _take_in(self, name):
         """Create the log for one file and hold the file while it is imported.
 
@@ -93,11 +118,8 @@ class DataImportPickup(models.Model):
         self.ensure_one()
         fs = self.backend_id.fs
         source = f"{self.path_in}/{name}"
-        held = f"{self.path_processing}/{name}"
-        if fs.exists(held):
-            # Taking it in would overwrite the copy the running import holds,
-            # and both logs would then claim one path.
-            _logger.info("%s is still being imported, %s left in place.", held, source)
+        if self._is_being_imported(name):
+            _logger.info("%s is still being imported, left in place.", source)
             return self.env["data.import.log"]
         with fs.open(source, "rb") as fh:
             content = fh.read()
@@ -129,7 +151,8 @@ class DataImportPickup(models.Model):
                 "company_id": self.company_id.id,
             }
         )
-        fs.mv(source, f"{self.path_processing}/{name}")
+        if self.path_processing:
+            fs.mv(source, self._held_path(name))
         return log
 
     def _scan_one(self, logs):
