@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_model_restrict_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-29 23:45+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
+msgstr "<span style=\"padding: 0 10px;\">Solo lectura</span>"
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.res_config_settings_view_form
+msgid "Excluded Models From Readonly"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_config_settings__excluded_models_from_readonly
+msgid "Excluded Models from Read-only"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_ir_model_access
+msgid "Model Access"
+msgstr "Modelo de Acceso"
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_ir_model
+msgid "Models"
+msgstr "Modelos"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__is_readonly_user
+#, fuzzy
+msgid "Read-only User"
+msgstr "Usuario Listo"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_users__is_readonly_user
+msgid ""
+"Select this option to prevent the user from updating any business records."
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_config_settings__excluded_models_from_readonly
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.res_config_settings_view_form
+msgid ""
+"Specified models, separated by commas, will be exempt from the read-only "
+"restriction for read-only users."
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__restrict_update
+msgid "Update Restrict Model"
+msgstr "Actualizar Modelo Restricto"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__update_allowed_group_ids
+msgid "Update-Allowed Groups"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_res_users
+#, fuzzy
+msgid "User"
+msgstr "Usuarios"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_ir_model__restrict_update
+#, fuzzy
+msgid ""
+"When selected, the model is restricted to read-only unless the user belongs "
+"to an Update-Allowed Group."
+msgstr ""
+"Cuando está seleccionado, el modelo está restringido a solo lectura a menos "
+"que el usuario tenga permisos especiales."
+
+#. module: base_model_restrict_update
+#. odoo-python
+#: code:addons/base_model_restrict_update/models/ir_model_access.py:0
+msgid "You are only allowed to read this record. (%(model)s - %(mode)s)"
+msgstr "Está permitido solo a leer este registro. (%(model)s - %(mode)s)"
+
+#. module: base_model_restrict_update
+#. odoo-python
+#: code:addons/base_model_restrict_update/models/res_users.py:0
+#, fuzzy
+msgid "You cannot make the admin user read-only."
+msgstr ""
+"No puede configurar al usuario administrador como un usuario de sólo lectura."
+
+#~ msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
+#~ msgstr "<span style=\"padding: 0 10px;\">Actualización Irrestricta</span>"
+
+#~ msgid "Set to true and the user are readonly user on all models"
+#~ msgstr ""
+#~ "Establezcalo como verdadero y el usuario es un usuario de solo lectura en "
+#~ "todos los modelos"
+
+#~ msgid "Set to true and the user can update restricted model."
+#~ msgstr ""
+#~ "Establezcalo como verdadero y bel usuario podrá actualizar el modelo "
+#~ "restringido."
+
+#~ msgid "Unrestrict Model Update"
+#~ msgstr "Actualización del Modelo sin Restricciones"
+
+#, python-format
+#~ msgid "You are only allowed to read this record. ({} - {})"
+#~ msgstr "Solo le está permitido leer este registro. ({} - {})"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#, python-format
+#~ msgid "You are only allowed to read this record. (%s - %s)"
+#~ msgstr "No está permitido para leer este registro. (%s - %s)"
