@@ -6,12 +6,15 @@
 import logging
 import os
 import shutil
+import socket
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
+from pathlib import PurePosixPath
+from stat import S_ISDIR
 
-import pysftp
+import paramiko
 from paramiko import HostKeys
 from paramiko.hostkeys import HostKeyEntry, InvalidHostKey
 from paramiko.ssh_exception import SSHException
@@ -25,19 +28,93 @@ _logger = logging.getLogger(__name__)
 #: OpenSSH key type prefixes understood by paramiko.
 _KEY_TYPE_PREFIXES = ("ecdsa-", "sk-", "ssh-")
 
+_SFTP_TIMEOUT = 60
+_KNOWN_HOSTS = "~/.ssh/known_hosts"
 
-class _SftpConnectionOptions(pysftp.CnOpts):
-    """Connection options that do not load ``known_hosts``.
 
-    ``pysftp.CnOpts.__init__`` reads that file and either warns or raises
-    ``HostKeysException`` before the record policy can be applied.
+class _SftpClient:
+    """Minimal SFTP client over paramiko that applies the host key policy.
+
+    ``paramiko.SSHClient`` cannot express a per-record pinned host key, so the
+    transport is built from a socket to keep the timeout and the ``hostkey``
+    argument under control.
     """
 
-    def __init__(self):
-        self.log = False
-        self.compression = False
-        self.ciphers = None
-        self.hostkeys = HostKeys()
+    def __init__(self, record):
+        self._record = record
+        self._transport = None
+        self._sftp = None
+
+    def __enter__(self):
+        rec = self._record
+        hostkey = None
+        hostkeys = rec._get_sftp_host_keys()
+        if hostkeys is not None:
+            keys = hostkeys.lookup(rec.sftp_host)
+            if not keys:
+                raise SSHException(f"No hostkey for host {rec.sftp_host} found.")
+            hostkey = next(iter(keys.values()))
+        sock = socket.create_connection(
+            (rec.sftp_host, rec.sftp_port or 22), _SFTP_TIMEOUT
+        )
+        sock.settimeout(_SFTP_TIMEOUT)
+        self._transport = paramiko.Transport(sock)
+        try:
+            if rec.sftp_private_key:
+                key = paramiko.PKey.from_path(
+                    rec.sftp_private_key, passphrase=rec.sftp_password or None
+                )
+                self._transport.connect(
+                    username=rec.sftp_user, pkey=key, hostkey=hostkey
+                )
+            else:
+                self._transport.connect(
+                    username=rec.sftp_user,
+                    password=rec.sftp_password,
+                    hostkey=hostkey,
+                )
+            self._sftp = paramiko.SFTPClient.from_transport(self._transport)
+        except Exception:
+            self.close()
+            raise
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        self.close()
+
+    def close(self):
+        if self._sftp:
+            self._sftp.close()
+            self._sftp = None
+        if self._transport:
+            self._transport.close()
+            self._transport = None
+
+    def makedirs(self, path):
+        """Create a remote directory and its parents when missing."""
+        missing = []
+        current = PurePosixPath(path)
+        while current != current.parent:
+            try:
+                attributes = self._sftp.stat(str(current))
+            except FileNotFoundError:
+                missing.append(current)
+                current = current.parent
+                continue
+            if not S_ISDIR(attributes.st_mode):
+                raise OSError(f"{current} is not a directory")
+            break
+        for directory in reversed(missing):
+            self._sftp.mkdir(str(directory))
+
+    def open(self, *args, **kwargs):
+        return self._sftp.open(*args, **kwargs)
+
+    def listdir(self, path):
+        return self._sftp.listdir(path)
+
+    def unlink(self, path):  # pylint: disable=method-required-super
+        return self._sftp.unlink(path)
 
 
 class DbBackup(models.Model):
@@ -165,9 +242,9 @@ class DbBackup(models.Model):
             with self.sftp_connection():
                 raise UserError(_("Connection Test Succeeded!"))
         except (
-            pysftp.CredentialException,
-            pysftp.ConnectionException,
-            pysftp.SSHException,
+            paramiko.AuthenticationException,
+            paramiko.SSHException,
+            OSError,
         ) as exc:
             _logger.info("Connection Test Failed!", exc_info=True)
             raise UserError(_("Connection Test Failed!")) from exc
@@ -213,12 +290,7 @@ class DbBackup(models.Model):
                     with cached:
                         with rec.sftp_connection() as remote:
                             # Directory must exist
-                            try:
-                                remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException as exc:
-                                _logger.exception(
-                                    "pysftp ConnectionException: %s" % exc
-                                )
+                            remote.makedirs(rec.folder)
 
                             # Copy cached backup to remote server
                             with remote.open(
@@ -311,24 +383,27 @@ class DbBackup(models.Model):
             when, ext="dump.zip" if ext == "zip" else ext
         )
 
-    def _get_sftp_cnopts(self):
-        """Return the connection options enforcing this record's host key policy."""
-        cnopts = _SftpConnectionOptions()
+    def _known_hosts_path(self):
+        """Return the known_hosts file of the Odoo OS user."""
+        return os.path.expanduser(_KNOWN_HOSTS)
+
+    def _get_sftp_host_keys(self):
+        """Return the HostKeys to verify the server against, or None to skip.
+
+        Precedence: pinned keys, known_hosts fallback, explicit bypass.
+        """
         if self.sftp_ignore_hostkey:
             _logger.warning(
-                "Host key verification disabled for the SFTP server %s",
-                self.sftp_host,
+                "Host key verification disabled for the SFTP server %s", self.sftp_host
             )
-            cnopts.hostkeys = None
-            return cnopts
+            return None
+        hostkeys = HostKeys()
         if self.sftp_host_keys:
             for key_type, key in self._parse_sftp_host_keys().items():
-                cnopts.hostkeys.add(self.sftp_host, key_type, key)
-        else:
-            known_hosts = pysftp.known_hosts()
-            if os.path.isfile(known_hosts):
-                cnopts.hostkeys.load(known_hosts)
-        if not cnopts.hostkeys:
+                hostkeys.add(self.sftp_host, key_type, key)
+        elif os.path.isfile(self._known_hosts_path()):
+            hostkeys.load(self._known_hosts_path())
+        if not hostkeys:
             raise UserError(
                 _(
                     "No host key available to verify the SFTP server %(host)s. "
@@ -337,7 +412,7 @@ class DbBackup(models.Model):
                     host=self.sftp_host,
                 )
             )
-        return cnopts
+        return hostkeys
 
     def _parse_sftp_host_keys(self):
         """Return ``{key type: paramiko key}`` parsed from the field."""
@@ -383,22 +458,12 @@ class DbBackup(models.Model):
         return keys
 
     def sftp_connection(self):
-        """Return a new SFTP connection with found parameters."""
+        """Return an SFTP connection with the record's host key policy."""
         self.ensure_one()
-        params = {
-            "host": self.sftp_host,
-            "username": self.sftp_user,
-            "port": self.sftp_port,
-        }
         _logger.debug(
-            "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
+            "Trying to connect to sftp://%s@%s:%d",
+            self.sftp_user,
+            self.sftp_host,
+            self.sftp_port,
         )
-        if self.sftp_private_key:
-            params["private_key"] = self.sftp_private_key
-            if self.sftp_password:
-                params["private_key_pass"] = self.sftp_password
-        else:
-            params["password"] = self.sftp_password
-
-        params["cnopts"] = self._get_sftp_cnopts()
-        return pysftp.Connection(**params)
+        return _SftpClient(self)
