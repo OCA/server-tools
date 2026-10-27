@@ -108,7 +108,7 @@ class BaseExceptionMethod(models.AbstractModel):
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
             new_env = (
-                Environment(new_cr, self.env.uid, self.env.context)
+                Environment(new_cr, self.env.uid, self.env.context, su=self.env.su)
                 if not test_mode
                 else self.env
             )

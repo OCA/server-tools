@@ -8,7 +8,7 @@ from odoo import SUPERUSER_ID
 from odoo.api import Environment
 from odoo.exceptions import UserError, ValidationError
 from odoo.orm.model_classes import add_to_registry
-from odoo.tests import TransactionCase
+from odoo.tests import TransactionCase, new_test_user
 
 from ..exceptions import BaseExceptionError
 from .common import (
@@ -232,3 +232,13 @@ class TestBaseException(TransactionCase):
             self.assertTrue(self.po.with_env(new_env).exception_ids)
             self.assertNotEqual(self.po.state, "purchase")
             self.assertNotEqual(self.po.with_env(new_env).state, "purchase")
+
+    def test_detect_exceptions_keeps_sudo(self):
+        """The exceptions are stored in a new cursor: this must work for a
+        user without write access when the detection runs in sudo (e.g.
+        a sale order confirmed from the portal)."""
+        user = new_test_user(self.env, login="base_exception_no_write")
+        self.enterContext(self.registry_test_mode())
+        po_sudo = self.po.with_user(user).sudo()
+        with self.assertRaises(BaseExceptionError):
+            po_sudo.detect_exceptions()
