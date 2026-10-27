@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="data_import_log_view_form" model="ir.ui.view">
+        <field name="name">data.import.log.form.pickup</field>
+        <field name="model">data.import.log</field>
+        <field name="inherit_id" ref="data_import_log.data_import_log_view_form" />
+        <field name="arch" type="xml">
+            <field name="model_id" position="before">
+                <field name="pickup_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
