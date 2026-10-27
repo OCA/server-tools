@@ -38,6 +38,20 @@
                                 name="sftp_private_key"
                                 placeholder="/home/odoo/.ssh/id_rsa"
                             />
+                            <field
+                                name="sftp_host_keys"
+                                placeholder="ssh-rsa AAAAB3NzaC1yc2E..."
+                                invisible="sftp_ignore_hostkey"
+                            />
+                            <field name="sftp_ignore_hostkey" />
+                            <div
+                                class="bg-warning"
+                                colspan="2"
+                                invisible="not sftp_ignore_hostkey"
+                            >
+                                <h3>Warning:</h3>
+                                Host key verification is disabled: the identity of the SFTP server is not checked.
+                            </div>
                             <button
                                 name="action_sftp_test_connection"
                                 type="object"
