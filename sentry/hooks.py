@@ -38,24 +38,18 @@ def is_ignored_exception(exception):
     sentry_sdk applies ``sentry_ignore_exceptions`` to the events that have an
     ``exc_info``. The log records of an exception without ``exc_info`` (Odoo logs
     the UserErrors like that) have no exception type for the SDK, so the same
-    list is applied here, the same way as the SDK does it.
+    list is applied here, with the same matching as the SDK: the full name of
+    the class, or its name.
     """
     if not isinstance(exception, BaseException):
         return False
-    client = sentry_sdk.Hub.current.client
-    if client is not None:
-        ignored = client.options.get("ignore_errors") or []
-    else:
-        ignored = const.split_multiple(const.DEFAULT_IGNORED_EXCEPTIONS)
+    ignored = const.split_multiple(
+        odoo_config.get("sentry_ignore_exceptions", const.DEFAULT_IGNORED_EXCEPTIONS)
+    )
     exc_type = type(exception)
-    names = (exc_type.__name__, "%s.%s" % (exc_type.__module__, exc_type.__name__))
-    for ignored_error in ignored:
-        if isinstance(ignored_error, str):
-            if ignored_error in names:
-                return True
-        elif issubclass(exc_type, ignored_error):
-            return True
-    return False
+    return exc_type.__name__ in ignored or (
+        "%s.%s" % (exc_type.__module__, exc_type.__name__) in ignored
+    )
 
 
 def before_send(event, hint):
