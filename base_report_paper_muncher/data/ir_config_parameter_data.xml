@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="ir_config_parameter_report_pdf_engine" model="ir.config_parameter">
+        <field name="key">report.pdf_engine</field>
+        <field name="value">auto</field>
+    </record>
+</odoo>
