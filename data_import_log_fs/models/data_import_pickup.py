@@ -17,6 +17,7 @@ SCAN_LOCK_KEY = 84213310
 
 class DataImportPickup(models.Model):
     _name = "data.import.pickup"
+    _inherit = ["mail.thread"]
     _description = "Data Import Pick-up"
     _order = "sequence, id"
 
@@ -71,6 +72,17 @@ class DataImportPickup(models.Model):
         help="Whether the first row of the files holds the column names.",
     )
     log_ids = fields.One2many("data.import.log", "pickup_id", string="Import Logs")
+    scan_error = fields.Text(
+        "Last Scan Error",
+        readonly=True,
+        copy=False,
+        help="Why the latest scan failed. Cleared by a scan that succeeds.",
+    )
+    scan_failed_since = fields.Datetime(
+        readonly=True,
+        copy=False,
+        help="When the scans of this pick-up started failing.",
+    )
 
     _name_uniq = models.Constraint("UNIQUE (name)", "A pick-up name must be unique.")
 
@@ -188,12 +200,63 @@ class DataImportPickup(models.Model):
         for pickup in self.sorted():
             try:
                 logs = pickup._scan_one(logs)
-            except Exception:
+            except Exception as error:
                 # The next pick-up must start from a sound transaction.
                 if not modules.module.current_test:
                     self.env.cr.rollback()
                 _logger.exception("Pick-up %s could not be scanned.", pickup.name)
+                pickup._scan_failed(error)
+            else:
+                if pickup.scan_failed_since:
+                    pickup._scan_recovered()
         return logs
+
+    def _scan_failed(self, error):
+        """Record a failed scan, and tell the job managers when it is the first.
+
+        A storage that cannot be reached fails every run until it is back, so
+        only the first failure is announced, not each run of the cron.
+        """
+        self.ensure_one()
+        values = {"scan_error": str(error) or repr(error)}
+        first = not self.scan_failed_since
+        if first:
+            values["scan_failed_since"] = fields.Datetime.now()
+        self.write(values)
+        if first:
+            group = self.env.ref("queue_job.group_queue_job_manager")
+            users = self.env["res.users"].search([("group_ids", "=", group.id)])
+            self.message_subscribe(partner_ids=users.partner_id.ids)
+            self.message_post(
+                body=self.env._(
+                    "Pick-up %(name)s could not be scanned: %(error)s",
+                    name=self.name,
+                    error=values["scan_error"],
+                ),
+                subtype_xmlid="mail.mt_comment",
+            )
+        self._commit_scan_state()
+
+    def _scan_recovered(self):
+        """Clear a failure once the pick-up is scanned again."""
+        self.ensure_one()
+        self.message_post(
+            body=self.env._(
+                "Pick-up %(name)s is scanned again, after failing since %(since)s.",
+                name=self.name,
+                since=fields.Datetime.to_string(self.scan_failed_since),
+            ),
+            subtype_xmlid="mail.mt_note",
+        )
+        self.write({"scan_error": False, "scan_failed_since": False})
+        self._commit_scan_state()
+
+    def _commit_scan_state(self):
+        # A later pick-up that fails rolls back, which must not take this
+        # record with it.
+        if not modules.module.current_test:
+            # pylint: disable=invalid-commit
+            self.env.cr.commit()
 
     @api.model
     def _cron_scan(self):

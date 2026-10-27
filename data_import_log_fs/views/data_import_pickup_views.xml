@@ -5,6 +5,15 @@
         <field name="model">data.import.pickup</field>
         <field name="arch" type="xml">
             <form string="Data Import Pick-up">
+                <div
+                    class="alert alert-danger mb-0"
+                    role="alert"
+                    invisible="not scan_failed_since"
+                >
+                    Scans have been failing since
+                    <field name="scan_failed_since" readonly="1" />:
+                    <field name="scan_error" readonly="1" />
+                </div>
                 <sheet>
                     <widget
                         name="web_ribbon"
@@ -41,6 +50,7 @@
                         </group>
                     </group>
                 </sheet>
+                <chatter />
             </form>
         </field>
     </record>
@@ -55,6 +65,7 @@
                 <field name="path_in" />
                 <field name="file_format" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field name="scan_failed_since" optional="show" />
             </list>
         </field>
     </record>

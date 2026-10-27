@@ -420,6 +420,12 @@ done.</p>
 <p>The “Data Import: pick files up” scheduled action runs every ten
 minutes. It does nothing until a pick-up is active, so a pick-up is what
 turns a feed on.</p>
+<p>A pick-up whose storage cannot be reached is skipped, and the others are
+still scanned. Its files wait where they are and are taken in by the
+first scan that succeeds. The first failure is posted on the pick-up for
+the users of the “Job Queue Manager” group, who are made its followers;
+the failures after it only update the error shown on the pick-up, until
+a scan succeeds and clears it.</p>
 <p>Implement <tt class="docutils literal">_import_unit</tt>, and if a unit is not a single row,
 <tt class="docutils literal">_group_rows</tt>, on <tt class="docutils literal">data.import.log</tt> — see <tt class="docutils literal">data_import_log</tt> for
 that contract.</p>

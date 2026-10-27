@@ -277,3 +277,45 @@ class TestDataImportPickup(TransactionCase):
             logs = (broken | self.pickup)._scan()
         self.assertEqual(logs.file_name, "feed.csv")
         self.assertEqual(self._names("done"), ["feed.csv"])
+
+    def _broken_pickup(self):
+        # A backend that cannot be reached: no host for the sftp protocol.
+        backend = self.env["fs.storage"].create(
+            {"name": "Unreachable", "code": "unreachable_test", "protocol": "sftp"}
+        )
+        return self.env["data.import.pickup"].create(
+            {"name": "Unreachable Feed", "backend_id": backend.id}
+        )
+
+    def _comments(self, pickup):
+        return pickup.message_ids.filtered(
+            lambda message: message.subtype_id == self.env.ref("mail.mt_comment")
+        )
+
+    @mute_logger("odoo.addons.data_import_log_fs.models.data_import_pickup")
+    def test_failed_scan_is_announced_once(self):
+        manager = self.env.ref("base.user_admin")
+        manager.group_ids = [(4, self.env.ref("queue_job.group_queue_job_manager").id)]
+        broken = self._broken_pickup()
+        broken._scan()
+        self.assertTrue(broken.scan_error)
+        self.assertTrue(broken.scan_failed_since)
+        self.assertIn(manager.partner_id, broken.message_partner_ids)
+        self.assertEqual(len(self._comments(broken)), 1)
+        since = broken.scan_failed_since
+        # The next runs fail as well, but are not announced again.
+        broken._scan()
+        self.assertEqual(len(self._comments(broken)), 1)
+        self.assertEqual(broken.scan_failed_since, since)
+
+    def test_successful_scan_clears_the_failure(self):
+        self.pickup.write(
+            {"scan_error": "timed out", "scan_failed_since": "2026-01-01 00:00:00"}
+        )
+        self._put("feed.csv")
+        with patch(f"{LOG_MODEL}._import_unit", return_value=[]):
+            logs = self.pickup._scan()
+        self.assertEqual(logs.state, "done")
+        self.assertFalse(self.pickup.scan_error)
+        self.assertFalse(self.pickup.scan_failed_since)
+        self.assertIn("scanned again", self.pickup.message_ids[:1].body)
