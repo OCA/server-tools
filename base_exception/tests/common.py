@@ -1,19 +1,15 @@
 # Copyright 2026 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-try:
-    from decorator import decoratorx as decorator
-except ImportError:
-    from decorator import decorator
-
+import functools
 from contextlib import contextmanager
 from unittest.mock import patch
 
 from ..exceptions import BaseExceptionError
 
 
-@decorator
-def swallow_base_exception_error(func, self):
+def swallow_base_exception_error(func):
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
@@ -34,7 +30,10 @@ def mock_base_exception_method_env(self, env=None):
         yield
 
 
-@decorator
-def patch_base_exception_method_env(func, self):
-    with mock_base_exception_method_env(self):
-        return func(self)
+def patch_base_exception_method_env(func):
+    @functools.wraps(func)
+    def wrapper(self, *args, **kwargs):
+        with mock_base_exception_method_env(self):
+            return func(self, *args, **kwargs)
+
+    return wrapper

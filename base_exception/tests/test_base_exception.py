@@ -193,8 +193,7 @@ class TestBaseException(TransactionCase):
 
     def test_rollback_main_transaction(self):
         # Get new TestCursor
-        self.registry.enter_test_mode(self.cr)
-        self.addCleanup(self.registry.leave_test_mode)
+        self.enterContext(self.registry_test_mode())
         with (
             self.registry.cursor() as new_cr,
             patch(
@@ -213,19 +212,19 @@ class TestBaseException(TransactionCase):
             # 2. When write is triggered through new_cr in
             # base.exception.method.detect_exceptions, a second savepoint will be
             # created using new_cr, and an odoo.sql_db.Savepoint object will be stored
-            # on new_cr._savepoint for this second savepoint.
+            # on new_cr._cnx._savepoint for this second savepoint.
             # 3. As the with block of assertRaises is exited a rollback to the first
             # savepoint will be triggered, what invalidates the second savepoint.
             #
             # However, the Savepoint object for the second savepoint will not be
-            # removed from new_cr._savepoint, but as both self.env.cr and new_cr
+            # removed from new_cr._cnx._savepoint, but as both self.env.cr and new_cr
             # use the same psycopg2 cursor object behind the scene, the second
             # savepoint does not exist anymore in the database.
             # This situation would actually trigger a "savepoint does not exist"
             # psycopg2 exception when trying to release or rollback the savepoint
             # when closing the cursor. Therefore, we can safely remove the reference
             # to that object to avoid this error when exiting the test.
-            new_cr._savepoint = None
+            new_cr._cnx._savepoint = None
             # Ensure write from base.exception.method.detect_exceptions was called
             #  with the new env that must be committed as the main env is the one to
             #  be rollbacked.
