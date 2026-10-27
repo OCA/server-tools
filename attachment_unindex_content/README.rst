@@ -65,6 +65,15 @@ it at ``ir.attachment`` base.
 Also, after the installation, the ``index_content`` field on attachments
 already recorded in database will be cleared.
 
+Nothing is stored, but the field is still readable: when the database
+has no content for an attachment, reading ``index_content`` indexes the
+file at that moment and puts the result in the cache only. Code that
+reads the field, as the website does to find a color in the CSS bundle,
+keeps working with no copy of the content in the database. The cost is
+reading the file of every attachment whose ``index_content`` is
+requested. Searching on the field still finds nothing, because the
+column stays empty.
+
 .. |SQL Query result showing indexed content| image:: https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png
    :target: https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png
 
