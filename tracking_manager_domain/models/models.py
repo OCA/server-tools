@@ -5,13 +5,13 @@
 from ast import literal_eval
 from collections import defaultdict
 
-from odoo import models, tools
+from odoo import api, models
 
 
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    @tools.ormcache()
+    @api.ormcache()
     def _tm_all_tracking_domain_fields(self):
         cr = self.env.cr
         cr.execute(
@@ -59,40 +59,60 @@ class Base(models.AbstractModel):
                 del model_data[record_id]
         return super()._tm_post_message(data)
 
+
+class MailTrackMixin(models.AbstractModel):
+    _inherit = "mail.track.mixin"
+
     def _mail_track(self, tracked_fields, initial_values):
         changes, tracking_value_ids = super()._mail_track(
             tracked_fields, initial_values
         )
 
-        # TODO: add properties support on domain filters
-        tracking_value_field_ids = [
-            tracking_value_id[2]["field_id"]
-            for tracking_value_id in tracking_value_ids
-            if "field_id" in tracking_value_id[2]
-        ]
-        if tracking_value_field_ids:
-            all_tracking_domain_fields = self._tm_all_tracking_domain_fields()[
-                self._name
-            ]
+        all_tracking_domain_fields = self._tm_all_tracking_domain_fields().get(
+            self._name
+        )
+        if not all_tracking_domain_fields or not tracking_value_ids:
+            return changes, tracking_value_ids
 
-            if all_tracking_domain_fields:
-                # remove entries that are not matching the tracking_domain of the field
-                fields_to_remove = []
-                for field_name in tracked_fields:
-                    field_data = all_tracking_domain_fields.get(field_name, False)
-                    if field_data and not self.filtered_domain(
-                        literal_eval(field_data["tracking_domain"])
-                    ):
-                        fields_to_remove.append(field_data["id"])
-                res_changes = []
-                res_tracking_value_ids = []
-                # remove values from tracking result
-                for change, tracking_value_id in zip(
-                    changes, tracking_value_ids, strict=True
-                ):
-                    if tracking_value_id[2]["field_id"] not in fields_to_remove:
-                        res_changes.append(change)
-                        res_tracking_value_ids.append(tracking_value_id)
-                changes = res_changes
-                tracking_value_ids = res_tracking_value_ids
+        # remove entries that are not matching the tracking_domain of the field
+        fields_to_remove_ids = set()
+        fields_to_remove_names = set()
+        for field_name in tracked_fields:
+            field_data = all_tracking_domain_fields.get(field_name, False)
+            if field_data and not self.filtered_domain(
+                literal_eval(field_data["tracking_domain"])
+            ):
+                fields_to_remove_ids.add(field_data["id"])
+                fields_to_remove_names.add(field_name)
+
+        if not fields_to_remove_ids and not fields_to_remove_names:
+            return changes, tracking_value_ids
+
+        res_tracking_value_ids = []
+        for tracking_val in tracking_value_ids:
+            val_dict = (
+                tracking_val[2]
+                if isinstance(tracking_val, (list, tuple))
+                else tracking_val
+            )
+            field_id = val_dict.get("field_id")
+            field_name = val_dict.get("field_name") or val_dict.get(
+                "field_info", {}
+            ).get("name")
+            if field_id in fields_to_remove_ids or field_name in fields_to_remove_names:
+                continue
+            res_tracking_value_ids.append(tracking_val)
+        tracking_value_ids = res_tracking_value_ids
+
+        if isinstance(changes, set):
+            changes = changes - fields_to_remove_names
+        elif isinstance(changes, dict):
+            changes = {
+                k: v
+                for k, v in changes.items()
+                if k not in fields_to_remove_names and v not in fields_to_remove_names
+            }
+        else:
+            changes = [c for c in changes if c not in fields_to_remove_names]
+
         return changes, tracking_value_ids

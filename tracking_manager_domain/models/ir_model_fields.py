@@ -12,9 +12,12 @@ class IrModelFields(models.Model):
         " certain condition apply on the parent record."
     )
 
+    def _get_writable_properties(self):
+        return super()._get_writable_properties() + ["tracking_domain"]
+
     def write(self, vals):
         if "tracking_domain" in vals:
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
             self.check_access("write")
             custom_tracking_domain = vals.pop("tracking_domain")
             self._write({"tracking_domain": custom_tracking_domain})

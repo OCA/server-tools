@@ -1,2 +1,4 @@
 - Christopher Rogos \<<crogos@gmail.com>\>
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

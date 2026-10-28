@@ -16,10 +16,12 @@ class TestMailTrack(TransactionCase):
             [("model", "=", "res.partner"), ("name", "=", "phone")], limit=1
         )
         self.field_phone.write({"tracking_domain": "[('is_company', '=', True)]"})
+        self.company = self.env.ref("base.main_partner")
+        self.company.is_company = True
 
     def test_mail_track(self):
         # arrange
-        company = self.env.ref("base.main_partner")
+        company = self.company
         tracked_fields = {"phone": {"string": "Phone", "type": "char"}}
         initial_values = {"phone": "1234"}
 
@@ -34,7 +36,11 @@ class TestMailTrack(TransactionCase):
         self.assertEqual(len(tracking_value_ids), 1)
 
         # Check if the field is tracked correctly
-        tracking_value = tracking_value_ids[0][2]
+        tracking_value = (
+            tracking_value_ids[0][2]
+            if isinstance(tracking_value_ids[0], (list, tuple))
+            else tracking_value_ids[0]
+        )
         self.assertEqual(tracking_value["field_id"], self.field_phone.id)
 
     def test_mail_track_with_non_matching_domain(self):
@@ -60,7 +66,7 @@ class TestMailTrack(TransactionCase):
         }
         initial_values = {"3f32dd2678757113": False}
 
-        patch_changes = {1234: "lead_properties"}
+        patch_changes = {"lead_properties"}
         patch_tracking_value_ids = [
             Command.create(
                 {
@@ -78,14 +84,14 @@ class TestMailTrack(TransactionCase):
         ]
 
         with patch(
-            "odoo.addons.mail.models.models.Base._mail_track",
+            "odoo.addons.mail.models.mail_track_mixin.MailTrackMixin._mail_track",
             return_value=(patch_changes, patch_tracking_value_ids),
         ):
             # act
             person._mail_track(tracked_fields, initial_values)
 
     def test_tm_post_message_keep_all(self):
-        partner = self.env.ref("base.main_partner")
+        partner = self.company
 
         data = {
             "res.partner": {partner.id: {"phone": [{"mode": "test", "message": "msg"}]}}
