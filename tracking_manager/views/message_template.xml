@@ -9,7 +9,7 @@
                 <t t-foreach="lines" t-as="line">
                     <li>
                         <b>
-                            <t t-esc="line.get('name')" />: </b>
+                            <t t-out="line.get('name')" />: </b>
                         <br />
                         <t t-foreach="line.get('messages')" t-as="message">
                             <ul>
@@ -22,7 +22,7 @@
                                 <t t-if="message.get('mode', False) == 'update'">
                                     <b>Change :</b>
                                 </t>
-                                <t t-esc="message.get('record')" />
+                                <t t-out="message.get('record')" />
                                 <t t-if="message.get('mode', False) == 'update'">
                                     <ul>
                                         <t
@@ -30,14 +30,14 @@
                                             t-as="change"
                                         >
                                             <li>
-                                                <t t-esc="change.get('name')" /> :
-                                                <t t-esc="change.get('old')" />
+                                                <t t-out="change.get('name')" /> :
+                                                <t t-out="change.get('old')" />
                                                 <div
                                                 class="o_Message_trackingValueSeparator o_Message_trackingValueItem fa fa-long-arrow-right"
                                                 title="Changed"
                                                 role="img"
                                             />
-                                                <t t-esc="change.get('new')" />
+                                                <t t-out="change.get('new')" />
                                             </li>
                                         </t>
                                     </ul>

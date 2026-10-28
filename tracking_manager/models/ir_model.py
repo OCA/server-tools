@@ -34,8 +34,9 @@ class IrModel(models.Model):
         models = self.sudo().search([("active_custom_tracking", "=", True)])
         return {
             model.model: model.field_id.filtered(
-                lambda f, model=model: f.custom_tracking
-                and self.env[model.model]._fields.get(f.name)
+                lambda f, model=model: (
+                    f.custom_tracking and self.env[model.model]._fields.get(f.name)
+                )
             ).mapped("name")
             for model in models
             if model.model in self.env
@@ -55,45 +56,50 @@ class IrModel(models.Model):
             }
         }
         """
-        self = self.sudo()
-        fields = self.env["ir.model.fields"].search(
+        sudo_self = self.sudo()
+        fields = sudo_self.env["ir.model.fields"].search(
             [
                 ("custom_tracking", "=", True),
                 ("model_id.active_custom_tracking", "=", True),
                 ("ttype", "=", "one2many"),
             ]
         )
-        related_models = self.env["ir.model"].search(
+        related_models = sudo_self.env["ir.model"].search(
             [
                 ("model", "in", fields.mapped("relation")),
             ]
         )
-        custom_tracked_fields = self._get_custom_tracked_fields_per_model()
+        custom_tracked_fields = sudo_self._get_custom_tracked_fields_per_model()
         res = {}
         for model in related_models:
-            if model.model not in self.env:
+            if model.model not in sudo_self.env:
                 # If the model do not exist skip it (ex: during module update)
                 continue
             if model.model in custom_tracked_fields:
                 tracked_fields = custom_tracked_fields[model.model]
             else:
                 tracked_fields = model.field_id.filtered(
-                    lambda s, model=model: not s.readonly
-                    and not s.related
-                    and not s.ttype == "one2many"
-                    and s.name in self.env[model.model]._fields
+                    lambda s, model=model: (
+                        not s.readonly
+                        and not s.related
+                        and s.ttype != "one2many"
+                        and s.name in sudo_self.env[model.model]._fields
+                    )
                 ).mapped("name")
             res[model.model] = {"fields": tracked_fields, "notify": []}
 
         for field in fields:
             model_name = field.model_id.model
             if (
-                model_name in self.env
-                and self.env[model_name]._fields.get(field.name)
+                model_name in sudo_self.env
+                and sudo_self.env[model_name]._fields.get(field.name)
                 and field.relation in res
             ):
                 res[field.relation]["notify"].append(
-                    [self.env[model_name]._fields[field.name].inverse_name, field.name]
+                    [
+                        sudo_self.env[model_name]._fields[field.name].inverse_name,
+                        field.name,
+                    ]
                 )
         return res
 
