@@ -63,7 +63,7 @@ class PGSessionStore(sessions.SessionStore):
     def __init__(self, uri, session_class=None):
         super().__init__(session_class)
         self._uri = uri
-        self._cr = None
+        self._cursor = None
         self._open_connection()
         self._setup_db()
 
@@ -72,30 +72,30 @@ class PGSessionStore(sessions.SessionStore):
 
     @with_lock
     def _ensure_connection(self):
-        if self._cr is None:
+        if self._cursor is None:
             self._open_connection()
 
     @with_lock
     def _open_connection(self):
         self._close_connection()
         cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
-        self._cr = cnx.cursor()
-        self._cr._cnx.autocommit = True
+        self._cursor = cnx.cursor()
+        self._cursor._cnx.autocommit = True
 
     @with_lock
     def _close_connection(self):
         """Return cursor to the pool."""
-        if self._cr is not None:
+        if self._cursor is not None:
             try:
-                self._cr.close()
+                self._cursor.close()
             except Exception:  # pylint: disable=except-pass
                 pass
-            self._cr = None
+            self._cursor = None
 
     @with_lock
     @with_cursor
     def _setup_db(self):
-        self._cr.execute(
+        self._cursor.execute(
             """
                 CREATE TABLE IF NOT EXISTS http_sessions (
                     sid varchar PRIMARY KEY,
@@ -109,7 +109,7 @@ class PGSessionStore(sessions.SessionStore):
     @with_cursor
     def save(self, session):
         payload = json.dumps(dict(session))
-        self._cr.execute(
+        self._cursor.execute(
             """
                 INSERT INTO http_sessions(sid, write_date, payload)
                     VALUES (%(sid)s, now() at time zone 'UTC', %(payload)s)
@@ -123,14 +123,14 @@ class PGSessionStore(sessions.SessionStore):
     @with_lock
     @with_cursor
     def delete(self, session):
-        self._cr.execute("DELETE FROM http_sessions WHERE sid=%s", (session.sid,))
+        self._cursor.execute("DELETE FROM http_sessions WHERE sid=%s", (session.sid,))
 
     @with_lock
     @with_cursor
     def get(self, sid):
-        self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
+        self._cursor.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
-            data = json.loads(self._cr.fetchone()[0])
+            data = json.loads(self._cursor.fetchone()[0])
         except Exception:
             return self.new()
 
@@ -146,7 +146,7 @@ class PGSessionStore(sessions.SessionStore):
     @with_lock
     @with_cursor
     def vacuum(self, max_lifetime=http.SESSION_LIFETIME):
-        self._cr.execute(
+        self._cursor.execute(
             "DELETE FROM http_sessions "
             "WHERE now() at time zone 'UTC' - write_date > %s",
             (f"{max_lifetime} seconds",),
@@ -174,11 +174,11 @@ class PGSessionStore(sessions.SessionStore):
         """
         missing_identifiers = set()
         for identifier in identifiers:
-            self._cr.execute(
+            self._cursor.execute(
                 "SELECT sid FROM http_sessions WHERE sid LIKE %s||'%%' LIMIT 1",
                 (identifier,),
             )
-            if self._cr.rowcount == 0:
+            if self._cursor.rowcount == 0:
                 missing_identifiers.add(identifier)
         return missing_identifiers
 
@@ -191,7 +191,7 @@ class PGSessionStore(sessions.SessionStore):
                     "Identifier format incorrect, "
                     "did you pass in a string instead of a list?"
                 )
-            self._cr.execute(
+            self._cursor.execute(
                 "DELETE FROM http_sessions WHERE sid LIKE %s||'%%'", (identifier,)
             )
 
