@@ -4,8 +4,8 @@
 
 {
     "name": "Tracking Manager",
-    "summary": """This module tracks all fields of a model,
-                including one2many and many2many ones.""",
+    "summary": "This module tracks all fields of a model, "
+    "including one2many and many2many ones.",
     "version": "19.0.1.0.1",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",

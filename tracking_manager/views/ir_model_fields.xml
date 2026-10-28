@@ -3,7 +3,7 @@
      @author Kévin Roche <kevin.roche@akretion.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.actions.act_window" id="ir_model_fields_action">
+    <record id="ir_model_fields_action" model="ir.actions.act_window">
         <field name="name">Trackable Fields</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ir.model.fields</field>
