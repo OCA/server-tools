@@ -1,0 +1,1 @@
+odoo-addon-tracking_manager @ git+https://github.com/OCA/server-tools.git@refs/pull/3823/head#subdirectory=tracking_manager
