@@ -29,7 +29,7 @@
         </field>
     </record>
     <record id="base_kanban_stage_view_tree" model="ir.ui.view">
-        <field name="name">Kanban Stages - Tree View</field>
+        <field name="name">Kanban Stages - List View</field>
         <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
             <list name="Kanban Stages">
