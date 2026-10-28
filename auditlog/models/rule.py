@@ -6,6 +6,8 @@ from collections import defaultdict
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.models import fix_import_export_id_paths
+from odoo.tools.mail import is_html_empty
 from odoo.tools.misc import OrderedSet
 
 FIELDS_BLACKLIST = [
@@ -17,6 +19,7 @@ FIELDS_BLACKLIST = [
     "display_name",
     "__last_update",
 ]
+PATCHED_METHODS = ["create", "read", "search_read", "write", "unlink", "export_data"]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
 EMPTY_DICT = {}
@@ -116,8 +119,17 @@ class AuditlogRule(models.Model):
     log_read = fields.Boolean(
         "Log Reads",
         help=(
-            "Select this if you want to keep track of read/open on any "
-            "record of the model of this rule"
+            "Select this if you want to keep track of read/open and export "
+            "of any record of the model of this rule"
+        ),
+    )
+    log_read_values = fields.Boolean(
+        default=True,
+        help=(
+            "Store the values of the fields read. Uncheck it to store only "
+            "their names: read logs stay small, and sensitive values are not "
+            "copied into logs that users without access to those values can "
+            "open. Exports never store values"
         ),
     )
     log_write = fields.Boolean(
@@ -211,10 +223,14 @@ class AuditlogRule(models.Model):
             new_method = self._make_create()
         elif method_name == "read":
             new_method = self._make_read()
+        elif method_name == "search_read":
+            new_method = self._make_search_read()
         elif method_name == "write":
             new_method = self._make_write()
         elif method_name == "unlink":
             new_method = self._make_unlink()
+        elif method_name == "export_data":
+            new_method = self._make_export_data()
         if new_method:
             new_method.origin = getattr(model_class, method_name)
             setattr(model_class, method_name, new_method)
@@ -242,6 +258,10 @@ class AuditlogRule(models.Model):
             check_attr = "auditlog_ruled_read"
             if rule.log_read and not hasattr(model_model, check_attr):
                 updated = rule._patch_method(model_model, "read", check_attr)
+            #   -> search_read
+            check_attr = "auditlog_ruled_search_read"
+            if rule.log_read and not hasattr(model_model, check_attr):
+                updated = rule._patch_method(model_model, "search_read", check_attr)
             #   -> write
             check_attr = "auditlog_ruled_write"
             if rule.log_write and not hasattr(model_model, check_attr):
@@ -250,6 +270,10 @@ class AuditlogRule(models.Model):
             check_attr = "auditlog_ruled_unlink"
             if rule.log_unlink and not hasattr(model_model, check_attr):
                 updated = rule._patch_method(model_model, "unlink", check_attr)
+            #   -> export
+            check_attr = "auditlog_ruled_export_data"
+            if rule.log_read and not hasattr(model_model, check_attr):
+                updated = rule._patch_method(model_model, "export_data", check_attr)
         return updated
 
     def _revert_methods(self):
@@ -257,14 +281,15 @@ class AuditlogRule(models.Model):
         updated = False
         for rule in self:
             model_model = self.env[rule.model_id.model or rule.model_model]
-            for method in ["create", "read", "write", "unlink"]:
-                if getattr(rule, "log_%s" % method) and hasattr(
+            for method in PATCHED_METHODS:
+                check_attr = "auditlog_ruled_%s" % method
+                if hasattr(model_model, check_attr) and hasattr(
                     getattr(model_model, method), "origin"
                 ):
                     setattr(
                         type(model_model), method, getattr(model_model, method).origin
                     )
-                    delattr(type(model_model), "auditlog_ruled_%s" % method)
+                    delattr(type(model_model), check_attr)
                     updated = True
         if updated:
             self._update_registry()
@@ -389,36 +414,56 @@ class AuditlogRule(models.Model):
 
         def read(self, fields=None, load="_classic_read", **kwargs):
             result = read.origin(self, fields, load, **kwargs)
-            # Sometimes the result is not a list but a dictionary
-            # Also, we can not modify the current result as it will break calls
-            result2 = result
-            if not isinstance(result2, list):
-                result2 = [result]
-            read_values = {d["id"]: d for d in result2}
-            # Old API
-
-            # If the call came from auditlog itself, skip logging:
-            # avoid logs on `read` produced by auditlog during internal
-            # processing: read data of relevant records, 'ir.model',
-            # 'ir.model.fields'... (no interest in logging such operations)
-            if self.env.context.get("auditlog_disabled"):
-                return result
-            self = self.with_context(auditlog_disabled=True)
-            rule_model = self.env["auditlog.rule"]
-            if self.env.user in users_to_exclude:
-                return result
-            rule_model.sudo().create_logs(
-                self.env.uid,
-                self._name,
-                self.ids,
-                "read",
-                read_values,
-                None,
-                {"log_type": log_type},
+            self.env["auditlog.rule"]._create_read_logs(
+                self, result, log_type, users_to_exclude
             )
             return result
 
         return read
+
+    def _make_search_read(self):
+        """Instanciate a search_read method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        @api.model
+        def search_read(self, *args, **kwargs):
+            result = search_read.origin(self, *args, **kwargs)
+            self.env["auditlog.rule"]._create_read_logs(
+                self, result, log_type, users_to_exclude
+            )
+            return result
+
+        return search_read
+
+    @api.model
+    def _create_read_logs(self, records, result, log_type, users_to_exclude):
+        """Log the values returned by a read operation done on `records`."""
+        # If the call came from auditlog itself, skip logging:
+        # avoid logs on `read` produced by auditlog during internal
+        # processing: read data of relevant records, 'ir.model',
+        # 'ir.model.fields'... (no interest in logging such operations)
+        if records.env.context.get("auditlog_disabled"):
+            return
+        if records.env.user in users_to_exclude:
+            return
+        # Sometimes the result is not a list but a dictionary
+        # Also, we can not modify the current result as it will break calls
+        result2 = result
+        if not isinstance(result2, list):
+            result2 = [result]
+        read_values = {d["id"]: d for d in result2}
+        records = records.with_context(auditlog_disabled=True)
+        records.env["auditlog.rule"].sudo().create_logs(
+            records.env.uid,
+            records._name,
+            list(read_values),
+            "read",
+            read_values,
+            None,
+            {"log_type": log_type},
+        )
 
     def _make_write(self):
         """Instanciate a write method that log its calls."""
@@ -535,6 +580,36 @@ class AuditlogRule(models.Model):
 
         return unlink_full if self.log_type == "full" else unlink_fast
 
+    def _make_export_data(self):
+        """Instanciate an export_data method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        def export_data(self, fields_to_export, **kwargs):
+            result = export_data.origin(self, fields_to_export, **kwargs)
+            if self.env.context.get("auditlog_disabled"):
+                return result
+            if self.env.user in users_to_exclude:
+                return result
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env["auditlog.rule"]
+            export_values = {
+                res_id: dict.fromkeys(fields_to_export) for res_id in self.ids
+            }
+            rule_model.sudo().create_logs(
+                self.env.uid,
+                self._name,
+                self.ids,
+                "export",
+                export_values,
+                None,
+                {"log_type": log_type},
+            )
+            return result
+
+        return export_data
+
     def create_logs(
         self,
         uid,
@@ -548,6 +623,8 @@ class AuditlogRule(models.Model):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
         {RES_ID: {'FIELD': VALUE, ...}}
         """
+        if not res_ids:
+            return
         if old_values is None:
             old_values = EMPTY_DICT
         if new_values is None:
@@ -559,16 +636,14 @@ class AuditlogRule(models.Model):
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
-        for res_id in res_ids:
-            res = model_model.browse(res_id)
+        vals_list = []
+        for res in model_model.browse(res_ids):
+            res_id = res.id
             vals = {
-                "name": res.display_name,
                 "model_id": model_id,
                 "res_id": res_id,
                 "method": method,
                 "user_id": uid,
-                "http_request_id": http_request_model.current_http_request(),
-                "http_session_id": http_session_model.current_http_session(),
             }
             vals.update(additional_log_values or {})
             diff = DictDiffer(
@@ -578,12 +653,21 @@ class AuditlogRule(models.Model):
                 vals["line_ids"] = self._create_log_line_on_create(
                     vals, diff.added(), new_values, fields_to_exclude
                 )
-            elif method == "read":
+            elif method == "read" and auditlog_rule.log_read_values:
                 vals["line_ids"] = self._create_log_line_on_read(
                     vals,
                     list(old_values.get(res_id, EMPTY_DICT).keys()),
                     old_values,
                     fields_to_exclude,
+                )
+            elif method == "read":
+                vals["read_field_names"] = self._get_log_field_names(
+                    old_values.get(res_id, EMPTY_DICT),
+                    fields_to_exclude + FIELDS_BLACKLIST,
+                )
+            elif method == "export":
+                vals["read_field_names"] = self._get_log_field_names(
+                    old_values.get(res_id, EMPTY_DICT), fields_to_exclude
                 )
             elif method == "write":
                 vals["line_ids"] = self._create_log_line_on_write(
@@ -596,8 +680,20 @@ class AuditlogRule(models.Model):
                     old_values,
                     fields_to_exclude,
                 )
-            if method == "unlink" or vals.get("line_ids", {}):
-                log_model.create(vals)
+            if (
+                method in ("create", "unlink", "export")
+                or vals.get("line_ids", {})
+                or vals.get("read_field_names")
+            ):
+                vals["name"] = res.display_name
+                vals_list.append(vals)
+        if not vals_list:
+            return
+        http_vals = {
+            "http_request_id": http_request_model.current_http_request(),
+            "http_session_id": http_session_model.current_http_session(),
+        }
+        log_model.create([dict(http_vals, **vals) for vals in vals_list])
 
     def _get_field(self, model_id, field_name):
         model = self.env["ir.model"].sudo().browse(model_id)
@@ -621,6 +717,18 @@ class AuditlogRule(models.Model):
                 field_data = field.read(load="_classic_write")[0]
                 cache[model.model][field_name] = field_data
         return cache[model.model][field_name]
+
+    @api.model
+    def _get_log_field_names(self, field_names, fields_to_exclude):
+        """Return the field names or export paths that are not excluded, as
+        text. An export path such as 'partner_id/name' is excluded on its
+        first field.
+        """
+        return ", ".join(
+            name
+            for name in field_names
+            if fix_import_export_id_paths(name)[0] not in fields_to_exclude
+        )
 
     def _create_log_line_on_read(
         self, log_vals, fields_list, read_values, fields_to_exclude
@@ -731,7 +839,12 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and not (
+                log_vals["log_type"] == "full"
+                and self._is_empty_create_value(
+                    field, new_values[log_vals["res_id"]][field_name]
+                )
+            ):
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_create(
@@ -740,6 +853,17 @@ class AuditlogRule(models.Model):
                     )
                 )
         return line_vals
+
+    @api.model
+    def _is_empty_create_value(self, field, value):
+        """Tell whether a value logged on a full 'create' operation is empty.
+        A boolean is never empty, as False is a meaningful value.
+        """
+        if field["ttype"] == "boolean":
+            return False
+        if field["ttype"] == "html":
+            return is_html_empty(value)
+        return not value
 
     def _prepare_log_line_vals_on_create(self, log_vals, field, new_values):
         """Prepare the dictionary of values used to create a log line on a
