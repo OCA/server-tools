@@ -32,7 +32,7 @@ class TestIrSequence(TransactionCase):
         self.assertEqual(next_number, "AB02C")
 
     def test_nogap_sequence(self):
-        self.sequence.write(dict(implementation="no_gap"))
+        self.sequence.write({"implementation": "no_gap"})
         next_number = self.sequence._next()
         self.assertEqual(next_number, "AB01C")
         next_number = self.sequence._next()
