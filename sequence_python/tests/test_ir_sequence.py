@@ -5,15 +5,14 @@ from odoo.tests.common import TransactionCase
 
 
 class TestIrSequence(TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.Sequence = cls.env["ir.sequence"]
-        cls.sequence = cls.Sequence.create(
+    def setUp(self):
+        super().setUp()
+        self.Sequence = self.env["ir.sequence"]
+        self.sequence = self.Sequence.create(
             {
                 "name": "Test sequence",
                 "implementation": "standard",
-                "code": "test.python.sequence",
+                "code": f"test.python.sequence.{self._testMethodName}",
                 "prefix": "A",
                 "padding": 2,
                 "number_next": 1,
@@ -61,3 +60,32 @@ class TestIrSequence(TransactionCase):
     def test_python_code_with_error(self):
         self.sequence.write({"python_code": "1 / 0"})
         self.assertIn("division by zero", self.sequence.python_code_preview)
+
+    def test_python_code_context_modules(self):
+        self.sequence.write(
+            {
+                "python_code": (
+                    "string.ascii_uppercase[0] + "
+                    "str(random.randint(1, 1)) + "
+                    "str(uuid.uuid4())[:4]"
+                )
+            }
+        )
+        next_num = self.sequence._next()
+        self.assertTrue(next_num.startswith("AA1"))
+
+    def test_compute_preview_multi_records(self):
+        seq2 = self.Sequence.create(
+            {
+                "name": "Test sequence 2",
+                "implementation": "standard",
+                "code": "test.python.sequence.2",
+                "prefix": "Z",
+                "use_python_code": True,
+                "python_code": "number_padded",
+            }
+        )
+        records = self.sequence | seq2
+        records._compute_python_code_preview()
+        self.assertTrue(bool(self.sequence.python_code_preview))
+        self.assertTrue(bool(seq2.python_code_preview))
