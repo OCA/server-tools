@@ -25,7 +25,7 @@ class CleanupPurgeLineColumn(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.column"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         for line in objs:
             if line.purged:

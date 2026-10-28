@@ -33,7 +33,7 @@ class CleanupPurgeLineModel(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.model"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         for line in objs:
             self.env.cr.execute(
