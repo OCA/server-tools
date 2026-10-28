@@ -32,7 +32,7 @@
                         <button
                             name="update_custom_tracking"
                             string="Update"
-                            icon="fa-refresh"
+                            icon="refresh"
                             type="object"
                             class="btn-secondary"
                             invisible="not automatic_custom_tracking"
@@ -41,13 +41,13 @@
                 </group>
             </xpath>
 
-            <xpath expr="//sheet/group[1]" position="before">
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button
                         name="%(ir_model_fields_action)d"
                         type="action"
                         class="oe_stat_button"
-                        icon="fa-server"
+                        icon="dns"
                         invisible="not active_custom_tracking"
                     >
                         <field
