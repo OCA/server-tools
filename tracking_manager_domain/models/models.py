@@ -44,7 +44,7 @@ class Base(models.AbstractModel):
                     # if a record have been modify and then deleted
                     # it's not need to track the change so skip it
                     continue
-                for field_name, _messages in messages_by_field.items():
+                for field_name in messages_by_field:
                     field_data = all_tracking_domain_fields.get(field_name, False)
                     if field_data and not record.filtered_domain(
                         literal_eval(field_data["tracking_domain"])
@@ -52,7 +52,7 @@ class Base(models.AbstractModel):
                         fields_to_remove.append(field_name)
                 for field_name in fields_to_remove:
                     del model_data[record_id][field_name]
-                if not model_data[record_id]:
+                if not messages_by_field:
                     record_to_remove.append(record_id)
 
             for record_id in record_to_remove:

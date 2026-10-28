@@ -97,16 +97,18 @@ class TestMailTrack(TransactionCase):
             }
         }
 
-        with patch(
-            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
-            return_value=data,
-        ):
-            with patch.object(
+        with (
+            patch(
+                "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+                return_value=data,
+            ),
+            patch.object(
                 type(self.env["base"]),
                 "_tm_all_tracking_domain_fields",
                 return_value=fields,
-            ):
-                res = self.env["base"]._tm_post_message(data)
+            ),
+        ):
+            res = self.env["base"]._tm_post_message(data)
 
         self.assertIn(partner.id, res["res.partner"])
 
@@ -123,16 +125,18 @@ class TestMailTrack(TransactionCase):
             }
         }
 
-        with patch(
-            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
-            return_value={"res.partner": {}},
-        ):
-            with patch.object(
+        with (
+            patch(
+                "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+                return_value={"res.partner": {}},
+            ),
+            patch.object(
                 type(self.env["base"]),
                 "_tm_all_tracking_domain_fields",
                 return_value=fields,
-            ):
-                res = self.env["base"]._tm_post_message(data)
+            ),
+        ):
+            res = self.env["base"]._tm_post_message(data)
 
         self.assertEqual(res, {"res.partner": {}})
 
@@ -143,16 +147,18 @@ class TestMailTrack(TransactionCase):
 
         fields = {"res.partner": {"phone": {"id": 1, "tracking_domain": "[]"}}}
 
-        with patch(
-            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
-            return_value={"res.partner": {}},
-        ):
-            with patch.object(
+        with (
+            patch(
+                "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+                return_value={"res.partner": {}},
+            ),
+            patch.object(
                 type(self.env["base"]),
                 "_tm_all_tracking_domain_fields",
                 return_value=fields,
-            ):
-                res = self.env["base"]._tm_post_message(data)
+            ),
+        ):
+            res = self.env["base"]._tm_post_message(data)
 
         self.assertEqual(res, {"res.partner": {}})
 
@@ -165,15 +171,17 @@ class TestMailTrack(TransactionCase):
 
         fields = {"res.partner": {}}
 
-        with patch(
-            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
-            return_value=data,
-        ):
-            with patch.object(
+        with (
+            patch(
+                "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+                return_value=data,
+            ),
+            patch.object(
                 type(self.env["base"]),
                 "_tm_all_tracking_domain_fields",
                 return_value=fields,
-            ):
-                res = self.env["base"]._tm_post_message(data)
+            ),
+        ):
+            res = self.env["base"]._tm_post_message(data)
 
         self.assertEqual(res, data)
