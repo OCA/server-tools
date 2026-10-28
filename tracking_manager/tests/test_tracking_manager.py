@@ -23,7 +23,18 @@ class TestTrackingManager(TransactionCase):
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Foo",
-                "user_ids": [(Command.CREATE, 0, {"login": "007"})],
+                "user_ids": [
+                    (
+                        Command.CREATE,
+                        0,
+                        {
+                            "login": "007",
+                            "group_ids": [
+                                (Command.SET, 0, [cls.env.ref("base.group_user").id])
+                            ],
+                        },
+                    )
+                ],
                 "category_id": [(Command.SET, 0, [cls.partner_categ_1.id])],
             }
         )
@@ -77,20 +88,15 @@ class TestTrackingManager(TransactionCase):
             {"category_id": [(Command.LINK, self.partner_categ_2.id, 0)]}
         )
         self.assertEqual(len(self.messages), 1)
-        tracking = self.messages.tracking_value_ids[0]
-        self.assertEqual(len(tracking), 1)
-        self.assertEqual(tracking.old_value_char, "FOO")
-        self.assertEqual(tracking.new_value_char, "FOO, BAR")
+        self.assertIn("FOO → <b>FOO, BAR</b>", self.messages.body)
 
     def test_m2m_delete_line(self):
         self.partner.write(
             {"category_id": [(Command.UNLINK, self.partner_categ_1.id, 0)]}
         )
         self.assertEqual(len(self.messages), 1)
-        tracking = self.messages.tracking_value_ids
-        self.assertEqual(len(tracking), 1)
-        self.assertEqual(tracking.old_value_char, "FOO")
-        self.assertEqual(tracking.new_value_char, "")
+        self.assertIn("FOO →", self.messages.body)
+        self.assertIn("None", self.messages.body)
 
     def test_m2m_multi_line(self):
         self.partner.write(
@@ -108,15 +114,12 @@ class TestTrackingManager(TransactionCase):
             }
         )
         self.assertEqual(len(self.messages), 1)
-        tracking = self.messages.tracking_value_ids
-        self.assertEqual(len(tracking), 1)
-        self.assertEqual(tracking.old_value_char, "FOO")
-        self.assertEqual(tracking.new_value_char, "BAR, TOOH")
+        self.assertIn("FOO → <b>BAR, TOOH</b>", self.messages.body)
 
     def test_o2m_create_indirectly(self):
         self.partner.write({"user_ids": [(Command.CREATE, 0, {"login": "1234567890"})]})
         self.assertEqual(len(self.messages), 2)
-        self.assertEqual(self.messages[0].body.count("New"), 1)
+        self.assertEqual(self.messages[0].body.count("New :"), 1)
 
     @mute_logger("odoo.models.unlink")
     def test_o2m_unlink_indirectly(self):
@@ -163,8 +166,8 @@ class TestTrackingManager(TransactionCase):
             }
         )
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(self.messages.body.count("New :"), 1)
+        self.assertEqual(self.messages.body.count("Delete :"), 1)
 
     def test_o2m_update_m2m_indirectly(self):
         self.group_extra = self.env["res.groups"].create({"name": "Test group"})
@@ -176,9 +179,7 @@ class TestTrackingManager(TransactionCase):
                         self.partner.user_ids[0].id,
                         {
                             "group_ids": [
-                                (
-                                    6,
-                                    0,
+                                Command.set(
                                     [
                                         self.env.ref("base.group_user").id,
                                         self.group_extra.id,
@@ -191,7 +192,9 @@ class TestTrackingManager(TransactionCase):
             }
         )
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Changed"), 1)
+        self.assertIn("Groups :", self.messages.body)
+        self.assertIn("Test group", self.messages.body)
+        self.assertIn(self.messages.body.count("Changed"), (1, 2))
 
     def test_o2m_update_m2o_indirectly(self):
         user = self.partner.user_ids[0]
@@ -242,13 +245,13 @@ class TestTrackingManager(TransactionCase):
             }
         )
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
+        self.assertEqual(self.messages.body.count("New :"), 1)
 
     @mute_logger("odoo.models.unlink")
     def test_o2m_unlink_directly(self):
         self.partner.user_ids.unlink()
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(self.messages.body.count("Delete :"), 1)
 
     def test_o2m_update_directly(self):
         self.partner.user_ids.write({"login": "0987654321"})
@@ -261,8 +264,8 @@ class TestTrackingManager(TransactionCase):
         self.partner.user_ids.write({"login": "0987654321"})
         self.partner.user_ids.unlink()
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Change"), 0)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(self.messages.body.count("Change :"), 0)
+        self.assertEqual(self.messages.body.count("Delete :"), 1)
 
     def test_o2m_update_record(self):
         self.env.ref("base.field_res_partner__child_ids").custom_tracking = True

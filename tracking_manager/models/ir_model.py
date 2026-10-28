@@ -4,7 +4,7 @@
 
 from ast import literal_eval
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 from odoo.fields import Domain
 
 
@@ -29,7 +29,7 @@ class IrModel(models.Model):
         readonly=False,
     )
 
-    @tools.ormcache()
+    @api.ormcache()
     def _get_custom_tracked_fields_per_model(self):
         models = self.sudo().search([("active_custom_tracking", "=", True)])
         return {
@@ -42,7 +42,7 @@ class IrModel(models.Model):
             if model.model in self.env
         }
 
-    @tools.ormcache()
+    @api.ormcache()
     def _get_model_tracked_by_o2m(self):
         """For each model tracked due to a o2m relation
         compute the information of
@@ -164,5 +164,5 @@ class IrModel(models.Model):
 
     def write(self, vals):
         if "active_custom_tracking" in vals:
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
         return super().write(vals)

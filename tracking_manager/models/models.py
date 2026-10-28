@@ -6,7 +6,7 @@
 
 from collections import defaultdict
 
-from odoo import api, models, tools
+from odoo import api, models
 from odoo.exceptions import AccessError
 
 from ..tools import format_m2m
@@ -18,7 +18,7 @@ from ..tools import format_m2m
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    @tools.ormcache()
+    @api.ormcache()
     def is_tracked_by_o2m(self):
         return self._name in self.env["ir.model"]._get_model_tracked_by_o2m()
 

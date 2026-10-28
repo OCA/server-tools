@@ -54,7 +54,7 @@ class IrModelFields(models.Model):
     def write(self, vals):
         custom_tracking = None
         if "custom_tracking" in vals:
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
             self.check_access("write")
             custom_tracking = vals.pop("custom_tracking")
             self._write({"custom_tracking": custom_tracking})
