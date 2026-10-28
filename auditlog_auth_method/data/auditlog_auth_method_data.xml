@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="auth_method_web_password" model="auditlog.auth.method">
+        <field name="name">Web session: password</field>
+        <field name="code">web_password</field>
+        <field name="sequence">10</field>
+        <field
+            name="description"
+        >Browser or mobile app session opened with a login and password (/web/login, /web/session/authenticate), including sign up, password reset and LDAP.</field>
+    </record>
+    <record id="auth_method_web_oauth" model="auditlog.auth.method">
+        <field name="name">Web session: OAuth</field>
+        <field name="code">web_oauth</field>
+        <field name="sequence">20</field>
+        <field
+            name="description"
+        >Session opened through an OAuth provider (auth_oauth).</field>
+    </record>
+    <record id="auth_method_web_superuser" model="auditlog.auth.method">
+        <field name="name">Web session: superuser mode</field>
+        <field name="code">web_superuser</field>
+        <field name="sequence">30</field>
+        <field
+            name="description"
+        >Session switched to the superuser with "Become Superuser" (/web/become).</field>
+    </record>
+    <record id="auth_method_web_unknown" model="auditlog.auth.method">
+        <field name="name">Web session: unknown login</field>
+        <field name="code">web_unknown</field>
+        <field name="sequence">40</field>
+        <field
+            name="description"
+        >Session whose login method was not recorded, e.g. opened before this module was installed.</field>
+    </record>
+    <record id="auth_method_rpc_password" model="auditlog.auth.method">
+        <field name="name">External RPC: password</field>
+        <field name="code">rpc_password</field>
+        <field name="sequence">50</field>
+        <field
+            name="description"
+        >XML-RPC or JSON-RPC call (/xmlrpc, /xmlrpc/2, /jsonrpc) authenticated with the user password, including LDAP.</field>
+    </record>
+    <record id="auth_method_rpc_api_key" model="auditlog.auth.method">
+        <field name="name">External RPC: API key</field>
+        <field name="code">rpc_api_key</field>
+        <field name="sequence">60</field>
+        <field
+            name="description"
+        >XML-RPC or JSON-RPC call authenticated with a user API key.</field>
+    </record>
+    <record id="auth_method_rpc_oauth" model="auditlog.auth.method">
+        <field name="name">External RPC: OAuth token</field>
+        <field name="code">rpc_oauth</field>
+        <field name="sequence">70</field>
+        <field
+            name="description"
+        >XML-RPC or JSON-RPC call authenticated with an OAuth access token (auth_oauth).</field>
+    </record>
+    <record id="auth_method_route_token" model="auditlog.auth.method">
+        <field name="name">Token route</field>
+        <field name="code">route_token</field>
+        <field name="sequence">80</field>
+        <field
+            name="description"
+        >HTTP route with its own authentication method that identifies a user, e.g. the mail plugin (Outlook, Gmail).</field>
+    </record>
+    <record id="auth_method_public" model="auditlog.auth.method">
+        <field name="name">Public</field>
+        <field name="code">public</field>
+        <field name="sequence">90</field>
+        <field
+            name="description"
+        >Anonymous visitor running as the public user: website, portal links with an access token, calendar invitations, webhooks.</field>
+    </record>
+    <record id="auth_method_server" model="auditlog.auth.method">
+        <field name="name">Server side</field>
+        <field name="code">server</field>
+        <field name="sequence">100</field>
+        <field
+            name="description"
+        >No user login: scheduled actions, queue jobs, shell, module installation or upgrade.</field>
+    </record>
+</odoo>

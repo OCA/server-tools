@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_auditlog_http_request_form" model="ir.ui.view">
+        <field name="name">auditlog.http.request.form - auditlog_auth_method</field>
+        <field name="model">auditlog.http.request</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_http_request_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="remote_addr" />
+                <field name="user_agent" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_auditlog_http_request_tree" model="ir.ui.view">
+        <field name="name">auditlog.http.request.tree - auditlog_auth_method</field>
+        <field name="model">auditlog.http.request</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_http_request_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="remote_addr" optional="show" />
+                <field name="user_agent" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_auditlog_http_request_search" model="ir.ui.view">
+        <field name="name">auditlog.http.request.search - auditlog_auth_method</field>
+        <field name="model">auditlog.http.request</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_http_request_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="remote_addr" />
+                <field name="user_agent" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
