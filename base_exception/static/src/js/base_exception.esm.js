@@ -13,12 +13,19 @@ async function popUpException(env, _action) {
     // Do a soft reload before displaying the popup to display the exception
     // on the Form view
     await env.services.action.restore(controller.jsId);
+    // A button of the dialog closes it twice: through the act_window_close
+    // action it returns, and again when the soft_reload closes the dialogs,
+    // as the dialog is still open while onClose runs. Reload only once.
+    let reloaded = false;
     await env.services.action.doAction(popupAction, {
-        onClose: () =>
-            env.services.action.doAction({
+        onClose: () => {
+            if (reloaded) return;
+            reloaded = true;
+            return env.services.action.doAction({
                 type: "ir.actions.client",
                 tag: "soft_reload",
-            }),
+            });
+        },
     });
 }
 
