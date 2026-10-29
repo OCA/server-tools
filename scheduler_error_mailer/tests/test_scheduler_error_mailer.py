@@ -8,6 +8,8 @@ from odoo.addons.scheduler_error_mailer.hooks import post_init_hook
 
 
 class TestSchedulerErrorMailer(BaseCommon):
+    _test_user_groups = ("base.group_system",)
+
     def setUp(self):
         super().setUp()
         self.cron = self.env["ir.cron"].create(
@@ -41,3 +43,21 @@ class TestSchedulerErrorMailer(BaseCommon):
         self.assertFalse(
             self.env["ir.cron"].search([("email_template_id", "=", False)])
         )
+
+    def test_error_mail_recipient(self):
+        template = self.env.ref("scheduler_error_mailer.scheduler_error_mailer")
+        self.assertFalse(template.use_default_to)
+        self.cron.user_id.email = "cron-errors@example.com"
+        mail_model = self.env["mail.mail"]
+        with patch.object(type(mail_model), "send", autospec=True):
+            self.cron._handle_callback_exception(
+                self.cron.name,
+                self.cron.ir_actions_server_id.id,
+                Exception("hello world"),
+            )
+        mail = mail_model.search(
+            [("subject", "ilike", self.cron.name)], order="id desc", limit=1
+        )
+        self.assertTrue(mail)
+        recipients = mail.recipient_ids.mapped("email") + [mail.email_to]
+        self.assertIn("cron-errors@example.com", recipients)
