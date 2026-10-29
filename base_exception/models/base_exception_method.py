@@ -113,11 +113,11 @@ class BaseExceptionMethod(models.AbstractModel):
                 else self.env
             )
             for rule_id, records in rules_to_remove.items():
-                records.with_env(new_env).write(
+                records.with_env(new_env).exists().write(
                     {"exception_ids": [Command.unlink(rule_id)]}
                 )
             for rule_id, records in rules_to_add.items():
-                records.with_env(new_env).write(
+                records.with_env(new_env).exists().write(
                     {"exception_ids": [Command.link(rule_id)]}
                 )
             # In case we have new exception, or exceptions that were not ignored yet, or
@@ -132,7 +132,12 @@ class BaseExceptionMethod(models.AbstractModel):
             # (e.g. sale.order.line -> order_id) would raise MissingError.
             # main_records itself was already resolved above through the
             # current cursor, so only rebinding it to new_env is needed here.
-            main_records_new_env = main_records.with_env(new_env)
+            # Restrict to records that new_cr can actually see: records just
+            # created in this same (uncommitted) transaction are invisible to
+            # new_cr, and reading their exception_ids/ignore_exception through
+            # it would raise MissingError. They have no persisted exceptions
+            # to check anyway (rules_to_add already triggers the raise above).
+            main_records_new_env = main_records.with_env(new_env).exists()
             if (
                 rules_to_add
                 or main_records_new_env._must_raise_exception_after_detection()
