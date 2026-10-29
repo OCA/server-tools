@@ -16,7 +16,7 @@ class TestOnchangeHelper(TransactionCase):
                 "zip": "89312",
             }
         )
-        input_vals = dict(parent_id=main_partner.id, type="contact")
+        input_vals = {"parent_id": main_partner.id, "type": "contact"}
         updated_vals = self.env["res.partner"].play_onchanges(input_vals, ["parent_id"])
         self.assertIn("country_id", updated_vals)
         self.assertIn("state_id", updated_vals)
