@@ -1,0 +1,12 @@
+- Sébastien BEAU \<<sebastien.beau@akretion.com>\>
+- David Beal \<<bealdavid@gmail.com>\>
+- Alexis de Lattre \<<alexis.delattre@akretion.com>\>
+- Sodexis \<<dev@sodexis.com>\>
+- Achraf Mhadhbi \<<machraf@bloopark.de>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Cristina Martin R.
+  - Víctor Martínez
+- [Komit](https://komit-consulting.com):
+  - Cuong NGUYEN MINH TRAN MANH
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
