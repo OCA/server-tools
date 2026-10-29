@@ -46,7 +46,6 @@ class IrCron(models.Model):
             self.env._("Task failure with UID = %(uid)d.", uid=self.env.uid)
         )
 
-    @api.model
     def _callback(self, cron_name, server_action_id):
         try:
             return super()._callback(cron_name, server_action_id)

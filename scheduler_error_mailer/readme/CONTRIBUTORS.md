@@ -8,3 +8,5 @@
   - Víctor Martínez
 - [Komit](https://komit-consulting.com):
   - Cuong NGUYEN MINH TRAN MANH
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

@@ -3,11 +3,16 @@
 
 from unittest.mock import patch
 
+from odoo.tests.common import tagged
+
 from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.scheduler_error_mailer.hooks import post_init_hook
 
 
+@tagged("post_install", "-at_install")
 class TestSchedulerErrorMailer(BaseCommon):
+    _test_user_groups = ("base.group_system",)
+
     def setUp(self):
         super().setUp()
         self.cron = self.env["ir.cron"].create(
