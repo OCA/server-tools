@@ -14,9 +14,11 @@ class Base(models.AbstractModel):
         new_values = {}
         for fieldname, value in vals.items():
             if fieldname not in record:
-                column = self._fields[fieldname]
-                if value and column.type == "many2one":
-                    value = value["id"]
+                column = self._fields.get(fieldname)
+                if not column:
+                    continue
+                if value and column.type == "many2one" and isinstance(value, dict):
+                    value = value.get("id")
                 new_values[fieldname] = value
         return new_values
 
@@ -65,7 +67,8 @@ class Base(models.AbstractModel):
         return {
             f: v
             for f, v in all_values.items()
-            if not (
+            if f in self._fields
+            and not (
                 self._fields[f].compute
                 and not self._fields[f].inverse
                 and self._fields[f].readonly

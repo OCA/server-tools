@@ -39,7 +39,8 @@ class TestOnchangeHelper(TransactionCase):
         self.assertIn("country_id", updated_vals)
 
     def test_playing_onchange_on_model(self):
+        state_de_by = self.env.ref("base.state_de_by")
         result = self.env["res.partner"].play_onchanges(
-            {"company_type": "company"}, ["company_type"]
+            {"state_id": state_de_by.id}, ["state_id"]
         )
-        self.assertEqual(result["is_company"], True)
+        self.assertEqual(result.get("country_id"), self.env.ref("base.de").id)
