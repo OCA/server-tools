@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Auto Backup Fs File
 ===================
@@ -17,7 +13,7 @@ Auto Backup Fs File
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -69,12 +65,12 @@ network drives, or other custom filesystems supported by ``fsspec``.
 
 Practical examples include:
 
-- Backing up Odoo data to cloud storage providers like AWS S3, Google
-  Cloud Storage, or Azure Blob Storage.
-- Storing backups on a secure local or remote filesystem for disaster
-  recovery purposes.
-- Automating backup processes in multi-environment setups, such as
-  multi-company or multi-website configurations.
+-  Backing up Odoo data to cloud storage providers like AWS S3, Google
+   Cloud Storage, or Azure Blob Storage.
+-  Storing backups on a secure local or remote filesystem for disaster
+   recovery purposes.
+-  Automating backup processes in multi-environment setups, such as
+   multi-company or multi-website configurations.
 
 APPROACH: The module extends the backup functionality from the
 ``auto_backup`` module by introducing a method that allows storing the
@@ -87,18 +83,27 @@ exporting Odoo instance data and storing it in the specified filesystem.
 Additionally, it allows users to download the backups for local storage
 or further processing.
 
+Backup file cleanup is handled automatically based on the **Days to
+Keep** configuration. When expired backup records are removed, the
+physical backup files are not deleted synchronously. Instead, the module
+delegates file deletion to the ``fs_attachment`` garbage collector (GC),
+which marks files for deferred removal and physically deletes them
+during Odoo's autovacuum cron cycle. This two-phase approach ensures
+transactional safety: files are only removed once the GC confirms no
+database record still references them.
+
 USEFUL INFORMATION:
 
-- **Dependencies**: This module depends on the ``fsspec`` library, its
-  relevant filesystem implementations, and the ``fs_file`` addon from
-  OCA/storage. Ensure the required ``fsspec`` plugins are installed for
-  your target filesystem.
+-  **Dependencies**: This module depends on the ``fsspec`` library, its
+   relevant filesystem implementations, and the ``fs_file`` addon from
+   OCA/storage. Ensure the required ``fsspec`` plugins are installed for
+   your target filesystem.
 
 Installation
 ============
 
 This addon itself does not introduce any dependencies, but its
-dependencies may require additional packages.:wa
+dependencies may require additional packages.
 
 Configuration
 =============
@@ -107,36 +112,35 @@ Configuration
    module, ensure you have reviewed the documentation for the following
    modules:
 
-- ``fs_attachment``
-- ``fs_storage`` These modules provide the necessary setup for file
-  storage and attachment handling.
+-  ``fs_attachment``
+-  ``fs_storage`` These modules provide the necessary setup for file
+   storage and attachment handling.
 
 2. **Configure File Storage**
 
-- Navigate to **Settings** > **Technical** > **FS Storage**.
-- Create or select an existing storage configuration.
-- Ensure the storage is properly set up and tested for accessibility.
+-  Navigate to **Settings** > **Technical** > **FS Storage**.
+-  Create or select an existing storage configuration.
+-  Ensure the storage is properly set up and tested for accessibility.
 
 3. **Link Backup File field to Storage**
 
-- While configuring the file storage in **Settings** > **Technical** >
-  **FS Storage**, ensure that the ``backup_file`` from the
-  ``db.backup.fs.file`` model is listed under the ``Field`` field.
-- This step is part of the storage configuration process.
-- Save the changes after verifying the setup.
+-  While configuring the file storage in **Settings** > **Technical** >
+   **FS Storage**, ensure that the ``backup_file`` from the
+   ``db.backup.fs.file`` model is listed under the ``Field`` field.
+-  This step is part of the storage configuration process.
+-  Save the changes after verifying the setup.
 
-|Example of File Storage Configuration|
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/images/file_storage_configuration.png
+   :alt: Example of File Storage Configuration
 
 4. **Verify Configuration**
 
-- Perform a test backup to ensure the files are being stored in the
-  correct location.
-- Check the logs for any errors or warnings.
+-  Perform a test backup to ensure the files are being stored in the
+   correct location.
+-  Check the logs for any errors or warnings.
 
 By following these steps, you will ensure that the module is properly
 configured for storing backups in the desired file storage system.
-
-.. |Example of File Storage Configuration| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/images/file_storage_configuration.png
 
 Usage
 =====
@@ -179,24 +183,49 @@ How to Use the Module
 4. Manage Fs File Backups
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- In the Fs File backups list view, you can see details such as the
-  backup filename and associated database backup configuration.
-- Use this view to manage or download backups as needed.
+-  In the Fs File backups list view, you can see details such as the
+   backup filename and associated database backup configuration.
+-  Use this view to manage or download backups as needed.
+
+5. Cleanup and File Deletion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Backup retention is controlled by the **Days to Keep** field on the
+backup configuration. When this value is greater than 0, the automatic
+cleanup process removes expired backup records during each backup run.
+
+When a backup record is deleted (either by automatic cleanup or manually
+from the list view), the physical backup file in the filesystem storage
+is **not removed immediately**. Instead, the file is marked for deferred
+deletion by the ``fs_attachment`` garbage collector (GC), which runs
+periodically via Odoo's autovacuum cron. Physical files are only removed
+from the storage backend once the GC confirms no database record
+references them.
+
+This means:
+
+-  **Immediately after deletion**: the database record is gone, but the
+   file may still exist in the storage backend for a short period.
+-  **After the next autovacuum cycle**: the file is permanently deleted
+   from the storage backend.
+
+This behavior requires the storage's ``autovacuum_gc`` flag to be
+enabled (the default). If disabled, files must be managed manually.
 
 Screenshots
 ~~~~~~~~~~~
 
-- **Backup Configuration Form View** |Backup Configuration Form|
+-  **Backup Configuration Form View** |Backup Configuration Form|
 
-- **Fs File Backups List View** |Fs File Backups List|
+-  **Fs File Backups List View** |Fs File Backups List|
 
 Notes
 ~~~~~
 
-- Ensure that the FSSPEC storage is properly configured before using the
-  **Fs File** method.
-- This module adds a new stat button in the backup configuration form
-  view to quickly access Fs File backups.
+-  Ensure that the FSSPEC storage is properly configured before using
+   the **Fs File** method.
+-  This module adds a new stat button in the backup configuration form
+   view to quickly access Fs File backups.
 
 .. |Backup Configuration Form| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/static/description/db_backup_form_view.png
 .. |Fs File Backups List| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/static/description/db_backup_fs_file_tree_view.png
@@ -204,18 +233,18 @@ Notes
 Known issues / Roadmap
 ======================
 
-- **Folder field behavior**: The ``folder`` field on the ``db.backup``
-  model specifies the backup storage directory. For records using the
-  ``fs_file`` method, storage is actually controlled by the ``fs_file``
-  field's settings. However, since ``folder`` is currently a required
-  non-computed field in the ``auto_backup`` addon, modifications to sync
-  these two fields are not performed. Future versions may add this
-  synchronization support.
+-  **Folder field behavior**: The ``folder`` field on the ``db.backup``
+   model specifies the backup storage directory. For records using the
+   ``fs_file`` method, storage is controlled by the ``fs_file`` field's
+   settings. The ``folder`` field is hidden (``invisible``) and no
+   longer required when ``method='fs_file'``, so it no longer interferes
+   with ``fs_file`` configurations. No auto-sync between both fields is
+   performed since the methods are mutually exclusive.
 
-- **Design limitation**: The current implementation has a design
-  constraint due to ``fs_storage`` addon limitations. Since storage
-  setting targets the ``db.backup.fs.file`` model, only one storage
-  backend can effectively be used.
+-  **Design limitation**: The current implementation has a design
+   constraint due to ``fs_storage`` addon limitations. Since storage
+   setting targets the ``db.backup.fs.file`` model, only one storage
+   backend can effectively be used.
 
 Bug Tracker
 ===========
@@ -238,14 +267,14 @@ Authors
 Contributors
 ------------
 
-- Rolando Pérez Rebollo r.perez@binhex.cloud
+-  Rolando Pérez Rebollo r.perez@binhex.cloud
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Binhex
+-  Binhex
 
 Maintainers
 -----------

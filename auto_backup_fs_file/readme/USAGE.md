@@ -23,6 +23,18 @@ This module extends the functionality of the database backup system in Odoo by i
 - In the Fs File backups list view, you can see details such as the backup filename and associated database backup configuration.
 - Use this view to manage or download backups as needed.
 
+### 5. Cleanup and File Deletion
+
+Backup retention is controlled by the **Days to Keep** field on the backup configuration. When this value is greater than 0, the automatic cleanup process removes expired backup records during each backup run.
+
+When a backup record is deleted (either by automatic cleanup or manually from the list view), the physical backup file in the filesystem storage is **not removed immediately**. Instead, the file is marked for deferred deletion by the `fs_attachment` garbage collector (GC), which runs periodically via Odoo's autovacuum cron. Physical files are only removed from the storage backend once the GC confirms no database record references them.
+
+This means:
+- **Immediately after deletion**: the database record is gone, but the file may still exist in the storage backend for a short period.
+- **After the next autovacuum cycle**: the file is permanently deleted from the storage backend.
+
+This behavior requires the storage's `autovacuum_gc` flag to be enabled (the default). If disabled, files must be managed manually.
+
 ### Screenshots
 - **Backup Configuration Form View**
   ![Backup Configuration Form](../static/description/db_backup_form_view.png)

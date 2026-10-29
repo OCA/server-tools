@@ -70,6 +70,7 @@ class TestAutoBackupFsFile(BaseCommon):
             backup_config.name,
             f"Fs File Backup - {backup_config._get_fs_storage().name}",
         )
+        self.assertFalse(backup_config.folder)
 
         # Test computation of fs_file_backup_count
         self.assertEqual(backup_config.fs_file_backup_count, 0)
@@ -121,3 +122,51 @@ class TestAutoBackupFsFile(BaseCommon):
         backup_config.cleanup()  # Will use the computed is_expired
 
         self.assertEqual(backup_config.fs_file_backup_count, 0)
+
+        # Verify the backing ir.attachment is also removed (GC chain fires via unlink)
+        attachment = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "db.backup.fs.file"),
+                ("res_field", "=", "backup_file"),
+            ]
+        )
+        self.assertFalse(attachment)
+
+    def test_action_backup_triggers_cleanup(self):
+        """cleanup() must fire for fs_file records via action_backup(), not just
+        when called directly. Regression test for the bug where action_backup()
+        only passed local/sftp records to successful.cleanup(), making fs_file
+        cleanup dead code in production."""
+        self.test_storage.field_xmlids = (
+            "auto_backup_fs_file.field_db_backup_fs_file__backup_file"
+        )
+        backup_config = self._create_backup_config()
+
+        # Run first backup — creates record at create_date = now
+        self._action_backup(backup_config)
+        self.assertEqual(backup_config.fs_file_backup_count, 1)
+        first_backup = backup_config.fs_file_backup_ids
+
+        # Make the first backup expired by setting an old create_date directly
+        # (avoids patching Datetime.now which doesn't control ORM create_date)
+        old_date = fields.Datetime.add(
+            fields.Datetime.now(), days=-backup_config.days_to_keep - 1
+        )
+        self.env.cr.execute(
+            "UPDATE db_backup_fs_file SET create_date = %s WHERE id = %s",
+            (old_date, first_backup.id),
+        )
+        first_backup.invalidate_recordset(["is_expired", "create_date"])
+        self.assertTrue(first_backup.is_expired)
+
+        # Run second backup via action_backup() — this is the PRODUCTION call path.
+        # cleanup() must be triggered automatically for the expired first backup.
+        self._action_backup(backup_config)
+
+        # First backup must be gone (cleanup deleted it)
+        self.assertFalse(
+            first_backup.exists(),
+            "Expired backup was not deleted by action_backup()",
+        )
+        # A new backup should have been created
+        self.assertTrue(backup_config.fs_file_backup_ids)
