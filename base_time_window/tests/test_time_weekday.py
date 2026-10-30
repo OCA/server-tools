@@ -11,6 +11,6 @@ class TestTimeWeekday(TransactionCase):
         cls.time_weekday = cls.env["time.weekday"]
         cls.time_weekday_saturday = cls.time_weekday.search([("name", "=", "5")])
 
-    def test_weekday_delete(cls):
-        cls.time_weekday._get_id_by_name(cls.time_weekday_saturday.name)
-        cls.time_weekday_saturday.unlink()
+    def test_weekday_delete(self):
+        self.time_weekday._get_id_by_name(self.time_weekday_saturday.name)
+        self.time_weekday_saturday.unlink()

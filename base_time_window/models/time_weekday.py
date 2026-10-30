@@ -1,7 +1,7 @@
 # Copyright 2020 ACSONE SA/NV
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl)
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 
 
 class TimeWeekday(models.Model):
@@ -36,24 +36,24 @@ class TimeWeekday(models.Model):
             record.display_name = translated_values[record.name]
 
     @api.model
-    @tools.ormcache("name")
+    @api.ormcache("name")
     def _get_id_by_name(self, name):
         return self.search([("name", "=", name)], limit=1).id
 
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return records
 
     def write(self, vals):
         result = super().write(vals)
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return result
 
     def unlink(self):
         result = super().unlink()
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         return result
 
     def _get_next_weekday_date(self, date_from=False, include_date_from=True):
