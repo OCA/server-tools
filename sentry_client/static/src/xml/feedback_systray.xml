@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright 2026 Ledoent
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<templates xml:space="preserve">
+
+    <t t-name="sentry_client.FeedbackSystray">
+        <div class="o-sentry-feedback-systray">
+            <button
+                type="button"
+                class="btn btn-link"
+                aria-haspopup="dialog"
+                t-att-title="title"
+                t-att-aria-label="title"
+                t-on-click="open"
+            >
+                <i class="fa fa-bug" role="img" aria-hidden="true" />
+            </button>
+        </div>
+    </t>
+
+</templates>
