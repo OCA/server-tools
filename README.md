@@ -23,20 +23,20 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [attachment_unindex_content](attachment_unindex_content/) | 19.0.1.0.1 | <a href='https://github.com/moylop260'><img src='https://github.com/moylop260.png' width='32' height='32' style='border-radius:50%;' alt='moylop260'/></a> <a href='https://github.com/ebirbe'><img src='https://github.com/ebirbe.png' width='32' height='32' style='border-radius:50%;' alt='ebirbe'/></a> <a href='https://github.com/luisg123v'><img src='https://github.com/luisg123v.png' width='32' height='32' style='border-radius:50%;' alt='luisg123v'/></a> | Disable indexing of attachments
-[auditlog](auditlog/) | 19.0.2.0.1 |  | Audit Log
+[auditlog](auditlog/) | 19.0.2.0.2 |  | Audit Log
 [auto_backup](auto_backup/) | 19.0.1.0.1 |  | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 19.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow you to select scheduled actions that should not run simultaneously.
-[base_exception](base_exception/) | 19.0.1.0.0 | <a href='https://github.com/hparfr'><img src='https://github.com/hparfr.png' width='32' height='32' style='border-radius:50%;' alt='hparfr'/></a> <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_exception](base_exception/) | 19.0.1.0.1 | <a href='https://github.com/hparfr'><img src='https://github.com/hparfr.png' width='32' height='32' style='border-radius:50%;' alt='hparfr'/></a> <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 19.0.1.0.0 |  | Up to date Fontawesome resources.
 [base_kanban_stage](base_kanban_stage/) | 19.0.1.0.0 |  | Provides stage model and abstract logic for inheritance
 [base_partition](base_partition/) | 19.0.1.0.0 |  | Base module that provide the partition method on all models
-[base_search_fuzzy](base_search_fuzzy/) | 19.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
+[base_search_fuzzy](base_search_fuzzy/) | 19.0.1.0.1 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_technical_user](base_technical_user/) | 19.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 19.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 19.0.1.0.1 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
 [base_write_diff](base_write_diff/) | 19.0.1.0.0 |  | Prevents updates on fields whose values won't change anyway
 [bus_alt_connection](bus_alt_connection/) | 19.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
-[database_cleanup](database_cleanup/) | 19.0.1.0.6 |  | Database cleanup
+[database_cleanup](database_cleanup/) | 19.0.1.0.7 |  | Database cleanup
 [dbfilter_from_header](dbfilter_from_header/) | 19.0.1.0.0 |  | Filter databases with HTTP headers
 [field_vector](field_vector/) | 19.0.1.0.0 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | New specialized field to store vector data
 [iap_alternative_provider](iap_alternative_provider/) | 19.0.1.0.0 | <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | Base module for providing alternative provider for iap apps
