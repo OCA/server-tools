@@ -18,12 +18,10 @@ class CleanupPurgeLineField(models.TransientModel):
     )
     field_id = fields.Many2one(
         comodel_name="ir.model.fields",
-        string="Field",
     )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         related="field_id.model_id",
-        string="Model",
         store=True,
     )
     model_name = fields.Char(
