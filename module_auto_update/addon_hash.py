@@ -26,9 +26,8 @@ def _walk(top, exclude_patterns, keep_langs):
                 continue
             if keep_langs and reldir in {"i18n", "i18n_extra"}:
                 basename, ext = os.path.splitext(filename)
-                if ext == ".po":
-                    if basename.split("_")[0] not in keep_langs:
-                        continue
+                if ext == ".po" and basename.split("_")[0] not in keep_langs:
+                    continue
             yield filepath
 
 

@@ -43,9 +43,9 @@
     </record>
 
     <menuitem
+        id="menu_base_module_upgrade_wizard_action"
         name="Auto-Upgrade Modules"
         action="base_module_upgrade_wizard_action"
-        id="menu_base_module_upgrade_wizard_action"
         groups="base.group_no_one"
         parent="base.menu_management"
         sequence="45"
