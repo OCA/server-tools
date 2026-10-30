@@ -2,6 +2,8 @@
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from typing import ClassVar
+
 from odoo.tests.common import TransactionCase
 
 from odoo.addons.module_change_auto_install.patch import (
@@ -10,7 +12,7 @@ from odoo.addons.module_change_auto_install.patch import (
 
 
 class TestModule(TransactionCase):
-    _EXPECTED_RESULTS = {
+    _EXPECTED_RESULTS: ClassVar[dict] = {
         "web_responsive": {"web_responsive": True},
         "sale, purchase,": {"sale": True, "purchase": True},
         "web_responsive:web,base_technical_features:,"

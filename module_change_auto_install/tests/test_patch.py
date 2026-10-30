@@ -54,7 +54,7 @@ class TestModuleChangeAutoInstall(TransactionCase):
     def test_enabled_module_unconditional(self):
         m = make_manifest("test_module", ["base"], auto_install=False)
         # Should return its dependencies as auto-install condition
-        self.assertEqual(m._Manifest__manifest_cached["auto_install"], set(["base"]))
+        self.assertEqual(m._Manifest__manifest_cached["auto_install"], {"base"})
 
     @patch.dict(
         config.options,
@@ -64,9 +64,7 @@ class TestModuleChangeAutoInstall(TransactionCase):
     )
     def test_enabled_module_with_specific_dependencies(self):
         m = make_manifest("test_module", ["base"], auto_install=False)
-        self.assertEqual(
-            m._Manifest__manifest_cached["auto_install"], set(["dep1", "dep2"])
-        )
+        self.assertEqual(m._Manifest__manifest_cached["auto_install"], {"dep1", "dep2"})
 
     @patch.dict(
         config.options, {"module_change_auto_install.modules_enabled": "test_module:"}

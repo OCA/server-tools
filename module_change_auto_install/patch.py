@@ -73,11 +73,11 @@ def _get_auto_install_flag(self):
     auto_install = self._Manifest__manifest_cached["auto_install"]
     module = self.name
 
-    if auto_install and module in modules_auto_install_disabled_dict.keys():
+    if auto_install and module in modules_auto_install_disabled_dict:
         _logger.info(f"Module '{module}' has been marked as NOT auto installable.")
         return False
 
-    if not auto_install and module in modules_auto_install_enabled_dict.keys():
+    if not auto_install and module in modules_auto_install_enabled_dict:
         specific_dependencies = modules_auto_install_enabled_dict.get(module)
         if isinstance(specific_dependencies, bool):
             # Classical case
