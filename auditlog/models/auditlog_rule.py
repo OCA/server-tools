@@ -126,7 +126,6 @@ class AuditlogRule(models.Model):
     name = fields.Char(required=True)
     model_id = fields.Many2one(
         "ir.model",
-        "Model",
         help="Select model for which you want to generate log.",
         ondelete="set null",
         index=True,
@@ -201,7 +200,6 @@ class AuditlogRule(models.Model):
     )
     action_id = fields.Many2one(
         "ir.actions.act_window",
-        string="Action",
     )
     capture_record = fields.Boolean(
         string="Log values on deletion",
