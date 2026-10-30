@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_force_record_noupdate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-05-28 09:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_force_record_noupdate
+#: model:ir.model.fields,field_description:base_force_record_noupdate.field_ir_model__force_noupdate
+msgid "Force No-Update"
+msgstr "Forza non-aggiornare"
+
+#. module: base_force_record_noupdate
+#: model:ir.model,name:base_force_record_noupdate.model_ir_model_data
+msgid "Model Data"
+msgstr "Dati modello"
+
+#. module: base_force_record_noupdate
+#: model:ir.model,name:base_force_record_noupdate.model_ir_model
+msgid "Models"
+msgstr "Modelli"
+
+#. module: base_force_record_noupdate
+#: model:ir.actions.server,name:base_force_record_noupdate.action_run_ir_action_todo
+msgid "Toggle Force Noupdate"
+msgstr "Inverti forza non-aggiornare"
