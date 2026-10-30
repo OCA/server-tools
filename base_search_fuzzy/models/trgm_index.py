@@ -25,7 +25,6 @@ class TrgmIndex(models.Model):
 
     field_id = fields.Many2one(
         comodel_name="ir.model.fields",
-        string="Field",
         ondelete="set default",
         required=True,
         help='You can either select a field of type "text" or "char".',
