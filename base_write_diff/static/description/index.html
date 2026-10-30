@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Base - Write Diff</title>
 <style type="text/css">
 
 /*
@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:994943d679efb27da14d07b5e01d771b2f776f89aa42c59b08a692ea84e6862f
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/19.0/base_write_diff"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-base_write_diff"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/20.0/base_write_diff"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-20-0/server-tools-20-0-base_write_diff"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows filtering values to update on records according to
 whether they are actually different from the records’ current values.</p>
 <p><strong>Table of contents</strong></p>
@@ -460,7 +460,7 @@ calls from the first usage of the context key down to the base method
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="w">
 
 </span><span class="kn">from</span><span class="w"> </span><span class="nn">odoo</span><span class="w"> </span><span class="kn">import</span> <span class="n">api</span><span class="p">,</span> <span class="n">models</span><span class="w">
-</span><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.tools.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">frozendict</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.tools.misc</span><span class="w"> </span><span class="kn">import</span> <span class="nb">frozendict</span><span class="w">
 
 
 </span><span class="k">class</span><span class="w"> </span><span class="nc">ProductProduct</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span><span class="w">
@@ -475,7 +475,7 @@ calls from the first usage of the context key down to the base method
 </span>        <span class="k">if</span> <span class="n">vals_to_check</span> <span class="o">:=</span> <span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="n">vals</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fnames</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">vals</span><span class="p">)}:</span><span class="w">
 </span>            <span class="n">groups</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">())</span><span class="w">
 </span>            <span class="k">for</span> <span class="n">prod</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span><span class="w">
-</span>                <span class="n">groups</span><span class="p">[</span><span class="n">frozendict</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">_get_write_diff_values</span><span class="p">(</span><span class="n">vals_to_check</span><span class="p">))]</span> <span class="o">+=</span> <span class="n">prod</span><span class="w">
+</span>                <span class="n">groups</span><span class="p">[</span><span class="nb">frozendict</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">_get_write_diff_values</span><span class="p">(</span><span class="n">vals_to_check</span><span class="p">))]</span> <span class="o">+=</span> <span class="n">prod</span><span class="w">
 </span>            <span class="k">for</span> <span class="n">diff_vals</span><span class="p">,</span> <span class="n">prods</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span><span class="w">
 </span>                <span class="k">if</span> <span class="n">res_vals</span> <span class="o">:=</span> <span class="p">(</span><span class="n">vals</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">(</span><span class="n">diff_vals</span><span class="p">)):</span><span class="w">
 </span>                    <span class="nb">super</span><span class="p">(</span><span class="n">ProductProduct</span><span class="p">,</span> <span class="n">prods</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">res_vals</span><span class="p">)</span><span class="w">
@@ -488,7 +488,7 @@ calls from the first usage of the context key down to the base method
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_write_diff%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_write_diff%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -514,7 +514,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/19.0/base_write_diff">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/20.0/base_write_diff">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

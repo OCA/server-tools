@@ -8,7 +8,7 @@ from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
 from odoo.tools.misc import mute_logger
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CREATE_CONTEXT
 
 
 class TestRecordDiffCommon(TransactionCase):
@@ -16,7 +16,7 @@ class TestRecordDiffCommon(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         # Setup env
-        cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
+        cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CREATE_CONTEXT).env
 
         # ``_register_hook()`` is usually called at the end of the test process, but
         # we need to be able to test it here
