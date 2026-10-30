@@ -67,9 +67,7 @@ class TimeWeekday(models.Model):
         if not date_from:
             date_from = fields.Date.today()
         next_weekday_delta = int(self.name) - date_from.weekday()
-        if next_weekday_delta < 0:
-            next_weekday_delta += 7
-        elif next_weekday_delta == 0 and not include_date_from:
+        if next_weekday_delta < 0 or next_weekday_delta == 0 and not include_date_from:
             next_weekday_delta += 7
         return fields.Date.add(date_from, days=next_weekday_delta)
 

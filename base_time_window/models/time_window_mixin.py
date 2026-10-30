@@ -60,18 +60,18 @@ class TimeWindowMixin(models.AbstractModel):
                     AND w.%(check_field)s = %(check_field_id)s;"""
             self.env.cr.execute(
                 SQL,
-                dict(
-                    table=AsIs(self._table),
-                    relation=AsIs(weekdays_field.relation),
-                    relation_window_fkey=AsIs(weekdays_field.column1),
-                    relation_week_day_fkey=AsIs(weekdays_field.column2),
-                    start=record.time_window_start,
-                    end=record.time_window_end,
-                    window_id=record.id,
-                    weekday_ids=tuple(record.time_window_weekday_ids.ids),
-                    check_field=AsIs(self._time_window_overlap_check_field),
-                    check_field_id=record[self._time_window_overlap_check_field].id,
-                ),
+                {
+                    "table": AsIs(self._table),
+                    "relation": AsIs(weekdays_field.relation),
+                    "relation_window_fkey": AsIs(weekdays_field.column1),
+                    "relation_week_day_fkey": AsIs(weekdays_field.column2),
+                    "start": record.time_window_start,
+                    "end": record.time_window_end,
+                    "window_id": record.id,
+                    "weekday_ids": tuple(record.time_window_weekday_ids.ids),
+                    "check_field": AsIs(self._time_window_overlap_check_field),
+                    "check_field_id": record[self._time_window_overlap_check_field].id,
+                },
             )
             res = self.env.cr.fetchall()
             if res:
@@ -99,11 +99,11 @@ class TimeWindowMixin(models.AbstractModel):
         error_msg = self.env._("Hour should be between 00 and 23")
         for record in self:
             if record.time_window_start:
-                hour, minute = self._get_hour_min_from_value(record.time_window_start)
+                hour, _minute = self._get_hour_min_from_value(record.time_window_start)
                 if hour > 23:
                     raise ValidationError(error_msg)
             if record.time_window_end:
-                hour, minute = self._get_hour_min_from_value(record.time_window_end)
+                hour, _minute = self._get_hour_min_from_value(record.time_window_end)
                 if hour > 23:
                     raise ValidationError(error_msg)
 
