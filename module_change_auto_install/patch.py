@@ -123,5 +123,7 @@ def post_load():
     _logger.info("Applying patch module_change_auto_install ...")
     Manifest.__init__ = _patched_init
     rcfile = config.get("config")
-    if rcfile:
+    if rcfile and os.path.exists(rcfile):
         _load_module_change_auto_install_options(rcfile)
+    if hasattr(Manifest._get_manifest_from_addons, "cache_clear"):
+        Manifest._get_manifest_from_addons.cache_clear()
