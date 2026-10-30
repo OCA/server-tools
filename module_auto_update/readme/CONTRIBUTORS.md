@@ -6,3 +6,5 @@
 - Manuel Engel \<<manuel.engel@initos.com>\>
 - PyTech SRL <info@pytech.it>
 - Ooops404 <info@ooops404.com>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

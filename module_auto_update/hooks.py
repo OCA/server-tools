@@ -5,4 +5,4 @@ from .models.module import PARAM_INSTALLED_CHECKSUMS
 
 
 def uninstall_hook(env):
-    env["ir.config_parameter"].set_param(PARAM_INSTALLED_CHECKSUMS, False)
+    env["ir.config_parameter"].set_str(PARAM_INSTALLED_CHECKSUMS, None)

@@ -11,12 +11,20 @@ from odoo.modules import get_module_path
 from odoo.tests import TransactionCase
 
 from ..addon_hash import addon_hash
-from ..models.module import DEFAULT_EXCLUDE_PATTERNS, IncompleteUpgradeError
+from ..models.module import (
+    DEFAULT_EXCLUDE_PATTERNS,
+    PARAM_INSTALLED_CHECKSUMS,
+    IncompleteUpgradeError,
+)
 
 MODULE_NAME = "module_auto_update"
 
 
 class TestModule(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.env["ir.config_parameter"].set_str(PARAM_INSTALLED_CHECKSUMS, None)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

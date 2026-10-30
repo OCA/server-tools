@@ -48,7 +48,7 @@ class Module(models.Model):
     def _get_checksum_dir(self):
         self.ensure_one()
 
-        exclude_patterns = self.env["ir.config_parameter"].get_param(
+        exclude_patterns = self.env["ir.config_parameter"].get_str(
             PARAM_EXCLUDE_PATTERNS,
             DEFAULT_EXCLUDE_PATTERNS,
         )
@@ -71,12 +71,12 @@ class Module(models.Model):
     @api.model
     def _get_saved_checksums(self):
         Icp = self.env["ir.config_parameter"]
-        return json.loads(Icp.get_param(PARAM_INSTALLED_CHECKSUMS, "{}"))
+        return json.loads(Icp.get_str(PARAM_INSTALLED_CHECKSUMS, "{}"))
 
     @api.model
     def _save_checksums(self, checksums):
         Icp = self.env["ir.config_parameter"]
-        Icp.set_param(PARAM_INSTALLED_CHECKSUMS, json.dumps(checksums))
+        Icp.set_str(PARAM_INSTALLED_CHECKSUMS, json.dumps(checksums))
         Icp.flush_model()
 
     @api.model
