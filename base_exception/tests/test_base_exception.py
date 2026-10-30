@@ -214,3 +214,17 @@ class TestBaseException(TransactionCase):
             self.assertTrue(self.po.with_env(new_env).exception_ids)
             self.assertNotEqual(self.po.state, "purchase")
             self.assertNotEqual(self.po.with_env(new_env).state, "purchase")
+
+    @patch_base_exception_method_env
+    def test_detect_exceptions_on_uncommitted_record(self):
+        # Records created in the ongoing transaction are invisible to the
+        # separate cursor that detect_exceptions() uses to store exceptions.
+        # Simulate that by making exists() return an empty recordset: the
+        # write must be skipped (no exception stored) and the detection
+        # still raises BaseExceptionError.
+        with (
+            patch("odoo.models.BaseModel.exists", lambda records: records.browse()),
+            self.assertRaises(BaseExceptionError),
+        ):
+            self.po.detect_exceptions()
+        self.assertFalse(self.po.exception_ids)
