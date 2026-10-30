@@ -6,6 +6,11 @@ from odoo import Command
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
+PNG = (
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+    "AAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+)
+
 
 class TestTrackingManager(TransactionCase):
     @classmethod
@@ -58,6 +63,24 @@ class TestTrackingManager(TransactionCase):
         self.partner_model.automatic_custom_tracking = True
         self.partner_model.update_custom_tracking()
         self.assertTrue(field.custom_tracking)
+
+    def test_update_skips_untrackable_types(self):
+        # mail cannot track binary or json fields: once tracked, writing
+        # one raised NotImplementedError when the tracking was flushed.
+        image = self._get_fields(["image_1920"])
+        json_field = self.env.ref("mail.field_mail_tracking_value__field_info")
+        self.assertFalse(image.trackable)
+        self.assertFalse(json_field.trackable)
+        self.partner_model.automatic_custom_tracking = True
+        self.partner_model.update_custom_tracking()
+        self.assertFalse(image.custom_tracking)
+        self.partner.image_1920 = PNG
+        self.flush_tracking()
+
+    def test_untrackable_type_tracked_by_hand(self):
+        self._get_fields(["image_1920"]).custom_tracking = True
+        self.partner.image_1920 = PNG
+        self.assertFalse(self.messages)
 
     @classmethod
     def flush_tracking(cls):
