@@ -11,6 +11,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
 
+import paramiko
 import pysftp
 
 from odoo import tools
@@ -71,6 +72,9 @@ class TestDbBackup(common.TransactionCase):
                     "sftp_user": "tuser",
                     "sftp_password": "password",
                     "folder": "/folder/",
+                    "sftp_host_key_verification": True,
+                    "sftp_host_key": "test_host ssh-ed25519 "
+                    "AAAAC3NzaC1lZDI1NTE5AAAAIE+zpN6wMyJRo38qafVqfuPCaInlAikwstd3VUZQ7SXY",
                 }
             )
         self.vals = vals
@@ -191,23 +195,57 @@ class TestDbBackup(common.TransactionCase):
             res = rec_id.action_backup_all()
             self.assertEqual(rec_id.search().action_backup(), res)
 
+    def test_sftp_config_no_hostkey(self):
+        rec_id = self.new_record()
+        rec_id.write({"sftp_host_key": ""})
+        with self.assertRaises(UserError) as context_manager:
+            rec_id.sftp_connection()
+        self.assertEqual(str(context_manager.exception), "No hostkey found")
+
+    def test_sftp_config_invalid_hostkey(self):
+        rec_id = self.new_record()
+        rec_id.write({"sftp_host_key": "not-a-hostkey"})
+        with self.assertRaises(UserError) as context_manager:
+            rec_id.sftp_connection()
+        self.assertEqual(
+            str(context_manager.exception),
+            'Could not parse hostkey: "not-a-hostkey"',
+        )
+
+    def test_sftp_config_invalid_hostkey_content(self):
+        rec_id = self.new_record()
+        rec_id.write({"sftp_host_key": "test_host ssh-ed25519 not-base64"})
+        with self.assertRaises(UserError) as context_manager:
+            rec_id.sftp_connection()
+        self.assertEqual(
+            str(context_manager.exception),
+            'Could not parse hostkey: "test_host ssh-ed25519 not-base64"',
+        )
+
     @patch(f"{model}.pysftp")
-    def test_sftp_connection_init_passwd(self, pysftp):
+    def test_sftp_connection_init_passwd_hostkey(self, pysftp):
         """It should initiate SFTP connection w/ proper args and pass"""
         rec_id = self.new_record()
         rec_id.sftp_connection()
+        cnopts = pysftp.CnOpts()
+        hostkey = paramiko.hostkeys.HostKeyEntry.from_line(rec_id.sftp_host_key)
+        cnopts.hostkeys.add(rec_id.sftp_host, hostkey.key.get_name(), hostkey.key)
         pysftp.Connection.assert_called_once_with(
             host=rec_id.sftp_host,
             username=rec_id.sftp_user,
             port=rec_id.sftp_port,
             password=rec_id.sftp_password,
+            cnopts=cnopts,
         )
 
     @patch(f"{model}.pysftp")
-    def test_sftp_connection_init_key(self, pysftp):
+    def test_sftp_connection_init_key_hostkey(self, pysftp):
         """It should initiate SFTP connection w/ proper args and key"""
         rec_id = self.new_record()
         rec_id.write({"sftp_private_key": "pkey", "sftp_password": "pkeypass"})
+        cnopts = pysftp.CnOpts()
+        hostkey = paramiko.hostkeys.HostKeyEntry.from_line(rec_id.sftp_host_key)
+        cnopts.hostkeys.add(rec_id.sftp_host, hostkey.key.get_name(), hostkey.key)
         rec_id.sftp_connection()
         pysftp.Connection.assert_called_once_with(
             host=rec_id.sftp_host,
@@ -215,6 +253,42 @@ class TestDbBackup(common.TransactionCase):
             port=rec_id.sftp_port,
             private_key=rec_id.sftp_private_key,
             private_key_pass=rec_id.sftp_password,
+            cnopts=cnopts,
+        )
+
+    @patch(f"{model}.pysftp")
+    def test_sftp_connection_init_passwd(self, pysftp):
+        """It should initiate SFTP connection w/ proper args and pass"""
+        rec_id = self.new_record()
+        rec_id.write({"sftp_host_key_verification": False})
+        rec_id.sftp_connection()
+        pysftp.Connection.assert_called_once_with(
+            host=rec_id.sftp_host,
+            username=rec_id.sftp_user,
+            port=rec_id.sftp_port,
+            password=rec_id.sftp_password,
+            cnopts=pysftp.CnOpts(),
+        )
+
+    @patch(f"{model}.pysftp")
+    def test_sftp_connection_init_key(self, pysftp):
+        """It should initiate SFTP connection w/ proper args and key"""
+        rec_id = self.new_record()
+        rec_id.write(
+            {
+                "sftp_private_key": "pkey",
+                "sftp_password": "pkeypass",
+                "sftp_host_key_verification": False,
+            }
+        )
+        rec_id.sftp_connection()
+        pysftp.Connection.assert_called_once_with(
+            host=rec_id.sftp_host,
+            username=rec_id.sftp_user,
+            port=rec_id.sftp_port,
+            private_key=rec_id.sftp_private_key,
+            private_key_pass=rec_id.sftp_password,
+            cnopts=pysftp.CnOpts(),
         )
 
     @patch(f"{model}.pysftp")
