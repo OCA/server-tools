@@ -20,7 +20,7 @@ class CleanupPurgeLineData(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.data"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         to_unlink = objs.filtered(lambda x: not x.purged and x.data_id)
         self.logger.info("Purging data entries: %s", to_unlink.mapped("name"))
