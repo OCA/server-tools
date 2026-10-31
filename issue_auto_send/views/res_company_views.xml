@@ -8,6 +8,7 @@
             <xpath expr="//page[@name='general_info']" position="after">
                 <page name="issue_auto_send" string="Error Reports">
                     <group name="issue_auto_send_main">
+                        <field name="issue_auto_send_enabled" />
                         <field
                             name="issue_auto_send_github_url"
                             widget="url"
@@ -18,9 +19,8 @@
                             placeholder="my-error-bot"
                         />
                         <field name="issue_auto_send_github_token" password="True" />
-                        <field name="issue_auto_send_target" widget="radio" />
                     </group>
-                    <group name="issue_auto_send_test" string="Tests">
+                    <group name="issue_auto_send_test">
                         <button
                             name="action_test_github_connection"
                             type="object"
@@ -28,18 +28,6 @@
                             icon="fa-plug"
                             class="btn-secondary"
                             colspan="2"
-                        />
-                        <!-- Clicking with unsaved changes saves the company, which
-                             reloads the page and closes the error dialog; save
-                             first. -->
-                        <button
-                            name="action_raise_dummy_server_error"
-                            type="object"
-                            string="Raise Dummy Server Error"
-                            icon="fa-bug"
-                            class="btn-secondary"
-                            colspan="2"
-                            confirm="This raises a real Odoo server error to test the send button. Save your changes first: saving the company reloads the page and closes the error dialog."
                         />
                         <field
                             name="issue_auto_send_check_result"
@@ -50,7 +38,6 @@
                         <field
                             name="issue_auto_send_show_advanced"
                             widget="boolean_toggle"
-                            options="{'autosave': false}"
                         />
                     </group>
                     <div
@@ -58,7 +45,7 @@
                         invisible="not issue_auto_send_show_advanced"
                     >
                         <group>
-                            <field name="issue_auto_send_enabled" />
+                            <field name="issue_auto_send_target" widget="radio" />
                         </group>
                         <group>
                             <field name="issue_auto_send_email_enabled" />
@@ -74,6 +61,20 @@
                             <field
                                 name="issue_auto_send_duplicate_hours"
                                 invisible="not issue_auto_send_skip_duplicates"
+                            />
+                        </group>
+                        <group>
+                            <!-- Clicking with unsaved changes saves the company, which
+                                 reloads the page and closes the error dialog; save
+                                 first. -->
+                            <button
+                                name="action_raise_dummy_server_error"
+                                type="object"
+                                string="Raise Dummy Server Error"
+                                icon="fa-bug"
+                                class="btn-secondary"
+                                colspan="2"
+                                confirm="This raises a real Odoo server error to test the send button. Save your changes first: saving the company reloads the page and closes the error dialog."
                             />
                         </group>
                     </div>
