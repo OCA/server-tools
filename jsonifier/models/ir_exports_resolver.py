@@ -14,10 +14,11 @@ help_message = [
     "\nFor global resolvers:",
     ":param value: JSON dict",
     ":param record: the record",
-    "\n"
-    "In both types, you can override the final json key."
-    "\nTo achieve this, simply return a dict like: "
-    "\n{'result': {'_value': $value, '_json_key': $new_json_key}}",
+    (
+        "\nIn both types, you can override the final json key."
+        "\nTo achieve this, simply return a dict like: "
+        "\n{'result': {'_value': $value, '_json_key': $new_json_key}}"
+    ),
 ]
 
 
@@ -42,7 +43,7 @@ class FieldResolver(models.Model):
             assert len(param) == len(records)
             for value, record in zip(param, records, strict=True):
                 values = {"value": value, "record": record, "context": context}
-                safe_eval(self.python_code, values, mode="exec", nocopy=True)
+                safe_eval(self.python_code, values, mode="exec")
                 result.append(values["result"])
         else:  # param is a field
             for record in records:
@@ -53,6 +54,6 @@ class FieldResolver(models.Model):
                     "field_type": param.type,
                     "context": context,
                 }
-                safe_eval(self.python_code, values, mode="exec", nocopy=True)
+                safe_eval(self.python_code, values, mode="exec")
                 result.append(values["result"])
         return result

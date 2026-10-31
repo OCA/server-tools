@@ -5,7 +5,7 @@
 from collections import OrderedDict
 
 from odoo import fields, models
-from odoo.tools import ormcache
+from odoo.api import ormcache
 
 
 def partition(line, accessor):
@@ -88,10 +88,23 @@ class IrExports(models.Model):
         help="If set, will apply the global resolver to the result",
     )
 
+    def _get_json_parser_cache_key(self):
+        # write_date does not change between writes in the same transaction.
+        return tuple(
+            (
+                line_id.name,
+                line_id.target,
+                line_id.lang_id.code,
+                line_id.resolver_id.id,
+                line_id.instance_method_name,
+            )
+            for line_id in self.export_fields
+        )
+
     @ormcache(
         "self.language_agnostic",
         "self.global_resolver_id.id",
-        "tuple(self.export_fields.mapped('write_date'))",
+        "self._get_json_parser_cache_key()",
     )
     def get_json_parser(self):
         """Creates a parser from ir.exports record and return it.

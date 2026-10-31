@@ -6,17 +6,17 @@
 
 from odoo import tools
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 from ..models.utils import convert_simple_to_full_parser
+from .common import JsonifierCase
 
 
 def jsonify_custom(self, field_name):
     return "yeah!"
 
 
-class TestParser(TransactionCase):
+class TestParser(JsonifierCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -105,17 +105,17 @@ class TestParser(TransactionCase):
             "comment",
         ]
 
-        exporter = self.env.ref("jsonifier.ir_exp_partner")
-        parser = exporter.get_json_parser()
+        exporter_id = self.ir_export_id
+        parser = exporter_id.get_json_parser()
         expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
         # modify an ir.exports_line to put a target for a field
-        self.env.ref("jsonifier.category_id_name").write(
-            {"target": "category_id:category/name"}
-        )
+        exporter_id.export_fields.filtered(
+            lambda line_id: line_id.name == "category_id/name"
+        ).write({"target": "category_id:category/name"})
         expected_parser[4] = ("category_id:category", ["name"])
-        parser = exporter.get_json_parser()
+        parser = exporter_id.get_json_parser()
         expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
@@ -179,10 +179,10 @@ class TestParser(TransactionCase):
             "name": "Akretion",
             "_fieldname_color": "Color Index",
             "color": 0,
-            "_fieldname_children": "Contact",
+            "_fieldname_children": "Related Contacts",
             "children": [
                 {
-                    "_fieldname_children": "Contact",
+                    "_fieldname_children": "Related Contacts",
                     "children": [],
                     "_fieldname_email": "Email",
                     "email": None,
@@ -211,7 +211,7 @@ class TestParser(TransactionCase):
             "_fieldname_category_id": "Tags",
             "category_id": [{"_fieldname_name": "Name", "name": "Inovator"}],
             "_fieldname_create_date": "Created on",
-            "_fieldname_partner_latitude": "Geo Latitude",
+            "_fieldname_partner_latitude": "Latitude",
             "create_date": "2019-10-31T14:39:49",
         }
         expected_json_with_fieldname = {
@@ -219,15 +219,15 @@ class TestParser(TransactionCase):
             "lang": "en_US",
             "_fieldname_comment": "Notes",
             "comment": None,
-            "_fieldname_partner_latitude": "Geo Latitude",
+            "_fieldname_partner_latitude": "Latitude",
             "_fieldname_name": "Name",
             "name": "Akretion",
             "_fieldname_color": "Color Index",
             "color": 0,
-            "_fieldname_children": "Contact",
+            "_fieldname_children": "Related Contacts",
             "children": [
                 {
-                    "_fieldname_children": "Contact",
+                    "_fieldname_children": "Related Contacts",
                     "children": [],
                     "_fieldname_email": "Email",
                     "email": None,
