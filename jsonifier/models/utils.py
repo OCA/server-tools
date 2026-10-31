@@ -8,7 +8,7 @@ def _convert_field(fld, function=None):
     """Return a dict from the string encoding a field to export.
     The : is used as a separator to specify a target, if any.
     """
-    name, sep, target = fld.partition(":")
+    name, _separator, target = fld.partition(":")
     field_dict = {"name": name}
     if target:
         field_dict["target"] = target
