@@ -6,12 +6,12 @@ from odoo.tools.safe_eval import safe_eval
 
 help_message = [
     "Compute the result from 'value' by setting the variable 'result'.",
-    "\n" "For fields resolvers:",
+    "\nFor fields resolvers:",
     ":param record: the record",
     ":param name: name of the field",
     ":param value: value of the field",
     ":param field_type: type of the field",
-    "\n" "For global resolvers:",
+    "\nFor global resolvers:",
     ":param value: JSON dict",
     ":param record: the record",
     "\n"
