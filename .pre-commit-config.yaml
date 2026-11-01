@@ -68,8 +68,6 @@ repos:
     rev: v0.1.7
     hooks:
       - id: oca-checks-odoo-module
-        args:
-          - --fix
       - id: oca-checks-po
         args:
           - --disable=po-pretty-format
