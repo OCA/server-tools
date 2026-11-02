@@ -17,7 +17,9 @@ class TestPhoneAutoFormat(TransactionCase):
 
     def _expected(self, number, region, fmt="INTERNATIONAL"):
         parsed = phonenumbers.parse(number, region)
-        return phonenumbers.format_number(parsed, getattr(phonenumbers.PhoneNumberFormat, fmt))
+        return phonenumbers.format_number(
+            parsed, getattr(phonenumbers.PhoneNumberFormat, fmt)
+        )
 
     def _set_config(self, fmt="INTERNATIONAL", multiple="multiple"):
         self.icp.set_param("phone_autoformat.format", fmt)

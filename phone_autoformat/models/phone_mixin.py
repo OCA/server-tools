@@ -1,10 +1,13 @@
 # Copyright 2026 Syed Sameed Zafar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import logging
 import re
 
 from odoo import models
 
 from odoo.addons.phone_validation.tools import phone_validation
+
+_logger = logging.getLogger(__name__)
 
 VALID_FORMATS = ("INTERNATIONAL", "E164", "NATIONAL", "RFC3966")
 
@@ -77,7 +80,8 @@ class PhoneAutoFormatMixin(models.AbstractModel):
                     raise_exception=True,
                 )
             except Exception:  # pylint: disable=broad-except
-                pass  # invalid number: keep it as typed
+                # invalid number: keep it exactly as typed
+                _logger.debug("Cannot format phone number %r, kept as typed", part)
             result.append(part)
         return ", ".join(result)
 
@@ -108,5 +112,6 @@ class PhoneAutoFormatMixin(models.AbstractModel):
                     if new != values[fname]:
                         result.setdefault("value", {})[fname] = new
         except Exception:  # pylint: disable=broad-except
-            pass  # never break a form because of formatting
+            # never break a form because of formatting
+            _logger.debug("Phone auto-format onchange failed", exc_info=True)
         return result
