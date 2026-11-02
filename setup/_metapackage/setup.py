@@ -66,6 +66,7 @@ setuptools.setup(
         'odoo-addon-odoo_test_xmlrunner>=16.0dev,<16.1dev',
         'odoo-addon-onchange_helper>=16.0dev,<16.1dev',
         'odoo-addon-postgres_vacuum>=16.0dev,<16.1dev',
+        'odoo-addon-proxy_trusted_hops>=16.0dev,<16.1dev',
         'odoo-addon-rpc_helper>=16.0dev,<16.1dev',
         'odoo-addon-scheduler_error_mailer>=16.0dev,<16.1dev',
         'odoo-addon-sentry>=16.0dev,<16.1dev',
