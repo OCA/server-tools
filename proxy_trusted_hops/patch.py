@@ -8,7 +8,7 @@ import os
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from odoo import http
+from odoo.http import router, server
 from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
@@ -78,8 +78,15 @@ def post_load():
     hops = _get_trusted_hops()
     if hops == 1:
         return
-    # odoo.http looks up ProxyFix on each request, so replacing the module
-    # attribute is enough. Protocol and host keep the core setting, only the
-    # client address resolution changes.
-    http.ProxyFix = functools.partial(ProxyFix, x_for=hops, x_proto=1, x_host=1)
+    # Odoo looks up ProxyFix on each request, so replacing the module
+    # attributes is enough. Protocol and host keep the core setting, only the
+    # client address resolution changes. The router resolves the address of
+    # the request, Odoo's own HTTP server the one of the access log; the
+    # server passes x_for=1 explicitly, so it is replaced, not defaulted.
+    router.ProxyFix = functools.partial(ProxyFix, x_for=hops, x_proto=1, x_host=1)
+
+    def server_proxy_fix(app, **kwargs):
+        return ProxyFix(app, **dict(kwargs, x_for=hops))
+
+    server.ProxyFix = server_proxy_fix
     _logger.info("Trusting %s proxies for the X-Forwarded-For header.", hops)

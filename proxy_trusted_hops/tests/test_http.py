@@ -8,7 +8,7 @@ import sys
 import tempfile
 from unittest.mock import patch
 
-from odoo import http
+from odoo.http import router, server
 from odoo.tests.common import HOST, HttpCase, tagged
 from odoo.tools import config, mute_logger
 
@@ -19,7 +19,8 @@ from odoo.addons.proxy_trusted_hops.patch import post_load
 class TestHttp(HttpCase):
     def test_login_logs_client_address(self):
         """A request passing two proxies is logged with the client address."""
-        self.startPatcher(patch.object(http, "ProxyFix", http.ProxyFix))
+        self.startPatcher(patch.object(router, "ProxyFix", router.ProxyFix))
+        self.startPatcher(patch.object(server, "ProxyFix", server.ProxyFix))
         self.startPatcher(patch.dict(os.environ))
         os.environ.pop("ODOO_TRUSTED_PROXIES", None)
         handle, path = tempfile.mkstemp(suffix=".conf")

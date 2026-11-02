@@ -5,9 +5,11 @@ import configparser
 import os
 import sys
 import tempfile
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
-from odoo import http
+import h11
+
+from odoo.http import router, server
 from odoo.tests.common import BaseCase
 from odoo.tools import config
 
@@ -20,7 +22,8 @@ class TestPatch(BaseCase):
     def setUp(self):
         super().setUp()
         # Restore the core ProxyFix after each test.
-        self.startPatcher(patch.object(http, "ProxyFix", http.ProxyFix))
+        self.startPatcher(patch.object(router, "ProxyFix", router.ProxyFix))
+        self.startPatcher(patch.object(server, "ProxyFix", server.ProxyFix))
         self.startPatcher(patch.dict(os.environ))
         os.environ.pop("ODOO_TRUSTED_PROXIES", None)
         # Read the configuration file, even where server_environment is
@@ -50,20 +53,42 @@ class TestPatch(BaseCase):
             "HTTP_X_FORWARDED_HOST": "odoo.example.com",
             "wsgi.url_scheme": "http",
         }
-        http.ProxyFix(lambda env, start_response: [])(environ, lambda *args: None)
+        router.ProxyFix(lambda env, start_response: [])(environ, lambda *args: None)
         return environ["REMOTE_ADDR"]
+
+    def _access_log_addr(self):
+        """Return the address Odoo's HTTP server writes to the access log."""
+        self.startPatcher(patch.dict(config.options, proxy_mode=True))
+        sock = server.HTTPSocket(MagicMock(), ("10.0.0.2", 54321))
+        sock.h11request = h11.Request(
+            method="GET",
+            target="/web/login",
+            headers=[
+                ("Host", "internal:8069"),
+                ("X-Forwarded-For", FORWARDED_FOR),
+                ("X-Forwarded-Host", "odoo.example.com"),
+            ],
+        )
+        sock._make_environ()
+        return sock.ip
 
     def test_default_keeps_core_behavior(self):
         self._set_option(None)
         self.assertEqual(_get_trusted_hops(), 1)
         post_load()
         self.assertEqual(self._remote_addr(), "10.0.0.1")
+        self.assertEqual(self._access_log_addr(), "10.0.0.1")
 
     def test_config_option(self):
         self._set_option("2")
         self.assertEqual(_get_trusted_hops(), 2)
         post_load()
         self.assertEqual(self._remote_addr(), "1.2.3.4")
+        self.assertEqual(
+            self._access_log_addr(),
+            "1.2.3.4",
+            msg="The access log must show the client address, not a proxy",
+        )
 
     def test_option_in_options_section_is_ignored(self):
         self._write_config("[options]\ntrusted_proxies = 2\n")
