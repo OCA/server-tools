@@ -1,0 +1,2 @@
+- [Ametras intelligence GmbH](https://www.ametras.com):
+  - Bastian Günther \<bastian.guenther@ametras.com\>
