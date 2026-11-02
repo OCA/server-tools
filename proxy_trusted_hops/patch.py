@@ -37,9 +37,7 @@ def _get_section():
         serv_config = None
     if serv_config is not None:
         return _section_options(serv_config)
-    # Newer Odoo versions keep the path in config["config"] and deprecate
-    # config.rcfile, older ones only have config.rcfile.
-    path = config.get("config") or getattr(config, "rcfile", None)
+    path = config.get("config")
     if not path:
         return {}
     parser = configparser.ConfigParser(interpolation=None)

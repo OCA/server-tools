@@ -26,8 +26,7 @@ class TestHttp(HttpCase):
         with os.fdopen(handle, "w") as config_file:
             config_file.write("[proxy_trusted_hops]\ntrusted_proxies = 2\n")
         self.addCleanup(os.remove, path)
-        self.startPatcher(patch.object(config, "rcfile", path))
-        self.startPatcher(patch.dict(config.options, proxy_mode=True))
+        self.startPatcher(patch.dict(config.options, config=path, proxy_mode=True))
         # Only while reading the configuration: restoring sys.modules after the
         # request would drop the modules it imported.
         with patch.dict(sys.modules, {"odoo.addons.server_environment": None}):
