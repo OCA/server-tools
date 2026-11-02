@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_phone_autoformat" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.phone.autoformat</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    string="Phone Auto Format"
+                    name="phone_autoformat"
+                    groups="base.group_system"
+                >
+                    <block title="Phone Number Formatting" name="phone_autoformat_block">
+                        <setting
+                            string="Number format"
+                            id="phone_autoformat_format_setting"
+                            help="How phone numbers are written once saved. Numbers typed without a + use the contact's country, or the company's country as a fallback."
+                        >
+                            <field
+                                name="phone_autoformat_format"
+                                class="o_light_label"
+                            />
+                        </setting>
+                        <setting
+                            string="Numbers per field"
+                            id="phone_autoformat_multiple_setting"
+                            help="Choose whether one phone field may hold several numbers separated by commas."
+                        >
+                            <field
+                                name="phone_autoformat_multiple"
+                                class="o_light_label"
+                            />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
