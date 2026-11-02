@@ -1,5 +1,5 @@
-When ``proxy_mode`` is enabled, Odoo takes the client address from the
-``X-Forwarded-For`` header, but it only trusts one proxy: it always takes the
+When `proxy_mode` is enabled, Odoo takes the client address from the
+`X-Forwarded-For` header, but it only trusts one proxy: it always takes the
 last address of the header. Behind more than one reverse proxy (for example a
 cloud load balancer in front of an ingress controller), that address is one of
 your own proxies, not the client.
