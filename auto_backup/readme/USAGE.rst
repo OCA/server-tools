@@ -15,6 +15,29 @@ a path and everything will be backed up automatically. This is done
 through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
 safe!
 
+Verify the SFTP server identity
+-------------------------------
+
+pysftp verifies the identity of the SFTP server by default, using the host
+keys stored in the ``~/.ssh/known_hosts`` file of the Odoo user.
+
+The **SFTP Host Keys** field accepts one or more OpenSSH public keys, one per
+line. The usual way to fill it in is to copy the output of
+``ssh-keyscan``::
+
+    ssh-keyscan your.sftp.server
+
+When the field is filled in, only those keys are accepted and the local
+``~/.ssh/known_hosts`` file is ignored. Several lines can be entered to
+support key rotation or to accept several key algorithms at once.
+
+Enable **Ignore Host Key** to skip the verification altogether; the form
+shows a warning while it is enabled.
+
+When neither the field nor the ``known_hosts`` file provides a key, the
+connection is refused with an explanatory error. The *Test SFTP Connection*
+button applies the same rules.
+
 Test connection
 ~~~~~~~~~~~~~~~
 
