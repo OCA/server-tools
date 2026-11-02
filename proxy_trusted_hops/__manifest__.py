@@ -4,7 +4,7 @@
 {
     "name": "Proxy Trusted Hops",
     "summary": "Configure how many reverse proxies Odoo trusts for the client IP",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "author": "Ametras intelligence GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",

@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from odoo import http
 from odoo.tests.common import HOST, HttpCase, tagged
-from odoo.tools import config
+from odoo.tools import config, mute_logger
 
 from odoo.addons.proxy_trusted_hops.patch import post_load
 
@@ -41,7 +41,12 @@ class TestHttp(HttpCase):
                 "password": "wrong password",
             },
         }
-        with self.assertLogs("odoo.addons.base.models.res_users", logging.INFO) as logs:
+        # The failed login also logs warnings outside the checked logger: Odoo
+        # logs the access error, base_remote the address it cannot resolve.
+        with (
+            mute_logger("odoo.http", "root"),
+            self.assertLogs("odoo.addons.base.models.res_users", logging.INFO) as logs,
+        ):
             self.url_open(
                 "/web/session/authenticate",
                 data=json.dumps(payload),
