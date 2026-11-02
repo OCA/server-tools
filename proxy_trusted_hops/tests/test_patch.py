@@ -34,7 +34,7 @@ class TestPatch(BaseCase):
         with os.fdopen(handle, "w") as config_file:
             config_file.write(content)
         self.addCleanup(os.remove, path)
-        self.startPatcher(patch.object(config, "rcfile", path))
+        self.startPatcher(patch.dict(config.options, config=path))
 
     def _set_option(self, value):
         content = "[options]\n"
@@ -70,7 +70,7 @@ class TestPatch(BaseCase):
         self.assertEqual(_get_trusted_hops(), 1)
 
     def test_without_config_file(self):
-        self.startPatcher(patch.object(config, "rcfile", None))
+        self.startPatcher(patch.dict(config.options, config=None))
         self.assertEqual(_get_trusted_hops(), 1)
 
     def test_server_environment(self):
