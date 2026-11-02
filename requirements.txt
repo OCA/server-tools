@@ -10,4 +10,5 @@ paramiko<4.0.0
 pygount
 pysftp
 sentry_sdk>=2.0.0,<=2.22.0
+unidecode
 unittest-xml-reporting
