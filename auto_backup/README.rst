@@ -153,6 +153,8 @@ Contributors
 
   - Bhavesh Heliconia
 
+- Anatol Mueller <git@am16.ch>
+
 Maintainers
 -----------
 
