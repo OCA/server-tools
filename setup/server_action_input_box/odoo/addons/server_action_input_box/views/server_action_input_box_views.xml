@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 jesanmor - Jesús Sánchez <jesanmor.dev@gmail.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+ -->
+<odoo>
+    <record id="server_action_input_box_view_form" model="ir.ui.view">
+        <field name="name">server.action.input.box.view.form</field>
+        <field name="model">server.action.input.box</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Name">
+                            <field name="name" />
+                            <field name="model_id" />
+                            <field name="apply_to_linked_field_lines" />
+                            <field
+                                name="linked_field_lines_id"
+                                attrs="{
+                                    'invisible': [('apply_to_linked_field_lines','=',False)],
+                                    'required': [('apply_to_linked_field_lines','=',True)]
+                                }"
+                            />
+                            <field name="active" widget="boolean_toggle" />
+                            <field name="show_confirmation_dialog" />
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            name="server-action-input-box-parameter"
+                            string="Parameters"
+                        >
+                            <field name="server_action_input_box_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="data_type" />
+                                    <field name="name" />
+                                    <field name="parameter_label" widget="text" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page name="server-action-input-box-code" string="Code">
+                            <field
+                                name="code"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Help" name="help_info">
+                            <div style="margin-top: 4px;">
+                                <h4>Predefined Variables</h4>
+                                <p>All variables allowed in a server action such as:</p>
+                                <ul>
+                                    <li><code
+                                        >env</code>: Odoo environment in which the action is triggered.</li>
+                                    <li><code
+                                        >model</code>: Odoo model of the record on which the action is triggered.</li>
+                                    <li><code
+                                        >record</code>: record on which the action is triggered.</li>
+                                    <li><code
+                                        >records</code>: set of records on which the action is triggered.</li>
+                                    <li><code
+                                        >time, datetime, dateutil, timezone</code>: useful Python libraries.</li>
+                                    <li><code
+                                        >log(message, level='info')</code>: logging function to log debugging information in the <code
+                                        >ir.logging</code> table.</li>
+                                    <li><code
+                                        >UserError</code>: Exception warning for use with <code
+                                        >raise</code>.</li>
+                                    <li>To return an action, assign: <code
+                                        >action = {...}</code>.</li>
+
+                                    <li><code
+                                        >Variable names</code>: configured in the 'Unique Name' field.
+                                        <ul>
+                                            <li
+                                            >These will contain the value entered in the input box.</li>
+                                            <li
+                                            >Indicates the data type: 'string', 'int', 'float' 'boolean'.</li>
+                                            <li
+                                            >Input lists, tuples, sets, and dictionaries as 'string' and perform the conversion in your code.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="server_action_input_box_view_tree" model="ir.ui.view">
+        <field name="name">server.action.input.box.view.tree</field>
+        <field name="model">server.action.input.box</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="active" widget="boolean_toggle" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="linked_field_lines_id" string="Linked field" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="server_action_input_box_view_search" model="ir.ui.view">
+        <field name="name">server.action.input.box.view.search</field>
+        <field name="model">server.action.input.box</field>
+        <field name="arch" type="xml">
+            <search string="Search Actions">
+                <field name="active" string="Active" />
+                <field name="name" string="Name" />
+                <field name="model_id" string="Model" />
+                <field name="linked_field_lines_id" string="Linked field" />
+            </search>
+        </field>
+    </record>
+
+    <!--Main ACTION view-->
+    <record id="server_action_input_box_action" model="ir.actions.act_window">
+        <field name="name">Actions with Parameters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">server.action.input.box</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="server_action_input_box_view_search" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No server action defined. Click here to define one.
+            </p>
+        </field>
+    </record>
+
+    <!--MENU view-->
+    <menuitem
+        id="menu_server_action_input_box"
+        parent="base.next_id_6"
+        action="server_action_input_box_action"
+        sequence="51"
+    />
+</odoo>
