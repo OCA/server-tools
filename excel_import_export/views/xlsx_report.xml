@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="xlsx_report_view" model="ir.ui.view">
+        <field name="name">xlsx.report.view</field>
+        <field name="model">xlsx.report</field>
+        <field name="arch" type="xml">
+            <form string="Excel Report">
+                <!-- search criteria -->
+                <group name="criteria" invisible="state != 'choose'" />
+                <!-- xlsx.report common field -->
+                <div name="xlsx.report">
+                    <div invisible="state != 'choose'">
+                        <label
+                            string="Choose Template: "
+                            for="template_id"
+                            invisible="not choose_template"
+                        />
+                        <field name="template_id" invisible="not choose_template" />
+                    </div>
+                    <div invisible="state != 'get'">
+                        <h2>
+                            Complete Prepare Report (.xlsx)
+                        </h2>
+                        <p colspan="4">
+                            Here is the report file:
+                            <field name="data" filename="name" class="oe_inline" />
+                        </p>
+                    </div>
+                    <footer invisible="state != 'get'">
+                        <button
+                        name="report_xlsx"
+                        string="Execute Report"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                        or
+                        <button
+                        special="cancel"
+                        string="Cancel"
+                        type="object"
+                        class="oe_link"
+                    />
+                    </footer>
+                    <footer invisible="state != 'get'">
+                        <button special="cancel" string="Close" type="object" />
+                    </footer>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>
