@@ -80,6 +80,23 @@ class TestModule(TransactionCase):
         Imm._save_installed_checksums()
         self.assertFalse(Imm._get_modules_with_changed_checksum())
 
+    def test_get_modules_with_changed_checksum_skips_db_only_modules(self):
+        """Skip modules that exist only in DB (no filesystem path)."""
+        Imm = self.env["ir.module.module"]
+        base_module = Imm.search([("name", "=", "base")])
+        # Mock _module_exists_on_disk to simulate a diskless module
+        with mock.patch.object(
+            type(base_module), "_module_exists_on_disk", return_value=False
+        ):
+            self.assertFalse(base_module._module_exists_on_disk())
+            # Save checksums — base should be skipped
+            Imm._save_installed_checksums()
+            saved_checksums = Imm._get_saved_checksums()
+            self.assertNotIn("base", saved_checksums)
+            # Changed checksum detection should not include it
+            changed = Imm._get_modules_with_changed_checksum()
+            self.assertNotIn(base_module, changed)
+
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestModuleAfterInstall(TransactionCase):
