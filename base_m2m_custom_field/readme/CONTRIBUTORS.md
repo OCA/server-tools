@@ -1,0 +1,2 @@
+- Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
+- Tris Doan \<<tridm@trobz.com>\>
