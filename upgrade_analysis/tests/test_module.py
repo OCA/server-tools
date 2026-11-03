@@ -146,6 +146,12 @@ class TestUpgradeAnalysis(common.TransactionCase):
         with self.assertRaises(AssertionError):
             assertInFieldComparison(comparison, "state", "removed")
 
+        state_field["isproperty"] = "property"
+        comparison = compare.compare_sets(old_fields, new_fields)
+        assertInFieldComparison(comparison, "state", "now company_dependent")
+        comparison = compare.compare_sets(new_fields, old_fields)
+        assertInFieldComparison(comparison, "state", "not company_dependent anymore")
+
     def test_xml_comparison(self):
         """
         Test corner cases in noupdate_changes

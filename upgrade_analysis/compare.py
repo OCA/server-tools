@@ -177,10 +177,7 @@ def report_generic(new, old, attrs, reprs):
         elif attr == "stored":
             if old[attr] != new[attr]:
                 if new["stored"]:
-                    if new.get("isproperty") and old.get("isproperty"):
-                        text = "needs conversion to v18-style company dependent"
-                    else:
-                        text = "is now stored"
+                    text = "is now stored"
                 else:
                     text = "not stored anymore"
                 fieldprint(old, new, "", text, reprs)
@@ -194,9 +191,9 @@ def report_generic(new, old, attrs, reprs):
         elif attr == "isproperty":
             if old[attr] != new[attr]:
                 if new[attr]:
-                    text = "now a property"
+                    text = "now company_dependent"
                 else:
-                    text = "not a property anymore"
+                    text = "not company_dependent anymore"
                 fieldprint(old, new, "", text, reprs)
         elif attr == "isrelated":
             if old[attr] != new[attr]:
@@ -286,6 +283,7 @@ def compare_sets(old_records, new_records):
             "_inherits",
             "stored",
             "isfunction",
+            "isproperty",
             "isrelated",
             "translate",
             "required",
@@ -304,6 +302,7 @@ def compare_sets(old_records, new_records):
             "_inherits",
             "stored",
             "isfunction",
+            "isproperty",
             "isrelated",
             "translate",
             "required",
@@ -322,6 +321,7 @@ def compare_sets(old_records, new_records):
             "_inherits",
             "stored",
             "isfunction",
+            "isproperty",
             "isrelated",
             "translate",
             "required",
