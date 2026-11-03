@@ -1,6 +1,6 @@
 import typing
 from copy import deepcopy
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from lxml import etree
 
@@ -308,7 +308,9 @@ class TestUpgradeAnalysis(common.TransactionCase):
         database_field = self.env["upgrade.comparison.config"]._fields["database"]
 
         with (
-            patch.object(analysis.config_id.__class__, "get_connection"),
+            patch.object(
+                analysis.config_id.__class__, "get_connection"
+            ) as patched_get_connection,
             patch.object(
                 analysis.__class__, "_get_remote_model"
             ) as patched_get_remote_model,
@@ -318,6 +320,8 @@ class TestUpgradeAnalysis(common.TransactionCase):
             ) as patched_get_xml_records,
             patch.object(database_field, "_module", "some_dependent_module"),
         ):
+            patched_get_connection.return_value = MagicMock()
+            patched_get_connection.return_value.version = "test~19.0-test"
             patched_get_remote_model.side_effect = lambda *args: RemoteUpgradeRecord()
             patched_get_xml_records.side_effect = local_get_xml_records
             patched_write_file.side_effect = write_file

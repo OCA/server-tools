@@ -12,6 +12,7 @@ import operator
 import os
 from copy import deepcopy
 
+import odoorpc
 from lxml import etree
 
 from odoo import fields, models, release
@@ -86,7 +87,7 @@ class UpgradeAnalysis(models.Model):
     def _get_remote_model(self, connection, model):
         self.ensure_one()
         if model == "record":
-            if float(self.config_id.version) < 14.0:
+            if odoorpc.tools.v(self.config_id.version)[0] < 14:
                 return connection.env["openupgrade.record"]
             else:
                 return connection.env["upgrade.record"]
@@ -676,7 +677,7 @@ class UpgradeAnalysis(models.Model):
             )
         ]
 
-        start_version = connection.version
+        start_version = ".".join(map(str, odoorpc.tools.v(connection.version)[:2]))
         end_version = release.major_version
         module_width = 51
         description_width = 49
