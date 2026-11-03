@@ -158,6 +158,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_format_vat_label_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_fs_storage__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_fs_test_connection__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_generate_company_sequences_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_html_field_history_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_account__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_enrich_api__assigned_attachment_ids
@@ -240,6 +241,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_date_range__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_option__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_option_line__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_template__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_menu__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view_custom__assigned_attachment_ids
