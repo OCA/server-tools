@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_database_autovacuum_tuning_system,access_database_autovacuum_tuning_system,model_database_autovacuum_tuning,base.group_system,1,0,1,1
