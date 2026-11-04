@@ -334,12 +334,33 @@ class AuditlogRule(models.Model):
         log_type = self.log_type
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
+        def _ensure_recordset(records):
+            """Coerce the result of the original create() to a recordset.
+
+            On models using _inherits, Odoo 18 can return a list here (the
+            parent create returns the list used by the ORM). The rest of the
+            method needs .sudo(), .ids and iterable records.
+            """
+            if not isinstance(records, list | tuple):
+                return records
+            ids = []
+            for record in records:
+                if isinstance(record, dict):
+                    ids.append(record.get("id"))
+                elif hasattr(record, "ids"):
+                    ids.extend(record.ids)
+                else:
+                    ids.append(record)
+            return self.browse([record_id for record_id in ids if record_id])
+
         @api.model_create_multi
         @api.returns("self", lambda value: value.id)
         def create_full(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
-            new_records = create_full.origin(self, vals_list, **kwargs)
+            new_records = _ensure_recordset(
+                create_full.origin(self, vals_list, **kwargs)
+            )
             # Take a snapshot of record values from the cache instead of using
             # 'read()'. It avoids issues with related/computed fields which
             # stored in the database only at the end of the transaction, but
@@ -377,7 +398,9 @@ class AuditlogRule(models.Model):
             rule_model = self.env["auditlog.rule"]
             vals_list = rule_model._update_vals_list(vals_list)
             vals_list2 = copy.deepcopy(vals_list)
-            new_records = create_fast.origin(self, vals_list, **kwargs)
+            new_records = _ensure_recordset(
+                create_fast.origin(self, vals_list, **kwargs)
+            )
             new_values = {}
             for vals, new_record in zip(vals_list2, new_records, strict=True):
                 new_values.setdefault(new_record.id, vals)

@@ -799,3 +799,43 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+@tagged("-at_install", "post_install")
+class AuditlogFullInheritsCreate(AuditLogRuleCommon):
+    """A full rule on an ``_inherits`` model must survive the create.
+
+    On those models Odoo can return the values list built by the ORM instead
+    of a recordset, while ``create_full`` needs a recordset to read the new
+    values and to write the log.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user_model_id = cls.env["ir.model"].search([("model", "=", "res.users")]).id
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule users create full",
+                "model_id": cls.user_model_id,
+                "log_create": True,
+                "log_type": "full",
+            }
+        )
+
+    def test_01_AuditlogFull_inherits_create_log(self):
+        self.auditlog_rule.subscribe()
+        user = (
+            self.env["res.users"]
+            .with_context(no_reset_password=True, tracking_disable=True)
+            .create({"name": "Inherits User", "login": "inherits_user"})
+        )
+        create_log = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.user_model_id),
+                ("method", "=", "create"),
+                ("res_id", "=", user.id),
+            ]
+        )
+        self.assertTrue(create_log)
+
