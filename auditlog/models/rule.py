@@ -322,10 +322,13 @@ class AuditlogRule(models.Model):
         By default it is all stored fields only, but you can
         override this.
         """
+        rules = self.sudo().search([("model_id.model", "=", model._name)])
+        fields_to_exclude = rules.fields_to_exclude_ids.mapped("name")
         return list(
             n
             for n, f in model._fields.items()
-            if (not f.compute and not f.related) or f.store
+            if ((not f.compute and not f.related) or f.store)
+            and n not in fields_to_exclude
         )
 
     def _make_create(self):
