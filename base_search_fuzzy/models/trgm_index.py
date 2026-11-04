@@ -177,8 +177,10 @@ class TrgmIndex(models.Model):
 
     @api.model
     def index_exists(self, model_name, field_name):
-        field = self.env["ir.model.fields"].search(
-            [("model", "=", model_name), ("name", "=", field_name)], limit=1
+        field = (
+            self.env["ir.model.fields"]
+            .sudo()
+            .search([("model", "=", model_name), ("name", "=", field_name)], limit=1)
         )
 
         if not field:

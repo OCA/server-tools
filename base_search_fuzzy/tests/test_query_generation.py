@@ -2,11 +2,18 @@
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.orm.domains import CONDITION_OPERATORS
+from odoo.tools import SQL
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class QueryGenerationCase(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "base.group_partner_manager",
+    )
+
     @classmethod
     def setUpClass(self):
         super().setUpClass()
@@ -24,18 +31,8 @@ class QueryGenerationCase(BaseCommon):
         query = self.ResPartner._search(
             [("name", "%", "test")], active_test=False, bypass_access=True
         )
-        from_clause = query.from_clause.code
-        where_clause = query.where_clause.code
-
-        # the trigram operator must appear escaped as %% in the SQL template
-        self.assertIn('"res_partner"."name"', where_clause)
-        self.assertIn("%%", where_clause)
-
-        # test the right sql query statement creation
-        # now there should be only one '%'
         complete_where = self.env.cr.mogrify(
-            f"SELECT FROM {from_clause} WHERE {where_clause}",
-            query.where_clause.params,
+            SQL("SELECT FROM %s WHERE %s", query.from_clause, query.where_clause)
         )
         self.assertEqual(
             complete_where,
@@ -48,16 +45,8 @@ class QueryGenerationCase(BaseCommon):
         query = self.ResPartnerCategory.with_context(lang="en_US")._search(
             [("name", "%", "Goschaeftlic")], active_test=False, bypass_access=True
         )
-        from_clause = query.from_clause.code
-        where_clause = query.where_clause.code
-
-        # the trigram operator must appear escaped as %% in the SQL template
-        self.assertIn('"res_partner_category"."name"', where_clause)
-        self.assertIn("%%", where_clause)
-
         complete_where = self.env.cr.mogrify(
-            f"SELECT FROM {from_clause} WHERE {where_clause}",
-            query.where_clause.params,
+            SQL("SELECT FROM %s WHERE %s", query.from_clause, query.where_clause)
         )
 
         self.assertEqual(
