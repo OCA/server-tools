@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="name">ir.model form</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <field name="transient" position="after">
+                <field name="restrict_update" />
+                <field
+                    name="update_allowed_group_ids"
+                    invisible="restrict_update == False"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
