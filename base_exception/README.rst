@@ -91,6 +91,7 @@ Contributors
 - Kevin Khao <kevin.khao@akretion.com>
 - Laurent Mignon <laurent.mignon@acsone.eu>
 - Do Anh Duy <duyda@trobz.com>
+- Akim Juillerat <akim.juillerat@camptocamp.com>
 
 Other credits
 -------------

@@ -66,6 +66,11 @@ class PurchaseTest(models.Model):
         self.write({"state": "purchase"})
         return True
 
+    def button_detect_and_confirm(self):
+        if self.detect_exceptions():
+            return
+        return self.button_confirm()
+
     def button_cancel(self):
         self.write({"state": "cancel"})
 
