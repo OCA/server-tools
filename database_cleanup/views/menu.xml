@@ -50,6 +50,13 @@
         <field name="parent_id" ref="menu_database_cleanup" />
     </record>
 
+    <record model="ir.ui.menu" id="menu_purge_data_batch">
+        <field name="name">Purge obsolete data entries in batches</field>
+        <field name="sequence" eval="55" />
+        <field name="action" ref="action_purge_data_batch" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
     <record model="ir.ui.menu" id="menu_purge_menus">
         <field name="name">Purge obsolete menu entries</field>
         <field name="sequence" eval="60" />

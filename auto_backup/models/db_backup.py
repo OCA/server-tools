@@ -6,18 +6,22 @@
 import logging
 import os
 import shutil
+import stat
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
+from pathlib import PurePosixPath
 
-import pysftp
+import paramiko
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
 
 _logger = logging.getLogger(__name__)
+
+SFTP_TIMEOUT = 60
 
 
 class DbBackup(models.Model):
@@ -129,9 +133,9 @@ class DbBackup(models.Model):
             with self.sftp_connection():
                 raise UserError(_("Connection Test Succeeded!"))
         except (
-            pysftp.CredentialException,
-            pysftp.ConnectionException,
-            pysftp.SSHException,
+            OSError,
+            paramiko.AuthenticationException,
+            paramiko.SSHException,
         ) as exc:
             _logger.info("Connection Test Failed!", exc_info=True)
             raise UserError(self.env._("Connection Test Failed!")) from exc
@@ -176,10 +180,7 @@ class DbBackup(models.Model):
 
                     with cached:
                         with rec.sftp_connection() as remote:
-                            try:
-                                remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException as exc:
-                                _logger.exception(f"pysftp ConnectionException: {exc}")
+                            rec._sftp_makedirs(remote, rec.folder)
 
                             # Copy cached backup to remote server
                             with remote.open(
@@ -270,22 +271,57 @@ class DbBackup(models.Model):
             when, ext="dump.zip" if ext == "zip" else ext
         )
 
+    @contextmanager
     def sftp_connection(self):
         """Return a new SFTP connection with found parameters."""
         self.ensure_one()
         params = {
-            "host": self.sftp_host,
+            "hostname": self.sftp_host,
             "username": self.sftp_user,
             "port": self.sftp_port,
+            "allow_agent": False,
+            "look_for_keys": False,
+            "timeout": SFTP_TIMEOUT,
         }
         _logger.debug(
-            "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
+            "Trying to connect to sftp://%s@%s:%d",
+            self.sftp_user,
+            self.sftp_host,
+            self.sftp_port,
         )
         if self.sftp_private_key:
-            params["private_key"] = self.sftp_private_key
+            params["key_filename"] = self.sftp_private_key
             if self.sftp_password:
-                params["private_key_pass"] = self.sftp_password
+                params["password"] = self.sftp_password
         else:
             params["password"] = self.sftp_password
 
-        return pysftp.Connection(**params)
+        ssh = paramiko.SSHClient()
+        ssh.load_system_host_keys()
+        sftp = None
+        try:
+            ssh.connect(**params)
+            sftp = ssh.open_sftp()
+            yield sftp
+        finally:
+            if sftp:
+                sftp.close()
+            ssh.close()
+
+    @staticmethod
+    def _sftp_makedirs(sftp, path):
+        """Create a remote directory and its parents when missing."""
+        missing = []
+        current = PurePosixPath(path)
+        while current != current.parent:
+            try:
+                attr = sftp.stat(str(current))
+            except FileNotFoundError:
+                missing.append(current)
+                current = current.parent
+                continue
+            if not stat.S_ISDIR(attr.st_mode):
+                raise NotADirectoryError(f"{current} is not a directory")
+            break
+        for directory in reversed(missing):
+            sftp.mkdir(str(directory))
