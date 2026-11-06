@@ -1,5 +1,6 @@
 # Copyright 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
 # Copyright 2017 Akretion (http://www.akretion.com)
+# Copyright 2025 Raumschmiede GmbH
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # Copyright 2020 Hibou Corp.
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
@@ -90,6 +91,22 @@ class BaseExceptionModel(models.AbstractModel):
     @api.model
     def _get_popup_action(self):
         return self.env.ref("base_exception.action_exception_rule_confirm")
+
+    def _add_detected_exceptions_to_self(self):
+        return self != self._get_main_records()
+
+    def _detect_exceptions(self, rule):
+        records = super()._detect_exceptions(rule)
+        # If _get_main_records returns self, it adds the exceptions to itself in
+        # detect_exceptions. If _get_main_records does not return self, it adds the
+        # exceptions here
+        if not self._add_detected_exceptions_to_self():
+            return records
+
+        (self - records).exception_ids = [(3, rule.id)]
+        records.exception_ids = [(4, rule.id)]
+
+        return records
 
     def _check_exception(self):
         """Check exceptions
