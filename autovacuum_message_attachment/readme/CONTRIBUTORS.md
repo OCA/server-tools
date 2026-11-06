@@ -1,0 +1,5 @@
+- Florian da Costa \<<florian.dacosta@akretion.com>\>
+- Enric Tobella \<<etobella@creublanca.es>\>
+- Helly kapatel \<<helly.kapatel@initos.com>\>
+- Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
+- Juliano Henriquez \<<juliano@consultoriahenca.com>\> (Grupo de Consultoria Henca)
