@@ -289,7 +289,7 @@ class AuditlogRule(models.Model):
                 if getattr(rule, "log_%s" % method) and hasattr(
                     getattr(model_model, method), "origin"
                 ):
-                    model_model._revert_method(method)
+                    delattr(type(model_model), method)
                     delattr(type(model_model), "auditlog_ruled_%s" % method)
                     updated = True
         if updated:
