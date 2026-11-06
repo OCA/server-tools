@@ -100,15 +100,48 @@ class PGSessionStore(sessions.SessionStore):
                 CREATE TABLE IF NOT EXISTS http_sessions (
                     sid varchar PRIMARY KEY,
                     write_date timestamp without time zone NOT NULL,
-                    payload text NOT NULL
+                    payload text NOT NULL,
+                    deleted boolean NOT NULL DEFAULT false
                 )
             """
         )
+        # Tables created by an earlier version have no deleted column yet.
+        self._cr.execute(
+            """
+                SELECT 1 FROM pg_attribute
+                WHERE attrelid = 'http_sessions'::regclass
+                  AND attname = 'deleted' AND NOT attisdropped
+            """
+        )
+        if self._cr.rowcount == 0:
+            self._cr.execute(
+                "ALTER TABLE http_sessions "
+                "ADD COLUMN IF NOT EXISTS deleted boolean NOT NULL DEFAULT false"
+            )
 
     @with_lock
     @with_cursor
     def save(self, session):
+        """Store the session, unless its sid was deleted in the meantime.
+
+        A request saves the session it read when it started, also when a
+        logout deleted that session while the request was running (for
+        instance the bus websocket handshake, or a request that touches the
+        session). The deleted sid is kept as a tombstone, so the logged out
+        session can never be stored again: an authenticated session is
+        dropped, an anonymous one moves to a new sid.
+        """
         payload = json.dumps(dict(session))
+        if self._write(session.sid, payload):
+            return
+        if session.uid:
+            _logger.info("session_db: not saving a deleted session again")
+            return
+        session.sid = self.generate_key()
+        self._write(session.sid, payload)
+
+    def _write(self, sid, payload):
+        """Insert or update a session; return False if sid is a tombstone."""
         self._cr.execute(
             """
                 INSERT INTO http_sessions(sid, write_date, payload)
@@ -116,19 +149,33 @@ class PGSessionStore(sessions.SessionStore):
                 ON CONFLICT (sid)
                 DO UPDATE SET payload = %(payload)s,
                               write_date = now() at time zone 'UTC'
+                WHERE NOT http_sessions.deleted
             """,
-            dict(sid=session.sid, payload=payload),
+            dict(sid=sid, payload=payload),
         )
+        return self._cr.rowcount == 1
 
     @with_lock
     @with_cursor
     def delete(self, session):
-        self._cr.execute("DELETE FROM http_sessions WHERE sid=%s", (session.sid,))
+        """Delete the session, keeping its sid as a tombstone until vacuum."""
+        self._cr.execute(
+            """
+                INSERT INTO http_sessions(sid, write_date, payload, deleted)
+                    VALUES (%s, now() at time zone 'UTC', '{}', true)
+                ON CONFLICT (sid)
+                DO UPDATE SET payload = '{}', deleted = true,
+                              write_date = now() at time zone 'UTC'
+            """,
+            (session.sid,),
+        )
 
     @with_lock
     @with_cursor
     def get(self, sid):
-        self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
+        self._cr.execute(
+            "SELECT payload FROM http_sessions WHERE sid=%s AND NOT deleted", (sid,)
+        )
         try:
             data = json.loads(self._cr.fetchone()[0])
         except Exception:
@@ -172,7 +219,8 @@ class PGSessionStore(sessions.SessionStore):
         missing_identifiers = set()
         for identifier in identifiers:
             self._cr.execute(
-                "SELECT sid FROM http_sessions WHERE sid LIKE %s||'%%' LIMIT 1",
+                "SELECT sid FROM http_sessions "
+                "WHERE sid LIKE %s||'%%' AND NOT deleted LIMIT 1",
                 (identifier,),
             )
             if self._cr.rowcount == 0:
