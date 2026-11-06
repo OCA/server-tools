@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * module_auto_update
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-21 02:43+0000\n"
+"PO-Revision-Date: 2026-06-17 21:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Are you sure you want to launch module auto-update?"
+msgstr "Confermi di voler lanciare l'aggiornamento automatico dei moduli?"
+
+#. module: module_auto_update
+#: model:ir.actions.act_window,name:module_auto_update.base_module_upgrade_wizard_action
+#: model:ir.model,name:module_auto_update.model_module_auto_update
+#: model:ir.ui.menu,name:module_auto_update.menu_base_module_upgrade_wizard_action
+msgid "Auto-Upgrade Modules"
+msgstr "Aggiorna moduli automaticamente"
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: module_auto_update
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+msgid "Checksum upgrade complete."
+msgstr "Aggiornamento checksum completo."
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__id
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__id
+msgid "ID"
+msgstr "ID"
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Impacted Apps"
+msgstr "Applicazioni interessate"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: module_auto_update
+#: model:ir.model,name:module_auto_update.model_ir_module_module
+msgid "Module"
+msgstr "Modulo"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__modules_to_update_ids
+msgid "Modules to Update"
+msgstr "Moduli da aggiornare"
+
+#. module: module_auto_update
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+msgid ""
+"No checksum change detected in installed modules and all modules installed, "
+"nothing to do."
+msgstr ""
+"Nessuna modifica del checksum rilevata nei moduli installati e tutti i "
+"moduli installati, niente da fare."
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Show Modules to Update"
+msgstr "Mostra moduli da aggiornare"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
