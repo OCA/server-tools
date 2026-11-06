@@ -1,0 +1,4 @@
+# generated from manifests external_dependencies
+cryptography
+paramiko<4.0.0
+pysftp
