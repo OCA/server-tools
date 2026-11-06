@@ -28,9 +28,7 @@ class DataImportPickup(models.Model):
         "on one another.",
     )
     active = fields.Boolean(default=True)
-    company_id = fields.Many2one(
-        "res.company", "Company", default=lambda self: self.env.company
-    )
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     backend_id = fields.Many2one(
         "fs.storage", string="Storage", required=True, ondelete="restrict"
     )
