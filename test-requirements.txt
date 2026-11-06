@@ -1,0 +1,1 @@
+odoo-addon-data_import_log @ git+https://github.com/OCA/server-tools.git@refs/pull/3810/head#subdirectory=data_import_log
