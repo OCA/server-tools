@@ -263,15 +263,18 @@ class DataImportPickup(models.Model):
         """Scan every pick-up, unless a previous run is still going.
 
         The lock is session-level because the scan commits per file, which
-        would release a transaction-level one halfway through.
+        would release a transaction-level one halfway through. It is held on a
+        cursor of its own, which a database error in the scan cannot abort
+        before the lock is released.
         """
-        self.env.cr.execute("SELECT pg_try_advisory_lock(%s)", (SCAN_LOCK_KEY,))
-        if not self.env.cr.fetchone()[0]:
-            _logger.info("Another scan is running, skipped.")
-            return
-        try:
-            # Configuration: a handful of records, all wanted.
-            # pylint: disable=no-search-all
-            self.search([])._scan()
-        finally:
-            self.env.cr.execute("SELECT pg_advisory_unlock(%s)", (SCAN_LOCK_KEY,))
+        with self.env.registry.cursor() as lock_cr:
+            lock_cr.execute("SELECT pg_try_advisory_lock(%s)", (SCAN_LOCK_KEY,))
+            if not lock_cr.fetchone()[0]:
+                _logger.info("Another scan is running, skipped.")
+                return
+            try:
+                # Configuration: a handful of records, all wanted.
+                # pylint: disable=no-search-all
+                self.search([])._scan()
+            finally:
+                lock_cr.execute("SELECT pg_advisory_unlock(%s)", (SCAN_LOCK_KEY,))

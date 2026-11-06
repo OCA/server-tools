@@ -4,11 +4,17 @@
 from unittest.mock import patch
 
 import fsspec
+import psycopg2
 
 from odoo.tests import TransactionCase
 from odoo.tools import mute_logger
 
+from ..models.data_import_pickup import SCAN_LOCK_KEY
+
 LOG_MODEL = "odoo.addons.data_import_log.models.data_import_log.DataImportLog"
+PICKUP_MODEL = (
+    "odoo.addons.data_import_log_fs.models.data_import_pickup.DataImportPickup"
+)
 FEED = b"key,qty\nD-1,2\nD-2,3\n"
 
 
@@ -319,3 +325,20 @@ class TestDataImportPickup(TransactionCase):
         self.assertFalse(self.pickup.scan_error)
         self.assertFalse(self.pickup.scan_failed_since)
         self.assertIn("scanned again", self.pickup.message_ids[:1].body)
+
+    @mute_logger("odoo.sql_db")
+    def test_scan_lock_is_released_after_a_database_error(self):
+        def failing_scan(pickups):
+            pickups.env.cr.execute("SELECT 1 / 0")
+
+        with (
+            self.assertRaises(psycopg2.errors.DivisionByZero),
+            self.env.cr.savepoint(),
+            patch(f"{PICKUP_MODEL}._scan", failing_scan),
+        ):
+            self.env["data.import.pickup"]._cron_scan()
+        self.env.cr.execute(
+            "SELECT count(*) FROM pg_locks WHERE locktype = 'advisory' AND objid = %s",
+            (SCAN_LOCK_KEY,),
+        )
+        self.assertEqual(self.env.cr.fetchone()[0], 0)
