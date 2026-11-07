@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="iap_account_view_form" model="ir.ui.view">
+        <field name="model">iap.account</field>
+        <field name="inherit_id" ref="iap.iap_account_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='account']" position="before">
+                <group string="Info" name="info">
+                    <field name="provider" />
+                </group>
+            </xpath>
+            <!-- `position="move"` is only resolved on direct children of an
+                 inheritance spec, so moving `company_ids` into the group above
+                 needs its own spec. Nested inside the inserted group it was
+                 kept as a plain attribute and the field ended up rendered
+                 twice. -->
+            <xpath expr="//group[@name='info']" position="inside">
+                <xpath expr="//field[@name='company_ids']" position="move" />
+            </xpath>
+            <group name="account" position="attributes">
+                <attribute name="invisible">provider != 'odoo'</attribute>
+            </group>
+        </field>
+    </record>
+</odoo>
