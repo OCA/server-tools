@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_fields_view_tree_custom_tracking" model="ir.ui.view">
+        <field name="model">ir.model.fields</field>
+        <field
+            name="inherit_id"
+            ref="tracking_manager.ir_model_fields_view_tree_custom_tracking"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='custom_tracking']" position="after">
+                <field name="model" column_invisible="1" />
+                <field
+                    name="tracking_domain"
+                    widget="domain"
+                    options="{'model': 'model'}"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
