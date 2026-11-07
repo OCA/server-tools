@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_ir_sequence_option,access_ir_sequence_option,ir.sequence.option,base.group_user,r,
+access_ir_sequence_option_system,access_ir_sequence_option_system,ir.sequence.option,base.group_system,crud,
+ir_sequence_option_multi_company_rule,Sequence Option: multi-company,ir.sequence.option,,crud,"[('company_id', 'in', company_ids)]"
+access_ir_sequence_option_line,access_ir_sequence_option_line,ir.sequence.option.line,base.group_user,r,
+access_ir_sequence_option_line_system,access_ir_sequence_option_line_system,ir.sequence.option.line,base.group_system,crud,
+ir_sequence_option_line_multi_company_rule,Sequence Option Line: multi-company,ir.sequence.option.line,,crud,"[('company_id', 'in', company_ids)]"

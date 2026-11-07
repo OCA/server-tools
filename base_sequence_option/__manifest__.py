@@ -4,7 +4,7 @@
 {
     "name": "Base Sequence Option",
     "summary": "Alternative sequence options for specific models",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "maintainers": ["kittiu"],
     "development_status": "Alpha",
@@ -12,8 +12,7 @@
     "category": "Tools",
     "depends": ["base"],
     "data": [
-        "security/ir.model.access.csv",
-        "security/sequence_option_security.xml",
+        "security/ir.access.csv",
         "views/sequence_option_view.xml",
     ],
     "license": "LGPL-3",
