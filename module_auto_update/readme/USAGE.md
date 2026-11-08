@@ -21,3 +21,5 @@ following in an Odoo shell session:
 ``` python
 env['ir.module.module'].upgrade_changed_checksum()
 ```
+
+Increment the `version` key in your modules' `__manifest__.py`, then restart Odoo.

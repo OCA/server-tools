@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==================
 Module Auto Update
 ==================
@@ -17,7 +13,7 @@ Module Auto Update
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -42,6 +38,16 @@ As an alternative to this module
 `click-odoo-update <https://github.com/acsone/click-odoo-contrib>`__ can
 also be integrated in your non-Odoo maintenance tools instead.
 
+This module gives Odoo the ability to upgrade a module automatically
+when its version number is bumped, similar to how Odoo.sh works. This
+feature is very useful in Docker deployments (doubly-so for
+docker-in-cloud), where upgrading modules via the command-line can be
+difficult or impossible.
+
+In particular, this module is handy when adding new fields to
+``res.users`` or ``res.company``, which will often cause the Odoo UI to
+break until the module is upgraded.
+
 **Table of contents**
 
 .. contents::
@@ -60,6 +66,12 @@ This module supports the following system parameters:
 In addition to the above pattern, .po files corresponding to languages
 that are not installed in the Odoo database are ignored when computing
 checksums.
+
+This module must be added to the ``server_wide_modules`` in your Odoo
+configuration. You must also specify a ``db_name`` in the config, e.g.,
+``db_name = FirstDB,AnotherDB`` - the module **will not work** in
+multi-DB mode. You must also specify ``module_auto_update = True`` in
+the config, or start the server with ``odoo --update auto-update``.
 
 Usage
 =====
@@ -87,6 +99,16 @@ following in an Odoo shell session:
 .. code:: python
 
    env['ir.module.module'].upgrade_changed_checksum()
+
+Increment the ``version`` key in your modules' ``__manifest__.py``, then
+restart Odoo.
+
+Known issues / Roadmap
+======================
+
+- Load ``modules_auto_update_disabled`` from config; default to
+  [``studio_customization``].
+- Support config ``module_auto_update_type`` = ``checksum``.
 
 Bug Tracker
 ===========
@@ -118,8 +140,10 @@ Contributors
 - Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
 - Eric Antones <eantones@nuobit.com>
 - Manuel Engel <manuel.engel@initos.com>
-- PyTech SRL info@pytech.it
-- Ooops404 info@ooops404.com
+- PyTech SRL <info@pytech.it>
+- Ooops404 <info@ooops404.com>
+- Ryan Cole <hello@ryanc.me>
+- Adam Heinz <adam.heinz@metricwise.com> (https://metricwise.com)
 
 Maintainers
 -----------
