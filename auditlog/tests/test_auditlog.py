@@ -799,3 +799,27 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+@tagged("-at_install", "post_install")
+class TestAuditlogRegistryLoading(AuditLogRuleCommon):
+    def test_no_patch_while_registry_loading(self):
+        """Rules subscribed while the registry loads are applied once it is loaded"""
+        model = self.env["res.partner.category"]
+        registry = self.env.registry
+        registry.loaded = False
+        try:
+            rule = self.env["auditlog.rule"].create(
+                {
+                    "name": "testrule for categories",
+                    "model_id": self.env.ref("base.model_res_partner_category").id,
+                    "log_write": True,
+                    "log_type": "full",
+                }
+            )
+            rule.subscribe()
+            self.assertFalse(hasattr(model, "auditlog_ruled_write"))
+        finally:
+            registry.loaded = True
+        self.env["auditlog.rule"]._register_hook()
+        self.assertTrue(hasattr(model, "auditlog_ruled_write"))

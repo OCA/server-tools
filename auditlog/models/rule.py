@@ -206,6 +206,12 @@ class AuditlogRule(models.Model):
     def _register_hook(self):
         """Get all rules and apply them to log method calls."""
         super()._register_hook()
+        if not self.pool.loaded:
+            # Rules created or written as module data must not patch the methods
+            # yet: the models of the modules loaded later are not set up, so
+            # their overrides would be skipped. The hook runs again on every
+            # model once the registry is loaded.
+            return False
         if not hasattr(self.pool, "_auditlog_field_cache"):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, "_auditlog_model_cache"):
