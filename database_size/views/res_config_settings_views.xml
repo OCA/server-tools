@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Database Size Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="performance" position="before">
+                <block title="Database Size" id="database_size">
+                    <setting name="database_size_purge">
+                        <field name="database_size_purge" />
+                    </setting>
+                    <setting
+                        name="database_size_retention_daily"
+                        invisible="not database_size_purge"
+                    >
+                        <field name="database_size_retention_daily" class="oe_inline" />
+                        <span> days</span>
+                    </setting>
+                    <setting
+                        name="database_size_retention_monthly"
+                        invisible="not database_size_purge"
+                        help="Set to 0 to keep monthly measurements forever."
+                    >
+                        <field
+                            name="database_size_retention_monthly"
+                            class="oe_inline"
+                        />
+                        <span> days</span>
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>
