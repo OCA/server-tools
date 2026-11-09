@@ -6,7 +6,7 @@ from ast import literal_eval
 
 from lxml import etree
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Domain
 
@@ -15,16 +15,16 @@ _logger = logging.getLogger(__name__)
 ALLOWED_OPS = {"ilike", "like"}
 
 
-@tools.ormcache()
+@api.ormcache()
 def _get_rec_names(self):
     "List of fields to search into"
     model = self.env["ir.model"].search([("model", "=", str(self._name))])
-    rec_name = [self._rec_name] or []
+    rec_name = [self._rec_name] if self._rec_name else []
     other_names = model.name_search_ids.mapped("name")
     return rec_name + other_names
 
 
-@tools.ormcache()
+@api.ormcache()
 def _get_use_smart_name_search(self):
     return (
         self.env["ir.model"]
@@ -33,7 +33,7 @@ def _get_use_smart_name_search(self):
     )
 
 
-@tools.ormcache()
+@api.ormcache()
 def _get_add_smart_search(self):
     "Add Smart Search on search views"
     model = self.env["ir.model"].search([("model", "=", str(self._name))])
@@ -43,7 +43,7 @@ def _get_add_smart_search(self):
     return False
 
 
-@tools.ormcache()
+@api.ormcache()
 def _get_name_search_domain(self):
     "Add Smart Search on search views"
     name_search_domain = (
@@ -95,6 +95,7 @@ class Base(models.AbstractModel):
         return []
 
     @api.model
+    @api.readonly
     def name_search(self, name="", domain=None, operator="ilike", limit=100):
         if (
             not name
@@ -199,7 +200,7 @@ class IrModel(models.Model):
 
     @api.constrains("name_search_ids", "name_search_domain", "add_smart_search")
     def update_search_wo_restart(self):
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
 
     @api.constrains("name_search_domain")
     def check_name_search_domain(self):
@@ -224,7 +225,7 @@ class IrModel(models.Model):
 
     def write(self, vals):
         if "add_smart_search" in vals:
-            self.env.registry.clear_cache("templates")
+            self.env.transaction.invalidate_ormcache("templates")
         return super().write(vals)
 
     def _register_hook(self):
@@ -265,6 +266,8 @@ class IrModel(models.Model):
             wrapper._is_smart_patched = True
             wrapper.origin = original_name_search
             wrapper._api_model = getattr(original_name_search, "_api_model", False)
+            if getattr(original_name_search, "_readonly", False):
+                wrapper._readonly = True
             return wrapper
 
         model_records = self.env["ir.model"].search(

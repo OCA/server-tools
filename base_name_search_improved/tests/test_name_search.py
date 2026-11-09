@@ -76,6 +76,18 @@ class NameSearchCase(TransactionCase):
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
 
+    def test_SmartSearchField(self):
+        """Search view field must match all words, regardless of order"""
+        partners = self.partner1 | self.partner2 | self.partner3
+        res = self.Partner.search(
+            [("smart_search", "ilike", "777 555"), ("id", "in", partners.ids)]
+        )
+        self.assertEqual(res, partners)
+        res = self.Partner.search(
+            [("smart_search", "ilike", "ulm 555"), ("id", "in", partners.ids)]
+        )
+        self.assertEqual(res, self.partner3)
+
     def test_SmartSearchWarning(self):
         """Must check the funtional work of _compute_smart_search_warning"""
         self.model_partner.name_search_ids = [
