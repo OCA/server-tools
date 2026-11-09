@@ -8,6 +8,9 @@ from odoo.addons.scheduler_error_mailer.hooks import post_init_hook
 
 
 class TestSchedulerErrorMailer(BaseCommon):
+    # Creating and running crons requires administration rights
+    _test_user_groups = ("base.group_system",)
+
     def setUp(self):
         super().setUp()
         self.cron = self.env["ir.cron"].create(
