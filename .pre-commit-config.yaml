@@ -67,6 +67,9 @@ repos:
           - --keep-source-digest
           - --convert-fragments-to-markdown
       - id: oca-gen-external-dependencies
+        additional_dependencies:
+          # Odoo 20 is supported since manifestoo-core v1.16.0
+          - manifestoo-core>=v1.16.1
   - repo: https://github.com/OCA/odoo-pre-commit-hooks
     rev: v0.2.27
     hooks:
