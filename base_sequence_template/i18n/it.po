@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 12:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
@@ -22,6 +24,13 @@ msgid ""
 "                                    <span colspan=\"2\">Month: %(month)s</span>\n"
 "                                    <span colspan=\"2\">Day: %(day)s</span>"
 msgstr ""
+"<span colspan=\"2\">Anno corrente con secolo: %(year)s</span>\n"
+"                                    <span colspan=\"2\">Anno corrente senza "
+"secolo: %(y)s</span>\n"
+"                                    <span colspan=\"2\">Mese: %(month)s</"
+"span>\n"
+"                                    <span colspan=\"2\">Giorno: %(day)s</"
+"span>"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
@@ -30,6 +39,11 @@ msgid ""
 "                                    <span colspan=\"2\">Week of the Year: %(woy)s</span>\n"
 "                                    <span colspan=\"2\">Day of the Week (0:Monday): %(weekday)s</span>"
 msgstr ""
+"<span colspan=\"2\">Giorno dell'anno: %(doy)s</span>\n"
+"                                    <span colspan=\"2\">Settimana dell'anno: "
+"%(woy)s</span>\n"
+"                                    <span colspan=\"2\">Giorno della "
+"settimana (0:Lunedì): %(weekday)s</span>"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
@@ -39,6 +53,13 @@ msgid ""
 "                                    <span colspan=\"2\">Minute: %(min)s</span>\n"
 "                                    <span colspan=\"2\">Second: %(sec)s</span>"
 msgstr ""
+"<span colspan=\"2\">Ora 00-&gt;24: %(h24)s</span>\n"
+"                                    <span colspan=\"2\">Ora 00-&gt;12: %(h12)"
+"s</span>\n"
+"                                    <span colspan=\"2\">Minuto: %(min)s</"
+"span>\n"
+"                                    <span colspan=\"2\">Secondo: %(sec)s</"
+"span>"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
@@ -48,6 +69,12 @@ msgid ""
 "                                    </span>\n"
 "                                    <span colspan=\"4\">You can use any company flat field in your prefix or suffix</span>"
 msgstr ""
+"<span colspan=\"4\">\n"
+"                                        <strong>Campi azienda</strong>\n"
+"                                    </span>\n"
+"                                    <span colspan=\"4\">È possibile "
+"utilizzare qualsiasi campo semplice dell'azienda nel prefisso o suffisso</"
+"span>"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
@@ -56,6 +83,11 @@ msgid ""
 "                                    <span colspan=\"4\">Company Name: %(company_id.name)s</span>\n"
 "                                    <span colspan=\"4\">Company Registry: %(company_id.company_registry)s</span>"
 msgstr ""
+"<span colspan=\"4\">ID azienda: %(company_id.id)s</span>\n"
+"                                    <span colspan=\"4\">Nome azienda: %"
+"(company_id.name)s</span>\n"
+"                                    <span colspan=\"4\">Registro azienda: %"
+"(company_id.company_registry)s</span>"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_generate_company_sequences_wizard_form
@@ -65,142 +97,149 @@ msgid ""
 "                    the currently configured sequences for the selected companies.\n"
 "                    Only proceed if you know what you are doing."
 msgstr ""
+"<strong>Attenzione:</strong>\n"
+"                    Prestare attenzione! La generazione delle sequenze "
+"potrebbe sovrascrivere o duplicare\n"
+"                    le sequenze attualmente configurate per le aziende "
+"selezionate.\n"
+"                    Procedere solo se si è consapevoli di ciò che si sta "
+"facendo."
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__active
 msgid "Active"
-msgstr ""
+msgstr "Attivo"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_generate_company_sequences_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__company_ids
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 msgid "Company legend (for prefix, suffix)"
-msgstr ""
+msgstr "Legenda azienda (per prefisso, suffisso)"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_generate_company_sequences_wizard_form
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__create_uid
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__create_date
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__display_name
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: base_sequence_template
 #: model:ir.actions.act_window,name:base_sequence_template.action_generate_company_sequences_wizard
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_generate_company_sequences_wizard_form
 msgid "Generate Company Sequences"
-msgstr ""
+msgstr "Genera sequenze azienda"
 
 #. module: base_sequence_template
 #: model:ir.actions.server,name:base_sequence_template.action_open_generate_sequences_wizard
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_tree
 msgid "Generate Sequences"
-msgstr ""
+msgstr "Genera sequenze"
 
 #. module: base_sequence_template
 #: model:ir.model,name:base_sequence_template.model_generate_company_sequences_wizard
 msgid "Generate Sequences for Company"
-msgstr ""
+msgstr "Genera sequenze per azienda"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__id
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__implementation
 msgid "Implementation"
-msgstr ""
+msgstr "Implementazione"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__write_uid
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__write_date
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 msgid "Legend (for prefix, suffix)"
-msgstr ""
+msgstr "Legenda (per prefisso, suffisso)"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: base_sequence_template
 #: model:ir.model.fields.selection,name:base_sequence_template.selection__ir_sequence_template__implementation__no_gap
 msgid "No gap"
-msgstr ""
+msgstr "Senza vuoti"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Prefisso"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,help:base_sequence_template.field_ir_sequence_template__prefix
 msgid "Prefix value of the record for the sequence"
-msgstr ""
+msgstr "Valore prefisso del record per la sequenza"
 
 #. module: base_sequence_template
 #: model:ir.model,name:base_sequence_template.model_ir_sequence
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__sequence_ids
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__code
 msgid "Sequence Code"
-msgstr ""
+msgstr "Codice sequenza"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__sequence_count
 msgid "Sequence Count"
-msgstr ""
+msgstr "Conteggio sequenze"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__padding
 msgid "Sequence Size"
-msgstr ""
+msgstr "Dimensione sequenza"
 
 #. module: base_sequence_template
 #: model:ir.model,name:base_sequence_template.model_ir_sequence_template
 msgid "Sequence Template"
-msgstr ""
+msgstr "Modello di sequenza"
 
 #. module: base_sequence_template
 #: model:ir.actions.act_window,name:base_sequence_template.action_ir_sequence_template
@@ -209,41 +248,41 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_tree
 msgid "Sequence Templates"
-msgstr ""
+msgstr "Modelli di sequenza"
 
 #. module: base_sequence_template
 #: model_terms:ir.ui.view,arch_db:base_sequence_template.view_ir_sequence_template_form
 msgid "Sequences"
-msgstr ""
+msgstr "Sequenze"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_generate_company_sequences_wizard__smart_search
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence__smart_search
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: base_sequence_template
 #: model:ir.model.fields.selection,name:base_sequence_template.selection__ir_sequence_template__implementation__standard
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__number_increment
 msgid "Step"
-msgstr ""
+msgstr "Passo"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence_template__suffix
 msgid "Suffix"
-msgstr ""
+msgstr "Suffisso"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,help:base_sequence_template.field_ir_sequence_template__suffix
 msgid "Suffix value of the record for the sequence"
-msgstr ""
+msgstr "Valore suffisso del record per la sequenza"
 
 #. module: base_sequence_template
 #: model:ir.model.fields,field_description:base_sequence_template.field_ir_sequence__template_id
 msgid "Template"
-msgstr ""
+msgstr "Modello"
