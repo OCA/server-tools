@@ -23,7 +23,7 @@
     "installable": True,
     "depends": ["base"],
     "external_dependencies": {
-        "python": ["dataclasses", "odoorpc", "openupgradelib"],
+        "python": ["odoorpc", "openupgradelib"],
     },
     "license": "AGPL-3",
 }
