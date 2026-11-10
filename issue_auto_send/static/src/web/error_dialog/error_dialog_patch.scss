@@ -1,0 +1,8 @@
+// Odoo hides the default "Close" button as soon as the footer has another
+// child; keep it visible next to the send button.
+.modal.o_technical_modal
+    .o_error_dialog
+    .modal-footer:has(.o_issue_auto_send_button)
+    button.o-default-button {
+    display: inline-block;
+}
