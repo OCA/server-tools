@@ -71,9 +71,7 @@ class UpgradeComparisonConfig(models.Model):
         self.ensure_one()
         try:
             connection = self.get_connection()
-            user_model = connection.env["res.users"]
-            ids = user_model.search([("login", "=", "admin")])
-            user_info = user_model.read([ids[0]], ["name"])[0]
+            user_info = connection.env.user
         except Exception as e:
             raise UserError(self.env._("Connection failed.\n\nDETAIL: %s", e)) from e
         return {
@@ -86,7 +84,7 @@ class UpgradeComparisonConfig(models.Model):
                     " (version %(version)s) with the user %(user_name)s",
                     server=self.server,
                     version=self.version,
-                    user_name=user_info["name"],
+                    user_name=user_info.name,
                 ),
             },
         }
