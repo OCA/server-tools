@@ -6,140 +6,142 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 12:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_url
 #: model:ir.model,name:base_url.model_abstract_url
 msgid "Abstract Url"
-msgstr ""
+msgstr "URL astratto"
 
 #. module: base_url
 #: model:ir.model.constraint,message:base_url.constraint_url_url_unique_key_per_referential_per_lang
 msgid "Already exists in database"
-msgstr ""
+msgstr "Esiste già nel database"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__count_url
 msgid "Count Url"
-msgstr ""
+msgstr "Conteggio URL"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: base_url
 #: model:res.groups,name:base_url.group_edit_url
 msgid "Edit url"
-msgstr ""
+msgstr "Modifica URL"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_url
 #: model:ir.model.fields,help:base_url.field_url_url__res_id
 msgid "ID of the target record in the database"
-msgstr ""
+msgstr "ID del record di destinazione nel database"
 
 #. module: base_url
 #: model:ir.model.fields,help:base_url.field_url_url__redirect
 msgid "If tick this url is a redirection to the new url"
-msgstr ""
+msgstr "Se selezionato, questo URL è un reindirizzamento al nuovo URL"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__key
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__lang_id
 msgid "Lang"
-msgstr ""
+msgstr "Lingua"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__manual
 msgid "Manual"
-msgstr ""
+msgstr "Manuale"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__res_model_field
 msgid "Model Name"
-msgstr ""
+msgstr "Nome modello"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__need_refresh
 msgid "Need Refresh"
-msgstr ""
+msgstr "Richiede aggiornamento"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__res_id
 msgid "Record ID"
-msgstr ""
+msgstr "ID record"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__redirect
 msgid "Redirect"
-msgstr ""
+msgstr "Reindirizzamento"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__redirect_url_key
 msgid "Redirect Url Keys"
-msgstr ""
+msgstr "Chiavi URL di reindirizzamento"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__referential
 msgid "Referential"
-msgstr ""
+msgstr "Sistema di riferimento"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Modello risorsa"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__smart_search
 #: model:ir.model.fields,field_description:base_url.field_url_url__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: base_url
 #: model:ir.model,name:base_url.model_url_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__url_ids
 msgid "Url"
-msgstr ""
+msgstr "URL"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__url_key
 msgid "Url Key"
-msgstr ""
+msgstr "Chiave URL"
 
 #. module: base_url
 #. odoo-python
@@ -151,23 +153,28 @@ msgid ""
 "- Url Key: %(url_key)s\n"
 "- Url ID: %(url_id)s"
 msgstr ""
+"La chiave URL esiste già in un altro modello\n"
+"- Nome modello: %(model_name)s\n"
+"- ID record: %(record_id)s\n"
+"- Chiave URL: %(url_key)s\n"
+"- ID URL: %(url_id)s"
 
 #. module: base_url
 #: model:ir.actions.act_window,name:base_url.base_url_action_view
 msgid "Url List"
-msgstr ""
+msgstr "Elenco URL"
 
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__url_need_refresh
 msgid "Url Need Refresh"
-msgstr ""
+msgstr "URL richiede aggiornamento"
 
 #. module: base_url
 #: model:ir.ui.menu,name:base_url.url_menu_view
 msgid "Url Rewrite"
-msgstr ""
+msgstr "Riscrittura URL"
 
 #. module: base_url
 #: model_terms:ir.ui.view,arch_db:base_url.url_view_form
 msgid "Url rewriting edit form"
-msgstr ""
+msgstr "Modulo modifica riscrittura URL"
