@@ -13,12 +13,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -33,7 +38,7 @@ jobs:
           done
   test:
     runs-on: ubuntu-22.04
-    container: ${{ matrix.container }}
+    container: ${{ matrix.container }} # zizmor: ignore[unpinned-images]
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -54,7 +59,7 @@ jobs:
         ports:
           - 5432:5432
     env:
-      OCA_ENABLE_CHECKLOG_ODOO: "1"
+      "OCA_ENABLE_CHECKLOG_ODOO": "1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -80,5 +85,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Update .pot files
-        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
-        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}
+        run: oca_export_and_push_pot "https://x-access-token:${GIT_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+        env:
+          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
+        if: matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA'
+
