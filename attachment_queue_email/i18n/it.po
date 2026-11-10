@@ -6,110 +6,112 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 12:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_attachment_queue__assigned_attachment_ids
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__assigned_attachment_ids
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_server__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Allegati assegnati"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_server__attachment_condition_ids
 msgid "Attachment Condition"
-msgstr ""
+msgstr "Condizione allegato"
 
 #. module: attachment_queue_email
 #: model_terms:ir.ui.view,arch_db:attachment_queue_email.view_fetchmail_attachment_condition_form
 msgid "Attachment Condition requirements"
-msgstr ""
+msgstr "Requisiti condizione allegato"
 
 #. module: attachment_queue_email
 #: model_terms:ir.ui.view,arch_db:attachment_queue_email.view_email_server_form
 msgid "Attachment Conditions"
-msgstr ""
+msgstr "Condizioni allegato"
 
 #. module: attachment_queue_email
 #: model:ir.model,name:attachment_queue_email.model_attachment_queue
 msgid "Attachment Queue"
-msgstr ""
+msgstr "Coda allegati"
 
 #. module: attachment_queue_email
 #: model_terms:ir.ui.view,arch_db:attachment_queue_email.view_fetchmail_attachment_condition_form
 msgid "Attachment process"
-msgstr ""
+msgstr "Elaborazione allegato"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__name
 msgid "Condition Name"
-msgstr ""
+msgstr "Nome condizione"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__email_from
 msgid "Email From"
-msgstr ""
+msgstr "E-mail da"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_attachment_queue__fetchmail_server_id
 msgid "Email Server"
-msgstr ""
+msgstr "Server e-mail"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__email_subject
 msgid "Email Subject"
-msgstr ""
+msgstr "Oggetto e-mail"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__email_to
 msgid "Email To"
-msgstr ""
+msgstr "E-mail a"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_attachment_queue__fetchmail_attachment_condition_id
 msgid "FetchMail condition"
-msgstr ""
+msgstr "Condizione FetchMail"
 
 #. module: attachment_queue_email
 #: model:ir.model,name:attachment_queue_email.model_fetchmail_attachment_condition
 msgid "Fetchmail Attachment Conditions"
-msgstr ""
+msgstr "Condizioni allegato Fetchmail"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__file_extension
 msgid "File Extension"
-msgstr ""
+msgstr "Estensione file"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__file_type
 msgid "File Type"
-msgstr ""
+msgstr "Tipo file"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_server__attachment_condition_ids
@@ -117,11 +119,13 @@ msgid ""
 "Files attached to the emails matching these conditions will be imported in "
 "Odoo as 'Attachment Queue' objects"
 msgstr ""
+"I file allegati alle e-mail che corrispondono a queste condizioni verranno "
+"importati in Odoo come oggetti 'Coda allegati'"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_attachment_condition__email_to
@@ -129,6 +133,9 @@ msgid ""
 "If empty, catches the email no matter the recipient.\n"
 "Otherwise catches the emails where the recipients emails contains the given characters."
 msgstr ""
+"Se vuoto, intercetta l'e-mail indipendentemente dal destinatario.\n"
+"Altrimenti intercetta le e-mail in cui l'indirizzo dei destinatari contiene "
+"i caratteri indicati."
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_attachment_condition__email_from
@@ -136,6 +143,9 @@ msgid ""
 "If empty, catches the emails from every senders.\n"
 "Otherwise catches the emails where the sender's email contains the given characters"
 msgstr ""
+"Se vuoto, intercetta le e-mail da qualsiasi mittente.\n"
+"Altrimenti intercetta le e-mail in cui l'indirizzo del mittente contiene i "
+"caratteri indicati"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_attachment_condition__email_subject
@@ -143,38 +153,41 @@ msgid ""
 "If empty, catches the emails with every kind of Subjects.\n"
 "Otherwise catches the emails where the Subject contains the given characters"
 msgstr ""
+"Se vuoto, intercetta le e-mail con qualsiasi oggetto.\n"
+"Altrimenti intercetta le e-mail in cui l'oggetto contiene i caratteri "
+"indicati"
 
 #. module: attachment_queue_email
 #: model:ir.model,name:attachment_queue_email.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr ""
+msgstr "Server di posta in arrivo"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: attachment_queue_email
 #: model_terms:ir.ui.view,arch_db:attachment_queue_email.view_fetchmail_attachment_condition_form
 msgid "Requirements"
-msgstr ""
+msgstr "Requisiti"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__server_id
 msgid "Server Mail"
-msgstr ""
+msgstr "Server di posta"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,field_description:attachment_queue_email.field_attachment_queue__smart_search
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_attachment_condition__smart_search
 #: model:ir.model.fields,field_description:attachment_queue_email.field_fetchmail_server__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_attachment_condition__file_type
@@ -182,16 +195,19 @@ msgid ""
 "The 'file type' is transmited to the 'Attachment Queue' objects created from the selected emails attachments.\n"
 "It will allow Odoo to recognize what do do with them once created."
 msgstr ""
+"Il 'tipo file' viene trasmesso agli oggetti 'Coda allegati' creati dagli "
+"allegati delle e-mail selezionate.\n"
+"Permetterà a Odoo di riconoscere cosa farne una volta creati."
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_attachment_queue__fetchmail_attachment_condition_id
 msgid "The Fetchmail attachment condition used to create this attachment"
-msgstr ""
+msgstr "La condizione allegato Fetchmail utilizzata per creare questo allegato"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_attachment_queue__fetchmail_server_id
 msgid "The email server used to create this attachment"
-msgstr ""
+msgstr "Il server e-mail utilizzato per creare questo allegato"
 
 #. module: attachment_queue_email
 #: model:ir.model.fields,help:attachment_queue_email.field_fetchmail_attachment_condition__file_extension
@@ -199,3 +215,5 @@ msgid ""
 "The extension (or part of the name) of the sought files. If empty, all the "
 "email's attachments will be imported."
 msgstr ""
+"L'estensione (o parte del nome) dei file cercati. Se vuoto, tutti gli "
+"allegati dell'e-mail verranno importati."
