@@ -10,7 +10,7 @@ from collections import defaultdict
 
 from psycopg2.errors import LockNotAvailable
 
-from odoo import Command, _, api, models
+from odoo import Command, api, models
 from odoo.api import Environment
 from odoo.exceptions import MissingError, UserError
 from odoo.fields import Domain
@@ -226,7 +226,7 @@ class BaseExceptionMethod(models.AbstractModel):
                     "Records created by the rolled back transaction, no "
                     "exceptions to write"
                 )
-            except Exception as error:
+            except Exception as error:  # noqa: BLE001
                 _logger.warning(
                     "Exceptions could not be written after a rollback: %s", error
                 )
