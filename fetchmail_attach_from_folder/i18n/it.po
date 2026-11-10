@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2026-01-29 12:09+0000\n"
+"PO-Revision-Date: 2026-11-10 12:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -27,12 +27,12 @@ msgstr "Attivo"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__all
 msgid "After Processing"
-msgstr ""
+msgstr "Dopo l'elaborazione"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
 msgid "Archive Folder"
-msgstr ""
+msgstr "Cartella archivio"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
@@ -81,6 +81,10 @@ msgid ""
 "only fetch emails received in the last 24 hours. This helps avoid "
 "reprocessing emails if they are not deleted after processing."
 msgstr ""
+"In modo predefinito, vengono cercate tutte le e-mail nella cartella. "
+"Abilitare questa opzione per recuperare solo le e-mail ricevute nelle ultime "
+"24 ore. Questo aiuta a evitare di rielaborare le e-mail se non vengono "
+"eliminate dopo l'elaborazione."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
@@ -88,6 +92,8 @@ msgid ""
 "By default, all undeleted emails are retrieved. Enable this option to fetch "
 "only unread emails."
 msgstr ""
+"In modo predefinito, vengono recuperate tutte le e-mail non eliminate. "
+"Abilitare questa opzione per recuperare solo le e-mail non lette."
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -160,6 +166,8 @@ msgstr "Data"
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
 msgid "Define a search filter to narrow down objects for email matching."
 msgstr ""
+"Definire un filtro di ricerca per restringere gli oggetti da far "
+"corrispondere alle e-mail."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server_folder
@@ -170,7 +178,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__delete_matching
 msgid "Delete Matched Emails"
-msgstr ""
+msgstr "Elimina e-mail corrispondenti"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__display_name
@@ -182,17 +190,17 @@ msgstr "Nome visualizzato"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_domain
 msgid "Domain of Email Address"
-msgstr ""
+msgstr "Dominio dell'indirizzo e-mail"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
 msgid "Email Field"
-msgstr ""
+msgstr "Campo e-mail"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Email Post-Processing Actions"
-msgstr ""
+msgstr "Azioni post-elaborazione e-mail"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__mail_ids
@@ -205,6 +213,8 @@ msgid ""
 "Enable this option to delete emails after they are successfully processed "
 "and matched."
 msgstr ""
+"Abilitare questa opzione per eliminare le e-mail dopo che sono state "
+"elaborate e abbinate con successo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
@@ -212,6 +222,8 @@ msgid ""
 "Enable this option to ignore the default IMAP inbox processing and retrieve "
 "emails only from the specified folders."
 msgstr ""
+"Abilitare questa opzione per ignorare l'elaborazione predefinita della posta "
+"in arrivo IMAP e recuperare le e-mail solo dalle cartelle specificate."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
@@ -219,21 +231,23 @@ msgid ""
 "Enable this option to mark emails as important if they do not match any "
 "object in Odoo."
 msgstr ""
+"Abilitare questa opzione per contrassegnare le e-mail come importanti se non "
+"corrispondono a nessun oggetto in Odoo."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_exact
 msgid "Exact Email Address"
-msgstr ""
+msgstr "Indirizzo e-mail esatto"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_last_day_only
 msgid "Fetch Last 24 Hours Only"
-msgstr ""
+msgstr "Recupera solo ultime 24 ore"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Fetch Options"
-msgstr ""
+msgstr "Opzioni di recupero"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
@@ -248,12 +262,12 @@ msgstr "Recupera cartella adesso"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid "Fetch from Folder"
-msgstr ""
+msgstr "Recupera da cartella"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
 msgid "Flag Non-Matching Emails"
-msgstr ""
+msgstr "Contrassegna e-mail non corrispondenti"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__folder_id
@@ -298,11 +312,13 @@ msgid ""
 "If there are multiple matches, use the first one. If disabled, multiple "
 "matches will be considered as no match."
 msgstr ""
+"Se ci sono corrispondenze multiple, utilizzare la prima. Se disabilitato, "
+"corrispondenze multiple verranno considerate come nessuna corrispondenza."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__on_fetch
 msgid "Immediately on Fetch"
-msgstr ""
+msgstr "Immediatamente al recupero"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
@@ -332,22 +348,22 @@ msgstr "Ultimo aggiornamento il"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__seen
 msgid "Mark email as seen"
-msgstr ""
+msgstr "Contrassegna e-mail come letta"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
 msgid "Matching Algorithm"
-msgstr ""
+msgstr "Algoritmo di corrispondenza"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
 msgid "Matching Domain"
-msgstr ""
+msgstr "Dominio di corrispondenza"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Matching Options"
-msgstr ""
+msgstr "Opzioni di corrispondenza"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__message_uid
@@ -362,17 +378,17 @@ msgstr "Stato del messaggio"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
 msgid "Model Field"
-msgstr ""
+msgstr "Campo modello"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
 msgid "Model Order"
-msgstr ""
+msgstr "Ordinamento modello"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "Model Post-Processing Actions"
-msgstr ""
+msgstr "Azioni post-elaborazione modello"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__name
@@ -382,7 +398,7 @@ msgstr "Nome"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__none
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__state__draft
@@ -397,12 +413,12 @@ msgstr "Oggetto"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__odoo_standard
 msgid "Odoo Standard"
-msgstr ""
+msgstr "Standard Odoo"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
 msgid "Process Only Specified Folders"
-msgstr ""
+msgstr "Elabora solo le cartelle specificate"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__object_id
@@ -435,6 +451,8 @@ msgstr "Salva"
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
 msgid "Select the algorithm used to determine which object an email matches."
 msgstr ""
+"Selezionare l'algoritmo utilizzato per determinare a quale oggetto "
+"corrisponde un'e-mail."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__msg_state__sent
@@ -454,7 +472,7 @@ msgstr "Server"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Azione server"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type
@@ -480,6 +498,9 @@ msgid ""
 "Specify an optional custom server action to trigger for each incoming email. "
 "The action will run on the record that was created or updated by this email."
 msgstr ""
+"Specificare un'azione server personalizzata opzionale da attivare per ogni e-"
+"mail in arrivo. L'azione verrà eseguita sul record che è stato creato o "
+"aggiornato da questa e-mail."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
@@ -487,6 +508,8 @@ msgid ""
 "Specify the IMAP folder path to retrieve emails from. Typically, this would "
 "be something like 'INBOX.myfolder'."
 msgstr ""
+"Specificare il percorso della cartella IMAP da cui recuperare le e-mail. "
+"Normalmente è qualcosa del tipo 'INBOX.miacartella'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
@@ -494,6 +517,8 @@ msgid ""
 "Specify the field in the email used for matching. Typically, this is 'to', "
 "'from' or 'reply_to'."
 msgstr ""
+"Specificare il campo nell'e-mail utilizzato per la corrispondenza. "
+"Normalmente è 'to', 'from' o 'reply_to'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
@@ -503,6 +528,11 @@ msgid ""
 "- 'email' if your model is res.partner\n"
 "- 'partner_id.email' if matching sale orders."
 msgstr ""
+"Specificare il campo nel modello che verrà utilizzato per la corrispondenza "
+"dell'e-mail.\n"
+"Esempi:\n"
+"- 'email' se il modello è res.partner\n"
+"- 'partner_id.email' se la corrispondenza è con gli ordini di vendita."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
@@ -510,6 +540,8 @@ msgid ""
 "Specify the field(s) to order by when matching emails. This is mostly useful "
 "in conjunction with 'Use 1st Match'."
 msgstr ""
+"Specificare i campi di ordinamento durante la corrispondenza delle e-mail. "
+"Questo è utile principalmente insieme a 'Utilizza la prima corrispondenza'."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
@@ -517,6 +549,9 @@ msgid ""
 "Specify the folder where successfully retrieved emails will be moved after "
 "processing. If left empty, emails will remain in the original folder."
 msgstr ""
+"Specificare la cartella in cui verranno spostate le e-mail recuperate con "
+"successo dopo l'elaborazione. Se lasciato vuoto, le e-mail rimarranno nella "
+"cartella originale."
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__state
@@ -531,7 +566,7 @@ msgstr "Oggetto"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_id
 msgid "Target Model"
-msgstr ""
+msgstr "Modello di destinazione"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
@@ -559,12 +594,12 @@ msgstr "Impossibile ottenere le cartelle."
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_first
 msgid "Use First Match"
-msgstr ""
+msgstr "Utilizza la prima corrispondenza"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__seen__matching
 msgid "When matching"
-msgstr ""
+msgstr "Alla corrispondenza"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__wizard_id
