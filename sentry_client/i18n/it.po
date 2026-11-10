@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 12:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -23,6 +25,14 @@ msgid ""
 "                                Recommended in production: 0.05 or below. In\n"
 "                                development, 1.0 is fine."
 msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\" aria-hidden=\"true\"/>\n"
+"                                Aggiunge circa il 5–10% di sovraccarico per "
+"richiesta con frequenza\n"
+"                                di campionamento 1.0 e traccia ogni fetch/"
+"XHR.\n"
+"                                Consigliato in produzione: 0.05 o inferiore. "
+"In\n"
+"                                sviluppo, 1.0 va bene."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -34,6 +44,16 @@ msgid ""
 "                                recording only kicks in for sessions that already\n"
 "                                broke."
 msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\" aria-hidden=\"true\"/>\n"
+"                                Aggiunge ~100KB a ogni pagina e registra le "
+"mutazioni DOM\n"
+"                                + console + attività di rete. Mantenere il "
+"campionamento\n"
+"                                sessioni integre a 0.0 e il campionamento su "
+"errore a 1.0 in modo\n"
+"                                che la registrazione si attivi solo per le "
+"sessioni che hanno già\n"
+"                                riscontrato un errore."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -44,6 +64,15 @@ msgid ""
 "                                — with tracing off, no profiles will be collected.\n"
 "                                Enable Tier 1 to use profiling."
 msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\" aria-hidden=\"true\"/>\n"
+"                                La profilazione CPU del browser è abilitata "
+"ma il tracciamento di Livello 1\n"
+"                                è DISATTIVATO. I profili vengono allegati "
+"solo alle transazioni tracciate\n"
+"                                — con il tracciamento disattivato, non verrà "
+"raccolto alcun profilo.\n"
+"                                Abilitare il Livello 1 per utilizzare la "
+"profilazione."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -51,23 +80,27 @@ msgid ""
 "Adds a 'Report a bug' button to the navbar that opens Sentry's user-feedback"
 " modal."
 msgstr ""
+"Aggiunge un pulsante 'Segnala un bug' alla barra di navigazione che apre la "
+"finestra di feedback utente di Sentry."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid ""
 "Auto-instruments every fetch/XHR, navigation timing, and long-task observer."
 msgstr ""
+"Traccia automaticamente ogni fetch/XHR, le tempistiche di navigazione e "
+"l'osservatore di attività prolungate."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Browser CPU profiling (Tier 3)"
-msgstr ""
+msgstr "Profilazione CPU del browser (Livello 3)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_browser_dsn
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Browser DSN"
-msgstr ""
+msgstr "DSN browser"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -78,26 +111,31 @@ msgid ""
 "separate project per platform; set a dedicated Browser DSN here to split "
 "JavaScript events from backend Python events."
 msgstr ""
+"DSN del browser, etichette di ambiente e di rilascio. Lasciare vuoto per "
+"ereditare dalle opzioni sentry_* in odoo.conf — utile quando lo stesso "
+"progetto Sentry è condiviso con il modulo OCA `sentry` lato server. Sentry "
+"consiglia un progetto separato per piattaforma; impostare qui un DSN browser "
+"dedicato per separare gli eventi JavaScript dagli eventi Python di backend."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "CDN base URL"
-msgstr ""
+msgstr "URL base CDN"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Capture browser errors (Tier 0)"
-msgstr ""
+msgstr "Acquisisci errori del browser (Livello 0)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier3_logs_enabled
 msgid "Capture console logs"
-msgstr ""
+msgstr "Acquisisci registri della console"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Capture console logs (Tier 3)"
-msgstr ""
+msgstr "Acquisisci registri della console (Livello 3)"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -106,6 +144,9 @@ msgid ""
 "tracing AND a `Document-Policy: js-profiling` HTTP header on the document "
 "response."
 msgstr ""
+"Acquisisce campioni di auto-profilazione JS per le transazioni tracciate. "
+"Richiede il tracciamento di Livello 1 E un'intestazione HTTP `Document-"
+"Policy: js-profiling` nella risposta del documento."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_tier3_profiling_enabled
@@ -115,56 +156,60 @@ msgid ""
 "without it the integration registers but never collects samples. See "
 "CONFIGURE."
 msgstr ""
+"Acquisisce campioni di auto-profilazione JS per le transazioni tracciate. "
+"Richiede che la pagina venga servita con un'intestazione HTTP `Document-"
+"Policy: js-profiling` — senza di essa l'integrazione viene registrata ma non "
+"raccoglie mai campioni. Vedere CONFIGURE."
 
 #. module: sentry_client
 #: model:ir.model,name:sentry_client.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Connection"
-msgstr ""
+msgstr "Connessione"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_users__sentry_client_replay_optout
 msgid "Disable Sentry session replay"
-msgstr ""
+msgstr "Disabilita riproduzione sessione Sentry"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier3_profiling_enabled
 msgid "Enable browser CPU profiling"
-msgstr ""
+msgstr "Abilita profilazione CPU del browser"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_enabled
 msgid "Enable browser error reporting"
-msgstr ""
+msgstr "Abilita segnalazione errori del browser"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier1_tracing_enabled
 msgid "Enable performance monitoring (Tier 1)"
-msgstr ""
+msgstr "Abilita monitoraggio delle prestazioni (Livello 1)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier2_replay_enabled
 msgid "Enable session replay (Tier 2)"
-msgstr ""
+msgstr "Abilita riproduzione sessione (Livello 2)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier3_feedback_enabled
 msgid "Enable user feedback widget"
-msgstr ""
+msgstr "Abilita widget feedback utente"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Environment"
-msgstr ""
+msgstr "Ambiente"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_environment
 msgid "Environment tag"
-msgstr ""
+msgstr "Etichetta ambiente"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -173,6 +218,9 @@ msgid ""
 "entries. Spammy without filtering — recommended only when debugging a "
 "specific issue."
 msgstr ""
+"Inoltra le chiamate `console.log`/`console.warn`/`console.error` come voci "
+"di registro Sentry. Molto verboso senza filtri — consigliato solo durante il "
+"debug di un problema specifico."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_tier2_session_sample_rate
@@ -180,6 +228,8 @@ msgid ""
 "Fraction of HEALTHY user sessions to record. Keep at 0.0 unless you have a "
 "specific UX debugging need."
 msgstr ""
+"Frazione di sessioni utente INTEGRE da registrare. Mantenere a 0.0 a meno "
+"che non si abbia una specifica esigenza di debug UX."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_tier1_traces_sample_rate
@@ -187,6 +237,8 @@ msgid ""
 "Fraction of requests to record performance traces for. 0.0 = none, 1.0 = "
 "all. Recommended in production: 0.05 or below."
 msgstr ""
+"Frazione di richieste per cui registrare tracce sulle prestazioni. 0.0 = "
+"nessuna, 1.0 = tutte. Consigliato in produzione: 0.05 o inferiore."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_tier2_error_sample_rate
@@ -194,6 +246,8 @@ msgid ""
 "Fraction of sessions that hit an error to record. 1.0 means every errored "
 "session is captured for replay."
 msgstr ""
+"Frazione di sessioni che riscontrano un errore da registrare. 1.0 significa "
+"che ogni sessione con errore viene acquisita per la riproduzione."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_tier3_profiles_sample_rate
@@ -201,16 +255,19 @@ msgid ""
 "Fraction of traced transactions for which to also capture a browser CPU "
 "profile. 0.0 = none, 1.0 = all. Recommended in production: 0.05 or below."
 msgstr ""
+"Frazione di transazioni tracciate per le quali acquisire anche un profilo "
+"CPU del browser. 0.0 = nessuna, 1.0 = tutte. Consigliato in produzione: 0.05 "
+"o inferiore."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Healthy-session sample (0.0–1.0)"
-msgstr ""
+msgstr "Campionamento sessioni integre (0.0–1.0)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier2_session_sample_rate
 msgid "Healthy-session sample rate"
-msgstr ""
+msgstr "Frequenza di campionamento sessioni integre"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
@@ -219,37 +276,41 @@ msgid ""
 "unhandled promise rejections. ~30KB bundle, negligible runtime cost. "
 "Requires a Browser DSN above or in the sentry_* options in odoo.conf."
 msgstr ""
+"Carica l'SDK browser di Sentry in ogni pagina; segnala errori JS non "
+"intercettati e promise rifiutate non gestite. Pacchetto di ~30KB, costo di "
+"esecuzione trascurabile. Richiede un DSN browser sopra o nelle opzioni "
+"sentry_* in odoo.conf."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "On-error sample (0.0–1.0)"
-msgstr ""
+msgstr "Campionamento su errore (0.0–1.0)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier2_error_sample_rate
 msgid "On-error session sample rate"
-msgstr ""
+msgstr "Frequenza di campionamento sessioni con errore"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Performance monitoring (Tier 1)"
-msgstr ""
+msgstr "Monitoraggio delle prestazioni (Livello 1)"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.view_users_form_admin_inherit
 #: model_terms:ir.ui.view,arch_db:sentry_client.view_users_form_preferences_inherit
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier3_profiles_sample_rate
 msgid "Profiles sample rate"
-msgstr ""
+msgstr "Frequenza di campionamento profili"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Profiles sample rate (0.0–1.0)"
-msgstr ""
+msgstr "Frequenza di campionamento profili (0.0–1.0)"
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_browser_dsn
@@ -259,33 +320,40 @@ msgid ""
 " platform (Python vs. JavaScript-Browser); set this to that project's DSN. "
 "Browser DSNs are public by design and safe to expose to end users."
 msgstr ""
+"DSN pubblico di Sentry per il progetto browser. Lasciare vuoto per "
+"riutilizzare l'opzione `sentry_dsn` da odoo.conf. Sentry consiglia un "
+"progetto separato per piattaforma (Python vs. JavaScript-Browser); impostare "
+"qui il DSN di quel progetto. I DSN browser sono pubblici per progettazione e "
+"sicuri da esporre agli utenti finali."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid ""
 "Records DOM mutations, console activity, and network requests for sessions."
 msgstr ""
+"Registra le mutazioni DOM, l'attività della console e le richieste di rete "
+"per le sessioni."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Release"
-msgstr ""
+msgstr "Rilascio"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_release
 msgid "Release tag"
-msgstr ""
+msgstr "Etichetta di rilascio"
 
 #. module: sentry_client
 #. odoo-javascript
 #: code:addons/sentry_client/static/src/js/feedback_systray.esm.js:0
 msgid "Report a bug"
-msgstr ""
+msgstr "Segnala un bug"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "SDK version"
-msgstr ""
+msgstr "Versione SDK"
 
 #. module: sentry_client
 #. odoo-python
@@ -294,6 +362,8 @@ msgid ""
 "Sentry Browser DSN must be a public DSN — it is served to every browser. "
 "Remove the ':<secret>' part."
 msgstr ""
+"Il DSN browser di Sentry deve essere un DSN pubblico — viene servito a ogni "
+"browser. Rimuovere la parte ':<secret>'."
 
 #. module: sentry_client
 #. odoo-python
@@ -302,6 +372,8 @@ msgid ""
 "Sentry Browser DSN must be of the form "
 "https://<public_key>@<host>/<project_id>. Got: %(dsn)s"
 msgstr ""
+"Il DSN browser di Sentry deve essere nel formato https://<public_key>@<host>/"
+"<project_id>. Ricevuto: %(dsn)s"
 
 #. module: sentry_client
 #. odoo-python
@@ -309,16 +381,18 @@ msgstr ""
 msgid ""
 "Sentry Browser DSN must start with 'http://' or 'https://'. Got: %(dsn)s"
 msgstr ""
+"Il DSN browser di Sentry deve iniziare con 'http://' o 'https://'. Ricevuto: "
+"%(dsn)s"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Sentry Browser Monitoring"
-msgstr ""
+msgstr "Monitoraggio browser Sentry"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_cdn_base
 msgid "Sentry SDK source URL"
-msgstr ""
+msgstr "URL sorgente SDK Sentry"
 
 #. module: sentry_client
 #. odoo-python
@@ -327,11 +401,13 @@ msgid ""
 "Sentry SDK source URL must start with '/', 'http://', or 'https://'. Got: "
 "%(url)s"
 msgstr ""
+"L'URL sorgente dell'SDK Sentry deve iniziare con '/', 'http://' o 'https://"
+"'. Ricevuto: %(url)s"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_cdn_version
 msgid "Sentry SDK version"
-msgstr ""
+msgstr "Versione SDK Sentry"
 
 #. module: sentry_client
 #. odoo-javascript
@@ -340,6 +416,8 @@ msgid ""
 "Sentry feedback is not active. Enable Tier 3 → Feedback in Settings, then "
 "reload the page."
 msgstr ""
+"Il feedback di Sentry non è attivo. Abilitare Livello 3 → Feedback nelle "
+"Impostazioni, quindi ricaricare la pagina."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_users__sentry_client_replay_optout
@@ -349,17 +427,23 @@ msgid ""
 "recording off for your own sessions, regardless of the database-wide Tier 2 "
 "toggle. Server-wide error capture (Tier 0) is unaffected."
 msgstr ""
+"La riproduzione sessione di Sentry registra le modifiche DOM, l'attività "
+"della console e le richieste di rete per qualsiasi sessione che riscontra un "
+"errore. Abilitare questa opzione per mantenere disattivata tale "
+"registrazione per le proprie sessioni, indipendentemente dall'impostazione "
+"di Livello 2 a livello di database. L'acquisizione degli errori a livello di "
+"server (Livello 0) rimane invariata."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Session replay (Tier 2)"
-msgstr ""
+msgstr "Riproduzione sessione (Livello 2)"
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__smart_search
 #: model:ir.model.fields,field_description:sentry_client.field_res_users__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_environment
@@ -368,6 +452,9 @@ msgid ""
 "'staging-web'). Leave blank to inherit from the `sentry_*` options in "
 "odoo.conf."
 msgstr ""
+"Etichetta ogni evento del browser con questo ambiente (es. 'production-web', "
+"'staging-web'). Lasciare vuoto per ereditare dalle opzioni `sentry_*` in "
+"odoo.conf."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_release
@@ -376,26 +463,29 @@ msgid ""
 " hash or a deploy SHA). Leave blank to inherit from the `sentry_*` options "
 "in odoo.conf."
 msgstr ""
+"Etichetta ogni evento del browser con questo identificativo di rilascio (es. "
+"l'hash del pacchetto asset o uno SHA di deploy). Lasciare vuoto per "
+"ereditare dalle opzioni `sentry_*` in odoo.conf."
 
 #. module: sentry_client
 #: model:ir.model.fields,field_description:sentry_client.field_res_config_settings__sentry_client_tier1_traces_sample_rate
 msgid "Traces sample rate"
-msgstr ""
+msgstr "Frequenza di campionamento tracce"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "Traces sample rate (0.0–1.0)"
-msgstr ""
+msgstr "Frequenza di campionamento tracce (0.0–1.0)"
 
 #. module: sentry_client
 #: model:ir.model,name:sentry_client.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "User feedback widget (Tier 3)"
-msgstr ""
+msgstr "Widget feedback utente (Livello 3)"
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_enabled
@@ -404,6 +494,10 @@ msgid ""
 "option in odoo.conf), the Sentry browser SDK is loaded into the Odoo web "
 "client and captures uncaught JS errors and unhandled promise rejections."
 msgstr ""
+"Quando abilitato e un DSN è configurato (sopra o tramite l'opzione "
+"`sentry_dsn` in odoo.conf), l'SDK browser di Sentry viene caricato nel "
+"client web di Odoo e acquisisce gli errori JS non intercettati e le promise "
+"rifiutate non gestite."
 
 #. module: sentry_client
 #: model:ir.model.fields,help:sentry_client.field_res_config_settings__sentry_client_cdn_base
@@ -413,13 +507,17 @@ msgid ""
 "to point at a mirror or back at the public CDN at https://browser.sentry-"
 "cdn.com."
 msgstr ""
+"Da dove viene caricato il pacchetto SDK browser di Sentry. Per impostazione "
+"predefinita utilizza il pacchetto incluso in questo modulo in modo da non "
+"richiedere alcuna chiamata di rete esterna. Sovrascrivere per puntare a un "
+"mirror o alla CDN pubblica su https://browser.sentry-cdn.com."
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "https://<public_key>@sentry.example.com/<project_id>"
-msgstr ""
+msgstr "https://<public_key>@sentry.example.com/<project_id>"
 
 #. module: sentry_client
 #: model_terms:ir.ui.view,arch_db:sentry_client.res_config_settings_view_form
 msgid "production-web"
-msgstr ""
+msgstr "production-web"
