@@ -12,6 +12,7 @@
     "license": "AGPL-3",
     "category": "Tools",
     "depends": ["web"],
+    "maintainers": ["hbrunn"],
     "auto_install": False,
     "installable": True,
 }
