@@ -21,7 +21,7 @@ class EmailDomain(EmailExact):
                 self._get_mailaddress_search_domain(
                     folder,
                     message_dict,
-                    operator="like",
+                    operator="ilike",
                     values=["%@" + domain for domain in set(domains)],
                 ),
                 order=folder.model_order,
