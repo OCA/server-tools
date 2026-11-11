@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+time_weekday_access_read,time.weekday access read,time.weekday,base.group_user,r,
