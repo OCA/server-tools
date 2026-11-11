@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-08 09:51+0000\n"
-"Last-Translator: Interactive AV-IT <mariusz@interactiveavit.com>\n"
+"PO-Revision-Date: 2026-11-11 13:46+0000\n"
+"Last-Translator: leszekszczepkowski <leszekszczepkowski@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__branch_id
@@ -26,7 +26,7 @@ msgstr "Oddział"
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__partner_id
 msgid "Branch Manager"
-msgstr "Kierownik Oddziału"
+msgstr "Kierownik oddziału"
 
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_branch
@@ -43,7 +43,7 @@ msgstr "Kraj"
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__country_ids
 msgid "Country Names"
-msgstr "Nazwy Krajów"
+msgstr "Nazwy krajów"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__create_uid
@@ -51,7 +51,7 @@ msgstr "Nazwy Krajów"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__create_uid
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__create_uid
 msgid "Created by"
-msgstr "Stworzony przez"
+msgstr "Utworzył(a)"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__create_date
@@ -59,7 +59,7 @@ msgstr "Stworzony przez"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__create_date
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__create_date
 msgid "Created on"
-msgstr "Stworzony"
+msgstr "Data utworzenia"
 
 #. module: base_territory
 #: model_terms:ir.ui.view,arch_db:base_territory.res_territory_form_view
@@ -80,7 +80,7 @@ msgstr "Opis"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nazwa wyświetlana"
 
 #. module: base_territory
 #: model:ir.model,name:base_territory.model_res_district
@@ -115,7 +115,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__write_uid
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__write_uid
 msgid "Last Updated by"
-msgstr "Ostatnia aktualizacja przez"
+msgstr "Ostatnio aktualizowane przez"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__write_date
@@ -123,7 +123,7 @@ msgstr "Ostatnia aktualizacja przez"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__write_date
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Data ostatniej aktualizacji"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__name
@@ -179,12 +179,12 @@ msgstr "Rodzaj"
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__zip_codes
 msgid "ZIP Codes"
-msgstr "Kod Pocztowe"
+msgstr "Kody pocztowe"
 
 #. module: base_territory
 #: model:ir.model.fields.selection,name:base_territory.selection__res_territory__type__zip
 msgid "Zip"
-msgstr "Kod Pocztowy"
+msgstr "Kod pocztowy"
 
 #. module: base_territory
 #: model:ir.model,name:base_territory.model_res_branch
