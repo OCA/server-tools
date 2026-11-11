@@ -5,6 +5,8 @@ import socket
 
 from odoo import api, fields, models
 
+_logger = logging.getLogger(__name__)
+
 
 class ResRemote(models.Model):
     _name = "res.remote"
@@ -16,7 +18,7 @@ class ResRemote(models.Model):
         required=True, help="Shows if the remote can be found through the socket"
     )
 
-    _sql_constraints = [("name_unique", "unique(name)", "Hostname must be unique")]
+    _name_unique = models.Constraint("unique(name)", "Hostname must be unique")
 
     @api.model
     def _create_vals(self, addr, hostname):
@@ -31,7 +33,7 @@ class ResRemote(models.Model):
         try:
             hostname, alias, ips = socket.gethostbyaddr(addr)
         except socket.herror:
-            logging.warning(f"Remote with ip {addr} could not be found")
+            _logger.warning("Remote with ip %s could not be found", addr)
             hostname = False
         remote = self.search([("name", "=ilike", hostname or addr)])
         if not remote:

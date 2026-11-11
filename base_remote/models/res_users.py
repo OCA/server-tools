@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from odoo import SUPERUSER_ID, api, models
+from odoo import api, models
 from odoo.exceptions import AccessDenied
 from odoo.tools import config
 
@@ -10,11 +10,10 @@ from odoo.tools import config
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    @classmethod
-    def _auth_check_remote(cls, credential, method):
+    def _auth_check_remote(self, credential, method):
         """Force a method to raise an AccessDenied on falsey return."""
-        with cls.pool.cursor() as cr:
-            env = api.Environment(cr, SUPERUSER_ID, {})
+        with self.pool.cursor() as cr:
+            env = api.Environment(cr, api.SUPERUSER_ID, {})
             remote = env["res.users"].remote
             if not config["test_enable"]:
                 remote.ensure_one()
@@ -25,16 +24,14 @@ class ResUsers(models.Model):
         return result
 
     # Override all auth-related core methods
-    @classmethod
-    def _login(cls, db, credential, user_agent_env):
-        return cls._auth_check_remote(
+    def _login(self, credential, user_agent_env):
+        return self._auth_check_remote(
             credential,
-            lambda: super(ResUsers, cls)._login(db, credential, user_agent_env),
+            lambda: super(ResUsers, self)._login(credential, user_agent_env),
         )
 
-    @classmethod
-    def authenticate(cls, db, credential, user_agent_env):
-        return cls._auth_check_remote(
+    def authenticate(self, credential, user_agent_env):
+        return self._auth_check_remote(
             credential,
-            lambda: super(ResUsers, cls).authenticate(db, credential, user_agent_env),
+            lambda: super(ResUsers, self).authenticate(credential, user_agent_env),
         )
