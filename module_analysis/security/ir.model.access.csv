@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_module_author_manager,ir_module_author_manager,model_ir_module_author,base.group_system,1,1,1,1
+access_ir_module_type_manager,ir_module_type_manager,model_ir_module_type,base.group_system,1,1,1,1
+access_ir_module_type_rule_manager,ir_module_type_rule_manager,model_ir_module_type_rule,base.group_system,1,1,1,1

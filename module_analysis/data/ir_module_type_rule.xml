@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<odoo>
+    <!-- Odoo Rules -->
+    <record id="module_type_rule_odoo_a" model="ir.module.type.rule">
+        <field name="sequence">1</field>
+        <field name="module_domain">[('author_ids', 'ilike', 'Odoo S.A')]</field>
+        <field name="module_type_id" ref="module_type_odoo" />
+    </record>
+    <record id="module_type_rule_odoo_b" model="ir.module.type.rule">
+        <field name="sequence">2</field>
+        <field name="module_domain">[('author_ids', 'ilike', 'OpenERP SA')]</field>
+        <field name="module_type_id" ref="module_type_odoo" />
+    </record>
+    <record id="module_type_rule_odoo_c" model="ir.module.type.rule">
+        <field name="sequence">3</field>
+        <field name="module_domain">[('author_ids', '=', 'Odoo SA')]</field>
+        <field name="module_type_id" ref="module_type_odoo" />
+    </record>
+    <record id="module_type_rule_odoo_d" model="ir.module.type.rule">
+        <field name="sequence">4</field>
+        <field name="module_domain">[('author_ids', '=', 'Odoo')]</field>
+        <field name="module_type_id" ref="module_type_odoo" />
+    </record>
+    <!-- OCA Rules -->
+    <record id="module_type_rule_oca_a" model="ir.module.type.rule">
+        <field name="sequence">100</field>
+        <field
+            name="module_domain"
+        >[('author_ids', '=', 'Odoo Community Association (OCA)')]</field>
+        <field name="module_type_id" ref="module_type_oca" />
+    </record>
+</odoo>
