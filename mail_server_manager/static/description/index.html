@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Server Manager - Odoo Module</title>
+    <style>
+        :root {
+            --primary: #714B67;
+            --secondary: #017e84;
+            --success: #28a745;
+            --warning: #ffc107;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1.2em;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .screenshot {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        tr:hover {
+            background: var(--light);
+        }
+        .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .code-block {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--light);
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Mail Server Manager</h1>
+            <p>Professional Email Account Management for Odoo</p>
+            <span class="badge">Version 19.0.4.1.0 | Odoo 19 Compatible</span>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">70+</div>
+                <div class="stat-label">Unit Tests</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Code Coverage</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Audit Score</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📬</div>
+                    <h3>Email Account Management</h3>
+                    <p>Create, update, and delete email accounts directly from Odoo interface. Automatic SMTP and IMAP server configuration.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure Password Management</h3>
+                    <p>SHA512 password hashing, secure password generation, and one-time password display wizard.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🐳</div>
+                    <h3>Docker-Mailserver Integration</h3>
+                    <p>Seamless integration with docker-mailserver. Automatic postfix configuration updates.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3>User Integration</h3>
+                    <p>Link mail accounts to Odoo users. Automatic email alias creation and forwarding.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Activity Tracking</h3>
+                    <p>Full chatter integration with tracking on email and state changes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Atomic file operations, automatic backups, rate limiting, and injection prevention.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Technical Specifications</h2>
+            <table>
+                <tr>
+                    <th>Specification</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Odoo Version</td>
+                    <td><span class="check">✓</span> Odoo 19.0</td>
+                </tr>
+                <tr>
+                    <td>License</td>
+                    <td>LGPL-3</td>
+                </tr>
+                <tr>
+                    <td>Dependencies</td>
+                    <td>mail, base_setup</td>
+                </tr>
+                <tr>
+                    <td>Python Version</td>
+                    <td>3.10+</td>
+                </tr>
+                <tr>
+                    <td>Mail Server</td>
+                    <td>docker-mailserver compatible</td>
+                </tr>
+                <tr>
+                    <td>Test Coverage</td>
+                    <td><span class="check">✓</span> 70+ automated tests</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ Configuration</h2>
+            <p>Configure the module in <strong>Settings → General Settings → Mail Server Manager</strong>:</p>
+            <ul>
+                <li><strong>Mail Domain:</strong> Your email domain (e.g., company.com)</li>
+                <li><strong>SMTP Host:</strong> Outgoing mail server address</li>
+                <li><strong>IMAP Host:</strong> Incoming mail server address</li>
+                <li><strong>Config Path:</strong> Path to docker-mailserver config files</li>
+                <li><strong>Auto-create:</strong> Automatically create mailboxes for new users</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Installation</h2>
+            <div class="code-block">
+# Copy module to addons folder
+cp -r mail_server_manager /path/to/odoo/addons/
+
+# Update module list and install
+odoo -u mail_server_manager -d your_database
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Changelog (v19.0.4.1.0)</h2>
+            <ul>
+                <li><span class="check">✓</span> Comprehensive test suite (70+ tests)</li>
+                <li><span class="check">✓</span> Atomic file operations for data integrity</li>
+                <li><span class="check">✓</span> Automatic backup before file modifications</li>
+                <li><span class="check">✓</span> Chatter integration with field tracking</li>
+                <li><span class="check">✓</span> Security improvements and injection prevention</li>
+                <li><span class="check">✓</span> Demo data for testing</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>Mail Server Manager</strong> - Professional Email Management for Odoo</p>
+            <p>© 2024-2026 | LGPL-3 License</p>
+        </div>
+    </div>
+</body>
+</html>
