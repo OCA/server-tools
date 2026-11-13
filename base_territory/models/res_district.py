@@ -9,6 +9,6 @@ class ResDistrict(models.Model):
     _description = "District"
 
     name = fields.Char(required=True)
-    region_id = fields.Many2one("res.region", string="Region")
+    region_id = fields.Many2one("res.region")
     partner_id = fields.Many2one("res.partner", string="District Manager")
     description = fields.Char()

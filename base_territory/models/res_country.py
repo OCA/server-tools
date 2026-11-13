@@ -6,7 +6,7 @@ from odoo import fields, models
 class ResCountry(models.Model):
     _inherit = "res.country"
 
-    territory_id = fields.Many2one("res.territory", string="Territory")
+    territory_id = fields.Many2one("res.territory")
     region_ids = fields.Many2many(
         "res.region",
         "res_country_region_rel",

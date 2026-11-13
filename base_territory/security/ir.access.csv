@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_res_territory_user,territory.user,res.territory,base.group_user,crud,
+access_res_branch_user,branch.user,res.branch,base.group_user,crud,
+access_res_district_user,district.user,res.district,base.group_user,crud,
+access_res_region_user,region.user,res.region,base.group_user,crud,
