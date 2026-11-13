@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_global_undo_transaction_user,global.undo.transaction user,model_global_undo_transaction,global_undo_group_user,1,0,0,0
+access_global_undo_operation_user,global.undo.operation user,model_global_undo_operation,global_undo_group_user,1,0,0,0
+access_global_undo_transaction_manager,global.undo.transaction manager,model_global_undo_transaction,global_undo_group_manager,1,1,1,1
+access_global_undo_operation_manager,global.undo.operation manager,model_global_undo_operation,global_undo_group_manager,1,1,1,1
+access_global_undo_exclusion_manager,global.undo.exclusion manager,model_global_undo_exclusion,global_undo_group_manager,1,1,1,1
+access_global_undo_action_manager,global.undo.action manager,model_global_undo_action,global_undo_group_manager,1,1,1,1
