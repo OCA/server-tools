@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="test_region" model="res.region">
         <field name="name">Test Region</field>

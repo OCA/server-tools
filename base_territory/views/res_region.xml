@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Region Tree View -->
     <record id="res_region_tree_view" model="ir.ui.view">
