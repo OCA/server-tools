@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="ir_cron_vacuum_message" model="ir.cron">
+        <field name="name">AutoVacuum Mails and Messages</field>
+        <field eval="False" name="active" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="state">code</field>
+        <field name="code">model.autovacuum('message')</field>
+        <field name="model_id" ref="mail.model_mail_message" />
+    </record>
+    <record id="ir_cron_vacuum_attachment" model="ir.cron">
+        <field name="name">AutoVacuum Attachments</field>
+        <field eval="False" name="active" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="state">code</field>
+        <field name="code">model.autovacuum('attachment')</field>
+        <field name="model_id" ref="base.model_ir_attachment" />
+    </record>
+</odoo>
