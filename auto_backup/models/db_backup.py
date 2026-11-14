@@ -6,18 +6,115 @@
 import logging
 import os
 import shutil
+import socket
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
+from pathlib import PurePosixPath
+from stat import S_ISDIR
 
-import pysftp
+import paramiko
+from paramiko import HostKeys
+from paramiko.hostkeys import HostKeyEntry, InvalidHostKey
+from paramiko.ssh_exception import SSHException
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
 
 _logger = logging.getLogger(__name__)
+
+#: OpenSSH key type prefixes understood by paramiko.
+_KEY_TYPE_PREFIXES = ("ecdsa-", "sk-", "ssh-")
+
+_SFTP_TIMEOUT = 60
+_KNOWN_HOSTS = "~/.ssh/known_hosts"
+
+
+class _SftpClient:
+    """Minimal SFTP client over paramiko that applies the host key policy.
+
+    ``paramiko.SSHClient`` cannot express a per-record pinned host key, so the
+    transport is built from a socket to keep the timeout and the ``hostkey``
+    argument under control.
+    """
+
+    def __init__(self, record):
+        self._record = record
+        self._transport = None
+        self._sftp = None
+
+    def __enter__(self):
+        rec = self._record
+        hostkey = None
+        hostkeys = rec._get_sftp_host_keys()
+        if hostkeys is not None:
+            keys = hostkeys.lookup(rec.sftp_host)
+            if not keys:
+                raise SSHException(f"No hostkey for host {rec.sftp_host} found.")
+            hostkey = next(iter(keys.values()))
+        sock = socket.create_connection(
+            (rec.sftp_host, rec.sftp_port or 22), _SFTP_TIMEOUT
+        )
+        sock.settimeout(_SFTP_TIMEOUT)
+        self._transport = paramiko.Transport(sock)
+        try:
+            if rec.sftp_private_key:
+                key = paramiko.PKey.from_path(
+                    rec.sftp_private_key, passphrase=rec.sftp_password or None
+                )
+                self._transport.connect(
+                    username=rec.sftp_user, pkey=key, hostkey=hostkey
+                )
+            else:
+                self._transport.connect(
+                    username=rec.sftp_user,
+                    password=rec.sftp_password,
+                    hostkey=hostkey,
+                )
+            self._sftp = paramiko.SFTPClient.from_transport(self._transport)
+        except Exception:
+            self.close()
+            raise
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        self.close()
+
+    def close(self):
+        if self._sftp:
+            self._sftp.close()
+            self._sftp = None
+        if self._transport:
+            self._transport.close()
+            self._transport = None
+
+    def makedirs(self, path):
+        """Create a remote directory and its parents when missing."""
+        missing = []
+        current = PurePosixPath(path)
+        while current != current.parent:
+            try:
+                attributes = self._sftp.stat(str(current))
+            except FileNotFoundError:
+                missing.append(current)
+                current = current.parent
+                continue
+            if not S_ISDIR(attributes.st_mode):
+                raise OSError(f"{current} is not a directory")
+            break
+        for directory in reversed(missing):
+            self._sftp.mkdir(str(directory))
+
+    def open(self, *args, **kwargs):
+        return self._sftp.open(*args, **kwargs)
+
+    def listdir(self, path):
+        return self._sftp.listdir(path)
+
+    def unlink(self, path):  # pylint: disable=method-required-super
+        return self._sftp.unlink(path)
 
 
 class DbBackup(models.Model):
@@ -84,6 +181,17 @@ class DbBackup(models.Model):
         help="Path to the private key file. Only the Odoo user should have "
         "read permissions for that file.",
     )
+    sftp_host_keys = fields.Text(
+        "SFTP Host Keys",
+        help="One public key per line, in OpenSSH format, e.g. the output of "
+        "'ssh-keyscan'. When set, it replaces the known_hosts file of the "
+        "Odoo user.",
+    )
+    sftp_ignore_hostkey = fields.Boolean(
+        "Ignore Host Key",
+        help="Skip the SFTP server identity check. Unsafe: only for servers "
+        "whose host key cannot be obtained.",
+    )
 
     backup_format = fields.Selection(
         [
@@ -134,9 +242,9 @@ class DbBackup(models.Model):
             with self.sftp_connection():
                 raise UserError(_("Connection Test Succeeded!"))
         except (
-            pysftp.CredentialException,
-            pysftp.ConnectionException,
-            pysftp.SSHException,
+            paramiko.AuthenticationException,
+            paramiko.SSHException,
+            OSError,
         ) as exc:
             _logger.info("Connection Test Failed!", exc_info=True)
             raise UserError(_("Connection Test Failed!")) from exc
@@ -182,12 +290,7 @@ class DbBackup(models.Model):
                     with cached:
                         with rec.sftp_connection() as remote:
                             # Directory must exist
-                            try:
-                                remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException as exc:
-                                _logger.exception(
-                                    "pysftp ConnectionException: %s" % exc
-                                )
+                            remote.makedirs(rec.folder)
 
                             # Copy cached backup to remote server
                             with remote.open(
@@ -280,22 +383,87 @@ class DbBackup(models.Model):
             when, ext="dump.zip" if ext == "zip" else ext
         )
 
-    def sftp_connection(self):
-        """Return a new SFTP connection with found parameters."""
-        self.ensure_one()
-        params = {
-            "host": self.sftp_host,
-            "username": self.sftp_user,
-            "port": self.sftp_port,
-        }
-        _logger.debug(
-            "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
-        )
-        if self.sftp_private_key:
-            params["private_key"] = self.sftp_private_key
-            if self.sftp_password:
-                params["private_key_pass"] = self.sftp_password
-        else:
-            params["password"] = self.sftp_password
+    def _known_hosts_path(self):
+        """Return the known_hosts file of the Odoo OS user."""
+        return os.path.expanduser(_KNOWN_HOSTS)
 
-        return pysftp.Connection(**params)
+    def _get_sftp_host_keys(self):
+        """Return the HostKeys to verify the server against, or None to skip.
+
+        Precedence: pinned keys, known_hosts fallback, explicit bypass.
+        """
+        if self.sftp_ignore_hostkey:
+            _logger.warning(
+                "Host key verification disabled for the SFTP server %s", self.sftp_host
+            )
+            return None
+        hostkeys = HostKeys()
+        if self.sftp_host_keys:
+            for key_type, key in self._parse_sftp_host_keys().items():
+                hostkeys.add(self.sftp_host, key_type, key)
+        elif os.path.isfile(self._known_hosts_path()):
+            hostkeys.load(self._known_hosts_path())
+        if not hostkeys:
+            raise UserError(
+                _(
+                    "No host key available to verify the SFTP server %(host)s. "
+                    "Fill in 'SFTP Host Keys' with the output of 'ssh-keyscan "
+                    "%(host)s', or enable 'Ignore Host Key'.",
+                    host=self.sftp_host,
+                )
+            )
+        return hostkeys
+
+    def _parse_sftp_host_keys(self):
+        """Return ``{key type: paramiko key}`` parsed from the field."""
+        keys = {}
+        for index, raw_line in enumerate((self.sftp_host_keys or "").splitlines(), 1):
+            line = raw_line.strip()
+            if not line or line.startswith(("#", "@")):
+                continue
+            tokens = line.split()
+            # Accept "ssh-keyscan" lines and bare keys; the key is bound to
+            # the configured host, so any host name in the line is ignored.
+            if len(tokens) > 1 and tokens[1].startswith(_KEY_TYPE_PREFIXES):
+                tokens = tokens[1:]
+            elif not tokens[0].startswith(_KEY_TYPE_PREFIXES):
+                raise UserError(
+                    _(
+                        "Invalid host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=line,
+                    )
+                )
+            try:
+                entry = HostKeyEntry.from_line(
+                    f"{self.sftp_host} {' '.join(tokens[:2])}", index
+                )
+            except (InvalidHostKey, SSHException) as error:
+                raise UserError(
+                    _(
+                        "Invalid host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=error,
+                    )
+                ) from error
+            if entry is None:
+                raise UserError(
+                    _(
+                        "Unsupported host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=line,
+                    )
+                )
+            keys[entry.key.get_name()] = entry.key
+        return keys
+
+    def sftp_connection(self):
+        """Return an SFTP connection with the record's host key policy."""
+        self.ensure_one()
+        _logger.debug(
+            "Trying to connect to sftp://%s@%s:%d",
+            self.sftp_user,
+            self.sftp_host,
+            self.sftp_port,
+        )
+        return _SftpClient(self)
