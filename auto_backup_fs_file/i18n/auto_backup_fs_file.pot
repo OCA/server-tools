@@ -39,6 +39,12 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__assigned_attachment_ids
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: auto_backup_fs_file
 #: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
