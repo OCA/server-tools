@@ -12,12 +12,32 @@ from datetime import datetime, timedelta
 from glob import iglob
 
 import pysftp
+from paramiko import HostKeys
+from paramiko.hostkeys import HostKeyEntry, InvalidHostKey
+from paramiko.ssh_exception import SSHException
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
 
 _logger = logging.getLogger(__name__)
+
+#: OpenSSH key type prefixes understood by paramiko.
+_KEY_TYPE_PREFIXES = ("ecdsa-", "sk-", "ssh-")
+
+
+class _SftpConnectionOptions(pysftp.CnOpts):
+    """Connection options that do not load ``known_hosts``.
+
+    ``pysftp.CnOpts.__init__`` reads that file and either warns or raises
+    ``HostKeysException`` before the record policy can be applied.
+    """
+
+    def __init__(self):
+        self.log = False
+        self.compression = False
+        self.ciphers = None
+        self.hostkeys = HostKeys()
 
 
 class DbBackup(models.Model):
@@ -83,6 +103,17 @@ class DbBackup(models.Model):
         "Private key location",
         help="Path to the private key file. Only the Odoo user should have "
         "read permissions for that file.",
+    )
+    sftp_host_keys = fields.Text(
+        "SFTP Host Keys",
+        help="One public key per line, in OpenSSH format, e.g. the output of "
+        "'ssh-keyscan'. When set, it replaces the known_hosts file of the "
+        "Odoo user.",
+    )
+    sftp_ignore_hostkey = fields.Boolean(
+        "Ignore Host Key",
+        help="Skip the SFTP server identity check. Unsafe: only for servers "
+        "whose host key cannot be obtained.",
     )
 
     backup_format = fields.Selection(
@@ -280,6 +311,77 @@ class DbBackup(models.Model):
             when, ext="dump.zip" if ext == "zip" else ext
         )
 
+    def _get_sftp_cnopts(self):
+        """Return the connection options enforcing this record's host key policy."""
+        cnopts = _SftpConnectionOptions()
+        if self.sftp_ignore_hostkey:
+            _logger.warning(
+                "Host key verification disabled for the SFTP server %s",
+                self.sftp_host,
+            )
+            cnopts.hostkeys = None
+            return cnopts
+        if self.sftp_host_keys:
+            for key_type, key in self._parse_sftp_host_keys().items():
+                cnopts.hostkeys.add(self.sftp_host, key_type, key)
+        else:
+            known_hosts = pysftp.known_hosts()
+            if os.path.isfile(known_hosts):
+                cnopts.hostkeys.load(known_hosts)
+        if not cnopts.hostkeys:
+            raise UserError(
+                _(
+                    "No host key available to verify the SFTP server %(host)s. "
+                    "Fill in 'SFTP Host Keys' with the output of 'ssh-keyscan "
+                    "%(host)s', or enable 'Ignore Host Key'.",
+                    host=self.sftp_host,
+                )
+            )
+        return cnopts
+
+    def _parse_sftp_host_keys(self):
+        """Return ``{key type: paramiko key}`` parsed from the field."""
+        keys = {}
+        for index, raw_line in enumerate((self.sftp_host_keys or "").splitlines(), 1):
+            line = raw_line.strip()
+            if not line or line.startswith(("#", "@")):
+                continue
+            tokens = line.split()
+            # Accept "ssh-keyscan" lines and bare keys; the key is bound to
+            # the configured host, so any host name in the line is ignored.
+            if len(tokens) > 1 and tokens[1].startswith(_KEY_TYPE_PREFIXES):
+                tokens = tokens[1:]
+            elif not tokens[0].startswith(_KEY_TYPE_PREFIXES):
+                raise UserError(
+                    _(
+                        "Invalid host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=line,
+                    )
+                )
+            try:
+                entry = HostKeyEntry.from_line(
+                    f"{self.sftp_host} {' '.join(tokens[:2])}", index
+                )
+            except (InvalidHostKey, SSHException) as error:
+                raise UserError(
+                    _(
+                        "Invalid host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=error,
+                    )
+                ) from error
+            if entry is None:
+                raise UserError(
+                    _(
+                        "Unsupported host key on line %(line)s: %(key)s",
+                        line=index,
+                        key=line,
+                    )
+                )
+            keys[entry.key.get_name()] = entry.key
+        return keys
+
     def sftp_connection(self):
         """Return a new SFTP connection with found parameters."""
         self.ensure_one()
@@ -298,4 +400,5 @@ class DbBackup(models.Model):
         else:
             params["password"] = self.sftp_password
 
+        params["cnopts"] = self._get_sftp_cnopts()
         return pysftp.Connection(**params)
