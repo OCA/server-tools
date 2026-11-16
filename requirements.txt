@@ -1,6 +1,7 @@
 # generated from manifests external_dependencies
 cryptography
 dataclasses
+h11
 mako
 odoo_test_helper
 odoorpc
