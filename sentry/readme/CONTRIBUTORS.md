@@ -5,3 +5,4 @@
 - Florian Mounier \<<florian.mounier@akretion.com>\>
 - Jon Ashton \<<jon@monkeyinferno.com>\>
 - Mark Schuit \<<mark@gig.solutions>\>
+- Atchuthan \<<atchuthan@sodexis.com>\>
