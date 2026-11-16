@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="base_view_model_form_inherit" model="ir.ui.view">
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <field name="transient" position="after">
+                <field name="force_noupdate" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_run_ir_action_todo" model="ir.actions.server">
+        <field name="name">Toggle Force Noupdate</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="base.model_ir_model" />
+        <field name="state">code</field>
+        <field name="code">
+if records:
+    records.toggle_force_noupdate()
+        </field>
+    </record>
+</odoo>
