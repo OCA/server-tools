@@ -1,12 +1,13 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20260928.0"
+version = "17.0.20261116.0"
 dependencies = [
     "odoo-addon-attachment_logging>=17.0dev,<17.1dev",
     "odoo-addon-attachment_queue>=17.0dev,<17.1dev",
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
     "odoo-addon-auto_backup>=17.0dev,<17.1dev",
     "odoo-addon-auto_backup_fs_file>=17.0dev,<17.1dev",
+    "odoo-addon-autovacuum_message_attachment>=17.0dev,<17.1dev",
     "odoo-addon-base_cron_exclusion>=17.0dev,<17.1dev",
     "odoo-addon-base_exception>=17.0dev,<17.1dev",
     "odoo-addon-base_fontawesome>=17.0dev,<17.1dev",
