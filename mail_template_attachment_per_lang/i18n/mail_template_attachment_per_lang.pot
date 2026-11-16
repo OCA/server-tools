@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mail_template_attachment_per_lang
+#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__assigned_attachment_ids
+#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: mail_template_attachment_per_lang
 #: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__attachment_id
 msgid "Attachment"
 msgstr ""
