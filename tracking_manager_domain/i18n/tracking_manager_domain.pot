@@ -21,6 +21,11 @@ msgid ""
 msgstr ""
 
 #. module: tracking_manager_domain
+#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: tracking_manager_domain
 #: model:ir.model,name:tracking_manager_domain.model_base
 msgid "Base"
 msgstr ""
