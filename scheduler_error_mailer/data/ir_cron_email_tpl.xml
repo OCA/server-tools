@@ -5,6 +5,7 @@
         <field name="name">Scheduler Error</field>
         <field name="email_from">{{object.user_id.email or ''}}</field>
         <field name="email_to">{{object.user_id.email or ''}}</field>
+        <field name="use_default_to" eval="False" />
         <field
             name="subject"
         >[DB {{ctx.get('dbname')}}] Scheduler '{{object.name or ''}}' FAILED</field>
