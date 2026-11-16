@@ -39,6 +39,14 @@ msgid "Active Custom Tracking"
 msgstr ""
 
 #. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking
 msgid "Automatic Custom Tracking"
 msgstr ""
