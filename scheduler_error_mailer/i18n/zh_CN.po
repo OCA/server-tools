@@ -80,8 +80,8 @@ msgstr ""
 "<ul>\n"
 "<li>模型 : <t t-out=\"object.model_id.name or ''\"/></li>\n"
 "<li>Python 代码 : <code><t t-out=\"object.code or ''\"/></code></li>\n"
-"<li>间隔 : <t t-out=\"object.interval_number or '0'\"/> <t t-out=\"object."
-"interval_type or ''\"/></li>\n"
+"<li>间隔 : <t t-out=\"object.interval_number or '0'\"/> <t t-"
+"out=\"object.interval_type or ''\"/></li>\n"
 "<li>调用次数 : <t t-out=\"object.numbercall or '0'\"/></li>\n"
 "<li>重复遗漏 : <t t-out=\"object.doall\"/></li>\n"
 "<li>用户 : <t t-out=\"object.user_id.name or ''\"/></li>\n"
@@ -95,6 +95,11 @@ msgstr ""
 "</div>\n"
 "    \n"
 "        "
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
@@ -188,8 +193,8 @@ msgstr ""
 #~ "serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; "
 #~ "\">\n"
 #~ "\n"
-#~ "<p>Odoo试图运行调度程序 <em>${object.name or ''}</em> 在数据库中 "
-#~ "<em>${ctx.get('dbname')}</em> 但它失败了。这是错误消息 :</p>\n"
+#~ "<p>Odoo试图运行调度程序 <em>${object.name or ''}</em> 在数据库中 <em>$"
+#~ "{ctx.get('dbname')}</em> 但它失败了。这是错误消息 :</p>\n"
 #~ "\n"
 #~ "<strong>\n"
 #~ "${ctx.get('job_exception') and ctx.get('job_exception').value or '无法从上"

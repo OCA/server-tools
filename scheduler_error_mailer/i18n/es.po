@@ -83,8 +83,8 @@ msgstr ""
 "<ul>\n"
 "<li>Modelo: <t t-out=\"object.model_id.name or ''\"/></li>\n"
 "<li>Código Python: <code><t t-out=\"object.code or ''\"/></code></li>\n"
-"<li>Intervalo: <t t-out=\"object.interval_number or '0'\"/><t t-out=\"object."
-"interval_type or ''\"/></li>\n"
+"<li>Intervalo: <t t-out=\"object.interval_number or '0'\"/><t t-"
+"out=\"object.interval_type or ''\"/></li>\n"
 "<li>Número de llamadas: <t t-out=\"object.numbercall or '0'\"/></li>\n"
 "<li>Repetición perdida: <t t-out=\"object.doall\"/></li>\n"
 "<li>Usuario: <t t-out=\"object.user_id.name or ''\"/></li>\n"
@@ -98,6 +98,11 @@ msgstr ""
 "</div>\n"
 "    \n"
 "        "
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
