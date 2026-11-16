@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_audit_log_auditor,pb.encrypted.audit.log.auditor,model_pb_encrypted_audit_log,group_encryption_auditor,1,0,0,0
+access_audit_log_admin,pb.encrypted.audit.log.admin,model_pb_encrypted_audit_log,group_encryption_admin,1,1,1,1
+access_key_rotation_wizard,pb.key.rotation.wizard,model_pb_key_rotation_wizard,group_encryption_admin,1,1,1,1
+access_migration_wizard,pb.encryption.migration.wizard,model_pb_encryption_migration_wizard,group_encryption_admin,1,1,1,1
+access_migration_wizard_line,pb.encryption.migration.wizard.line,model_pb_encryption_migration_wizard_line,group_encryption_admin,1,1,1,1
