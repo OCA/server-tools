@@ -33,36 +33,6 @@ msgid "Attachment Language"
 msgstr "Lingua allegato"
 
 #. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__changeset_change_ids
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__changeset_change_ids
-msgid "Changeset Changes"
-msgstr "Modifiche dell'insieme di modifiche"
-
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__changeset_ids
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__changeset_ids
-msgid "Changesets"
-msgstr "Insieme di modifiche"
-
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__count_changesets
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__count_changesets
-msgid "Count Changesets"
-msgstr "Conteggio insieme di modifiche"
-
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
-
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__count_pending_changesets
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr "Conteggio insieme di modifiche in attesa"
-
-#. module: mail_template_attachment_per_lang
 #: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__create_uid
 msgid "Created by"
 msgstr "Creato da"
@@ -108,11 +78,6 @@ msgid "Language Dependent Attachments"
 msgstr "Allegati dipendenti dalla lingua"
 
 #. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: mail_template_attachment_per_lang
 #: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -148,26 +113,32 @@ msgstr "Modello"
 msgid "Template Language"
 msgstr "Lingua del modello"
 
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_ir_attachment_language__count_pending_changeset_changes
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_mail_template__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr "Numero di modifiche di questo record in attesa"
+#~ msgid "Changeset Changes"
+#~ msgstr "Modifiche dell'insieme di modifiche"
 
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_ir_attachment_language__count_pending_changesets
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_mail_template__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr "Numero di insiemi di modifiche in attesa di questo record"
+#~ msgid "Changesets"
+#~ msgstr "Insieme di modifiche"
 
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_ir_attachment_language__count_changesets
-#: model:ir.model.fields,help:mail_template_attachment_per_lang.field_mail_template__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr "Numero totale di insiemi di modifiche di questo record"
+#~ msgid "Count Changesets"
+#~ msgstr "Conteggio insieme di modifiche"
 
-#. module: mail_template_attachment_per_lang
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_ir_attachment_language__user_can_see_changeset
-#: model:ir.model.fields,field_description:mail_template_attachment_per_lang.field_mail_template__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr "L'utente può vedere l'insieme delle modifiche"
+#~ msgid "Count Pending Changeset Changes"
+#~ msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
+
+#~ msgid "Count Pending Changesets"
+#~ msgstr "Conteggio insieme di modifiche in attesa"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "The number of pending changes of this record"
+#~ msgstr "Numero di modifiche di questo record in attesa"
+
+#~ msgid "The number of pending changesets of this record"
+#~ msgstr "Numero di insiemi di modifiche in attesa di questo record"
+
+#~ msgid "The overall number of changesets of this record"
+#~ msgstr "Numero totale di insiemi di modifiche di questo record"
+
+#~ msgid "User Can See Changeset"
+#~ msgstr "L'utente può vedere l'insieme delle modifiche"
