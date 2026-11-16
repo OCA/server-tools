@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2025-11-18 13:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -38,6 +39,12 @@ msgstr ""
 #. module: auto_backup_fs_file
 #: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_type_icon
 msgid "Activity Type Icon"
+msgstr ""
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__assigned_attachment_ids
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__assigned_attachment_ids
+msgid "Assigned Attachments"
 msgstr ""
 
 #. module: auto_backup_fs_file
@@ -121,6 +128,13 @@ msgid "Fs File"
 msgstr "Archivo FS"
 
 #. module: auto_backup_fs_file
+#. odoo-python
+#: code:addons/auto_backup_fs_file/models/db_backup.py:0
+#, python-format
+msgid "Fs File Backup - %s"
+msgstr ""
+
+#. module: auto_backup_fs_file
 #: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__fs_file_backup_count
 msgid "Fs File Backup Count"
 msgstr "Conteo de copias de seguridad de archivos FS"
@@ -166,7 +180,8 @@ msgstr ""
 #. module: auto_backup_fs_file
 #: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__is_expired
 msgid "Indicates whether the backup has exceeded its storage time."
-msgstr "Indica si la copia de seguridad ha superado su tiempo de almacenamiento."
+msgstr ""
+"Indica si la copia de seguridad ha superado su tiempo de almacenamiento."
 
 #. module: auto_backup_fs_file
 #: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__is_expired
@@ -259,6 +274,12 @@ msgid "SMS Delivery error"
 msgstr ""
 
 #. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__smart_search
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: auto_backup_fs_file
 #: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__activity_state
 msgid ""
 "Status based on activities\n"
@@ -283,11 +304,23 @@ msgid "User to be notified."
 msgstr "Usuario a ser notificado."
 
 #. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: auto_backup_fs_file
 #. odoo-python
 #: code:addons/auto_backup_fs_file/models/db_backup.py:0
 #, python-format
 msgid ""
 "You must configure a FS Storage for the '%(model_description)s' model - or "
 "'Backup File' - field to use the 'Fs File' backup method."
-msgstr "Debe configurar un almacenamiento FS para el modelo '%(model_description)s'"
-" o para el campo 'Archivo de copia de seguridad' para utilizar el método de copia de seguridad 'Fs File'."
+msgstr ""
+"Debe configurar un almacenamiento FS para el modelo '%(model_description)s' "
+"o para el campo 'Archivo de copia de seguridad' para utilizar el método de "
+"copia de seguridad 'Fs File'."
