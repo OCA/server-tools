@@ -24,10 +24,10 @@ msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
 "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
 "                <div>\n"
-"                <p>Hello <t t-out=\"ctx.get('sender_message')."
-"get('from')\"></t>,</p>\n"
-"                <p>we got a problem with your email: <i><t t-out=\"ctx."
-"get('sender_message').get('subject')\"></t></i></p>\n"
+"                <p>Hello <t t-out=\"ctx.get('sender_message').get('from')"
+"\"></t>,</p>\n"
+"                <p>we got a problem with your email: <i><t t-"
+"out=\"ctx.get('sender_message').get('subject')\"></t></i></p>\n"
 "                <p>Maybe you used a wrong recipient address?</p>\n"
 "                <p><br></p>\n"
 "                <p>Technical details:</p>\n"
@@ -36,6 +36,12 @@ msgid ""
 "                </p>\n"
 "            </div>\n"
 "        "
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__assigned_attachment_ids
+msgid "Assigned Attachments"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
