@@ -9,18 +9,19 @@ https://github.com/odoo/odoo/blob/19.0/addons/base_sparse_field/tests/test_spars
 
 import json
 
+import psycopg2
 from psycopg2.extras import Json
 
 from odoo import fields, models
 from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
-from odoo.tools import SQL, mute_logger
+from odoo.tools import SQL, mute_logger, sql
 
 # Imported the way queue_job and server_environment do it
 from odoo.addons.base_sparse_field.models.fields import Serialized as DirectSerialized
 
 from ..hooks import post_init_hook, uninstall_hook
-from ..models.fields import SerializedJsonb, update_gin_index
+from ..models.fields import update_gin_index
 
 _FIELDS_LOGGER = "odoo.addons.base_sparse_field_jsonb.models.fields"
 _TABLE = "sparse_fields_jsonb_test"
@@ -236,7 +237,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_cache_with_dict(self):
         """Test convert_to_cache with dict value returns JSON string."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         # Dict should be converted to JSON string
@@ -250,7 +251,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_cache_with_non_dict(self):
         """Test convert_to_cache with non-dict values."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         # None should return None
@@ -272,7 +273,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_record_with_dict(self):
         """Test convert_to_record with dict value (from JSONB)."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         # Dict should pass through unchanged
@@ -282,7 +283,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_record_with_none(self):
         """Test convert_to_record with None returns empty dict."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         result = field.convert_to_record(None, record)
@@ -290,7 +291,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_record_with_string(self):
         """Test convert_to_record with string value (fallback for TEXT)."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         # JSON string should be parsed
@@ -304,7 +305,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_column_insert_with_none(self):
         """Test convert_to_column_insert with None value."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         result = field.convert_to_column_insert(None, record)
@@ -312,7 +313,7 @@ class TestSparseFieldsJsonb(TransactionCase):
 
     def test_convert_to_column_with_none(self):
         """Test convert_to_column with None value."""
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["sparse_fields_jsonb.test"].create({})
 
         result = field.convert_to_column(None, record)
@@ -523,7 +524,6 @@ class TestSparseFieldsJsonb(TransactionCase):
     def test_direct_import_is_patched(self):
         """Serialized imported from base_sparse_field is the patched class."""
         self.assertIs(DirectSerialized, fields.Serialized)
-        self.assertIs(DirectSerialized, SerializedJsonb)
         self.assertEqual(self._column_type("direct_data"), "jsonb")
 
     def test_direct_import_installed_later(self):
@@ -579,6 +579,30 @@ class TestSparseFieldsJsonb(TransactionCase):
         self.env.cr.execute(SQL("DROP INDEX %s", SQL.identifier(index_name)))
         self.registry.check_indexes(self.env.cr, ["sparse_fields_jsonb.test"])
         self.assertEqual(self._index_method(index_name), "gin")
+
+    def test_check_indexes_other_index_value(self):
+        """An index value other than True gives a warning and a GIN index."""
+        index_name = f"{_TABLE}__indexed_data_index"
+        field = self.env["sparse_fields_jsonb.test"]._fields["indexed_data"]
+        self.patch(field, "index", "btree_not_null")
+        self.env.cr.execute(SQL("DROP INDEX %s", SQL.identifier(index_name)))
+        with self.assertLogs("odoo.schema", "WARNING"):
+            self.registry.check_indexes(self.env.cr, iter(["sparse_fields_jsonb.test"]))
+        self.assertEqual(self._index_method(index_name), "gin")
+        self.assertEqual(field.index, "btree_not_null")
+
+    def test_gin_index_creation_failure(self):
+        """A failure to create the GIN index is logged, not raised."""
+        index_name = f"{_TABLE}__indexed_data_index"
+        self.env.cr.execute(SQL("DROP INDEX %s", SQL.identifier(index_name)))
+
+        def create_index(*args, **kwargs):
+            raise psycopg2.OperationalError("lock timeout")
+
+        self.patch(sql, "create_index", create_index)
+        with self.assertLogs("odoo.schema", "ERROR"):
+            update_gin_index(self.env.cr, _TABLE, "indexed_data", True)
+        self.assertIsNone(self._index_method(index_name))
 
     # Hooks
 
@@ -651,30 +675,30 @@ class TestSerializedJsonbField(TransactionCase):
     """Test the patched Serialized field class."""
 
     def test_field_type(self):
-        field = SerializedJsonb()
+        field = fields.Serialized()
         self.assertEqual(field.type, "serialized")
 
     def test_field_column_type(self):
-        field = SerializedJsonb()
+        field = fields.Serialized()
         self.assertEqual(field.column_type, ("jsonb", "jsonb"))
 
     def test_field_prefetch(self):
-        field = SerializedJsonb()
+        field = fields.Serialized()
         self.assertFalse(field.prefetch)
 
     def test_field_index_default(self):
         """No index unless the field asks for one."""
-        self.assertFalse(SerializedJsonb().index)
+        self.assertFalse(fields.Serialized().index)
 
     def test_convert_to_column_insert_with_dict(self):
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["res.partner"].browse()
 
         result = field.convert_to_column_insert({"key": "value"}, record)
         self.assertIsInstance(result, Json)
 
     def test_convert_to_column_with_dict(self):
-        field = SerializedJsonb()
+        field = fields.Serialized()
         record = self.env["res.partner"].browse()
 
         result = field.convert_to_column({"key": "value"}, record)

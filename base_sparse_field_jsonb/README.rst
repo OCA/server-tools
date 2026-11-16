@@ -43,7 +43,7 @@ text in a TEXT column. While functional, this has limitations:
 
 - No database-level indexing on JSON content
 - Filtering requires fetching all records and processing in Python
-- Less efficient storage (text vs binary)
+- The JSON is parsed again on every read
 
 **What this module provides:**
 
@@ -54,15 +54,20 @@ text in a TEXT column. While functional, this has limitations:
 - **Migration Support**: Converts existing TEXT columns to JSONB, also
   for modules installed later on, and back to TEXT when uninstalled
 
-**Performance Benefits:**
+**What changes:**
 
-=================== ======================== ==================
-Operation           TEXT (before)            JSONB (after)
-=================== ======================== ==================
-Key existence check Python loop              GIN index O(log n)
-Value filtering     Full table scan + Python Index-assisted
-Storage size        ~30% larger              Binary compressed
-=================== ======================== ==================
++---------------------+-----------------------+-----------------------+
+| Operation           | TEXT (before)         | JSONB (after)         |
++=====================+=======================+=======================+
+| Key existence check | Python loop           | ``?`` operator, GIN   |
+|                     |                       | index when            |
+|                     |                       | ``index=True``        |
++---------------------+-----------------------+-----------------------+
+| Value filtering     | Full table scan +     | ``@>`` / ``->>``      |
+|                     | Python                | operators in SQL      |
++---------------------+-----------------------+-----------------------+
+| Storage             | JSON text             | Binary JSONB          |
++---------------------+-----------------------+-----------------------+
 
 This module is particularly beneficial when used with ``attribute_set``
 and ``product_attribute_set`` for managing dynamic product attributes on
@@ -119,12 +124,18 @@ Simply install this module. It will:
 
 1. Patch the ``Serialized`` field class to use JSONB, including for
    modules importing it directly from ``base_sparse_field``
-2. Migrate the existing TEXT columns of serialized fields to JSONB
-3. Create a GIN index on serialized fields defined with ``index=True``
+2. Patch ``Registry.check_indexes`` so Odoo keeps the GIN index of
+   serialized fields instead of replacing it by a btree index
+3. Migrate the existing TEXT columns of serialized fields to JSONB
+4. Create a GIN index on serialized fields defined with ``index=True``
 
 Uninstalling the module converts the columns back to TEXT. Restart the
-server afterwards, as the field class stays patched in the running
-process.
+server right afterwards: until then the field class stays patched in the
+running process, so updating a module in that window converts the
+columns to JSONB again. The round trip is not byte identical: the JSON
+text is reformatted by PostgreSQL and a column default dropped during
+the conversion is not restored. Both are harmless for
+``base_sparse_field``, which only parses the JSON.
 
 No configuration is required.
 
@@ -163,7 +174,9 @@ GIN Index
 
 No index is created by default. Set ``index=True`` on the serialized
 field to get a GIN index, which supports the ``?``, ``?|``, ``?&`` and
-``@>`` operators:
+``@>`` operators. Other index values (``"btree"``, ``"btree_not_null"``,
+``"trigram"``) are not supported: a warning is logged and a plain GIN
+index is created instead.
 
 .. code:: python
 
@@ -208,6 +221,20 @@ automatically handles the migration:
 Empty strings and NULL values are handled gracefully. Indexes on the
 converted column are dropped first, as indexes built for TEXT can not be
 rebuilt on JSONB. Indexes on other columns are left untouched.
+
+**Plan the installation on large tables.** Changing the column type
+rewrites the whole table under an ``ACCESS EXCLUSIVE`` lock, and every
+converted table stays locked until the end of the installation
+transaction. Creating the GIN index takes a lock as well. On big
+``attribute_set`` or ``queue_job`` tables, run the installation in a
+maintenance window. A single row holding text that is not valid JSON
+aborts the installation; check the data beforehand, e.g.:
+
+.. code:: sql
+
+   SELECT id FROM queue_job
+   WHERE dependencies IS NOT NULL AND dependencies <> ''
+     AND NOT pg_input_is_valid(dependencies, 'jsonb');  -- PostgreSQL 16+
 
 Known issues / Roadmap
 ======================

@@ -9,12 +9,14 @@ created before this module got imported.
 A GIN index is only created when the field asks for one with ``index``. It
 gets the name Odoo would give to the index of the field, and
 ``Registry.check_indexes`` is wrapped so Odoo does not replace it with a
-btree index, which is of no use on JSONB.
+btree index, which is of no use on JSONB. Only ``index=True`` is supported,
+other index values are handled like ``True``.
 """
 
 import json
 import logging
 
+import psycopg2
 from psycopg2.extras import Json
 
 from odoo.orm.registry import Registry
@@ -23,6 +25,7 @@ from odoo.tools import SQL, sql
 from odoo.addons.base_sparse_field.models.fields import Serialized
 
 _logger = logging.getLogger(__name__)
+_schema = logging.getLogger("odoo.schema")
 
 
 def drop_column_indexes(cr, table_name, column_name):
@@ -105,6 +108,8 @@ def update_gin_index(cr, table_name, column_name, index):
     """Create a GIN index on the column when ``index`` is set.
 
     An existing index with the same name using another method is replaced.
+    Like Odoo does for its own indexes, a failure to create the index is
+    logged and does not abort the module installation or update.
     """
     if not index:
         return
@@ -123,9 +128,13 @@ def update_gin_index(cr, table_name, column_name, index):
     row = cr.fetchone()
     if row and row[0] == "gin":
         return
-    if row:
-        sql.drop_index(cr, index_name, table_name)
-    sql.create_index(cr, index_name, table_name, [f'"{column_name}"'], "gin")
+    try:
+        with cr.savepoint(flush=False):
+            if row:
+                sql.drop_index(cr, index_name, table_name)
+            sql.create_index(cr, index_name, table_name, [f'"{column_name}"'], "gin")
+    except psycopg2.OperationalError:
+        _schema.error("Unable to add GIN index %r on %s", index_name, table_name)
 
 
 def _update_db_column(self, model, column):
@@ -166,7 +175,13 @@ def check_indexes(self, cr, model_names):
     Odoo creates a btree index for ``index=True``, and replaces an index of
     another method by a btree one. The ``index`` attribute of serialized fields
     is hidden while Odoo checks the indexes.
+
+    This relies on the 19.0 implementation of ``check_indexes``: for a field
+    without ``index``, an existing index with the expected name is kept as is
+    ("Keep unexpected index"). Check that this still holds when porting the
+    module to another series.
     """
+    model_names = list(model_names)
     serialized_fields = [
         (model._table, field, field.index)
         for model in map(self.models.get, model_names)
@@ -174,7 +189,13 @@ def check_indexes(self, cr, model_names):
         for field in model._fields.values()
         if field.type == "serialized" and field.store and field.index
     ]
-    for _table, field, _index in serialized_fields:
+    for _table, field, index in serialized_fields:
+        if index is not True:
+            _schema.warning(
+                "Index %r on %r is not supported, a GIN index is created instead",
+                index,
+                field,
+            )
         field.index = False
     try:
         _check_indexes(self, cr, model_names)
@@ -186,6 +207,3 @@ def check_indexes(self, cr, model_names):
 
 
 Registry.check_indexes = check_indexes
-
-# Kept for code importing the previous replacement class
-SerializedJsonb = Serialized

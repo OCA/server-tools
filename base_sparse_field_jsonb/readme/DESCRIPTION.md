@@ -8,7 +8,7 @@ TEXT column. While functional, this has limitations:
 
 - No database-level indexing on JSON content
 - Filtering requires fetching all records and processing in Python
-- Less efficient storage (text vs binary)
+- The JSON is parsed again on every read
 
 **What this module provides:**
 
@@ -19,13 +19,13 @@ TEXT column. While functional, this has limitations:
 - **Migration Support**: Converts existing TEXT columns to JSONB, also for
   modules installed later on, and back to TEXT when uninstalled
 
-**Performance Benefits:**
+**What changes:**
 
 | Operation | TEXT (before) | JSONB (after) |
 |-----------|---------------|---------------|
-| Key existence check | Python loop | GIN index O(log n) |
-| Value filtering | Full table scan + Python | Index-assisted |
-| Storage size | ~30% larger | Binary compressed |
+| Key existence check | Python loop | `?` operator, GIN index when `index=True` |
+| Value filtering | Full table scan + Python | `@>` / `->>` operators in SQL |
+| Storage | JSON text | Binary JSONB |
 
 This module is particularly beneficial when used with `attribute_set` and
 `product_attribute_set` for managing dynamic product attributes on e-commerce
