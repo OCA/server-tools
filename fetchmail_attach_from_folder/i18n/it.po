@@ -35,6 +35,14 @@ msgid "Archive Path"
 msgstr "Archivia percorso"
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
+
+#. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/wizard/attach_mail_manually.py:0
 #, python-format
@@ -485,11 +493,11 @@ msgstr "Modello a cui allegare l'email"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid ""
-"The path to your mail folder. Typically would be something like 'INBOX."
-"myfolder'"
+"The path to your mail folder. Typically would be something like "
+"'INBOX.myfolder'"
 msgstr ""
-"Percorso alla cartella e-mail. Normalmente è qualcosa del tipo 'INBOX."
-"miacartella'"
+"Percorso alla cartella e-mail. Normalmente è qualcosa del tipo "
+"'INBOX.miacartella'"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
@@ -544,9 +552,6 @@ msgstr "o"
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "to,from"
 msgstr "a,da"
-
-#~ msgid "Assigned Attachments"
-#~ msgstr "Allegati assegnati"
 
 #~ msgid "Changeset Changes"
 #~ msgstr "Modifiche dell'insieme di modifiche"

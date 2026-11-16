@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2024-05-29 16:35+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
+"Last-Translator: Rodrigo Macedo "
+"<sottomaiormacedotec@users.noreply.translation.odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
 "tools-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -34,6 +34,14 @@ msgstr "Ativo"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
 msgid "Archive Path"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
+msgid "Assigned Attachments"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -465,11 +473,11 @@ msgstr "O modelo para anexar emails ao"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid ""
-"The path to your mail folder. Typically would be something like 'INBOX."
-"myfolder'"
+"The path to your mail folder. Typically would be something like "
+"'INBOX.myfolder'"
 msgstr ""
-"O caminho para sua pasta de mail. Tipicamente seria alguma coisa como 'INBOX."
-"myfolder'"
+"O caminho para sua pasta de mail. Tipicamente seria alguma coisa como "
+"'INBOX.myfolder'"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
