@@ -706,7 +706,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_read(
@@ -745,7 +745,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_write(
@@ -804,7 +804,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_create(
