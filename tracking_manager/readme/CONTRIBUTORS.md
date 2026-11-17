@@ -1,0 +1,5 @@
+- Kévin Roche \<<kevin.roche@akretion.com>\>
+- Sébastien BEAU \<<sebastien.beau@akretion.com>\>
+- Christopher Rogos \<<crogos@gmail.com>\>
+- - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
