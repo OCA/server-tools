@@ -233,3 +233,16 @@ class TestBaseException(TransactionCase):
         )
         with self.assertRaises(BaseExceptionError):
             po.detect_exceptions()
+
+    def test_check_exception_current_transaction(self):
+        with patch(
+            "odoo.addons.base_exception.models.base_exception_method.Environment"
+        ) as mocked_env:
+            # The constraint rejects the change: no BaseExceptionError and no
+            # second cursor.
+            with self.assertRaises(ValidationError):
+                self.po.button_confirm()
+            mocked_env.assert_not_called()
+        self.po.with_context(raise_exception=False).button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
