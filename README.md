@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [auto_backup](auto_backup/) | 20.0.1.0.0 |  | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 20.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow you to select scheduled actions that should not run simultaneously.
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 20.0.1.0.0 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
+[upgrade_analysis](upgrade_analysis/) | 20.0.1.0.0 | <a href='https://github.com/StefanRijnhart'><img src='https://github.com/StefanRijnhart.png' width='32' height='32' style='border-radius:50%;' alt='StefanRijnhart'/></a> <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
 
