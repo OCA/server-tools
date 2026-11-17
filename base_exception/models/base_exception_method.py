@@ -8,11 +8,13 @@ import json
 import logging
 from collections import defaultdict
 
+from psycopg2.errors import LockNotAvailable
+
 from odoo import Command, _, api, models
 from odoo.api import Environment
 from odoo.exceptions import UserError
 from odoo.osv import expression
-from odoo.tools import config
+from odoo.tools import SQL, config
 from odoo.tools.safe_eval import safe_eval
 
 from ..exceptions import BaseExceptionError
@@ -109,6 +111,13 @@ class BaseExceptionMethod(models.AbstractModel):
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
+            records_to_write = main_records.browse().union(
+                *rules_to_remove.values(), *rules_to_add.values()
+            )
+            if not test_mode and not self._new_cursor_can_lock(
+                new_cr, records_to_write
+            ):
+                test_mode = True
             new_env = (
                 Environment(new_cr, self.env.uid, self.env.context)
                 if not test_mode
@@ -145,6 +154,32 @@ class BaseExceptionMethod(models.AbstractModel):
                 json.dumps(self._detect_exception_get_exc_class_values())
             )
         return all_exception_ids
+
+    @api.model
+    def _new_cursor_can_lock(self, new_cr, records):
+        """Return whether ``new_cr`` can lock the rows of ``records`` now.
+
+        When the ongoing transaction already wrote on them, the second cursor
+        would wait forever on its row lock: the exceptions must then be
+        written in the ongoing transaction.
+        """
+        if not records:
+            return True
+        # Pending writes only lock the rows once they reach the database.
+        records.flush_recordset()
+        try:
+            with new_cr.savepoint(flush=False):
+                new_cr.execute(
+                    SQL(
+                        "SELECT 1 FROM %s WHERE id IN %s FOR NO KEY UPDATE NOWAIT",
+                        SQL.identifier(records._table),
+                        tuple(records.ids),
+                    ),
+                    log_exceptions=False,
+                )
+        except LockNotAvailable:
+            return False
+        return True
 
     def _must_rollback_on_exception(self):
         """Establish if transaction must be rolled back in case of exception.
