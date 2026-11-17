@@ -144,6 +144,13 @@ class BaseExceptionMethod(models.AbstractModel):
             # main_records itself was already resolved above through the
             # current cursor, so only rebinding it to new_env is needed here.
             main_records_new_env = main_records.with_env(new_env)
+            if not test_mode:
+                # new_cr does not see what the ongoing transaction wrote, like
+                # the ignore_exception set by the exception wizard.
+                for record, current in zip(
+                    main_records_new_env, main_records, strict=True
+                ):
+                    record._cache["ignore_exception"] = current.ignore_exception
             if (
                 rules_to_add
                 or main_records_new_env._must_raise_exception_after_detection()

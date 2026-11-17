@@ -283,3 +283,18 @@ class TestBaseException(TransactionCase):
             with self.assertRaises(BaseExceptionError):
                 self.po.detect_exceptions()
             mocked_env.assert_not_called()
+
+    def test_ignore_exception_of_ongoing_transaction(self):
+        self.po.exception_ids = self.exception_rule
+        self.env.flush_all()
+        # Not flushed yet: the second cursor reads False from the database.
+        self.po.ignore_exception = True
+        self.registry.enter_test_mode(self.cr)
+        self.addCleanup(self.registry.leave_test_mode)
+        with (
+            self.registry.cursor() as new_cr,
+            patch.object(type(self.po), "_get_exceptions", return_value=([], {}, {})),
+        ):
+            new_env = Environment(new_cr, SUPERUSER_ID, {})
+            with mock_base_exception_method_env(self, env=new_env):
+                self.assertEqual(self.po.detect_exceptions(), [])
