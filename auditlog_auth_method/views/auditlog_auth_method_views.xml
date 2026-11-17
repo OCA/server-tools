@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_auditlog_auth_method_tree" model="ir.ui.view">
+        <field name="name">auditlog.auth.method.tree</field>
+        <field name="model">auditlog.auth.method</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" delete="0">
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_auditlog_auth_method" model="ir.actions.act_window">
+        <field name="name">Authentication Methods</field>
+        <field name="res_model">auditlog.auth.method</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem
+        id="menu_auditlog_auth_method"
+        parent="auditlog.menu_audit"
+        action="action_auditlog_auth_method"
+        sequence="50"
+    />
+</odoo>

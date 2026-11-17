@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_auditlog_rule_form" model="ir.ui.view">
+        <field name="name">auditlog.rule.form - auditlog_auth_method</field>
+        <field name="model">auditlog.rule</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_rule_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Authentication Methods">
+                    <div class="alert alert-info" role="alert" colspan="2">
+                        Only the operations done through the checked methods are
+                        logged. When none is checked, every method is logged.
+                    </div>
+                    <field
+                        name="auth_method_ids"
+                        widget="many2many_checkboxes"
+                        nolabel="1"
+                        colspan="2"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
