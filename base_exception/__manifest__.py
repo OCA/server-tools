@@ -1,0 +1,30 @@
+# Copyright 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
+# Copyright 2017 Akretion (http://www.akretion.com)
+# Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+# Copyright 2020 Hibou Corp.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+{
+    "name": "Exception Rule",
+    "version": "20.0.1.0.0",
+    "development_status": "Mature",
+    "category": "Generic Modules",
+    "summary": "Manage customizable exceptions on any model (sale order, invoice, ...)",
+    "author": """Akretion, Sodexis, Camptocamp,
+    ACSONE SA/NV, Odoo Community Association (OCA)""",
+    "website": "https://github.com/OCA/server-tools",
+    "depends": ["base_setup"],
+    "maintainers": ["hparfr", "sebastienbeau"],
+    "license": "AGPL-3",
+    "data": [
+        "security/base_exception_security.xml",
+        "security/ir.access.csv",
+        "wizard/base_exception_confirm_view.xml",
+        "views/base_exception_view.xml",
+    ],
+    "installable": True,
+    "assets": {
+        "web.assets_backend": [
+            "base_exception/static/src/js/base_exception.esm.js",
+        ],
+    },
+}

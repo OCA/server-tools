@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_exception_rule,base.exception,exception.rule,base.group_user,r,
+access_exception_rule_manager,base.exception,exception.rule,base_exception.group_exception_rule_manager,crud,
+access_base_exception,base.exception,base.exception,base.group_user,r,
+access_base_exception_manager,base.exception,base.exception,base_exception.group_exception_rule_manager,crud,
