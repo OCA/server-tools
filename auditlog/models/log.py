@@ -19,6 +19,7 @@ class AuditlogLog(models.Model):
     user_id = fields.Many2one("res.users", string="User")
     method = fields.Char(size=64)
     line_ids = fields.One2many("auditlog.log.line", "log_id", string="Fields updated")
+    read_field_names = fields.Text("Fields Read", readonly=True)
     http_session_id = fields.Many2one(
         "auditlog.http.session", string="Session", index=True
     )
