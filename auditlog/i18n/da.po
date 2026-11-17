@@ -1,0 +1,623 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auditlog
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2026-07-01 13:46+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
+"Language-Team: Danish (https://www.transifex.com/oca/teams/23907/da/)\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
+msgid "Action"
+msgstr "Aktion"
+
+#. module: auditlog
+#: model:ir.ui.menu,name:auditlog.menu_audit
+msgid "Audit"
+msgstr "Revision"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
+msgstr "Revisionslog - Slet gamle logs"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_session
+msgid "Auditlog - HTTP User session log"
+msgstr "Revisionslog - HTTP-brugersessionslog"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_request
+msgid "Auditlog - HTTP request log"
+msgstr "Revisionslog - HTTP-anmodningslog"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_log
+msgid "Auditlog - Log"
+msgstr "Revisionslog - Log"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_log_line
+#: model:ir.model,name:auditlog.model_auditlog_log_line_view
+msgid "Auditlog - Log details (fields updated)"
+msgstr "Revisionslog - Logdetaljer (opdaterede felter)"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_rule
+msgid "Auditlog - Rule"
+msgstr "Revisionslog - Regel"
+
+#. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_manager
+msgid "Auditlog Manager"
+msgstr "Revisionslog-administrator"
+
+#. module: auditlog
+#: model:ir.module.category,name:auditlog.security_auditlog_groups
+msgid "Auditlog Rights"
+msgstr "Revisionslog-rettigheder"
+
+#. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_user
+msgid "Auditlog User"
+msgstr "Revisionslog-bruger"
+
+#. module: auditlog
+#: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
+msgid "Auto-vacuum audit logs"
+msgstr "Automatisk rydning af revisionslogs"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
+msgid "Capture Record"
+msgstr "Indfang post"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
+msgid "Context"
+msgstr "Kontekst"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__create_uid
+msgid "Created by"
+msgstr "Oprettet af"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__create_date
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
+msgid "Created on"
+msgstr "Oprettet den"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "Date"
+msgstr "Dato"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_description
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_description
+msgid "Description"
+msgstr "Beskrivelse"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__display_name
+msgid "Display Name"
+msgstr "Vist navn"
+
+#. module: auditlog
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__draft
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
+msgid "Draft"
+msgstr "Udkast"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr "Eksporterede poster"
+
+#. module: auditlog
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
+msgid "Fast log"
+msgstr "Hurtig log"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+msgid "Field"
+msgstr "Felt"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+msgid "Field 'model_id' cannot be empty."
+msgstr "Feltet 'model_id' må ikke være tomt."
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__fields_to_exclude_ids
+msgid "Fields to Exclude"
+msgstr "Felter der skal udelukkes"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Fields updated"
+msgstr "Opdaterede felter"
+
+#. module: auditlog
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__full
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__full
+msgid "Full log"
+msgstr "Fuld log"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_type
+msgid ""
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
+msgstr ""
+"Fuld log: lav en sammenligning af data før og efter handlingen (logger mere "
+"information, f.eks. beregnede felter der blev opdateret, men det er "
+"langsommere)\n"
+"Hurtig log: log kun de ændringer der foretages via opret- og skriv-"
+"handlinger (mindre information, men det er hurtigere)"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
+msgid "Group By..."
+msgstr "Gruppér efter..."
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "HTTP Context"
+msgstr "HTTP-kontekst"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__http_request_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__http_request_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "HTTP Request"
+msgstr "HTTP-anmodning"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__http_request_ids
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
+msgid "HTTP Requests"
+msgstr "HTTP-anmodninger"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__id
+msgid "ID"
+msgstr "Id"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_uid
+msgid "Last Updated by"
+msgstr "Sidst opdateret af"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_date
+msgid "Last Updated on"
+msgstr "Sidst opdateret den"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__log_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__log_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Log"
+msgstr "Log"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Log - Field updated"
+msgstr "Log - Felt opdateret"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_create
+msgid "Log Creates"
+msgstr "Log oprettelser"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_unlink
+msgid "Log Deletes"
+msgstr "Log sletninger"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr "Log eksporter"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_line
+#: model:ir.ui.menu,name:auditlog.menu_auditlog_line
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+msgid "Log Lines"
+msgstr "Loglinjer"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_read
+msgid "Log Reads"
+msgstr "Log læsninger"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_write
+msgid "Log Writes"
+msgstr "Log skrivninger"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__log_ids
+#: model:ir.ui.menu,name:auditlog.menu_audit_logs
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "Logs"
+msgstr "Logs"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__method
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__method
+msgid "Method"
+msgstr "Metode"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "Model"
+msgstr "Model"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
+msgid "Model Model"
+msgstr "Modellens model"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_name
+msgid "Model Name"
+msgstr "Modelnavn"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__name
+msgid "Name"
+msgstr "Navn"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__new_value
+msgid "New Value"
+msgstr "Ny værdi"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value_text
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__new_value_text
+msgid "New value Text"
+msgstr "Ny værdi-tekst"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+msgid "No field defined to create line."
+msgstr "Intet felt er defineret til oprettelse af linje."
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+msgid "No model defined to create line."
+msgstr "Ingen model er defineret til oprettelse af linje."
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+msgid "No model defined to create log."
+msgstr "Ingen model er defineret til oprettelse af log."
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__old_value
+msgid "Old Value"
+msgstr "Gammel værdi"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value_text
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__old_value_text
+msgid "Old value Text"
+msgstr "Gammel værdi-tekst"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__name
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+msgid "Path"
+msgstr "Sti"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
+msgid "Res"
+msgstr "Res"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "Resource ID"
+msgstr "Ressource-id"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr "Ressource-id'er"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
+msgid "Resource Name"
+msgstr "Ressourcenavn"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__root_url
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+msgid "Root URL"
+msgstr "Rod-URL"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
+msgid "Rule"
+msgstr "Regel"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
+msgid "Rules"
+msgstr "Regler"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__model_id
+msgid "Select model for which you want to generate log."
+msgstr "Vælg den model, som du ønsker at generere log for."
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
+msgid "Select this if you want to keep track of Unlink Record"
+msgstr "Vælg dette, hvis du ønsker at holde styr på sletning af poster"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
+msgid ""
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
+msgstr ""
+"Vælg dette, hvis du ønsker at holde styr på oprettelse af poster på denne "
+"regels model"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
+msgid ""
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
+msgstr ""
+"Vælg dette, hvis du ønsker at holde styr på sletning af poster på denne "
+"regels model"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
+"Vælg dette, hvis du ønsker at holde styr på eksporter af denne regels model"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
+msgid ""
+"Select this if you want to keep track of modification on any record of the "
+"model of this rule"
+msgstr ""
+"Vælg dette, hvis du ønsker at holde styr på ændringer af poster på denne "
+"regels model"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
+msgid ""
+"Select this if you want to keep track of read/open on any record of the "
+"model of this rule"
+msgstr ""
+"Vælg dette, hvis du ønsker at holde styr på læsning/åbning af poster på "
+"denne regels model"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__http_session_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__http_session_id
+msgid "Session"
+msgstr "Session"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__name
+msgid "Session ID"
+msgstr "Sessions-id"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__state
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
+msgid "State"
+msgstr "Delstat"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
+msgid "Subscribe"
+msgstr "Abonnér"
+
+#. module: auditlog
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__subscribed
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
+msgid "Subscribed"
+msgstr "Abonneret"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_model
+msgid "Technical Model Name"
+msgstr "Teknisk modelnavn"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_name
+msgid "Technical name"
+msgstr "Teknisk navn"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+msgid "The field 'field_id' cannot be empty."
+msgstr "Feltet 'field_id' må ikke være tomt."
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+msgid "The field 'model_id' cannot be empty."
+msgstr "Feltet 'model_id' må ikke være tomt."
+
+#. module: auditlog
+#: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
+msgid ""
+"There is already a rule defined on this model\n"
+"You cannot define another: please edit the existing one."
+msgstr ""
+"Der er allerede defineret en regel for denne model.\n"
+"Du kan ikke definere en anden: Rediger venligst den eksisterende."
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__log_type
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__log_type
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_type
+msgid "Type"
+msgstr "Type"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
+msgid "Unsubscribe"
+msgstr "Afmeld abonnement"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__user_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__user_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__user_id
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "User"
+msgstr "Bruger"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
+msgid "User session"
+msgstr "Brugersession"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
+msgid "User sessions"
+msgstr "Brugersessioner"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__user_ids
+msgid "Users"
+msgstr "Brugere"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__users_to_exclude_ids
+msgid "Users to Exclude"
+msgstr "Brugere der skal udelukkes"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Values"
+msgstr "Værdier"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+msgid "View logs"
+msgstr "Vis logs"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
+msgid "if no user is added then it will applicable for all users"
+msgstr "Hvis ingen bruger tilføjes, gælder det for alle brugere"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Sidst ændret den"
