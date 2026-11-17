@@ -27,9 +27,18 @@ def swallow_base_exception_error(func, self):
 def mock_base_exception_method_env(self, env=None):
     if env is None:
         env = self.env
-    with patch(
-        "odoo.addons.base_exception.models.base_exception_method.Environment"
-    ) as mocked_env:
+    with (
+        patch(
+            "odoo.addons.base_exception.models.base_exception_method.Environment"
+        ) as mocked_env,
+        # The second cursor is replaced by env: do not check the row locks
+        # through a real connection, which cannot see the test tables.
+        patch(
+            "odoo.addons.base_exception.models.base_exception_method."
+            "BaseExceptionMethod._new_cursor_can_lock",
+            return_value=True,
+        ),
+    ):
         mocked_env.return_value = env
         yield
 

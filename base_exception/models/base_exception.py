@@ -118,7 +118,17 @@ class BaseExceptionModel(models.AbstractModel):
         """
         if not self.env.context.get("check_exception", True):  # pragma: no cover
             return True
-        exception_ids = self.detect_exceptions()
+        # The constraint runs after the records were written: a second cursor
+        # would wait forever on their row lock, and the ValidationError below
+        # already rolls back the ongoing transaction.
+        main_records = self._get_main_records()
+        no_rollback = dict(self.env.context.get("base_exception_no_rollback") or {})
+        no_rollback[main_records._name] = list(
+            set(no_rollback.get(main_records._name, ())) | set(main_records.ids)
+        )
+        exception_ids = self.with_context(
+            base_exception_no_rollback=no_rollback
+        ).detect_exceptions()
         if exception_ids and self.env.context.get("raise_exception", True):
             exceptions = self.env["exception.rule"].browse(exception_ids)
             raise ValidationError("\n".join(exceptions.mapped("name")))
