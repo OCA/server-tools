@@ -154,19 +154,22 @@ class Base(models.AbstractModel):
         for record in self:
             record._tm_notify_owner(mode)
 
+    def _tm_is_tracking_active(self):
+        return self.is_tracked_by_o2m() and not self.env.context.get("tracking_disable")
+
     def write(self, vals):
-        if self.is_tracked_by_o2m():
+        if self._tm_is_tracking_active():
             self._tm_prepare_o2m_tracking()
         return super().write(vals)
 
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        if self.is_tracked_by_o2m():
+        if self._tm_is_tracking_active():
             records._tm_track_create_unlink("create")
         return records
 
     def unlink(self):
-        if self.is_tracked_by_o2m():
+        if self._tm_is_tracking_active():
             self._tm_track_create_unlink("unlink")
         return super().unlink()
