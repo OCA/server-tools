@@ -799,3 +799,95 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+@tagged("-at_install", "post_install")
+class AuditlogFullInheritsCreate(AuditLogRuleCommon):
+    """A full rule on an ``_inherits`` model must survive the create.
+
+    On those models Odoo can return the values list built by the ORM instead
+    of a recordset, while ``create_full`` needs a recordset to read the new
+    values and to write the log.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user_model_id = cls.env["ir.model"].search([("model", "=", "res.users")]).id
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule users create full",
+                "model_id": cls.user_model_id,
+                "log_create": True,
+                "log_type": "full",
+            }
+        )
+
+    def test_01_AuditlogFull_inherits_create_log(self):
+        self.auditlog_rule.subscribe()
+        user = (
+            self.env["res.users"]
+            .with_context(no_reset_password=True, tracking_disable=True)
+            .create({"name": "Inherits User", "login": "inherits_user"})
+        )
+        create_log = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.user_model_id),
+                ("method", "=", "create"),
+                ("res_id", "=", user.id),
+            ]
+        )
+        self.assertTrue(create_log)
+
+
+@tagged("-at_install", "post_install")
+class AuditlogFullExcludedFields(AuditLogRuleCommon):
+    """A full rule must not read the fields it excludes.
+
+    ``full`` rules read every stored field of the record to snapshot the old
+    and new values. A field the rule excludes does not need that read, and
+    some fields cannot be converted to a read value at all (many2one holding
+    a non-record object), which made the whole write fail.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.contact_model_id = (
+            cls.env["ir.model"].search([("model", "=", "res.partner")]).id
+        )
+        cls.phone_field = cls.env["ir.model.fields"].search(
+            [("model", "=", "res.partner"), ("name", "=", "phone")]
+        )
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule partner full with excluded fields",
+                "model_id": cls.contact_model_id,
+                "log_create": True,
+                "log_write": True,
+                "log_type": "full",
+                "fields_to_exclude_ids": [(4, cls.phone_field.id)],
+            }
+        )
+
+    def test_01_get_auditlog_fields_honours_fields_to_exclude(self):
+        fields = self.env["auditlog.rule"].get_auditlog_fields(self.env["res.partner"])
+        self.assertNotIn("phone", fields)
+        self.assertIn("name", fields)
+
+    def test_02_AuditlogFull_excluded_field_write_log(self):
+        self.auditlog_rule.subscribe()
+        partner = (
+            self.env["res.partner"]
+            .with_context(tracking_disable=True)
+            .create({"name": "excluded fields partner", "phone": "123"})
+        )
+        partner.with_context(tracking_disable=True).write({"phone": "1234567890"})
+        write_logs = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.contact_model_id),
+                ("method", "=", "write"),
+                ("res_id", "=", partner.id),
+            ]
+        )
+        self.assertNotIn("phone", write_logs.line_ids.field_id.mapped("name"))
