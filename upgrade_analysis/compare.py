@@ -80,7 +80,7 @@ def compare_records(dict_old, dict_new, fields):
             if module_map(dict_old["module"]) != dict_new["module"]:
                 return False
         elif field == "model":
-            if model_rename_map(dict_old["model"]) != dict_new["model"]:
+            if model_map(dict_old["model"]) != dict_new["model"]:
                 return False
         elif field == "relation":
             if model_map(dict_old["relation"]) != dict_new["relation"]:
