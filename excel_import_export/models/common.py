@@ -7,11 +7,19 @@ import re
 import string
 import uuid
 from ast import literal_eval
+from datetime import date
 from datetime import datetime as dt
-from io import StringIO
+from io import BytesIO, StringIO
 
 import xlrd
 from dateutil.parser import parse
+
+from odoo.tools.parse_version import parse_version
+
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    load_workbook = None
 
 from odoo import _
 from odoo.exceptions import ValidationError
@@ -223,8 +231,34 @@ def str_to_number(input_val):
 
 
 def csv_from_excel(excel_content, delimiter, quote):
-    wb = xlrd.open_workbook(file_contents=excel_content)
-    sh = wb.sheet_by_index(0)
+    try:
+        wb = xlrd.open_workbook(file_contents=excel_content)
+        sh = wb.sheet_by_index(0)
+        rows_iter = (sh.row_values(rownum) for rownum in range(sh.nrows))
+    except (
+        xlrd.XLRDError,
+        Exception,
+    ):  # Fallback to openpyxl if xlrd fails (e.g. xlsx in xlrd>=2.0)
+        if (
+            xlrd
+            and parse_version(xlrd.__VERSION__) >= parse_version("2.0")
+            and load_workbook
+        ):
+            # Try openpyxl
+            try:
+                wb = load_workbook(
+                    StringIO(excel_content)
+                    if isinstance(excel_content, str)
+                    else BytesIO(excel_content or b""),
+                    data_only=True,
+                )
+                sh = wb.worksheets[0]
+                rows_iter = sh.iter_rows(values_only=True)
+            except Exception:
+                raise
+        else:
+            raise
+
     content = StringIO()
     quoting = csv.QUOTE_ALL
     if not quote:
@@ -232,10 +266,22 @@ def csv_from_excel(excel_content, delimiter, quote):
     if delimiter == " " and quoting == csv.QUOTE_NONE:
         quoting = csv.QUOTE_MINIMAL
     wr = csv.writer(content, delimiter=delimiter, quoting=quoting)
-    for rownum in range(sh.nrows):
+
+    for row_values in rows_iter:
         row = []
-        for x in sh.row_values(rownum):
-            if quoting == csv.QUOTE_NONE and delimiter in x:
+        for x in row_values:
+            if isinstance(x, dt | date):
+                is_datetime = False
+                if isinstance(x, dt) and (
+                    x.hour or x.minute or x.second or x.microsecond
+                ):
+                    is_datetime = True
+                x = (
+                    x.strftime("%Y-%m-%d %H:%M:%S")
+                    if is_datetime
+                    else x.strftime("%Y-%m-%d")
+                )
+            if quoting == csv.QUOTE_NONE and delimiter in str(x):
                 raise ValidationError(
                     _(
                         "Template with CSV Quoting = False, data must not "
@@ -267,19 +313,19 @@ def _get_cell_value(cell, field_type=False):
     if not know, just get value  as is"""
     value = False
     datemode = 0  # From book.datemode, but we fix it for simplicity
-    if field_type in ["date", "datetime"]:
-        ctype = xlrd.sheet.ctype_text.get(cell.ctype, "unknown type")
-        if ctype in ("xldate", "number"):
-            is_datetime = cell.value % 1 != 0.0
+    if field_type in ("date", "datetime"):
+        if hasattr(cell, "ctype") and cell.ctype == xlrd.XL_CELL_DATE:
             time_tuple = xlrd.xldate_as_tuple(cell.value, datemode)
-            date = dt(*time_tuple)
-            value = (
-                date.strftime("%Y-%m-%d %H:%M:%S")
-                if is_datetime
-                else date.strftime("%Y-%m-%d")
-            )
+            value = dt(*time_tuple)
         else:
             value = cell.value
+
+        if isinstance(value, dt | date):
+            if field_type == "date":
+                value = value.strftime("%Y-%m-%d")
+            else:
+                value = value.strftime("%Y-%m-%d %H:%M:%S")
+
     elif field_type in ["integer", "float"]:
         value_str = str(cell.value).strip().replace(",", "")
         if len(value_str) == 0:
@@ -297,8 +343,8 @@ def _get_cell_value(cell, field_type=False):
             value = str(cell.value)
         else:
             value = cell.value
-    else:  # text, char
-        value = cell.value
+    else:  # text, char, or unknown field_type
+        value = cell.value if hasattr(cell, "value") else cell
     # If string, cleanup
     if isinstance(value, str):
         if value[-2:] == ".0":
