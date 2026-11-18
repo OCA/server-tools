@@ -14,13 +14,25 @@ from ..exceptions import BaseExceptionError
 
 @decorator
 def swallow_base_exception_error(func, self):
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except BaseExceptionError:
-            return None
+    try:
+        return func(self)
+    except BaseExceptionError:
+        return None
 
-    return wrapper
+
+@contextmanager
+def expect_base_exception_error(testcase):
+    """Expect a BaseExceptionError raised by detect_exceptions().
+
+    Unlike assertRaises, this does not roll back to a savepoint: in tests the
+    exceptions are written with the test cursor, and a rollback would remove
+    them before they can be checked.
+    """
+    try:
+        yield
+    except BaseExceptionError:
+        return
+    testcase.fail("BaseExceptionError not raised")
 
 
 @contextmanager
