@@ -6,7 +6,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def pre_init_hook_for_submodules(env, model, field):
+def post_init_hook_for_submodules(env, model, field):
     """Moves images from single to multi mode.
 
     Feel free to use this as a ``pre_init_hook`` for submodules.
@@ -18,43 +18,36 @@ def pre_init_hook_for_submodules(env, model, field):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
-    cr = env.cr
-    with cr.savepoint():
-        table = env[model]._table
-        column_exists = table_has_column(cr, table, field)
-        # fields.Binary(), extract the binary content directly from the table
+    table = env[model]._table
+    image_obj = env["base_multi_image.image"]
+    with env.cr.savepoint():
+        column_exists = table_has_column(env, table, field)
         if column_exists:
-            extract_query = f"""
-                SELECT id, '{model}', '{model},' || id, 'db', {field}
-                FROM {table}
-                WHERE {field} IS NOT NULL
-            """
-            image_field = "file_db_store"
-        # fields.Binary(attachment=True), get the ir_attachment record ID
+            env.cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")
         else:
-            extract_query = f"""
-                SELECT
-                    res_id,
-                    res_model,
-                    CONCAT_WS(',', res_model, res_id),
-                    'attachment',
-                    id
-                FROM ir_attachment
-                WHERE res_field='{field}' AND res_model='{model}'
-            """
-            image_field = "attachment_id"
-        cr.execute(  # pylint: disable=sql-injection
-            f"""
-                INSERT INTO base_multi_image_image (
-                    owner_id,
-                    owner_model,
-                    owner_ref_id,
-                    storage,
-                    {image_field}
-                )
-                {extract_query}
-            """
-        )
+            env.cr.execute(
+                """
+                    SELECT res_id
+                    FROM ir_attachment
+                    WHERE
+                        res_field=%(field)s
+                        AND res_model=%(model)s
+                """,
+                {
+                    "field": field,
+                    "model": model,
+                },
+            )
+        record_ids = [row[0] for row in env.cr.fetchall()]
+        for record in env[model].browse(record_ids):
+            image_obj.create(
+                {
+                    "owner_id": record.id,
+                    "owner_model": model,
+                    "owner_ref_id": f"{model},{record.id}",
+                    "image_1920": record[field],
+                },
+            )
 
 
 def uninstall_hook_for_submodules(env, model, field=None):
@@ -70,10 +63,9 @@ def uninstall_hook_for_submodules(env, model, field=None):
         ``image``.
 
     """
-    cr = env.cr
-    with cr.savepoint():
-        Image = env["base_multi_image.image"]
-        images = Image.search([("owner_model", "=", model)], order="sequence, id")
+    with env.cr.savepoint():
+        image_obj = env["base_multi_image.image"]
+        images = image_obj.search([("owner_model", "=", model)], order="sequence, id")
         if images and field:
             main_images = {}
             for image in images:
@@ -86,8 +78,8 @@ def uninstall_hook_for_submodules(env, model, field=None):
             # fields.Binary(), save the binary content directly to the table
             if not Field.attachment:
                 save_directly_to_table(
-                    cr,
-                    Model,
+                    env,
+                    model_obj,
                     field,
                     Field,
                     main_images,
@@ -100,7 +92,7 @@ def uninstall_hook_for_submodules(env, model, field=None):
         images.unlink()
 
 
-def save_directly_to_table(cr, Model, field, Field, main_images):
+def save_directly_to_table(env, Model, field, Field, main_images):
     fields = []
     if field and not Field.attachment:
         fields.append(field + " = " + "%(image)s")
@@ -108,20 +100,20 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
     query = """
         UPDATE {table}
         SET {fields}
-        WHERE id = %%(id)s
+        WHERE id = %(id)s
     """.format(table=Model._table, fields=", ".join(fields))
     for main_image in main_images:
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:
             params["image"] = main_image.image_1920
-        cr.execute(query, params)  # pylint: disable=sql-injection
+        env.cr.execute(query, params)  # pylint: disable=sql-injection
 
 
-def table_has_column(cr, table, field):
+def table_has_column(env, table, field):
     query = """
         SELECT %(field)s
         FROM information_schema.columns
         WHERE table_name=%(table)s and column_name=%(field)s;
     """
-    cr.execute(query, {"table": table, "field": field})
-    return bool(cr.fetchall())
+    env.cr.execute(query, {"table": table, "field": field})
+    return bool(env.cr.fetchall())
