@@ -108,7 +108,10 @@ class Base(models.AbstractModel):
                         "name": record._tm_get_field_description(field_name),
                         "messages": messages,
                     }
+                    # The if section is matter in case of specific M2M with res_id/res_model
+                    # Ex: ir.attachment
                     for field_name, messages in messages_by_field.items()
+                    if field_name in record._fields
                 ]
                 # We do not use message_post_with_view() because emails would be sent
                 rendered_template = self.env["ir.qweb"]._render(
