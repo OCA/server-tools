@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Ledo Enterprises
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_email_server_form_s3" model="ir.ui.view">
+        <field name="name">fetchmail.server.form.s3</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <field name="server" position="before">
+                <field
+                    name="s3_bucket"
+                    invisible="server_type != 's3'"
+                    required="server_type == 's3'"
+                />
+                <field name="s3_prefix" invisible="server_type != 's3'" />
+                <field name="s3_region" invisible="server_type != 's3'" />
+                <field
+                    name="s3_access_key"
+                    invisible="server_type != 's3'"
+                    required="server_type == 's3'"
+                />
+                <field
+                    name="s3_secret_key"
+                    invisible="server_type != 's3'"
+                    required="server_type == 's3'"
+                    password="True"
+                />
+                <field name="s3_endpoint_url" invisible="server_type != 's3'" />
+                <field name="s3_archive_prefix" invisible="server_type != 's3'" />
+            </field>
+            <!-- Hide IMAP/POP fields when S3 is selected -->
+            <field name="server" position="attributes">
+                <attribute name="invisible">server_type == 's3'</attribute>
+            </field>
+            <field name="port" position="attributes">
+                <attribute name="invisible">server_type == 's3'</attribute>
+            </field>
+            <field name="is_ssl" position="attributes">
+                <attribute name="invisible">server_type == 's3'</attribute>
+            </field>
+            <field name="user" position="attributes">
+                <attribute name="invisible">server_type == 's3'</attribute>
+            </field>
+            <field name="password" position="attributes">
+                <attribute name="invisible">server_type == 's3'</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
