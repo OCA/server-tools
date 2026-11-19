@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* iap_alternative_provider
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-02-14 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Archivos Adjuntos Asignados"
+
+#. module: iap_alternative_provider
+#: model:ir.model,name:iap_alternative_provider.model_iap_account
+msgid "IAP Account"
+msgstr "Cuenta IAP"
+
+#. module: iap_alternative_provider
+#: model_terms:ir.ui.view,arch_db:iap_alternative_provider.iap_account_view_form
+msgid "Info"
+msgstr "Info"
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields.selection,name:iap_alternative_provider.selection__iap_account__provider__odoo
+msgid "Odoo IAP"
+msgstr "IAP de Odoo"
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__provider
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
