@@ -652,6 +652,36 @@ class TestSparseFieldsJsonb(TransactionCase):
         self.assertIsNone(self._index_method("test_data_tsv"))
         self.assertEqual(self._index_method("test_name_tsv"), "gin")
 
+    def test_post_init_hook_keeps_dependent_views(self):
+        """Views reading the column are recreated around the conversion."""
+        record = self.env["sparse_fields_jsonb.test"].create({"integer": 5})
+        self.env.flush_all()
+        self._revert_to_text("data")
+        self.env.cr.execute(
+            SQL(
+                # concat() reads TEXT and JSONB alike
+                "CREATE MATERIALIZED VIEW test_sparse_mv AS"
+                " SELECT id, NULLIF(concat(data), '')::jsonb ->> 'integer' AS val"
+                " FROM %(table)s;"
+                " CREATE UNIQUE INDEX test_sparse_mv_id ON test_sparse_mv (id);"
+                " CREATE VIEW test_sparse_v AS SELECT * FROM test_sparse_mv;"
+                # NULLIF(data, '') does not fit a JSONB column any more
+                " CREATE VIEW test_sparse_text_v AS"
+                " SELECT id, NULLIF(data, '') AS raw FROM %(table)s",
+                table=SQL.identifier(_TABLE),
+            )
+        )
+
+        with mute_logger(_FIELDS_LOGGER, "odoo.sql_db"):
+            post_init_hook(self.env)
+
+        self.assertEqual(self._column_type("data"), "jsonb")
+        self.env.cr.execute("SELECT val FROM test_sparse_v WHERE id = %s", (record.id,))
+        self.assertEqual(self.env.cr.fetchone()[0], "5")
+        self.assertEqual(self._index_method("test_sparse_mv_id"), "btree")
+        self.env.cr.execute("SELECT to_regclass('test_sparse_text_v')")
+        self.assertIsNone(self.env.cr.fetchone()[0])
+
     def test_uninstall_hook_reverts_to_text(self):
         """uninstall_hook puts the serialized columns back to TEXT."""
         record = self.env["sparse_fields_jsonb.test"].create(

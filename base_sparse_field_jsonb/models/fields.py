@@ -71,10 +71,111 @@ def drop_column_indexes(cr, table_name, column_name):
     return index_names
 
 
+def _dependent_views(cr, table_name, column_name):
+    """Return the views and materialized views reading the given column.
+
+    Views built on top of those are included. Each item is
+    ``(name, relkind, definition, index definitions)``, in an order that
+    recreates them after the views they depend on.
+    """
+    cr.execute(
+        SQL(
+            """
+            WITH RECURSIVE deps(oid, depth) AS (
+                SELECT r.ev_class, 1
+                  FROM pg_depend d
+                  JOIN pg_rewrite r ON r.oid = d.objid
+                  JOIN pg_class t ON t.oid = d.refobjid
+                  JOIN pg_attribute a
+                    ON a.attrelid = t.oid AND a.attnum = d.refobjsubid
+                 WHERE d.classid = 'pg_rewrite'::regclass
+                   AND t.relname = %s
+                   AND a.attname = %s
+                   AND pg_table_is_visible(t.oid)
+                   AND r.ev_class <> t.oid
+                UNION
+                SELECT r.ev_class, deps.depth + 1
+                  FROM deps
+                  JOIN pg_depend d ON d.refobjid = deps.oid
+                  JOIN pg_rewrite r ON r.oid = d.objid
+                 WHERE d.classid = 'pg_rewrite'::regclass
+                   AND r.ev_class <> deps.oid
+            )
+            SELECT c.relname, c.relkind, pg_get_viewdef(c.oid),
+                   ARRAY(SELECT pg_get_indexdef(i.indexrelid)
+                           FROM pg_index i WHERE i.indrelid = c.oid)
+              FROM (SELECT oid, max(depth) AS depth FROM deps GROUP BY oid) v
+              JOIN pg_class c ON c.oid = v.oid
+             ORDER BY v.depth, c.relname
+            """,
+            table_name,
+            column_name,
+        )
+    )
+    return cr.fetchall()
+
+
+def _view_kind(relkind):
+    return SQL("MATERIALIZED VIEW") if relkind == "m" else SQL("VIEW")
+
+
+def _alter_column_type(cr, table_name, column_name, alter_query):
+    """Run ``alter_query`` changing the type of a column.
+
+    PostgreSQL refuses to change the type of a column read by a view. Those
+    views are dropped first and recreated from their own definition
+    afterwards. A view whose definition does not fit the new type any more is
+    left dropped with a warning; the module owning it recreates it when it is
+    updated, as Odoo does when it converts a column itself.
+    """
+    views = _dependent_views(cr, table_name, column_name)
+    for name, relkind, _definition, _indexes in reversed(views):
+        _logger.info(
+            "Dropping %s %s to convert %s.%s, recreated afterwards",
+            "materialized view" if relkind == "m" else "view",
+            name,
+            table_name,
+            column_name,
+        )
+        cr.execute(
+            SQL(
+                "DROP %s IF EXISTS %s",
+                _view_kind(relkind),
+                SQL.identifier(name),
+            )
+        )
+    drop_column_indexes(cr, table_name, column_name)
+    cr.execute(alter_query)
+    for name, relkind, definition, indexes in views:
+        try:
+            with cr.savepoint(flush=False):
+                cr.execute(
+                    SQL(
+                        "CREATE %s %s AS %s",
+                        _view_kind(relkind),
+                        SQL.identifier(name),
+                        SQL(definition.rstrip().rstrip(";")),
+                    )
+                )
+                for index_definition in indexes:
+                    cr.execute(SQL(index_definition))
+        except psycopg2.Error as e:
+            _logger.warning(
+                "Could not recreate %s after converting %s.%s, it is left to"
+                " its module to recreate it: %s",
+                name,
+                table_name,
+                column_name,
+                e,
+            )
+
+
 def convert_column_to_jsonb(cr, table_name, column_name):
     """Convert a TEXT column holding serialized values to JSONB."""
-    drop_column_indexes(cr, table_name, column_name)
-    cr.execute(
+    _alter_column_type(
+        cr,
+        table_name,
+        column_name,
         SQL(
             """
             ALTER TABLE %(table)s
@@ -85,21 +186,23 @@ def convert_column_to_jsonb(cr, table_name, column_name):
             """,
             table=SQL.identifier(table_name),
             column=SQL.identifier(column_name),
-        )
+        ),
     )
     _logger.info("Converted %s.%s to JSONB", table_name, column_name)
 
 
 def convert_column_to_text(cr, table_name, column_name):
     """Convert a JSONB column holding serialized values back to TEXT."""
-    drop_column_indexes(cr, table_name, column_name)
-    cr.execute(
+    _alter_column_type(
+        cr,
+        table_name,
+        column_name,
         SQL(
             "ALTER TABLE %(table)s ALTER COLUMN %(column)s TYPE text"
             " USING %(column)s::text",
             table=SQL.identifier(table_name),
             column=SQL.identifier(column_name),
-        )
+        ),
     )
     _logger.info("Converted %s.%s back to TEXT", table_name, column_name)
 
