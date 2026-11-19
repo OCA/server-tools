@@ -168,6 +168,9 @@ const config = [{
 
     settings: {
         jsdoc: {
+            allowedTags: [
+                "odoo-module",
+            ],
             tagNamePreference: {
                 arg: "param",
                 argument: "param",
