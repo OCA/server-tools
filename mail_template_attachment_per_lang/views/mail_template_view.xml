@@ -7,7 +7,7 @@
         <field name="model">mail.template</field>
         <field name="inherit_id" ref="mail.email_template_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[field[@name='attachment_ids']]" position="after">
+            <xpath expr="//page[@name='email_settings']" position="inside">
                 <group
                     name="language_attachments"
                     string="Language Attachments"

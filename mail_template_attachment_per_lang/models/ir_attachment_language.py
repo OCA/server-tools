@@ -23,7 +23,6 @@ class IrAttachmentLanguage(models.Model):
 
     attachment_id = fields.Many2one(
         comodel_name="ir.attachment",
-        string="Attachment",
         required=True,
         ondelete="cascade",
     )
