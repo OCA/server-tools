@@ -54,9 +54,25 @@ class Base(models.AbstractModel):
                 {
                     "mode": mode,
                     "record": self.display_name,
+                    # Named again when the message is built, as values written
+                    # later in the same transaction may still change the name.
+                    # An unlinked record can no longer be read by then.
+                    "record_ref": None if mode == "unlink" else self,
                     "changes": changes,
                 }
             )
+
+    def _tm_name_records_late(self, messages):
+        """Name the tracked records with the values they end the transaction on.
+
+        A record is named when its change is tracked, which for a creation is
+        before the values written to it later in the same transaction are in
+        place. A record that no longer exists keeps the name taken back then.
+        """
+        for message in messages:
+            record = message.pop("record_ref", None)
+            if record is not None and record.exists():
+                message["record"] = record.display_name
 
     def _tm_get_field_description(self, field_name):
         return self._fields[field_name].get_description(self.env)["string"]
@@ -95,6 +111,8 @@ class Base(models.AbstractModel):
                 if not record_id:
                     continue
                 record = self.env[model_name].browse(record_id)
+                for field_messages in messages_by_field.values():
+                    record._tm_name_records_late(field_messages)
                 messages = [
                     {
                         "name": record._tm_get_field_description(field_name),
@@ -132,7 +150,13 @@ class Base(models.AbstractModel):
         initial_values = self.env.cr.precommit.data.pop(
             f"tracking.manager.before.{self._name}", {}
         )
+        created_ids = self._tm_get_created_ids()
         for _id, values in initial_values.items():
+            if _id in created_ids:
+                # The record is already reported as a creation, named with the
+                # values it ends the transaction on. The values it was created
+                # with are no "before" to report a change against.
+                continue
             # Always use sudo in case that the record have been modified using sudo
             record = self.sudo().browse(_id)
             if not record.exists():
@@ -146,8 +170,21 @@ class Base(models.AbstractModel):
         self._tm_post_message(data)
         self.flush_model()
 
+    def _tm_get_created_ids(self):
+        """Return the ids of the records of this model created in this transaction.
+
+        Left in place for the whole transaction: `Callbacks.run` clears its data
+        once every callback has been called, and a model finalizing its own
+        tracking must not discard what another model still needs.
+        """
+        return self.env.cr.precommit.data.setdefault(
+            "tracking.manager.created", defaultdict(set)
+        )[self._name]
+
     def _tm_track_create_unlink(self, mode):
         self.env.cr.precommit.add(self._tm_finalize_o2m_tracking)
+        if mode == "create":
+            self._tm_get_created_ids().update(self.ids)
         for record in self:
             record._tm_notify_owner(mode)
 

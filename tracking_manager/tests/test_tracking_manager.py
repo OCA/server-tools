@@ -71,6 +71,16 @@ class TestTrackingManager(TransactionCase):
         self.flush_tracking()
         return self.partner.message_ids
 
+    def _create_child_then_rename(self):
+        """Return a child partner created and renamed in the same transaction."""
+        self.env.ref("base.field_res_partner__child_ids").custom_tracking = True
+        self.env.ref("base.field_res_partner__name").custom_tracking = True
+        child = self.env["res.partner"].create(
+            {"name": "Before", "parent_id": self.partner.id}
+        )
+        child.write({"name": "After"})
+        return child
+
     def test_m2m_add_line(self):
         self.partner = self.env["res.partner"].browse(self.partner.id)
         self.partner.write(
@@ -271,3 +281,15 @@ class TestTrackingManager(TransactionCase):
         )
         child.write({"parent_id": False})
         self.assertEqual(len(self.messages), 1)
+
+    def test_o2m_create_then_write_names_record_with_final_value(self):
+        self._create_child_then_rename()
+        self.assertEqual(len(self.messages), 1)
+        self.assertIn("After", self.messages.body)
+        self.assertNotIn("Before", self.messages.body)
+
+    def test_o2m_create_then_write_reports_creation_only(self):
+        self._create_child_then_rename()
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New :"), 1)
+        self.assertEqual(self.messages.body.count("Change :"), 0)
