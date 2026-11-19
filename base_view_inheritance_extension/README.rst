@@ -87,6 +87,39 @@ to refer to some xmlid, say ``%(xmlid)s``.
         $domain_to_add_to_attrs_key
     </attribute>
 
+**Wrap loose text in an element for further processing**
+
+.. code-block:: xml
+
+   <wraptext expr="//some/node" position="text" element="span" />
+   <wraptext expr="//some/node/other_node" position="tail" element="div" />
+
+which transforms
+
+.. code-block:: xml
+
+    <some>
+        <node>
+            plain text 1
+            <other_node />
+            plain text2
+        </node>
+    </some>
+
+to
+
+.. code-block:: xml
+
+    <some>
+        <node>
+            <span>plain text 1</span>
+            <other_node />
+            <div>plain text2</div>
+        </node>
+    </some>
+
+making those texts accessible for further operations
+
 Known issues / Roadmap
 ======================
 
@@ -113,7 +146,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Holger Brunn <hbrunn@therp.nl>
+* Holger Brunn <mail@hunki-enterprises.com>
 * Ronald Portier <rportier@therp.nl>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
@@ -135,6 +168,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-hbrunn| image:: https://github.com/hbrunn.png?size=40px
+    :target: https://github.com/hbrunn
+    :alt: hbrunn
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-hbrunn| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_view_inheritance_extension>`_ project on GitHub.
 
