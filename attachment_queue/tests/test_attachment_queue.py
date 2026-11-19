@@ -40,6 +40,12 @@ class TestAttachmentBaseQueue(BaseCommon):
 
         self.loader.update_registry((AttachmentQueue,))
         self.aq_model = self.env["attachment.queue"]
+        # allow_commit option is not really compatible with tests because we create
+        # the attachment queue in the test and if the job opens a new cursor, the
+        # created attachment does not exist yet.
+        self.env.ref("attachment_queue.job_function_run_attachment_queue").write(
+            {"allow_commit": False}
+        )
 
     def tearDown(self):
         super().tearDown()
