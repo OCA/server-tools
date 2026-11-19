@@ -154,11 +154,12 @@ def _alter_column_type(cr, table_name, column_name, alter_query):
                         "CREATE %s %s AS %s",
                         _view_kind(relkind),
                         SQL.identifier(name),
-                        SQL(definition.rstrip().rstrip(";")),
+                        # literal SQL: "%" (LIKE, modulo) is no placeholder
+                        SQL(definition.rstrip().rstrip(";").replace("%", "%%")),
                     )
                 )
                 for index_definition in indexes:
-                    cr.execute(SQL(index_definition))
+                    cr.execute(SQL(index_definition.replace("%", "%%")))
         except psycopg2.Error as e:
             _logger.warning(
                 "Could not recreate %s after converting %s.%s, it is left to"

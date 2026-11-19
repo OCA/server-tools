@@ -661,8 +661,9 @@ class TestSparseFieldsJsonb(TransactionCase):
             SQL(
                 # concat() reads TEXT and JSONB alike
                 "CREATE MATERIALIZED VIEW test_sparse_mv AS"
-                " SELECT id, NULLIF(concat(data), '')::jsonb ->> 'integer' AS val"
-                " FROM %(table)s;"
+                " SELECT id, NULLIF(concat(data), '')::jsonb ->> 'integer' AS val,"
+                " id %% 2 AS parity FROM %(table)s WHERE name IS NULL"
+                " OR name NOT LIKE 'x%%';"
                 " CREATE UNIQUE INDEX test_sparse_mv_id ON test_sparse_mv (id);"
                 " CREATE VIEW test_sparse_v AS SELECT * FROM test_sparse_mv;"
                 # NULLIF(data, '') does not fit a JSONB column any more
