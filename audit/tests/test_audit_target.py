@@ -1,0 +1,132 @@
+"""Tests for `audit.target`."""
+
+import uuid
+
+from odoo.exceptions import ValidationError
+from odoo.tests import tagged
+from odoo.tests.common import TransactionCase
+
+
+@tagged("audit_models", "audit_model_target")
+class TestAuditTarget(TransactionCase):
+    """Tests for `audit.target` and `audit.domain_target_rel`."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.domain = cls.env["audit.domain"].create({"name": "Target Test Domain"})
+
+    def test_duplicate_target_name_rejected_on_create(self):
+        self.env["audit.target"].create(
+            {"name": "Same Name Store", "domain_id": self.domain.id}
+        )
+        with self.assertRaises(ValidationError):
+            self.env["audit.target"].create(
+                {"name": "Same Name Store", "domain_id": self.domain.id}
+            )
+
+    def test_create_sets_domain_id_from_all_domain_rel_ids(self):
+        other = self.env["audit.domain"].create({"name": "Secondary Domain"})
+        target = self.env["audit.target"].create(
+            {
+                "name": "Target with rel domains",
+                "all_domain_rel_ids": [(6, 0, [other.id])],
+            }
+        )
+        self.assertEqual(target.domain_id, other)
+
+    def test_link_to_domain_creates_relation_once(self):
+        target = self.env["audit.target"].create(
+            {"name": "Linkable", "domain_id": self.domain.id}
+        )
+        target.link_to_domain(self.domain.id, target.id)
+        rel = self.env["audit.domain_target_rel"].search(
+            [
+                ("domain_id", "=", self.domain.id),
+                ("target_id", "=", target.id),
+            ]
+        )
+        self.assertTrue(rel)
+        target.link_to_domain(self.domain.id, target.id)
+        self.assertEqual(
+            len(
+                self.env["audit.domain_target_rel"].search(
+                    [
+                        ("domain_id", "=", self.domain.id),
+                        ("target_id", "=", target.id),
+                    ]
+                )
+            ),
+            1,
+        )
+
+    def test_write_rejects_duplicate_name(self):
+        self.env["audit.target"].create({"name": "Alpha", "domain_id": self.domain.id})
+        beta = self.env["audit.target"].create(
+            {"name": "Beta", "domain_id": self.domain.id}
+        )
+        with self.assertRaises(ValidationError):
+            beta.write({"name": "Alpha"})
+
+    def test_write_sets_domain_id_from_all_domain_rel_ids(self):
+        other = self.env["audit.domain"].create(
+            {"name": f"Write Domain {uuid.uuid4().hex[:8]}"},
+        )
+        target = self.env["audit.target"].create(
+            {"name": f"T no primary {uuid.uuid4().hex[:6]}"}
+        )
+        self.assertFalse(target.domain_id)
+        target.write(
+            {
+                "all_domain_rel_ids": [
+                    (6, 0, [other.id]),
+                ],
+            }
+        )
+        self.assertEqual(target.domain_id, other)
+
+    def test_merge_merges_same_name_datasets(self):
+        tag = uuid.uuid4().hex[:6]
+        keep = self.env["audit.target"].create(
+            {
+                "name": f"MergeN_{tag}_keep",
+                "domain_id": self.domain.id,
+            }
+        )
+        drop = self.env["audit.target"].create(
+            {
+                "name": f"Drop_{tag}_before_merge",
+                "domain_id": self.domain.id,
+            }
+        )
+        # Force same display name as `keep` to exercise merge() deduplication.
+        self.env.cr.execute(
+            "UPDATE audit_target SET name = %s WHERE id = %s",
+            (keep.name, drop.id),
+        )
+        drop.invalidate_recordset(["name"])
+        section = self.env["audit.section"].create(
+            {
+                "name": "Msec",
+                "domain_id": self.domain.id,
+            }
+        )
+        self.env["audit.question"].create(
+            {
+                "prompt": "Mq",
+                "answer_type": "boolean",
+                "section_id": section.id,
+            }
+        )
+        inspector = self.env["audit.inspector"].create({"name": f"Insp {tag}"})
+        snap = self.env["audit.snapshot"].create(
+            {
+                "domain_id": self.domain.id,
+                "target_id": drop.id,
+                "inspector_id": inspector.id,
+            }
+        )
+        keep.merge()
+        self.assertFalse(drop.exists())
+        self.assertEqual(snap.target_id, keep)
+        self.assertFalse(keep.domain_id)
