@@ -6,7 +6,7 @@
 
 {
     "name": "Scheduler Error Mailer",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Extra Tools",
     "license": "AGPL-3",
     "author": "Akretion,Sodexis,Odoo Community Association (OCA)",
