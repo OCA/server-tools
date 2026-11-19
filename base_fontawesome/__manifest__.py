@@ -42,5 +42,11 @@
             "base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css",
             "base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css",
         ],
+        "web.assets_backend": [
+            "base_fontawesome/static/src/fields/**/*",
+        ],
+        "web.qunit_suite_tests": [
+            "base_fontawesome/static/tests/**/*",
+        ],
     },
 }

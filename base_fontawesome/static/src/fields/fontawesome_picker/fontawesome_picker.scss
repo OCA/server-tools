@@ -1,0 +1,52 @@
+.o_field_fontawesome_picker {
+    display: inline-block;
+
+    .o_fa_picker_toggle {
+        min-width: 12rem;
+        text-align: left;
+
+        > span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+// Rendered through the popover service (floats in the viewport, auto-flipped).
+.o_fa_picker_popover {
+    .o_fa_picker_grid_wrapper {
+        width: 22rem;
+        max-width: 90vw;
+        padding: 0.5rem;
+    }
+
+    .o_fa_picker_search {
+        margin-bottom: 0.5rem;
+    }
+
+    .o_fa_picker_grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 0.25rem;
+        // The only scrollable area: the popover itself is sized to its content,
+        // so the form behind it never has to scroll to reveal the grid.
+        max-height: 15rem;
+        overflow-y: auto;
+
+        .o_fa_picker_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1;
+            padding: 0;
+            font-size: 1.1rem;
+            border: 1px solid transparent;
+
+            &:hover {
+                border-color: var(--primary, #714b67);
+                background-color: $o-gray-100;
+            }
+        }
+    }
+}
