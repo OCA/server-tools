@@ -8,7 +8,7 @@
     "version": "20.0.1.0.0",
     "category": "Hidden",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/field-service",
+    "website": "https://github.com/OCA/server-tools",
     "depends": ["base"],
     "data": [
         "security/ir.access.csv",
