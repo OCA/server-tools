@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Kobros-Tech Ltd (http://kobros-tech.com).
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<templates xml:space="preserve">
+
+    <t t-name="security_visualizer.AccessMatrix" owl="1">
+        <div class="access_matrix_container">
+
+            <div class="mb-2 text-muted">
+                <i class="fa fa-info-circle me-1" />
+                Showing <t t-esc="props.matrixData.users.length" /> users x
+                <t t-esc="props.matrixData.models.length" /> models
+                (C = Create, R = Read, W = Write, D = Delete)
+            </div>
+
+            <!-- Matrix Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm access-matrix-table">
+                    <thead>
+                        <!-- Row 1: User names spanning 4 columns each -->
+                        <tr>
+                            <th class="sticky-header" rowspan="2">Model / User</th>
+                            <t
+                                t-foreach="props.matrixData.users"
+                                t-as="user"
+                                t-key="user.id"
+                            >
+                                <th
+                                    class="text-center user-header"
+                                    colspan="4"
+                                    t-att-title="user.login"
+                                >
+                                    <t t-esc="user.name" />
+                                </th>
+                            </t>
+                        </tr>
+                        <!-- Row 2: C/R/W/D sub-headers -->
+                        <tr>
+                            <t
+                                t-foreach="props.matrixData.users"
+                                t-as="user"
+                                t-key="user.id"
+                            >
+                                <t t-foreach="operations" t-as="op" t-key="op">
+                                    <th class="text-center op-header">
+                                        <t t-esc="operationLabels[op]" />
+                                    </th>
+                                </t>
+                            </t>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t
+                            t-foreach="props.matrixData.models"
+                            t-as="model"
+                            t-key="model.id"
+                        >
+                            <tr>
+                                <td class="model-name" t-att-title="model.model">
+                                    <strong><t t-esc="model.name" /></strong>
+                                    <br />
+                                    <small class="text-muted"><t
+                                            t-esc="model.model"
+                                        /></small>
+                                </td>
+                                <t
+                                    t-foreach="props.matrixData.users"
+                                    t-as="user"
+                                    t-key="user.id"
+                                >
+                                    <t t-foreach="operations" t-as="op" t-key="op">
+                                        <t
+                                            t-set="cellData"
+                                            t-value="getCellData(user.id, model.id, op)"
+                                        />
+                                        <td
+                                            class="text-center access-cell"
+                                            t-att-class="getCellClass(cellData.has_access)"
+                                        >
+                                            <t t-if="cellData.has_access">
+                                                <i class="fa fa-check text-success" />
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa fa-times text-danger" />
+                                            </t>
+                                        </td>
+                                    </t>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Legend -->
+            <div class="alert alert-info mt-3">
+                <strong>Legend:</strong>
+                <i class="fa fa-check text-success ms-2" /> = Allowed |
+                <i class="fa fa-times text-danger ms-2" /> = Denied
+            </div>
+
+        </div>
+    </t>
+
+</templates>

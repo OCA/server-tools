@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Kobros-Tech Ltd (http://kobros-tech.com).
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+    <!-- Root Menu under Technical > Security -->
+    <menuitem
+        id="menu_security_visualizer_root"
+        name="Security Visualizer"
+        parent="base.menu_security"
+        sequence="100"
+    />
+
+    <!-- Client Action Menu (Main Visualizer) -->
+    <menuitem
+        id="menu_security_visualizer_dashboard"
+        name="Security Dashboard"
+        parent="menu_security_visualizer_root"
+        action="action_security_visualizer_client"
+        sequence="10"
+    />
+
+    <!-- Quick Analyzer (Wizard) Menu -->
+    <menuitem
+        id="menu_security_quick_analyzer"
+        name="Quick Analyzer"
+        parent="menu_security_visualizer_root"
+        action="action_security_quick_analyzer"
+        sequence="20"
+    />
+
+</odoo>

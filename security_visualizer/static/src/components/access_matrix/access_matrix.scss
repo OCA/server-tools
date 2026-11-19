@@ -1,0 +1,51 @@
+.access_matrix_container {
+    .access-matrix-table {
+        font-size: 0.9em;
+
+        .sticky-header {
+            position: sticky;
+            left: 0;
+            background-color: #fff;
+            z-index: 2;
+            font-weight: bold;
+        }
+
+        .user-header {
+            font-weight: 600;
+            white-space: nowrap;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .op-header {
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 0.25rem 0.4rem;
+            color: #6c757d;
+        }
+
+        .model-name {
+            position: sticky;
+            left: 0;
+            background-color: #fff;
+            z-index: 1;
+            font-weight: 500;
+            max-width: 250px;
+        }
+
+        .access-cell {
+            min-width: 30px;
+            padding: 0.25rem;
+
+            &.access-allowed {
+                background-color: #d4edda;
+            }
+
+            &.access-denied {
+                background-color: #f8d7da;
+            }
+        }
+    }
+}
