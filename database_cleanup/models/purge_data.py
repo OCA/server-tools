@@ -12,7 +12,7 @@ class CleanupPurgeLineData(models.TransientModel):
     _name = "cleanup.purge.line.data"
     _description = "Cleanup Purge Line Data"
 
-    data_id = fields.Many2one("ir.model.data", "Data entry")
+    data_id = fields.Many2one("ir.model.data", "Data entry", index=True)
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.data", "Purge Wizard", readonly=True
     )

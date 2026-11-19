@@ -3,7 +3,7 @@
 from psycopg2 import ProgrammingError
 
 from odoo.tests.common import tagged
-from odoo.tools import mute_logger
+from odoo.tools import mute_logger, sql
 
 from .common import Common, environment
 
@@ -45,3 +45,30 @@ class TestCleanupPurgeLineColumn(Common):
                 with env.registry.cursor() as cr:
                     with mute_logger("odoo.sql_db"):
                         cr.execute("select database_cleanup_test from res_partner")
+
+    def test_empty_column_with_dependent_view(self):
+        with environment() as env:
+            env.cr.execute(
+                "create view database_cleanup_test_view as "
+                "select database_cleanup_test from res_partner"
+            )
+            # We need use a model that is not blocked (Avoid use res.users)
+            partner_model = env["ir.model"].search(
+                [("model", "=", "res.partner")], limit=1
+            )
+            wizard = env["cleanup.purge.wizard.column"].create(
+                {
+                    "purge_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "model_id": partner_model.id,
+                                "name": "database_cleanup_test",
+                            },
+                        )
+                    ]
+                }
+            )
+            wizard.purge_all()
+            self.assertFalse(sql.table_exists(env.cr, "database_cleanup_test_view"))
