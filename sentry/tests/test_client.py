@@ -169,18 +169,33 @@ class TestClientSetup(TransactionCase):
         self.assertEventNotCaptured(client, level, msg)
 
     def test_capture_exceptions_with_no_exc_info(self):
-        """A UserError that isn't in the DEFAULT_IGNORED_EXCEPTIONS list is captured
+        """A UserError that isn't in the sentry_ignore_exceptions list is captured
         (there is no exc_info in the ValidationError exception)."""
+        self.patch_config({"sentry_ignore_exceptions": ""})
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.ERROR, "Test exception"
 
         # Odoo handles UserErrors by logging the exception
-        with patch("odoo.addons.sentry.const.DEFAULT_IGNORED_EXCEPTIONS", new=[]):
-            _logger.error(exceptions.ValidationError(msg))
+        _logger.error(exceptions.ValidationError(msg))
 
         level = "error"
         self.assertEventCaptured(client, level, msg)
+
+    def test_ignore_exceptions_with_no_exc_info_from_config(self):
+        """Without exc_info, sentry_ignore_exceptions is applied like with it:
+        only the exceptions of the list are ignored."""
+        self.patch_config(
+            {"sentry_ignore_exceptions": "odoo.exceptions.ValidationError"}
+        )
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+
+        _logger.error(exceptions.ValidationError("Ignored by the config"))
+        _logger.error(exceptions.UserError("Not in the config"))
+
+        self.assertEventNotCaptured(client, "error", "Ignored by the config")
+        self.assertEventCaptured(client, "error", "Not in the config")
 
     def test_ignore_exceptions_with_no_exc_info(self):
         """A UserError that is in the DEFAULT_IGNORED_EXCEPTIONS is not captured

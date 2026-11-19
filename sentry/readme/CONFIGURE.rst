@@ -19,7 +19,7 @@ configuration file:
 ``sentry_exclude_loggers``     A string of comma-separated logger names which should be excluded     ``werkzeug``
                                from Sentry.
 
-``sentry_ignored_exceptions``  A string of comma-separated exceptions which should be ignored.       ``odoo.exceptions.AccessDenied,
+``sentry_ignore_exceptions``   A string of comma-separated exceptions which should be ignored.       ``odoo.exceptions.AccessDenied,
                                You can use a star symbol (*) at the end, to ignore all exceptions    odoo.exceptions.AccessError,
                                from a module, eg.: *odoo.exceptions.**.                              odoo.exceptions.DeferredException,
                                                                                                      odoo.exceptions.MissingError,
