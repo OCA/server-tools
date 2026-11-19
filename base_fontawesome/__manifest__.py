@@ -5,7 +5,7 @@
 {
     "name": "Base Fontawesome",
     "summary": """Up to date Fontawesome resources.""",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp,Creu Blanca,Odoo Community Association (OCA)",
@@ -19,6 +19,8 @@
             ),
             "base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css",
             "base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css",
+            # The icons as Odoo's HTML editor and email conversion read them.
+            "base_fontawesome/static/src/css/fontawesome_editor.css",
         ],
         "web.assets_frontend": [
             (
