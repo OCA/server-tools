@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="global_undo_transaction_view_list" model="ir.ui.view">
+        <field name="name">global.undo.transaction.list</field>
+        <field name="model">global.undo.transaction</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state != 'done'" create="false">
+                <field name="create_date" string="Date" />
+                <field name="name" />
+                <field name="operation_count" string="Operations" />
+                <field name="user_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'done'"
+                    decoration-warning="state == 'undone'"
+                />
+                <button
+                    name="action_undo"
+                    type="object"
+                    string="Undo"
+                    icon="fa-undo"
+                    invisible="state != 'done'"
+                />
+                <button
+                    name="action_redo"
+                    type="object"
+                    string="Redo"
+                    icon="fa-repeat"
+                    invisible="state != 'undone'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="global_undo_transaction_view_form" model="ir.ui.view">
+        <field name="name">global.undo.transaction.form</field>
+        <field name="model">global.undo.transaction</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button
+                        name="action_undo"
+                        type="object"
+                        string="Undo"
+                        class="btn-primary"
+                        invisible="state != 'done'"
+                    />
+                    <button
+                        name="action_redo"
+                        type="object"
+                        string="Redo"
+                        class="btn-primary"
+                        invisible="state != 'undone'"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="done,undone"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="user_id" readonly="1" />
+                        <field name="create_date" string="Date" readonly="1" />
+                        <field
+                            name="company_id"
+                            readonly="1"
+                            groups="base.group_multi_company"
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Operations">
+                            <field name="operation_ids" readonly="1">
+                                <list>
+                                    <field name="kind" />
+                                    <field name="model_name" />
+                                    <field name="res_name" />
+                                    <field name="res_id" />
+                                    <field name="method" optional="hide" />
+                                    <button
+                                        name="action_open_record"
+                                        type="object"
+                                        string="Open"
+                                        icon="fa-external-link"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="global_undo_transaction_view_search" model="ir.ui.view">
+        <field name="name">global.undo.transaction.search</field>
+        <field name="model">global.undo.transaction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id" />
+                <filter
+                    name="filter_done"
+                    string="Applied"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    name="filter_undone"
+                    string="Undone"
+                    domain="[('state', '=', 'undone')]"
+                />
+                <separator />
+                <filter
+                    name="filter_mine"
+                    string="My Operations"
+                    domain="[('user_id', '=', uid)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_user"
+                        string="User"
+                        context="{'group_by': 'user_id'}"
+                    />
+                    <filter
+                        name="group_state"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="group_date"
+                        string="Date"
+                        context="{'group_by': 'create_date:day'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="global_undo_transaction_action" model="ir.actions.act_window">
+        <field name="name">Undo History</field>
+        <field name="res_model">global.undo.transaction</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_filter_mine': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No operation recorded yet</p>
+            <p
+            >Every create, update, delete and reversible business action you perform is listed here and can be undone with Ctrl+Z.</p>
+        </field>
+    </record>
+</odoo>
