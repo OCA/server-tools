@@ -84,10 +84,13 @@ class TimeWindowMixin(models.AbstractModel):
                     )
                 )
 
+    def _get_display_name_format_string(self):
+        return self.env._("{days}: From {start} to {end}")
+
     @api.depends("time_window_start", "time_window_end", "time_window_weekday_ids")
     def _compute_display_name(self):
         for record in self:
-            record.display_name = self.env._("{days}: From {start} to {end}").format(
+            record.display_name = self._get_display_name_format_string().format(
                 days=", ".join(record.time_window_weekday_ids.mapped("display_name")),
                 start=format_time(self.env, record.get_time_window_start_time()),
                 end=format_time(self.env, record.get_time_window_end_time()),
