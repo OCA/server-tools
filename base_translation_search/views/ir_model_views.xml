@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Ecosoft Co., Ltd. (http://ecosoft.co.th)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="name">ir.model.form.translation.search</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group/field[@name='state']" position="after">
+                <field name="translation_search" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
