@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="json_export_schema_form_view" model="ir.ui.view">
+        <field name="name">json.export.schema.form</field>
+        <field name="model">json.export.schema</field>
+        <field name="arch" type="xml">
+            <form string="JSON Export Schema">
+                <header>
+                    <button
+                        name="action_preview"
+                        string="Refresh Preview"
+                        type="object"
+                        class="oe_highlight"
+                        icon="fa-eye"
+                    />
+                    <button
+                        name="action_export_json"
+                        string="Export JSON"
+                        type="object"
+                        icon="fa-download"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_logs"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        >
+                            <field name="log_count" widget="statinfo" string="Logs" />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Schema Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Configuration">
+                            <field name="active" invisible="1" />
+                            <field name="model_id" options="{'no_create': True}" />
+                            <field name="model_name" invisible="1" />
+                            <field
+                                name="exporter_id"
+                                widget="json_export_field_selector"
+                                options="{'no_open': True}"
+                            />
+                            <field
+                                name="domain"
+                                widget="domain"
+                                options="{'model': 'model_name'}"
+                            />
+                        </group>
+                        <group string="Options">
+                            <field name="record_limit" />
+                            <field name="include_record_id" />
+                            <field name="preview_count" />
+                            <field name="description" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Preview" name="preview">
+                            <field
+                                name="preview_data"
+                                widget="text"
+                                readonly="1"
+                                nolabel="1"
+                                class="o_field_text"
+                            />
+                        </page>
+                        <page string="JSON Schema" name="json_schema">
+                            <div class="alert alert-info" role="alert">
+                                Full API response schema (JSON Schema draft-07)
+                                including data, pagination, and metadata envelope.
+                                Also available via the REST endpoint at
+                                <code>/api/json_export/&lt;path&gt;/schema</code>
+                            </div>
+                            <field
+                                name="json_schema"
+                                widget="text"
+                                readonly="1"
+                                nolabel="1"
+                                class="o_field_text"
+                            />
+                        </page>
+                        <page
+                            string="Endpoints"
+                            name="endpoints"
+                            attrs="{'invisible': [('id', '=', False)]}"
+                        >
+                            <field name="endpoint_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="route_path" />
+                                    <field name="full_url" widget="url" />
+                                    <field name="schema_url" widget="url" />
+                                    <field name="auth_type" />
+                                    <field name="active" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page
+                            string="Webhooks"
+                            name="webhooks"
+                            attrs="{'invisible': [('id', '=', False)]}"
+                        >
+                            <field name="webhook_ids" nolabel="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="url" />
+                                    <field name="on_create" />
+                                    <field name="on_write" />
+                                    <field name="on_unlink" />
+                                    <field name="state" />
+                                    <field name="last_call_date" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page
+                            string="Schedules"
+                            name="schedules"
+                            attrs="{'invisible': [('id', '=', False)]}"
+                        >
+                            <field name="schedule_ids" nolabel="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="interval_number" />
+                                    <field name="interval_type" />
+                                    <field name="destination_type" />
+                                    <field name="last_run_date" />
+                                    <field name="last_run_status" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="json_export_schema_tree_view" model="ir.ui.view">
+        <field name="name">json.export.schema.tree</field>
+        <field name="model">json.export.schema</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="model_name" />
+                <field name="exporter_id" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="json_export_schema_search_view" model="ir.ui.view">
+        <field name="name">json.export.schema.search</field>
+        <field name="model">json.export.schema</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="model_name" />
+                <filter
+                    name="active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_model"
+                        string="Model"
+                        context="{'group_by': 'model_name'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="json_export_schema_action" model="ir.actions.act_window">
+        <field name="name">Export Schemas</field>
+        <field name="res_model">json.export.schema</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="json_export_schema_search_view" />
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+
+</odoo>
