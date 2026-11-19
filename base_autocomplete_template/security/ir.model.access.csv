@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_autocomplete_template_user,data.autocomplete.template user,model_data_autocomplete_template,base.group_user,1,1,1,1
+access_data_wizard_template_create,data.wizard.template.create,model_data_wizard_template_create,base.group_user,1,1,1,1
