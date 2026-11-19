@@ -22,4 +22,5 @@
         "wizard/module_auto_update_views.xml",
     ],
     "development_status": "Production/Stable",
+    "post_load": "post_load",
 }
