@@ -1,3 +1,4 @@
+import base64
 from unittest import mock
 
 import psycopg2
@@ -92,3 +93,46 @@ class TestPGSessionStore(TransactionCase):
         assert "postgres://test:PASSWORD@localhost:5432/test" == _make_postgres_uri(
             **connection_info
         )
+
+    def test_binary_serialization_roundtrip(self):
+        """Ensures binary data is safely serialized to a base64 string
+        and accurately deserialized back to bytes."""
+        original_data = {
+            "normal_text": "test",
+            "binary_data": b"Test binary",
+        }
+        serialized = self.session_store.session_to_str(original_data)
+        expected_b64 = base64.b64encode(b"Test binary").decode("utf-8")
+        self.assertEqual(
+            serialized["binary_data"],
+            f"base64::{expected_b64}",
+            "Binary data should be serialized with the configured prefix.",
+        )
+        self.assertEqual(serialized["normal_text"], "test")
+
+        deserialized = self.session_store.str_to_session(serialized)
+        self.assertEqual(deserialized["binary_data"], b"Test binary")
+        self.assertIsInstance(deserialized["binary_data"], bytes)
+
+    def test_recursive_traversal(self):
+        """Verifies that base64 serialization works inside nested structures."""
+        data = {
+            "list_of_data": [b"binary_in_list", "100", {"deep_key": b"deep_binary"}]
+        }
+        serialized = self.session_store.session_to_str(data)
+        self.assertTrue(serialized["list_of_data"][0].startswith("base64::"))
+        self.assertTrue(
+            serialized["list_of_data"][2]["deep_key"].startswith("base64::")
+        )
+
+        result = self.session_store.str_to_session(serialized)
+        self.assertEqual(result["list_of_data"][0], b"binary_in_list")
+        self.assertEqual(result["list_of_data"][1], "100")
+        self.assertEqual(result["list_of_data"][2]["deep_key"], b"deep_binary")
+
+    def test_invalid_base64_fallback(self):
+        """Failsafe: Invalid base64 strings with the exact prefix must return
+        the original string without crashing the session load."""
+        invalid_data = {"bad_binary": "base64::TESTS_INVALID_@#$"}
+        result = self.session_store.str_to_session(invalid_data)
+        self.assertEqual(result["bad_binary"], "base64::TESTS_INVALID_@#$")
