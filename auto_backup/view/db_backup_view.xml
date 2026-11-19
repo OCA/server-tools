@@ -38,6 +38,23 @@
                                 name="sftp_private_key"
                                 placeholder="/home/odoo/.ssh/id_rsa"
                             />
+                            <field
+                                name="sftp_host_key_verification"
+                                widget="boolean_toggle"
+                            />
+                            <field
+                                name="sftp_host_key"
+                                placeholder="sftp.example.com ssh-ed25519 AAAA..."
+                                invisible="sftp_host_key_verification != True"
+                            />
+                            <div
+                                class="bg-warning"
+                                invisible="sftp_host_key_verification"
+                                colspan="2"
+                            >
+                                <h3>Warning:</h3>
+                                Using SFTP without hostkey verification can be a security issue, as the SFTP Servers identity will not be verified.
+                            </div>
                             <button
                                 name="action_sftp_test_connection"
                                 type="object"
