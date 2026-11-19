@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_remote
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-02-24 12:06+0000\n"
+"Last-Translator: İsmail Çağan Yılmaz <ismail.cagan.yilmaz@gmail.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: base_remote
+#: model:ir.model,name:base_remote.model_base
+msgid "Base"
+msgstr "Temel"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Değişiklik Seti Değişiklikleri"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Değişiklik Seti"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_changesets
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr "Değişiklik Setlerini Say"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Bekleyen Değişiklik Seti Değişikliklerini Say"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Bekleyen Değişiklik Setlerini Say"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
+msgid "Created by"
+msgstr "Tarafından Oluşturuldu"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__create_date
+msgid "Created on"
+msgstr "Tarihinde oluşturuldu"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__display_name
+msgid "Display Name"
+msgstr "Görünür Isim"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__name
+msgid "Hostname"
+msgstr "Ana makine adı"
+
+#. module: base_remote
+#: model:ir.model.constraint,message:base_remote.constraint_res_remote_name_unique
+msgid "Hostname must be unique"
+msgstr "Ana makine adı benzersiz olmalıdır"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__in_network
+msgid "In Network"
+msgstr "Ağda"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__ip
+msgid "Ip"
+msgstr "Ip"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote____last_update
+msgid "Last Modified on"
+msgstr "Son Değiştirilme tarihi"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleyen"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme tarihi"
+
+#. module: base_remote
+#: model_terms:ir.ui.view,arch_db:base_remote.res_remote_form
+msgid "Remote"
+msgstr "Uzaktan Sunucu"
+
+#. module: base_remote
+#: model:ir.actions.act_window,name:base_remote.res_remote_action
+#: model:ir.model,name:base_remote.model_res_remote
+#: model:ir.ui.menu,name:base_remote.res_remote_menu
+msgid "Remotes"
+msgstr "Uzaktan Sunucular"
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__in_network
+msgid "Shows if the remote can be found through the socket"
+msgstr "Uzaktan sunucunun sokette bulunup bulunamayacağını gösterir"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__smart_search
+#: model:ir.model.fields,field_description:base_remote.field_res_users__smart_search
+msgid "Smart Search"
+msgstr "Akıllı Arama"
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Bu kayıtta bekleyen değişikliklerin sayısı"
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changesets
+#: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Bu kaydın bekleyen değişiklik setlerinin sayısı"
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_changesets
+#: model:ir.model.fields,help:base_remote.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Bu kaydın toplam değişiklik seti sayısı"
+
+#. module: base_remote
+#: model:ir.model,name:base_remote.model_res_users
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_remote.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Kullanıcı Değişiklik Setini Görebilir"
