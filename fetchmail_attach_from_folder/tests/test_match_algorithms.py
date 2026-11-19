@@ -8,7 +8,7 @@ from odoo import fields
 from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
-from ..match_algorithm import email_domain
+from ..match_algorithm import email_domain, email_exact
 
 TEST_EMAIL = "reynaert@dutchsagas.nl"
 TEST_SUBJECT = "Test subject"
@@ -143,6 +143,34 @@ class TestMatchAlgorithms(TransactionCase):
                 "model_id": cls.partner_ir_model.id,
             }
         )
+
+    def test_email_exact_case_insensitive(self):
+        """A message to REYN@dom.ain should match partner with reyn@dom.ain."""
+        MAIL_MESSAGE["from"] = TEST_EMAIL.upper()
+        self.folder.match_algorithm = "email_exact"
+        matcher = email_exact.EmailExact()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        self.assertEqual(matches, self.test_partner)
+
+    def test_email_exact_case_insensitive_partner_uppercase(self):
+        """A message to reyn@dom.ain should match partner with REYN@dom.ain."""
+        self.test_partner.email = TEST_EMAIL.upper()
+        MAIL_MESSAGE["from"] = TEST_EMAIL
+        self.folder.match_algorithm = "email_exact"
+        matcher = email_exact.EmailExact()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        self.assertEqual(matches, self.test_partner)
+        # restore original partner email for subsequent tests
+        self.test_partner.email = TEST_EMAIL
+
+    def test_email_exact_display_name(self):
+        """A message in the form 'Name <email@domain>' should be parsed correctly."""
+        TEST_DISPLAY_NAME = "Reynaert de Vos <reynaert@dutchsagas.nl>"
+        MAIL_MESSAGE["from"] = TEST_DISPLAY_NAME
+        self.folder.match_algorithm = "email_exact"
+        matcher = email_exact.EmailExact()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        self.assertEqual(matches, self.test_partner)
 
     def test_email_exact(self):
         """A message to ronald@acme.com should be linked to partner with that email."""
