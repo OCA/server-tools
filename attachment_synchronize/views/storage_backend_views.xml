@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_fs_storage_form" model="ir.ui.view">
+        <field name="model">fs.storage</field>
+        <field name="inherit_id" ref="fs_storage.fs_storage_form_view" />
+        <field name="priority" eval="250" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        class="oe_stat_button"
+                        type="object"
+                        invisible="import_task_count &lt; 1"
+                        name="action_related_import_task"
+                        icon="fa-download"
+                    >
+                        <field name="import_task_count" widget="statinfo" />
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        type="object"
+                        invisible="export_task_count &lt; 1"
+                        name="action_related_export_task"
+                        icon="fa-upload"
+                    >
+                        <field name="export_task_count" widget="statinfo" />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
