@@ -8,7 +8,6 @@ from odoo.exceptions import UserError
 
 def protected__execute_cr(cr, uid, obj, method, *args, **kw):
     # Same as original func in odoo.service.model.execute_cr
-    cr.reset()
     env = odoo.api.Environment(cr, uid, {})
     recs = env.get(obj)
     if recs is None:

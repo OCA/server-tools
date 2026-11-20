@@ -48,39 +48,33 @@ class TestXMLRPC(common.HttpCase):
     def test_xmlrpc_all_blocked(self):
         self._set_disable(("all",))
         msg = "RPC call on res.partner is not allowed"
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("search")
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("search")
 
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("create", vals=[{"name": "Foo"}])
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_can_search_create_blocked(self):
         self._set_disable(("create",))
         self._rpc_call("search")
 
         msg = "RPC call on res.partner is not allowed"
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("create", vals=[{"name": "Foo"}])
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_all_blocked__ir_model(self):
         self._set_disable_on_model(("all",))
         msg = "RPC call on res.partner is not allowed"
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("search")
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("search")
 
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("create", vals=[{"name": "Foo"}])
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_can_search_create_blocked__ir_model(self):
         self._set_disable_on_model(("create",))
         self._rpc_call("search")
 
         msg = "RPC call on res.partner is not allowed"
-        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            with mute_logger("odoo.http"):
-                self._rpc_call("create", vals=[{"name": "Foo"}])
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg), mute_logger("odoo.http"):
+            self._rpc_call("create", vals=[{"name": "Foo"}])

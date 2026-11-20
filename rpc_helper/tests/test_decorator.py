@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 
-import unittest
+from odoo.tests import BaseCase
 
 from ..decorator import disable_rpc
 
@@ -23,7 +23,7 @@ class Multi:
     pass
 
 
-class TestDecorator(unittest.TestCase):
+class TestDecorator(BaseCase):
     def test_all(self):
         self.assertEqual(All._disable_rpc, ("all",))
 

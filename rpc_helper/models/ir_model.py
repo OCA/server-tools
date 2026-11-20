@@ -4,7 +4,7 @@
 
 import json
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 
 from odoo.addons.base_sparse_field.models.fields import Serialized
 
@@ -38,7 +38,7 @@ class IrModel(models.Model):
     def _load_rpc_config(self):
         return json.loads(self.rpc_config_edit or "{}")
 
-    @tools.ormcache("model")
+    @api.ormcache("model")
     def _get_rpc_config(self, model):
         rec = self._get(model)
         return rec.rpc_config or {}
@@ -46,5 +46,5 @@ class IrModel(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if "rpc_config_edit" in vals:
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
         return res
