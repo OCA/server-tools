@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-import base64
-
 from odoo.tests import TransactionCase
 
 
@@ -22,7 +20,6 @@ class TestAttachmentUnindexContent(TransactionCase):
 
         # Sample content for testing
         cls.test_text_content = b"This is a test file content for indexing verification"
-        cls.test_text_b64 = base64.b64encode(cls.test_text_content)
 
     def _stored_index_content(self, attachment):
         """Return the ``index_content`` stored, not the one the field reads."""
@@ -41,7 +38,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         attachment = self.Attachment.create(
             {
                 "name": "test_file.txt",
-                "datas": self.test_text_b64,
+                "raw": self.test_text_content,
                 "mimetype": "text/plain",
             }
         )
@@ -61,7 +58,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         attachment = self.Attachment.create(
             {
                 "name": "test_doc.txt",
-                "datas": self.test_text_b64,
+                "raw": self.test_text_content,
                 "mimetype": "text/plain",
             }
         )
@@ -82,7 +79,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         attachment = self.Attachment.create(
             {
                 "name": "test_with_checksum.pdf",
-                "datas": b"UERGIGNvbnRlbnQ=",  # base64 of "PDF content"
+                "raw": b"PDF content",
                 "mimetype": "application/pdf",
             }
         )
@@ -116,7 +113,7 @@ class TestAttachmentUnindexContent(TransactionCase):
             [
                 {
                     "name": f"test_file_{i}.txt",
-                    "datas": b"VGVzdCBjb250ZW50IHtpfQ==",  # base64 encoded
+                    "raw": b"Test content {i}",
                     "mimetype": "text/plain",
                 }
                 for i in range(5)
@@ -133,27 +130,27 @@ class TestAttachmentUnindexContent(TransactionCase):
     def test_different_file_types_no_indexing(self):
         """Test that different file types are not indexed."""
         file_types = [
-            ("document.txt", "text/plain", b"VGV4dCBmaWxl"),
-            ("document.pdf", "application/pdf", b"UERGIGZpbGU="),
+            ("document.txt", "text/plain", b"Text file"),
+            ("document.pdf", "application/pdf", b"PDF file"),
             (
                 "document.docx",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                b"RE9DWCBmaWxl",
+                b"DOCX file",
             ),
-            ("image.png", "image/png", b"UE5HIGltYWdl"),
+            ("image.png", "image/png", b"PNG image"),
             (
                 "spreadsheet.xlsx",
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                b"WExTWCBmaWxl",
+                b"XLSX file",
             ),
         ]
 
-        for name, mimetype, datas in file_types:
+        for name, mimetype, raw in file_types:
             with self.subTest(name=name, mimetype=mimetype):
                 attachment = self.Attachment.create(
                     {
                         "name": name,
-                        "datas": datas,
+                        "raw": raw,
                         "mimetype": mimetype,
                     }
                 )
@@ -168,7 +165,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         attachment = self.Attachment.create(
             {
                 "name": "searchable_document.txt",
-                "datas": b"U2VhcmNoYWJsZSBjb250ZW50",  # base64 of "Searchable content"
+                "raw": b"Searchable content",
                 "mimetype": "text/plain",
             }
         )
@@ -191,7 +188,7 @@ class TestAttachmentUnindexContent(TransactionCase):
         attachment = self.Attachment.create(
             {
                 "name": "readable.txt",
-                "datas": self.test_text_b64,
+                "raw": self.test_text_content,
                 "mimetype": "text/plain",
             }
         )
