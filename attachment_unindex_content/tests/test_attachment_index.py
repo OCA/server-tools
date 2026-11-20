@@ -1,0 +1,243 @@
+# 2026  Vauxoo (<http://www.vauxoo.com/>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+
+from odoo.tests import TransactionCase
+
+
+class TestAttachmentUnindexContent(TransactionCase):
+    """Test cases for attachment_unindex_content module.
+
+    This module disables the indexation of attachment content to:
+    - Avoid duplicating data (file in filestore + content in database)
+    - Improve performance (no text extraction from files)
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Attachment = cls.env["ir.attachment"]
+
+        # Sample content for testing
+        cls.test_text_content = b"This is a test file content for indexing verification"
+
+    def _stored_index_content(self, attachment):
+        """Return the ``index_content`` stored, not the one the field reads."""
+        attachment.flush_recordset()
+        self.env.cr.execute(
+            "SELECT index_content FROM ir_attachment WHERE id = %s", (attachment.id,)
+        )
+        return self.env.cr.fetchone()[0]
+
+    def test_attachment_index_content_disabled(self):
+        """Test that index_content is not populated when creating attachment.
+
+        The module should prevent content indexation by overriding the _index method
+        to return False, which prevents the index_content field from being populated.
+        """
+        attachment = self.Attachment.create(
+            {
+                "name": "test_file.txt",
+                "raw": self.test_text_content,
+                "mimetype": "text/plain",
+            }
+        )
+
+        self.assertFalse(
+            self._stored_index_content(attachment),
+            "index_content should be False (empty) when creating attachment "
+            "because the module disables content indexation",
+        )
+
+    def test_attachment_index_method_returns_false(self):
+        """Test that _index method always returns False.
+
+        The core functionality of this module is to override the _index method
+        to always return False, preventing any content from being indexed.
+        """
+        attachment = self.Attachment.create(
+            {
+                "name": "test_doc.txt",
+                "raw": self.test_text_content,
+                "mimetype": "text/plain",
+            }
+        )
+
+        # Call _index method directly to verify it returns False
+        result = attachment._index(
+            bin_data=self.test_text_content,
+            mimetype="text/plain",
+        )
+
+        self.assertFalse(
+            result,
+            "_index method should always return False to disable indexation",
+        )
+
+    def test_attachment_with_checksum_parameter(self):
+        """Test that _index method handles checksum parameter correctly."""
+        attachment = self.Attachment.create(
+            {
+                "name": "test_with_checksum.pdf",
+                "raw": b"PDF content",
+                "mimetype": "application/pdf",
+            }
+        )
+
+        # Call _index method with checksum parameter (introduced in later Odoo versions)
+        result = attachment._index(
+            bin_data=b"PDF test content",
+            mimetype="application/pdf",
+            checksum="dummy_checksum",
+        )
+
+        # Verify that _index returns False even with checksum
+        self.assertFalse(
+            result, "_index method should return False even with checksum parameter"
+        )
+
+    def test_existing_attachment_index_cleared(self):
+        """Test that existing attachments with index_content get it cleared."""
+        there_are_attachments = self.Attachment.search([], limit=2, order="id")
+        self.assertTrue(there_are_attachments, "Should exists attachments")
+        there_are_index = self.Attachment.search(
+            [("index_content", "!=", False)], limit=1, order="id"
+        )
+        self.assertFalse(
+            there_are_index, "Should not exists attachments with index_content"
+        )
+
+    def test_multiple_attachments_no_indexing(self):
+        """Test that multiple attachments are created without indexing."""
+        attachments = self.Attachment.create(
+            [
+                {
+                    "name": f"test_file_{i}.txt",
+                    "raw": b"Test content {i}",
+                    "mimetype": "text/plain",
+                }
+                for i in range(5)
+            ]
+        )
+
+        # Verify that none of the attachments have index_content populated
+        for attachment in attachments:
+            self.assertFalse(
+                self._stored_index_content(attachment),
+                f"Attachment {attachment.name} should not have indexed content",
+            )
+
+    def test_different_file_types_no_indexing(self):
+        """Test that different file types are not indexed."""
+        file_types = [
+            ("document.txt", "text/plain", b"Text file"),
+            ("document.pdf", "application/pdf", b"PDF file"),
+            (
+                "document.docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                b"DOCX file",
+            ),
+            ("image.png", "image/png", b"PNG image"),
+            (
+                "spreadsheet.xlsx",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                b"XLSX file",
+            ),
+        ]
+
+        for name, mimetype, raw in file_types:
+            with self.subTest(name=name, mimetype=mimetype):
+                attachment = self.Attachment.create(
+                    {
+                        "name": name,
+                        "raw": raw,
+                        "mimetype": mimetype,
+                    }
+                )
+
+                self.assertFalse(
+                    self._stored_index_content(attachment),
+                    f"Attachment {name} with mimetype {mimetype} should not be indexed",
+                )
+
+    def test_attachment_search_without_index(self):
+        """Test that attachments can still be searched by name without indexing."""
+        attachment = self.Attachment.create(
+            {
+                "name": "searchable_document.txt",
+                "raw": b"Searchable content",
+                "mimetype": "text/plain",
+            }
+        )
+
+        # Search by name should still work
+        found = self.Attachment.search([("name", "=", "searchable_document.txt")])
+
+        self.assertEqual(
+            len(found),
+            1,
+            "Should find attachment by name even without content indexing",
+        )
+        self.assertEqual(found.id, attachment.id)
+        self.assertFalse(
+            self._stored_index_content(found), "Found attachment should not be indexed"
+        )
+
+    def test_index_content_is_read_from_the_file(self):
+        """The field reads the content of the file, which is not stored."""
+        attachment = self.Attachment.create(
+            {
+                "name": "readable.txt",
+                "raw": self.test_text_content,
+                "mimetype": "text/plain",
+            }
+        )
+        attachment.invalidate_recordset()
+        self.assertEqual(
+            attachment.index_content, self.test_text_content.decode(), "Read the file"
+        )
+        self.assertFalse(
+            self._stored_index_content(attachment), "Nothing is stored in the database"
+        )
+
+    def test_index_content_is_read_from_the_file_for_several_records(self):
+        attachments = self.Attachment.create(
+            [
+                {
+                    "name": f"readable_{i}.txt",
+                    "raw": f"content number {i}".encode(),
+                    "mimetype": "text/plain",
+                }
+                for i in range(3)
+            ]
+        )
+        attachments.invalidate_recordset()
+        self.assertEqual(
+            attachments.mapped("index_content"),
+            [f"content number {i}" for i in range(3)],
+        )
+        self.assertEqual(
+            [row["index_content"] for row in attachments.read(["index_content"])],
+            [f"content number {i}" for i in range(3)],
+        )
+
+    def test_index_content_of_an_attachment_without_file_is_empty(self):
+        attachment = self.Attachment.create(
+            {
+                "name": "link",
+                "type": "url",
+                "url": "https://example.com",
+                "mimetype": "text/plain",
+            }
+        )
+        attachment.invalidate_recordset()
+        self.assertFalse(attachment.index_content)
+
+    def test_index_content_written_by_hand_is_kept(self):
+        attachment = self.Attachment.create(
+            {"name": "ocr.txt", "raw": b"from the file", "mimetype": "text/plain"}
+        )
+        attachment.index_content = "from the ocr"
+        attachment.flush_recordset()
+        attachment.invalidate_recordset()
+        self.assertEqual(attachment.index_content, "from the ocr")
