@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 from odoo.service.model import PG_CONCURRENCY_ERRORS_TO_RETRY
 
 from odoo.addons.queue_job.exception import RetryableJobError
+from odoo.addons.queue_job.job import identity_exact
 
 _logger = logging.getLogger(__name__)
 
@@ -54,7 +55,7 @@ class AttachmentQueue(models.Model):
     def _job_attrs(self):
         # Override this method to have file type specific job attributes
         self.ensure_one()
-        return {"channel": "root.attachment_queue"}
+        return {"channel": "root.attachment_queue", "identity_key": identity_exact}
 
     def _schedule_jobs(self):
         for el in self:
@@ -127,18 +128,12 @@ class AttachmentQueue(models.Model):
                 if err.pgcode in PG_CONCURRENCY_ERRORS_TO_RETRY:
                     raise
                 self._set_attachment_failure(err)
-            except RetryableJobError as err:
-                # re-raise Retryable Error to keep the functionality
-                # we still set the attachment as failed here because it may not be
-                # retried (in case max_retries is reached). We would not want a
-                # pending attachment with no related pending job
-                self._set_attachment_failure(err)
-                # a rollback has been made before because of the savepoint.
-                # we need to commit because we re-raise the exception and a rollback
-                # will be performed
-                self.env.cr.commit()  # pylint: disable=E8102
+            except RetryableJobError:
+                # queue.job will postpone the job: keep the attachment pending, the
+                # failure will be stored when the job is definitively failed.
                 raise
             except Exception as err:
+                # no retry will be attempted: the failure is definitive
                 self._set_attachment_failure(err)
 
     def _set_attachment_failure(self, error):
