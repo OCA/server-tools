@@ -44,7 +44,7 @@ class AttachmentQueue(models.Model):
                 self._write_file_to_remote(fs, full_path)
             except TimeoutError as err:
                 raise RetryableJobError(
-                    str(err),
+                    str(err) or type(err).__name__,
                     seconds=self._timeout_retry_seconds(),
                 ) from err
         return res
