@@ -12,5 +12,11 @@ image:: ../static/description/tree.png
 
 This module can be used in combination with attachment_synchronize to control file processing workflow
 
+**Failure management**
+
+Each attachment is processed by a job. An attachment is flagged as *Failed* (and
+an alert is sent to the *Failure Emails*) only when its job definitively fails:
+a retryable error postpones the job and leaves the attachment *Pending* until
+the last attempt is reached.
 
 image:: ../static/description/form.png
