@@ -5,6 +5,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import os
+import shutil
+import subprocess
+import tempfile
+import zipfile
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
@@ -40,12 +44,14 @@ class TestDbBackup(common.TransactionCase):
         with patch("%s.db" % model) as db:
             with patch("%s.os" % model) as os:
                 with patch("%s.shutil" % model) as shutil:
-                    os.path.join.return_value = self.path_join_val
-                    yield {
-                        "db": db,
-                        "os": os,
-                        "shutil": shutil,
-                    }
+                    with patch("%s._dump_db" % class_name) as dump_db:
+                        os.path.join.return_value = self.path_join_val
+                        yield {
+                            "db": db,
+                            "dump_db": dump_db,
+                            "os": os,
+                            "shutil": shutil,
+                        }
 
     @contextmanager
     def patch_filtered_sftp(self, record):
@@ -125,14 +131,58 @@ class TestDbBackup(common.TransactionCase):
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
 
-    def test_action_backup_local_list_db_disabled(self):
-        """It should backup locally even when list_db is disabled"""
+    def new_local_record_in_temp_folder(self, backup_format="zip"):
+        """Local backup record writing to its own, empty folder"""
         rec_id = self.new_record("local")
-        filename = rec_id.filename(datetime.now())
+        folder = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, folder, ignore_errors=True)
+        rec_id.write({"folder": folder, "backup_format": backup_format})
+        return rec_id
+
+    def backup_with_list_db_disabled(self, rec_id):
+        """Run a backup with list_db disabled; return list_db as pg_dump saw it"""
+        list_db_seen = []
+        run = subprocess.run
+
+        def spy_run(*args, **kwargs):
+            list_db_seen.append(tools.config["list_db"])
+            return run(*args, **kwargs)
+
         with patch.dict(tools.config.options, {"list_db": False}):
-            rec_id.action_backup()
-        generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
+            with patch("subprocess.run", side_effect=spy_run):
+                rec_id.action_backup()
+        return list_db_seen
+
+    def test_action_backup_local_list_db_disabled_zip(self):
+        """It should backup locally in zip, list_db staying disabled"""
+        rec_id = self.new_local_record_in_temp_folder("zip")
+        self.assertEqual([False], self.backup_with_list_db_disabled(rec_id))
+        generated_backup = os.listdir(rec_id.folder)
         self.assertEqual(1, len(generated_backup))
+        backup_path = os.path.join(rec_id.folder, generated_backup[0])
+        self.assertGreater(os.path.getsize(backup_path), 0)
+        with zipfile.ZipFile(backup_path) as backup:
+            self.assertIn("dump.sql", backup.namelist())
+            self.assertIn("manifest.json", backup.namelist())
+
+    def test_action_backup_local_list_db_disabled_dump(self):
+        """It should backup locally in dump, list_db staying disabled"""
+        rec_id = self.new_local_record_in_temp_folder("dump")
+        self.assertEqual([False], self.backup_with_list_db_disabled(rec_id))
+        generated_backup = os.listdir(rec_id.folder)
+        self.assertEqual(1, len(generated_backup))
+        backup_path = os.path.join(rec_id.folder, generated_backup[0])
+        with open(backup_path, "rb") as backup:
+            self.assertEqual(b"PGDMP", backup.read(5))
+
+    def test_action_backup_local_failed_dump(self):
+        """A failed dump should leave no backup file behind"""
+        rec_id = self.new_local_record_in_temp_folder("zip")
+        failure = subprocess.CalledProcessError(1, "pg_dump")
+        with patch("subprocess.run", side_effect=failure):
+            rec_id.action_backup()
+        self.assertEqual([], os.listdir(rec_id.folder))
+        self.assertIn("Database backup failed.", rec_id.message_ids[0].body)
 
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""

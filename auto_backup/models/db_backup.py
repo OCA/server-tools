@@ -3,10 +3,14 @@
 # Copyright 2016 Grupo ESOC Ingenieria de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import json
 import logging
 import os
 import shutil
+import subprocess
+import tempfile
 import traceback
+import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
@@ -14,6 +18,7 @@ from glob import iglob
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
+from odoo.tools.misc import exec_pg_environ, find_pg_tool
 
 _logger = logging.getLogger(__name__)
 try:
@@ -158,20 +163,24 @@ class DbBackup(models.Model):
                 except OSError:
                     pass
 
-                with open(os.path.join(rec.folder, filename), "wb") as destiny:
-                    # Copy the cached backup
-                    if backup:
-                        with open(backup) as cached:
-                            shutil.copyfileobj(cached, destiny)
-                    # Generate new backup
-                    else:
-                        with self._db_management_enabled():
-                            db.dump_db(
-                                self.env.cr.dbname,
-                                destiny,
-                                backup_format=rec.backup_format,
-                            )
-                        backup = backup or destiny.name
+                # Write to a partial file of our own, renamed once complete,
+                # so that a failed dump leaves no empty or truncated backup
+                destination = os.path.join(rec.folder, filename)
+                partial = f"{destination}.{uuid.uuid4().hex}.part"
+                try:
+                    with open(partial, "xb") as destiny:
+                        # Copy the cached backup
+                        if backup:
+                            with open(backup) as cached:
+                                shutil.copyfileobj(cached, destiny)
+                        # Generate new backup
+                        else:
+                            self._dump_db(destiny, rec.backup_format)
+                    os.replace(partial, destination)
+                finally:
+                    if os.path.exists(partial):
+                        os.unlink(partial)
+                backup = backup or destination
                 successful |= rec
 
         # Ensure a local backup exists if we are going to write it remotely
@@ -180,13 +189,9 @@ class DbBackup(models.Model):
             for rec in sftp:
                 filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
-
-                    with self._db_management_enabled():
-                        cached = db.dump_db(
-                            self.env.cr.dbname, None, backup_format=rec.backup_format
-                        )
-
-                    with cached:
+                    with tempfile.TemporaryFile() as cached:
+                        self._dump_db(cached, rec.backup_format)
+                        cached.seek(0)
                         with rec.sftp_connection() as remote:
                             # Directory must exist
                             try:
@@ -209,24 +214,52 @@ class DbBackup(models.Model):
         """Run all scheduled backups."""
         return self.search([]).action_backup()
 
-    @contextmanager
-    def _db_management_enabled(self):
-        """Temporarily allow database management functions during a backup.
+    def _dump_db(self, stream, backup_format):
+        """Dump the current database into ``stream``, raising if it fails.
 
-        ``odoo.service.db.dump_db`` is protected by
-        ``check_db_management_enabled``, which raises ``AccessDenied`` when
-        ``list_db = False`` is set in the Odoo configuration. That option only
-        aims at hiding database management from the web interface; a scheduled
-        backup is a trusted server-side operation, so we re-enable the flag for
-        the duration of the dump and always restore its original value
-        afterwards.
+        ``odoo.service.db.dump_db`` is guarded by
+        ``check_db_management_enabled``, which refuses to run when
+        ``list_db = False``. Switching ``list_db`` back on for the dump would
+        reopen the database manager routes, ``/web/database/list`` included,
+        to every request served meanwhile by the same process. The dump is
+        therefore built here with the same core tools and the same layout as
+        ``dump_db``, taking the manifest from the undecorated
+        ``dump_db_manifest``; ``list_db`` is never touched.
         """
-        list_db = tools.config["list_db"]
-        tools.config["list_db"] = True
-        try:
-            yield
-        finally:
-            tools.config["list_db"] = list_db
+        db_name = self.env.cr.dbname
+        pg_dump = [find_pg_tool("pg_dump"), "--no-owner"]
+        env = exec_pg_environ()
+        if backup_format == "zip":
+            with tempfile.TemporaryDirectory() as dump_dir:
+                filestore = tools.config.filestore(db_name)
+                if os.path.exists(filestore):
+                    shutil.copytree(filestore, os.path.join(dump_dir, "filestore"))
+                with open(os.path.join(dump_dir, "manifest.json"), "w") as fh:
+                    manifest = db.dump_db_manifest.__wrapped__(self.env.cr)
+                    json.dump(manifest, fh, indent=4)
+                dump_file = "--file=" + os.path.join(dump_dir, "dump.sql")
+                subprocess.run(
+                    pg_dump + [dump_file, db_name],
+                    env=env,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.STDOUT,
+                    check=True,
+                )
+                tools.osutil.zip_dir(
+                    dump_dir,
+                    stream,
+                    include_dir=False,
+                    fnct_sort=lambda file_name: file_name != "dump.sql",
+                )
+        else:
+            stream.flush()
+            subprocess.run(
+                pg_dump + ["--format=c", db_name],
+                env=env,
+                stdin=subprocess.DEVNULL,
+                stdout=stream,
+                check=True,
+            )
 
     @contextmanager
     def backup_log(self):
