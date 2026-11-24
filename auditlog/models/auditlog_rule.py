@@ -117,6 +117,10 @@ class ThrowAwayCache:
             if cache_memo := self._original_field_cache_memos.get(env):
                 for key, value in cache_memo.items():
                     env._field_cache_memo[key] = value
+            # Environments also memoize the dirty fields and protected map of the
+            # transaction: drop the memos that point to the throwaway containers.
+            env.__dict__.pop("_field_dirty", None)
+            env.__dict__.pop("_protected", None)
 
 
 class AuditlogRule(models.Model):
