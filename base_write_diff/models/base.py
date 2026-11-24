@@ -60,6 +60,9 @@ class BaseModel(models.BaseModel):
 
         # Step 2: prepare fields to update by checking simple fields first
         if simple_fields_values:
+            simple_fields_values = self._round_write_diff_monetary_values(
+                simple_fields_values
+            )
             simple_fields_specs = {f: {} for f in simple_fields_values}
             snapshot0 = self._do_snapshot({}, simple_fields_specs)
             snapshot1 = self._do_snapshot(simple_fields_values, simple_fields_specs)
@@ -98,6 +101,27 @@ class BaseModel(models.BaseModel):
                     diff_values.update(x2many_diff_values)
 
         return diff_values
+
+    def _round_write_diff_monetary_values(self, vals: dict) -> dict:
+        """Rounds the monetary values of ``vals`` to their currency
+
+        ``write()`` rounds them, but the snapshot of ``vals`` doesn't, so an amount
+        with more decimals than its currency would always look different.
+        The currency is the one in ``vals`` if any, as ``write()`` sets it first.
+        """
+        rounded_vals = dict(vals)
+        for fname, fvalue in vals.items():
+            field = self._fields[fname]
+            if field.type != "monetary" or not fvalue:
+                continue
+            currency_fname = field.get_currency_field(self)
+            if currency_fname in vals:
+                currency = self.env["res.currency"].browse(vals[currency_fname])
+            else:
+                currency = self[currency_fname]
+            if currency:
+                rounded_vals[fname] = currency.round(fvalue)
+        return rounded_vals
 
     def _do_snapshot(self, vals: dict, specs: dict) -> "RecordSnapshot":
         """Prepares a ``RecordSnapshot`` object with the specified params"""

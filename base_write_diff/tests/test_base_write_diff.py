@@ -34,6 +34,9 @@ class TestRecordDiffCommon(TransactionCase):
 
             # To test a non-relational field
             name = fields.Char()
+            # To test monetary fields
+            currency_id = fields.Many2one("res.currency")
+            amount = fields.Monetary()
             # To test single-relational fields
             m2o_id = fields.Many2one("bwd.test.model")
             # To test multi-relational fields
@@ -103,6 +106,30 @@ class TestRecordDiff(TestRecordDiffCommon):
         # => ``_get_write_diff_values()`` returns the same dict
         vals = {"m2o_id": self._create_records().id}
         self.assertEqual(record._get_write_diff_values(vals), vals)
+
+    @mute_logger("bwd.test.model.log")
+    def test_01_get_write_diff_values_monetary(self):
+        """Test ``_get_write_diff_values()`` rounds monetary values like ``write()``"""
+        currency_cent, currency_unit = self.env["res.currency"].create(
+            [
+                {"name": "BW1", "symbol": "B1", "rounding": 0.01},
+                {"name": "BW2", "symbol": "B2", "rounding": 1.0},
+            ]
+        )
+        record = self._create_records()
+        record.write({"currency_id": currency_cent.id, "amount": 1.23})
+        # An amount that rounds to the current one => nothing to write
+        self.assertEqual(record._get_write_diff_values({"amount": 1.234}), {})
+        # An amount that rounds to another one => the rounded amount is written
+        self.assertEqual(
+            record._get_write_diff_values({"amount": 1.236}), {"amount": 1.24}
+        )
+        # The amount is rounded with the currency written along with it
+        vals = {"currency_id": currency_unit.id, "amount": 1.234}
+        self.assertEqual(
+            record._get_write_diff_values(vals),
+            {"currency_id": currency_unit.id, "amount": 1.0},
+        )
 
     @mute_logger("bwd.test.model.log")
     def test_10_get_write_diff_values_x2many_command_create(self):
