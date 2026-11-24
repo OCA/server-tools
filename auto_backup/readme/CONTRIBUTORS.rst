@@ -5,4 +5,5 @@
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 * Simone Vanin <simone.vanin@agilebg.com>
+* klodr <klodr@users.noreply.github.com>
 * Vu Nguyen Anh <vuna2004@gmail.com>
