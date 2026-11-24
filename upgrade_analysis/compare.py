@@ -487,6 +487,8 @@ def compare_xml_sets(old_records_by_model, new_records_by_model):
                     match_type == "direct" and (found["domain"] or found["definition"])
                 ) or found["noupdate_switched"]:
                     matched_records.append(found)
+                if found["model"] != column["model"]:
+                    found["old_model"] = column["model"]
         return matched_records
 
     # direct match
@@ -555,14 +557,19 @@ def compare_xml_sets(old_records_by_model, new_records_by_model):
                 content += f" [renamed from {entry['renamed']} module]"
         if "old" not in entry and "new" not in entry:
             content = f"{entry['model']}: {entry['name']}"
+        extra_content = []
         if entry["domain"]:
-            content += " (deleted domain)"
+            extra_content.append("deleted domain")
         if entry["definition"]:
-            content += f" (changed definition: {entry['definition']})"
+            extra_content.append(f"changed definition: {entry['definition']}")
         if entry["noupdate"]:
-            content += " (noupdate)"
+            extra_content.append("noupdate")
         if entry["noupdate_switched"]:
-            content += " (noupdate switched)"
+            extra_content.append("noupdate switched")
+        if entry.get("old_model"):
+            extra_content.append(f"previous model was {entry['old_model']}")
+        if extra_content:
+            content += f" ({', '.join(extra_content)})"
         reprs[module_map(entry["module"])].append(content)
     return reprs, moved_records, renamed_records, modified_records
 
