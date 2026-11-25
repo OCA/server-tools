@@ -127,11 +127,22 @@ class BaseExceptionMethod(models.AbstractModel):
     def _get_base_domain(self):
         return [("ignore_exception", "=", False)]
 
+    def _get_rule_base_domain(self, rule_info):
+        """Base domain used to detect one rule.
+
+        A blocking rule is evaluated even on a record that ignores the
+        exceptions: it can not be ignored, and the flag would otherwise keep
+        the record out of every detection made after it was set.
+        """
+        if rule_info.is_blocking:
+            return []
+        return self._get_base_domain()
+
     def _detect_exceptions_by_py_code(self, rule_info):
         """
         Find exceptions found on self.
         """
-        domain = self._get_base_domain()
+        domain = self._get_rule_base_domain(rule_info)
         records = self.filtered_domain(domain)
         records_with_exception = self.env[self._name]
         for record in records:
@@ -143,7 +154,7 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         Find exceptions found on self.
         """
-        base_domain = self._get_base_domain()
+        base_domain = self._get_rule_base_domain(rule_info)
         rule_domain = rule_info.domain
         domain = Domain.AND([base_domain, rule_domain])
         return self.filtered_domain(domain)
@@ -152,6 +163,6 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         Find exceptions found on self.
         """
-        base_domain = self._get_base_domain()
+        base_domain = self._get_rule_base_domain(rule_info)
         records = self.filtered_domain(base_domain)
         return getattr(records, rule_info.method)()
