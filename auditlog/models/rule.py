@@ -19,6 +19,7 @@ FIELDS_BLACKLIST = [
     "display_name",
     "__last_update",
 ]
+BINARY_VALUE = "[binary]"
 PATCHED_METHODS = ["create", "read", "search_read", "write", "unlink", "export_data"]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
@@ -771,10 +772,13 @@ class AuditlogRule(models.Model):
         """Prepare the dictionary of values used to create a log line on a
         'read' operation.
         """
+        value = read_values[log_vals["res_id"]][field["name"]]
+        if field["ttype"] == "binary" and value:
+            value = BINARY_VALUE
         vals = {
             "field_id": field["id"],
-            "old_value": read_values[log_vals["res_id"]][field["name"]],
-            "old_value_text": read_values[log_vals["res_id"]][field["name"]],
+            "old_value": value,
+            "old_value_text": value,
             "new_value": False,
             "new_value_text": False,
         }

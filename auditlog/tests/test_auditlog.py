@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
 
+from ..models.rule import BINARY_VALUE
 from .common import AuditLogRuleCommon
 
 
@@ -402,6 +403,44 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
         self.assertIn("color", field_names)
         self.assertNotIn("comment", field_names)
         self.assertNotIn("implied_ids", field_names)
+
+
+class TestAuditlogBinaryRead(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.attachment_model_id = cls.env.ref("base.model_ir_attachment").id
+        cls.attachment_rule = cls.create_rule(
+            {
+                "name": "testrule for attachments",
+                "model_id": cls.attachment_model_id,
+                "log_read": True,
+                "log_create": False,
+                "log_write": False,
+                "log_unlink": False,
+                "log_export_data": False,
+                "log_type": "full",
+            }
+        )
+
+    def test_LogReadBinary(self):
+        """Tests a read log keeps a binary field, but not its content"""
+        self.attachment_rule.subscribe()
+        attachment = self.env["ir.attachment"].create(
+            {"name": "test.txt", "raw": b"x" * 10000}
+        )
+        self.env["ir.attachment"].search_read([("id", "=", attachment.id)])
+        log = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.attachment_model_id),
+                ("method", "=", "read"),
+                ("res_id", "=", attachment.id),
+            ]
+        )
+        lines = log.line_ids.filtered(lambda line: line.field_name in ("datas", "raw"))
+        self.assertEqual(set(lines.mapped("field_name")), {"datas", "raw"})
+        self.assertEqual(set(lines.mapped("old_value")), {BINARY_VALUE})
+        self.assertEqual(set(lines.mapped("old_value_text")), {BINARY_VALUE})
 
 
 class TestAuditlogExportData(AuditLogRuleCommon):

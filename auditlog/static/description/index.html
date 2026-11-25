@@ -408,6 +408,8 @@ read, in the <em>Fields Read</em> field of the log. It keeps read logs much
 smaller, and it keeps sensitive values out of the logs: users who can
 open the logs of a record would otherwise see the values of fields they
 are not allowed to read on the record itself.</p>
+<p>Read logs never store the content of binary fields, such as the file of
+an attachment: their lines hold <tt class="docutils literal">[binary]</tt> instead.</p>
 <p>Data exports (the <em>Export</em> action and the <tt class="docutils literal">export_data</tt> method) are
 logged by <em>Log Exports</em>, with one log per export that lists the exported
 records and, in <em>Fields Read</em>, the exported fields. Exports never store

@@ -66,6 +66,9 @@ smaller, and it keeps sensitive values out of the logs: users who can
 open the logs of a record would otherwise see the values of fields they
 are not allowed to read on the record itself.
 
+Read logs never store the content of binary fields, such as the file of
+an attachment: their lines hold ``[binary]`` instead.
+
 Data exports (the *Export* action and the ``export_data`` method) are
 logged by *Log Exports*, with one log per export that lists the exported
 records and, in *Fields Read*, the exported fields. Exports never store
