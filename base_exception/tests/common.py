@@ -16,9 +16,11 @@ class TestBaseExceptionCommon(SavepointCase):
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
-        from .purchase_test import ExceptionRule, LineTest, PurchaseTest
+        from .purchase_test import ExceptionRule, LineTest, LineTestMethod, PurchaseTest
 
-        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest))
+        cls.loader.update_registry(
+            (ExceptionRule, LineTest, LineTestMethod, PurchaseTest)
+        )
 
         cls.partner = cls.env["res.partner"].create({"name": "Foo"})
         cls.po = cls.env["base.exception.test.purchase"].create(
@@ -26,7 +28,12 @@ class TestBaseExceptionCommon(SavepointCase):
                 "name": "Test base exception to basic purchase",
                 "partner_id": cls.partner.id,
                 "line_ids": [
-                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
+                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5}),
+                    (0, 0, {"name": "line test 2", "amount": 220.0, "qty": 1.5}),
+                ],
+                "line_method_ids": [
+                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5}),
+                    (0, 0, {"name": "line test 2", "amount": 220.0, "qty": 1.5}),
                 ],
             }
         )
@@ -37,6 +44,26 @@ class TestBaseExceptionCommon(SavepointCase):
                 "sequence": 10,
                 "model": "base.exception.test.purchase",
                 "code": "if not self.partner_id.zip: failed=True",
+                "exception_type": "by_py_code",
+            }
+        )
+        cls.sub_exception_rule = cls.env["exception.rule"].create(
+            {
+                "name": "Amount less than 100",
+                "description": "Line must have price greater than 100",
+                "sequence": 9,
+                "model": "base.exception.test.purchase.line",
+                "code": "failed = self.amount < 100",
+                "exception_type": "by_py_code",
+            }
+        )
+        cls.sub_exception_rule_method = cls.env["exception.rule"].create(
+            {
+                "name": "Amount less than 100",
+                "description": "Method Line must have price greater than 100",
+                "sequence": 9,
+                "model": "base.exception.method.test.purchase.line",
+                "code": "failed = self.amount < 100",
                 "exception_type": "by_py_code",
             }
         )
