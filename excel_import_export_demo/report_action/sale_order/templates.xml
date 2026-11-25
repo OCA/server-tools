@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_excel_template" model="xlsx.template">
+        <field name="res_model">sale.order</field>
+        <field name="fname">sale_order_form.xlsx</field>
+        <field name="name">Sale Order Template</field>
+        <field name="description">Sample Sales Order Template for testing</field>
+        <field name="input_instruction">
+            {
+                '__EXPORT__': {
+                    'sale_order': {
+                        '_HEAD_': {
+                            'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
+                            'B3': 'name${value or ""}#{align=left;style=text}',
+                        },
+                        'order_line': {
+                            'A6': 'product_id.display_name${value or ""}#{style=text}',
+                            'B6': 'name${value or ""}#{style=text}',
+                            'C6': 'product_uom_qty${value or 0}#{style=number}',
+                            'D6': 'product_uom.name${value or ""}#{style=text}',
+                            'E6': 'price_unit${value or 0}#{style=number}',
+                            'F6': 'tax_id${value and ",".join([x.display_name for x in value]) or ""}',
+                            'G6': 'price_subtotal${value or 0}#{style=number}@{sum}',
+                        }
+                    }
+                },
+            }
+        </field>
+    </record>
+    <function model="xlsx.template" name="load_xlsx_template">
+        <value eval="[ref('sale_order_excel_template')]" />
+    </function>
+</odoo>
