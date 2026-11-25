@@ -172,6 +172,20 @@ class TestBaseException(TransactionCase):
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
 
+    def test_blocking_exception_after_ignore(self):
+        # The record is ignored while the rule is not blocking yet
+        self.po.with_context(raise_exception=False).button_confirm()
+        self.po.action_ignore_exceptions()
+        self.assertTrue(self.po.ignore_exception)
+        self.assertFalse(self.po.exception_ids)
+        # The rule turns blocking afterwards, so it is evaluated again
+        self.exception_rule.is_blocking = True
+        self.po.button_draft()
+        with self.assertRaises(ValidationError):
+            self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
+        self.assertTrue(self.po.exception_ids)
+
     def test_rollback_main_transaction(self):
         # Get new TestCursor
         self.registry.enter_test_mode(self.cr)
