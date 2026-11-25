@@ -45,6 +45,12 @@ def ensure_module_state(env, modules, state):
 class Module(models.Model):
     _inherit = "ir.module.module"
 
+    def _module_exists_on_disk(self):
+        """Check if the module has a directory on the filesystem."""
+        self.ensure_one()
+        module_path = get_module_path(self.name)
+        return bool(module_path and os.path.isdir(module_path))
+
     def _get_checksum_dir(self):
         self.ensure_one()
 
@@ -84,6 +90,8 @@ class Module(models.Model):
         checksums = {}
         installed_modules = self.search([("state", "=", "installed")])
         for module in installed_modules:
+            if not module._module_exists_on_disk():
+                continue
             checksums[module.name] = module._get_checksum_dir()
         self._save_checksums(checksums)
 
@@ -96,7 +104,8 @@ class Module(models.Model):
         saved_checksums = self._get_saved_checksums()
         installed_modules = self.search([("state", "=", "installed")])
         return installed_modules.filtered(
-            lambda r: r._get_checksum_dir() != saved_checksums.get(r.name),
+            lambda r: r._module_exists_on_disk()
+            and r._get_checksum_dir() != saved_checksums.get(r.name),
         )
 
     @api.model
