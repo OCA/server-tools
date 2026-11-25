@@ -271,3 +271,43 @@ class TestTrackingManager(TransactionCase):
         )
         child.write({"parent_id": False})
         self.assertEqual(len(self.messages), 1)
+
+    def test_m2m_tracking_disable(self):
+        self.partner.with_context(tracking_disable=True).write(
+            {"category_id": [(Command.LINK, self.partner_categ_2.id, 0)]}
+        )
+        self.assertEqual(len(self.messages), 0)
+
+    def test_o2m_indirectly_tracking_disable(self):
+        self.partner.with_context(tracking_disable=True).write(
+            {
+                "user_ids": [
+                    (Command.UPDATE, self.partner.user_ids[0].id, {"login": "123"}),
+                    (Command.CREATE, 0, {"login": "1234567890"}),
+                ],
+            }
+        )
+        self.assertEqual(len(self.messages), 0)
+
+    @mute_logger("odoo.models.unlink")
+    def test_o2m_directly_tracking_disable(self):
+        users = self.env["res.users"].with_context(tracking_disable=True)
+        user = users.create(
+            {"name": "1234567890", "login": "1234567890", "partner_id": self.partner.id}
+        )
+        self.assertEqual(len(self.messages), 0)
+        user.write({"login": "0987654321"})
+        self.assertEqual(len(self.messages), 0)
+        user.unlink()
+        self.assertEqual(len(self.messages), 0)
+
+    def test_tracking_disable_not_cached(self):
+        # A write with tracking disabled must not switch off the tracking
+        # for the following writes done without the context key.
+        self.partner.user_ids.with_context(tracking_disable=True).write(
+            {"login": "123"}
+        )
+        self.assertEqual(len(self.messages), 0)
+        self.partner.user_ids.write({"login": "0987654321"})
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Change :"), 1)
