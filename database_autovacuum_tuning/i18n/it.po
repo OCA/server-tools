@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-10 12:46+0000\n"
+"PO-Revision-Date: 2026-11-25 10:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: database_autovacuum_tuning
 #: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__analyze_threshold
@@ -34,7 +34,7 @@ msgstr "Soglia massima pulizia per autopulizia"
 #. module: database_autovacuum_tuning
 #: model:ir.model,name:database_autovacuum_tuning.model_res_config_settings
 msgid "Config Settings"
-msgstr "Impostazioni di configurazione"
+msgstr "Impostazioni configurazione"
 
 #. module: database_autovacuum_tuning
 #: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.databaseautovacuum_tuning_view_search
