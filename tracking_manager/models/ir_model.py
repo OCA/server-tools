@@ -7,6 +7,8 @@ from ast import literal_eval
 from odoo import api, fields, models, tools
 from odoo.fields import Domain
 
+from .ir_model_fields import UNTRACKABLE_TYPES
+
 
 class IrModel(models.Model):
     _inherit = "ir.model"
@@ -35,6 +37,7 @@ class IrModel(models.Model):
         return {
             model.model: model.field_id.filtered(
                 lambda f, model=model: f.custom_tracking
+                and f.ttype not in UNTRACKABLE_TYPES
                 and self.env[model.model]._fields.get(f.name)
             ).mapped("name")
             for model in models
