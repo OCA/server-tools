@@ -5,10 +5,12 @@
 
 
 from odoo import fields
+from odoo.exceptions import UserError
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
 
+from ..models.rule import BINARY_VALUE
 from .common import AuditLogRuleCommon
 
 
@@ -274,6 +276,95 @@ class AuditlogCommon:
             1,
         )
 
+    def _search_group_logs(self, method, groups):
+        return self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", method),
+                ("res_id", "in", groups.ids),
+            ]
+        )
+
+    def test_LogRead(self):
+        """Tests read results"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        self.env["res.groups"].browse(group.id).read(["name"])
+        log = self._search_group_logs("read", group).ensure_one()
+        self.assertEqual(log.line_ids.mapped("field_name"), ["name"])
+
+    def test_LogSearchRead(self):
+        """Tests search_read results"""
+        self.groups_rule.subscribe()
+        groups = self.env["res.groups"].create(
+            [{"name": "testgroup1"}, {"name": "testgroup2"}]
+        )
+        self.env["res.groups"].search_read([("id", "in", groups.ids)], ["name"])
+        logs = self._search_group_logs("read", groups)
+        self.assertEqual(sorted(logs.mapped("res_id")), sorted(groups.ids))
+        self.assertEqual(set(logs.line_ids.mapped("field_name")), {"name"})
+
+    def test_LogReadFieldNames(self):
+        """Tests read results when only the field names are logged"""
+        comment_field = self.env.ref("base.field_res_groups__comment")
+        self.groups_rule.write(
+            {
+                "log_read_values": False,
+                "fields_to_exclude_ids": [(4, comment_field.id)],
+            }
+        )
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        self.env["res.groups"].browse(group.id).read(
+            ["name", "share", "comment", "create_date"]
+        )
+        log = self._search_group_logs("read", group).ensure_one()
+        self.assertFalse(log.line_ids)
+        self.assertEqual(log.read_field_names, "name, share")
+
+    def test_LogExportFieldNames(self):
+        """Tests the exported fields are logged, but not their values"""
+        comment_field = self.env.ref("base.field_res_groups__comment")
+        self.groups_rule.write({"fields_to_exclude_ids": [(4, comment_field.id)]})
+        self.groups_rule.subscribe()
+        groups = self.env["res.groups"].create(
+            [{"name": "testgroup1"}, {"name": "testgroup2"}]
+        )
+        self.env["res.groups"].browse(groups.ids).export_data(
+            ["name", "comment", "implied_ids/name", "id"]
+        )
+        log = (
+            self.env["auditlog.log"]
+            .search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "export_data"),
+                ]
+            )
+            .ensure_one()
+        )
+        self.assertEqual(log.res_ids, str(groups.ids))
+        self.assertFalse(log.line_ids)
+        self.assertEqual(log.read_field_names, "name, implied_ids/name, id")
+
+    def test_LogExportNotAllowed(self):
+        """Tests an export refused to the user is not logged"""
+        user = self.env.ref("base.public_user")
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        with self.assertRaises(UserError):
+            self.env["res.groups"].with_user(user).browse(group.id).export_data(
+                ["name"]
+            )
+        self.assertFalse(
+            self.env["auditlog.log"].search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "export_data"),
+                ]
+            )
+        )
+
     def test_http_session(self):
         display_name = (
             self.env["auditlog.http.session"].new().with_context(tz="UTC").display_name
@@ -299,6 +390,88 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
             }
         )
 
+    def test_LogCreationSkipEmptyValues(self):
+        """Full create logs no empty value, except booleans and numbers"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create(
+            {"name": "testgroup1", "share": False, "comment": False, "color": 0}
+        )
+        log = self._search_group_logs("create", group).ensure_one()
+        field_names = log.line_ids.mapped("field_name")
+        self.assertIn("name", field_names)
+        self.assertIn("share", field_names)
+        self.assertIn("color", field_names)
+        self.assertNotIn("comment", field_names)
+        self.assertNotIn("implied_ids", field_names)
+
+
+class TestAuditlogBinaryRead(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.attachment_model_id = cls.env.ref("base.model_ir_attachment").id
+        cls.attachment_rule = cls.create_rule(
+            {
+                "name": "testrule for attachments",
+                "model_id": cls.attachment_model_id,
+                "log_read": True,
+                "log_create": False,
+                "log_write": False,
+                "log_unlink": False,
+                "log_export_data": False,
+                "log_type": "full",
+            }
+        )
+
+    def test_LogReadBinary(self):
+        """Tests a read log keeps a binary field, but not its content"""
+        self.attachment_rule.subscribe()
+        attachment = self.env["ir.attachment"].create(
+            {"name": "test.txt", "raw": b"x" * 10000}
+        )
+        self.env["ir.attachment"].search_read([("id", "=", attachment.id)])
+        log = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.attachment_model_id),
+                ("method", "=", "read"),
+                ("res_id", "=", attachment.id),
+            ]
+        )
+        lines = log.line_ids.filtered(lambda line: line.field_name in ("datas", "raw"))
+        self.assertEqual(set(lines.mapped("field_name")), {"datas", "raw"})
+        self.assertEqual(set(lines.mapped("old_value")), {BINARY_VALUE})
+        self.assertEqual(set(lines.mapped("old_value_text")), {BINARY_VALUE})
+
+
+class TestAuditlogExportData(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.create_rule(
+            {
+                "name": "testrule for groups",
+                "model_id": cls.groups_model_id,
+                "log_export_data": True,
+            }
+        )
+
+    def test_LogExport(self):
+        self.groups_rule.subscribe()
+        auditlog_log = self.env["auditlog.log"]
+        self.env["res.groups"].search([]).export_data(["name"])
+        created_log = auditlog_log.search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "export_data"),
+            ]
+        ).ensure_one()
+        self.assertTrue(created_log)
+        action = created_log.show_res_ids()
+        domain = action["domain"]  # [('id', 'in', [1, 2, ...])]
+        self.assertIsInstance(domain, list)
+        self.assertIsInstance(domain[0][2], list)
+
 
 class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
@@ -316,6 +489,27 @@ class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
                 "log_type": "fast",
             }
         )
+
+    def test_LogCreationKeepEmptyValues(self):
+        """Fast create logs the values given, empty ones included"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create(
+            {"name": "testgroup1", "share": False, "comment": False, "color": 0}
+        )
+        log = self._search_group_logs("create", group).ensure_one()
+        self.assertEqual(
+            set(log.line_ids.mapped("field_name")),
+            {"name", "share", "comment", "color"},
+        )
+
+    def test_LogCreationWithoutLines(self):
+        """A create is logged even when no field is left to log"""
+        name_field = self.env.ref("base.field_res_groups__name")
+        self.groups_rule.write({"fields_to_exclude_ids": [(4, name_field.id)]})
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        log = self._search_group_logs("create", group).ensure_one()
+        self.assertFalse(log.line_ids)
 
 
 class TestFieldRemoval(AuditLogRuleCommon):
