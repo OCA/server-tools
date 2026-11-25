@@ -600,12 +600,13 @@ class AuditlogRule(models.Model):
             rule_model = self.env["auditlog.rule"]
             if self.env.user in users_to_exclude:
                 return res
+            export_fields = dict.fromkeys(fields_to_export)
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
                 self.ids,
                 "export_data",
-                None,
+                dict.fromkeys(self.ids, export_fields),
                 None,
                 {"log_type": log_type},
             )
@@ -650,6 +651,9 @@ class AuditlogRule(models.Model):
                 {
                     "name": res_model,
                     "res_ids": str(res_ids),
+                    "read_field_names": self._get_log_field_names(
+                        old_values.get(res_ids[0], EMPTY_DICT), fields_to_exclude
+                    ),
                     "http_request_id": http_request_model.current_http_request(),
                     "http_session_id": http_session_model.current_http_session(),
                 }
