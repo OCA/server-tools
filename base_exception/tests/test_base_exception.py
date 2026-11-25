@@ -178,3 +178,4 @@ class TestBaseException(TransactionCase):
             self.po.button_confirm()
         self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
+        self.assertTrue(self.po.exceptions_summary)

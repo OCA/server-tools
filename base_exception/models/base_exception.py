@@ -40,18 +40,28 @@ class BaseExceptionModel(models.AbstractModel):
         self.write({"ignore_exception": True})
         return True
 
-    @api.depends("exception_ids", "ignore_exception")
+    def _get_visible_exceptions(self):
+        """Exceptions shown on the record.
+
+        The ignored ones are hidden, but a blocking exception can not be
+        ignored, so it is shown even when the flag is set.
+        """
+        self.ensure_one()
+        if not self.ignore_exception:
+            return self.exception_ids
+        return self.exception_ids.filtered("is_blocking")
+
+    @api.depends("exception_ids.is_blocking", "ignore_exception")
     def _compute_main_error(self):
         for rec in self:
-            if not rec.ignore_exception and rec.exception_ids:
-                rec.main_exception_id = rec.exception_ids[0]
-            else:
-                rec.main_exception_id = False
+            exceptions = rec._get_visible_exceptions()
+            rec.main_exception_id = exceptions[0] if exceptions else False
 
-    @api.depends("exception_ids", "ignore_exception")
+    @api.depends("exception_ids.is_blocking", "ignore_exception")
     def _compute_exceptions_summary(self):
         for rec in self:
-            if rec.exception_ids and not rec.ignore_exception:
+            exceptions = rec._get_visible_exceptions()
+            if exceptions:
                 rec.exceptions_summary = "<ul>{}</ul>".format(
                     "".join(
                         "<li>{}: <i>{}</i> <b>{}</b></li>".format(
@@ -59,7 +69,7 @@ class BaseExceptionModel(models.AbstractModel):
                             html_escape(e.description or ""),
                             "(Blocking exception)" if e.is_blocking else "",
                         )
-                        for e in rec.exception_ids
+                        for e in exceptions
                     )
                 )
             else:
