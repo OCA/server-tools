@@ -371,6 +371,10 @@ class AuditlogRule(models.Model):
             new_values = {}
             fields_list = rule_model.get_auditlog_fields(self)
 
+            # Odoo 19 keeps stale references to the dirty-marks container in
+            # env cached properties; flush pending updates so that nothing
+            # dirty remains for _flush to trip over inside the throwaway cache.
+            self.env.flush_all()
             with ThrowAwayCache(self.env):
                 for new_record in new_records.sudo():
                     new_values.setdefault(new_record.id, {})
@@ -481,11 +485,13 @@ class AuditlogRule(models.Model):
             if not records_write:
                 return write_full.origin(self, vals, **kwargs)
 
+            # flush pending updates before the throwaway reads (see create_full)
+            self.env.flush_all()
             with ThrowAwayCache(self.env):
                 old_values = {d["id"]: d for d in records_write.read(fields_list)}
 
             result = write_full.origin(self, vals, **kwargs)
-            self.flush_recordset()
+            self.env.flush_all()
             if self.env.user in users_to_exclude:
                 return result
 
@@ -706,7 +712,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_read(
@@ -745,7 +751,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_write(
@@ -804,7 +810,7 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and field["ttype"] != "binary":
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_create(

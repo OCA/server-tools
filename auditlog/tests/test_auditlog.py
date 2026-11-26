@@ -787,3 +787,95 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+class TestAuditlogBinaryFields(AuditLogRuleCommon):
+    """Binary fields must not break the creation of audit logs.
+
+    Storing the raw bytes of a binary field in the Text columns of
+    ``auditlog.log.line`` raises ``UnicodeDecodeError`` for any content
+    that is not valid UTF-8 (e.g. zlib-compressed data), which made
+    create, write and unlink fail on audited records holding binary
+    data.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.attachment_model_id = cls.env.ref("base.model_ir_attachment").id
+        cls.attachment_rule = cls.create_rule(
+            {
+                "name": "testrule for attachments",
+                "model_id": cls.attachment_model_id,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "full",
+                "capture_record": True,
+            }
+        )
+        cls.auditlog_log = cls.env["auditlog.log"]
+
+    def _binary_field_names(self):
+        return {
+            field.name
+            for field in self.env["ir.model.fields"].search(
+                [("model_id", "=", self.attachment_model_id), ("ttype", "=", "binary")]
+            )
+        }
+
+    def _assert_no_binary_lines(self, logs):
+        self.assertTrue(logs)
+        self.assertFalse(set(logs.mapped("line_ids.field_name")) & self.binary_fields)
+
+    def test_binary_field_does_not_break_logs(self):
+        """Create, update and delete an attachment holding binary content:
+        all audited operations must succeed and no log line may reference
+        a binary field."""
+        self.attachment_rule.set_to_confirmed()
+        self.binary_fields = self._binary_field_names()
+        self.assertIn("db_datas", self.binary_fields)
+
+        attachment = self.env["ir.attachment"].create(
+            {"name": "blob.bin", "db_datas": b"\x78\x9c\x00\x01binary"}
+        )
+
+        self._assert_no_binary_lines(
+            self.auditlog_log.search(
+                [
+                    ("model_id", "=", self.attachment_model_id),
+                    ("method", "=", "create"),
+                    ("res_id", "=", attachment.id),
+                ]
+            )
+        )
+
+        # A write touching only the binary field must not raise either;
+        # it produces no log line since the field cannot be logged.
+        attachment.with_context(tracking_disable=True).write(
+            {"db_datas": b"\x78\x9c\x00\x02binary"}
+        )
+
+        attachment.with_context(tracking_disable=True).write(
+            {"name": "blob-renamed.bin", "db_datas": b"\x78\x9c\x00\x03binary"}
+        )
+        self._assert_no_binary_lines(
+            self.auditlog_log.search(
+                [
+                    ("model_id", "=", self.attachment_model_id),
+                    ("method", "=", "write"),
+                    ("res_id", "=", attachment.id),
+                ]
+            )
+        )
+
+        attachment.unlink()
+        self._assert_no_binary_lines(
+            self.auditlog_log.search(
+                [
+                    ("model_id", "=", self.attachment_model_id),
+                    ("method", "=", "unlink"),
+                    ("res_id", "=", attachment.id),
+                ]
+            )
+        )
