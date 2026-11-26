@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- User form - Mail fields -->
+    <record id="mail_server_manager_view_users_form_mailbox" model="ir.ui.view">
+        <field name="name">res.users.form.mailbox</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <!-- Add button box for quick access -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    name="action_view_mail_account"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-envelope"
+                    invisible="not mailbox_created"
+                    groups="base.group_system"
+                >
+                    <span class="o_stat_text">Mail Account</span>
+                </button>
+            </xpath>
+
+            <!-- Header buttons -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_create_mailbox"
+                    type="object"
+                    string="Create Mailbox"
+                    class="btn-primary"
+                    invisible="mailbox_created"
+                    groups="base.group_system"
+                />
+            </xpath>
+
+            <!-- Add Mail Server page in notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Mail Server"
+                    name="mail_server"
+                    groups="base.group_system"
+                >
+                    <group>
+                        <group string="Configuration">
+                            <field name="create_mailbox" widget="boolean_toggle" />
+                            <field name="mailbox_created" invisible="1" />
+                        </group>
+                        <group string="Account Information">
+                            <field
+                                name="internal_email"
+                                readonly="1"
+                                string="Internal Email"
+                            />
+                            <field
+                                name="mail_account_id"
+                                readonly="1"
+                                invisible="not mailbox_created"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- User list - show mailbox status -->
+    <record id="mail_server_manager_view_users_tree_mailbox" model="ir.ui.view">
+        <field name="name">res.users.tree.mailbox</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='login']" position="after">
+                <field name="internal_email" string="Internal Email" optional="show" />
+                <field
+                    name="mailbox_created"
+                    string="Mailbox"
+                    widget="boolean"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- User preferences - show internal email to user in their own settings -->
+    <record id="mail_server_manager_view_users_preferences_mailbox" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.mailbox</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <!-- Add Mail Server page in notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Mail Server"
+                    name="mail_server_preferences"
+                    invisible="not internal_email"
+                >
+                    <group>
+                        <group string="Your Email Account">
+                            <field
+                                name="internal_email"
+                                string="Email Address"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                            <button
+                                name="action_change_mail_password"
+                                type="object"
+                                string="Change Password"
+                                class="btn-secondary"
+                            />
+                        </group>
+                    </group>
+
+                    <separator string="Email Client Configuration" />
+                    <div
+                        class="alert alert-info o_form_label"
+                        role="alert"
+                        style="width: fit-content; min-width: 300px; margin: 10px 0;"
+                    >
+                        <strong>Configure Your Email Client</strong><br />
+                        Use these settings to configure Thunderbird, Outlook, or any email client.
+                    </div>
+
+                    <group>
+                        <group string="Outgoing Mail (SMTP)">
+                            <field
+                                name="smtp_server"
+                                string="Server"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                            <field name="smtp_port" string="Port" readonly="1" />
+                            <field
+                                name="smtp_encryption"
+                                string="Encryption"
+                                readonly="1"
+                            />
+                            <field
+                                name="internal_email"
+                                string="Username"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                        </group>
+                        <group string="Incoming Mail (IMAP)">
+                            <field
+                                name="imap_server"
+                                string="Server"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                            <field name="imap_port" string="Port" readonly="1" />
+                            <field
+                                name="imap_encryption"
+                                string="Encryption"
+                                readonly="1"
+                            />
+                            <field
+                                name="internal_email"
+                                string="Username"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
