@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="base_custom_info.table">
+        <table class="table table-borderless">
+            <tbody>
+                <tr t-foreach="props.list.records" t-as="item" t-key="item.id">
+                    <t t-set="fieldProps" t-value="getFieldProps(item)" />
+                    <t t-if="fieldProps">
+                        <th scope="row" class="o_td_label">
+                            <label
+                                class="o_form_label"
+                                t-att-for="fieldProps.id"
+                                t-out="item.data.name"
+                            />
+                        </th>
+                        <td class="custom_info_value">
+                            <CustomInfoField
+                                t-key="item.data.widget"
+                                t-props="fieldProps"
+                            />
+                        </td>
+                    </t>
+                </tr>
+            </tbody>
+        </table>
+    </t>
+
+    <t
+        t-name="base_custom_info.X2ManyField"
+        t-inherit="web.X2ManyField"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//KanbanRenderer" position="before">
+            <CustomInfoRenderer
+                t-elif="props.viewMode === 'custom_info'"
+                t-props="rendererProps"
+            />
+        </xpath>
+    </t>
+</templates>
