@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="global_undo_operation_view_list" model="ir.ui.view">
+        <field name="name">global.undo.operation.list</field>
+        <field name="model">global.undo.operation</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="create_date" string="Deleted on" />
+                <field name="res_name" string="Record" />
+                <field name="model_name" />
+                <field name="res_id" string="Original ID" />
+                <field name="user_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="in_trash" column_invisible="True" />
+                <button
+                    name="action_restore"
+                    type="object"
+                    string="Restore"
+                    icon="fa-undo"
+                    invisible="not in_trash"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="global_undo_operation_view_form" model="ir.ui.view">
+        <field name="name">global.undo.operation.form</field>
+        <field name="model">global.undo.operation</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button
+                        name="action_restore"
+                        type="object"
+                        string="Restore"
+                        class="btn-primary"
+                        invisible="not in_trash"
+                    />
+                    <button
+                        name="action_open_record"
+                        type="object"
+                        string="Open Record"
+                        invisible="in_trash"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="res_name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="kind" readonly="1" />
+                            <field name="model_name" readonly="1" />
+                            <field name="res_id" readonly="1" />
+                            <field
+                                name="restored_res_id"
+                                readonly="1"
+                                invisible="not restored_res_id"
+                            />
+                        </group>
+                        <group>
+                            <field name="transaction_id" readonly="1" />
+                            <field name="user_id" readonly="1" />
+                            <field name="create_date" string="Date" readonly="1" />
+                            <field name="in_trash" readonly="1" />
+                        </group>
+                    </group>
+                    <group string="Business Action" invisible="kind != 'action'">
+                        <field name="method" readonly="1" />
+                        <field name="undo_methods" readonly="1" />
+                    </group>
+                    <!-- Snapshots are taken with elevated rights so that an undo
+                         restores the record exactly, fields the user cannot read
+                         included; only a manager gets to read them back. -->
+                    <notebook groups="global_undo.global_undo_group_manager">
+                        <page string="Snapshot Before">
+                            <field name="values_before" readonly="1" widget="text" />
+                        </page>
+                        <page string="Snapshot After">
+                            <field name="values_after" readonly="1" widget="text" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="global_undo_operation_view_search" model="ir.ui.view">
+        <field name="name">global.undo.operation.search</field>
+        <field name="model">global.undo.operation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="res_name" string="Record" />
+                <field name="model_name" />
+                <field name="user_id" />
+                <filter
+                    name="filter_trash"
+                    string="Still in Trash"
+                    domain="[('in_trash', '=', True)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_model"
+                        string="Model"
+                        context="{'group_by': 'model_name'}"
+                    />
+                    <filter
+                        name="group_user"
+                        string="User"
+                        context="{'group_by': 'user_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="global_undo_operation_action_trash" model="ir.actions.act_window">
+        <field name="name">Trash</field>
+        <field name="res_model">global.undo.operation</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('kind', '=', 'unlink')]</field>
+        <field name="context">{'search_default_filter_trash': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">The trash is empty</p>
+            <p
+            >Records you delete land here and can be restored, as long as the deletion is still within the retention window.</p>
+        </field>
+    </record>
+</odoo>
