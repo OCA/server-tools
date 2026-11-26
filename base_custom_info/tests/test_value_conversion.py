@@ -2,14 +2,14 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
 
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 _logger = logging.getLogger(__name__)
 
 
 class ValueConversionCase(TransactionCase):
     def setUp(self):
-        super(ValueConversionCase, self).setUp()
+        super().setUp()
         self.agrolait = self.env.ref("base.res_partner_2")
         self.tpl = self.env.ref("base_custom_info.tpl_smart")
         self.prop_str = self.env.ref("base_custom_info.prop_teacher")
@@ -24,7 +24,7 @@ class ValueConversionCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         if field == "value":
-            field = "value_%s" % prop.field_type
+            field = f"value_{prop.field_type}"
         if prop.field_type == "id" and isinstance(value, str):
             value = (
                 self.env["custom.info.option"]
@@ -35,7 +35,7 @@ class ValueConversionCase(TransactionCase):
         self.value = self.agrolait.get_custom_info_value(prop)
         self.value[field] = value
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
 
     def creation_found(self, value):
         """Ensure you can search what you just created."""

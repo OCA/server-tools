@@ -6,23 +6,25 @@
     <record id="custom_info_value_tree" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
-            <tree create="0" delete="0">
+            <list create="0" delete="0">
                 <field name="owner_id" />
                 <field name="property_id" force_save="1" />
                 <field name="category_id" force_save="1" />
-                <field name="required" invisible="1" />
-                <field name="field_type" invisible="1" />
+                <field name="required" column_invisible="True" />
+                <field name="field_type" column_invisible="True" />
                 <field
                     name="value"
-                    attrs="{'invisible': [('field_type', '=', 'id')], 'required': [('required', '=', True), ('field_type', '!=', 'id')]}"
+                    invisible="field_type == 'id'"
+                    required="required == True and field_type != 'id'"
                 />
                 <field
                     name="value_id"
                     force_save="1"
                     options="{'no_create': True, 'no_open': True}"
-                    attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
+                    invisible="field_type != 'id'"
+                    required="required == True and field_type == 'id'"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="custom_info_value_editable" model="ir.ui.view">
@@ -52,9 +54,9 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="custom_info_value_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="editable">bottom</attribute>
-            </tree>
+            </list>
             <field name="owner_id" position="replace" />
         </field>
     </record>
@@ -73,28 +75,34 @@
                     <group name="value">
                         <field
                             name="value_str"
-                            attrs="{'invisible': [('field_type', '!=', 'str')], 'required': [('required', '=', True), ('field_type', '=', 'str')]}"
+                            invisible="field_type != 'str'"
+                            required="required == True and field_type == 'str'"
                         />
                         <field
                             name="value_int"
-                            attrs="{'invisible': [('field_type', '!=', 'int')], 'required': [('required', '=', True), ('field_type', '=', 'int')]}"
+                            invisible="field_type != 'int'"
+                            required="required == True and field_type == 'int'"
                         />
                         <field
                             name="value_float"
-                            attrs="{'invisible': [('field_type', '!=', 'float')], 'required': [('required', '=', True), ('field_type', '=', 'float')]}"
+                            invisible="field_type != 'float'"
+                            required="required == True and field_type == 'float'"
                         />
                         <field
                             name="value_bool"
-                            attrs="{'invisible': [('field_type', '!=', 'bool')], 'required': [('required', '=', True), ('field_type', '=', 'bool')]}"
+                            invisible="field_type != 'bool'"
+                            required="required == True and field_type == 'bool'"
                         />
                         <field
                             name="value_date"
-                            attrs="{'invisible': [('field_type', '!=', 'date')], 'required': [('required', '=', True), ('field_type', '=', 'date')]}"
+                            invisible="field_type != 'date'"
+                            required="required == True and field_type == 'date'"
                         />
                         <field
                             name="value_id"
                             widget="selection"
-                            attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
+                            invisible="field_type != 'id'"
+                            required="required == True and field_type == 'id'"
                         />
                     </group>
                     <div
@@ -146,6 +154,7 @@
         <field name="name">Values</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">custom.info.value</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">custom-info-values</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

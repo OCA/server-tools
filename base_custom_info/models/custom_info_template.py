@@ -7,12 +7,15 @@ from psycopg2 import IntegrityError
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+from .access import restrict_access
+
 
 class CustomInfoTemplate(models.Model):
     """Defines custom properties expected for a given database object."""
 
     _description = "Custom information template"
     _name = "custom.info.template"
+    _inherit = "custom.info.access.mixin"
     _order = "model_id, name"
     _sql_constraints = [
         (
@@ -78,13 +81,13 @@ class CustomInfoTemplate(models.Model):
                     _("You cannot change the model because it is in use.")
                 )
 
-    def check_access_rule(self, operation):
-        """You access a template if you access its model."""
-        for record in self:
-            model = self.env[record.model_id.sudo().model or record.model]
-            model.check_access_rights(operation)
-            model.check_access_rule(operation)
-        return super().check_access_rule(operation)
+    def _check_access(self, operation):
+        return restrict_access(
+            self,
+            operation,
+            super()._check_access(operation),
+            lambda record, op: self.env[record.sudo().model_id.model].has_access(op),
+        )
 
     def write(self, vals):
         if "model_id" in vals:

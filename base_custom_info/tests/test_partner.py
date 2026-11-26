@@ -4,13 +4,13 @@
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import AccessError, ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 from odoo.tools import mute_logger
 
 
 class PartnerCase(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(PartnerCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.agrolait = self.env.ref("base.res_partner_2")
         self.tpl = self.env.ref("base_custom_info.tpl_smart")
         self.demouser = self.env.ref("base.user_demo")
@@ -20,7 +20,7 @@ class PartnerCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_haters")
         ).value_int = 5
@@ -32,7 +32,7 @@ class PartnerCase(TransactionCase):
         agrolait.custom_info_template_id = self.tpl
         agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         prop_weaknesses = agrolait.env.ref("base_custom_info.prop_weaknesses")
         val_weaknesses = agrolait.get_custom_info_value(prop_weaknesses)
         opt_food = agrolait.env.ref("base_custom_info.opt_food")
@@ -76,13 +76,31 @@ class PartnerCase(TransactionCase):
             ),
         )
 
+    def test_value_access_follows_owner_record_rule(self):
+        self.set_custom_info_for_agrolait()
+        value = self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_haters")
+        )
+        self.assertTrue(value.with_user(self.demouser).has_access("read"))
+        self.env["ir.rule"].create(
+            {
+                "name": "Restrict the test contact",
+                "model_id": self.env.ref("base.model_res_partner").id,
+                "domain_force": f"[('id', '!=', {self.agrolait.id})]",
+            }
+        )
+        self.assertFalse(self.agrolait.with_user(self.demouser).has_access("read"))
+        self.assertFalse(value.with_user(self.demouser).has_access("read"))
+        with self.assertRaises(AccessError):
+            value.with_user(self.demouser).read(["value"])
+
     def test_apply_unapply_template(self):
         """(Un)apply a template to a owner and it gets filled."""
         # Applying a template autofills the values
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         self.assertEqual(len(self.agrolait.custom_info_ids), len(self.tpl.property_ids))
         self.assertEqual(
             self.agrolait.custom_info_ids.mapped("property_id"), self.tpl.property_ids
@@ -92,7 +110,7 @@ class PartnerCase(TransactionCase):
         self.agrolait.custom_info_template_id = False
         self.agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         self.assertFalse(self.agrolait.custom_info_template_id)
         self.assertFalse(self.agrolait.custom_info_ids)
 
@@ -146,7 +164,7 @@ class PartnerCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         val_weaknesses = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_weaknesses")
         )
@@ -161,11 +179,11 @@ class PartnerCase(TransactionCase):
         val_weaknesses = self.agrolait.get_custom_info_value(prop_weaknesses)
         val_weaknesses.value_id = self.env.ref("base_custom_info.opt_videogames")
         tpl_gamer = self.env.ref("base_custom_info.tpl_gamer")
-        self.agrolait.invalidate_cache()
+        self.agrolait.invalidate_recordset()
         self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
         self.agrolait._onchange_custom_info_template_id()
         # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
-        self.agrolait.custom_info_ids.invalidate_cache()
+        self.agrolait.invalidate_recordset(["custom_info_ids"])
         self.assertTrue(
             tpl_gamer.property_ids < self.agrolait.mapped("custom_info_ids.property_id")
         )

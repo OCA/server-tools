@@ -1,72 +1,82 @@
-/** @odoo-module **/
-
+import {Field, getFieldFromRegistry} from "@web/views/fields/field";
 import {Component} from "@odoo/owl";
-import {Field} from "@web/views/fields/field";
+import {ListArchParser} from "@web/views/list/list_arch_parser";
 import {X2ManyField} from "@web/views/fields/x2many/x2many_field";
+import {evaluateBooleanExpr} from "@web/core/py_js/py";
 import {listView} from "@web/views/list/list_view";
 import {patch} from "@web/core/utils/patch";
 import {registry} from "@web/core/registry";
 
-const fields = registry.category("fields");
+class CustomInfoArchParser extends ListArchParser {
+    parse(xmlDoc, models, modelName) {
+        // The standard parser initializes list options only for a <list> root.
+        const list = xmlDoc.ownerDocument.createElement("list");
+        for (const {name, value} of xmlDoc.attributes) {
+            list.setAttribute(name, value);
+        }
+        list.append(...Array.from(xmlDoc.childNodes, (node) => node.cloneNode(true)));
+        return super.parse(list, models, modelName);
+    }
+}
 
 class CustomInfoField extends Field {
     get fieldComponentProps() {
-        // These embedded values follow the parent form's edit mode.
-        const {list, ...props} = super.fieldComponentProps;
-        const {record, name} = this.props;
+        const {fieldInfo, record, readonly} = this.props;
+        // Rows in this subview follow the parent form's edit mode.
         return {
-            ...props,
-            readonly: this.props.readonly,
-            update: async (value) => {
-                await record.update({[name]: value});
-                // 16.0 only propagates inline changes automatically for list mode.
-                await record.model.updateRecord(list, record);
-            },
+            ...super.fieldComponentProps,
+            readonly:
+                readonly ||
+                evaluateBooleanExpr(
+                    fieldInfo.readonly,
+                    record.evalContextWithVirtualIds
+                ),
         };
     }
 }
 
 class CustomInfoRenderer extends Component {
+    static template = "base_custom_info.table";
+    static components = {CustomInfoField};
+    static props = {archInfo: Object, list: Object, readonly: Boolean};
+
     getFieldProps(record) {
         const name = `value_${record.data.field_type}`;
-        const fieldInfo = this.props.archInfo.fieldNodes[name];
+        const fieldInfo = Object.values(this.props.archInfo.fieldNodes).find(
+            (node) => node.name === name
+        );
         if (!fieldInfo) {
             return null;
         }
         return {
             name,
             record,
-            list: this.props.list,
             id: `custom_info_${record.id}_${name}`,
-            attrs: fieldInfo.rawAttrs,
             readonly: this.props.readonly,
             fieldInfo: {
                 ...fieldInfo,
-                FieldComponent: fields.get(
-                    record.data.widget,
-                    fieldInfo.FieldComponent
-                ),
+                field: getFieldFromRegistry(fieldInfo.type, record.data.widget),
             },
         };
     }
 }
 
-CustomInfoRenderer.template = "base_custom_info.table";
-CustomInfoRenderer.components = {CustomInfoField};
-CustomInfoRenderer.props = {archInfo: Object, list: Object, readonly: Boolean};
+registry.category("views").add("custom_info", {
+    ...listView,
+    type: "custom_info",
+    ArchParser: CustomInfoArchParser,
+});
 
-registry.category("views").add("custom_info", {...listView, type: "custom_info"});
-
-patch(X2ManyField.prototype, "base_custom_info.x2many", {
+patch(X2ManyField.prototype, {
     get rendererProps() {
-        if (this.viewMode === "custom_info") {
+        if (this.props.viewMode === "custom_info") {
             return {
-                archInfo: this.activeField.views.custom_info,
+                archInfo: this.archInfo,
                 list: this.list,
                 readonly: this.props.readonly,
             };
         }
-        return this._super();
+        return super.rendererProps;
     },
 });
 

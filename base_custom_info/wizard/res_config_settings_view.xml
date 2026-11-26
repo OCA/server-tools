@@ -7,35 +7,21 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[hasclass('app_settings_block')][@data-key='general_settings']"
-                position="inside"
-            >
-                <h2>Custom Information</h2>
-                <div class="row mt16 o_settings_container" name="base_information">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="group_custom_info_partner" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="group_custom_info_partner" />
-                            <div class="text-muted">
-                            Allow all employees to manage custom information
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="group_custom_info_manager" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="group_custom_info_manager" />
-                            <div class="text-muted">
-                            Add a tab in the partners form to edit custom information
-                        </div>
-                        </div>
-                    </div>
-                </div>
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Custom Information" name="base_information">
+                    <setting
+                        id="custom_info_partner"
+                        help="Add a tab in the partners form to edit custom information"
+                    >
+                        <field name="group_custom_info_partner" />
+                    </setting>
+                    <setting
+                        id="custom_info_manager"
+                        help="Allow all employees to manage custom information"
+                    >
+                        <field name="group_custom_info_manager" />
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>

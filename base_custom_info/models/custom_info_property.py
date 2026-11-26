@@ -5,12 +5,15 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
+from .access import restrict_access
+
 
 class CustomInfoProperty(models.Model):
     """Name of the custom information property."""
 
     _description = "Custom information property"
     _name = "custom.info.property"
+    _inherit = "custom.info.access.mixin"
     _order = "template_id, category_sequence, category_id, sequence, id"
     _sql_constraints = [
         (
@@ -115,10 +118,15 @@ class CustomInfoProperty(models.Model):
         for record in self:
             record.field_type = field_type_map.get(record.widget, "str")
 
-    def check_access_rule(self, operation):
-        """You access a property if you access its template."""
-        self.mapped("template_id").check_access_rule(operation)
-        return super().check_access_rule(operation)
+    def _check_access(self, operation):
+        return restrict_access(
+            self,
+            operation,
+            super()._check_access(operation),
+            lambda record, op: record.sudo()
+            .template_id.with_env(self.env)
+            .has_access(op),
+        )
 
     def _check_default_value_one(self):
         if self.default_value:
@@ -132,7 +140,8 @@ class CustomInfoProperty(models.Model):
                 )
                 raise ValidationError(
                     _(
-                        "Default value %(d_value)s cannot be converted to type %(f_type)s."
+                        "Default value %(d_value)s cannot be converted "
+                        "to type %(f_type)s."
                     )
                     % {
                         "d_value": self.default_value,

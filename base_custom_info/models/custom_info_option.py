@@ -4,10 +4,13 @@
 
 from odoo import fields, models
 
+from .access import can_access_any_property, restrict_access
+
 
 class CustomInfoOption(models.Model):
     _description = "Available options for a custom property"
     _name = "custom.info.option"
+    _inherit = "custom.info.access.mixin"
     _order = "name"
 
     name = fields.Char(index=True, translate=True, required=True)
@@ -29,19 +32,7 @@ class CustomInfoOption(models.Model):
         "is chosen.",
     )
 
-    def check_access_rule(self, operation):
-        """You access an option if you access at least one property."""
-        # Avoid to enter in infinite loop
-        if not self.env.context.get("check_access_rule_once"):
-            last_error = None
-            for prop in self.with_context(check_access_rule_once=True).mapped(
-                "property_ids"
-            ):
-                try:
-                    prop.check_access_rule(operation)
-                    return
-                except Exception as err:
-                    last_error = err
-            if last_error:
-                raise last_error
-        return super().check_access_rule(operation)
+    def _check_access(self, operation):
+        return restrict_access(
+            self, operation, super()._check_access(operation), can_access_any_property
+        )

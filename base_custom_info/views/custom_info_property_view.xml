@@ -7,14 +7,14 @@
         <field name="model">custom.info.property</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="field_type" />
                 <field name="category_id" />
                 <field name="required" />
                 <field name="default_value" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="custom_info_property_tree_full" model="ir.ui.view">
@@ -42,18 +42,14 @@
                         <field name="default_value" />
                         <field
                             name="minimum"
-                            attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"
+                            invisible="field_type not in ['str', 'int', 'float']"
                         />
                         <field
                             name="maximum"
-                            attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"
+                            invisible="field_type not in ['str', 'int', 'float']"
                         />
                     </group>
-                    <group
-                        name="Options"
-                        col="1"
-                        attrs="{'invisible': [('field_type', '!=', 'id')]}"
-                    >
+                    <group name="Options" col="1" invisible="field_type != 'id'">
                         <label
                             for="option_ids"
                             string="Select one of the existing options or create a new one clicking on 'Add an item'"
@@ -61,7 +57,7 @@
                         <field
                             name="option_ids"
                             nolabel="1"
-                            context="{'form_view_ref': 'base_custom_info.custom_info_option_form', 'tree_view_ref': 'base_custom_info.custom_info_option_tree'}"
+                            context="{'form_view_ref': 'base_custom_info.custom_info_option_form', 'list_view_ref': 'base_custom_info.custom_info_option_tree'}"
                         />
                     </group>
                 </sheet>
@@ -108,6 +104,7 @@
         <field name="name">Properties</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">custom.info.property</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">custom-info-properties</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

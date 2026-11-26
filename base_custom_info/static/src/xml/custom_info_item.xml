@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="base_custom_info.table" owl="1">
+    <t t-name="base_custom_info.table">
         <table class="table table-borderless">
             <tbody>
                 <tr t-foreach="props.list.records" t-as="item" t-key="item.id">
@@ -29,11 +29,10 @@
         t-name="base_custom_info.X2ManyField"
         t-inherit="web.X2ManyField"
         t-inherit-mode="extension"
-        owl="1"
     >
         <xpath expr="//KanbanRenderer" position="before">
             <CustomInfoRenderer
-                t-elif="viewMode === 'custom_info'"
+                t-elif="props.viewMode === 'custom_info'"
                 t-props="rendererProps"
             />
         </xpath>

@@ -7,7 +7,7 @@
     "name": "Base Custom Info",
     "summary": "Add custom field in models",
     "category": "Tools",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "depends": ["base_setup", "web_editor"],
     "data": [
         "security/ir.model.access.csv",

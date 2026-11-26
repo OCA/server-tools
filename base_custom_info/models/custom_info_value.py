@@ -1,14 +1,17 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
+
+from .access import restrict_access
 
 
 class CustomInfoValue(models.Model):
     _description = "Custom information value"
     _name = "custom.info.value"
+    _inherit = "custom.info.access.mixin"
     _rec_name = "value"
     _order = (
         "model, res_id, category_sequence, category_id, "
@@ -85,13 +88,15 @@ class CustomInfoValue(models.Model):
         domain="[('property_ids', '=', property_id)]",
     )
 
-    def check_access_rule(self, operation):
-        """You access a value if you access its owner record."""
-        if self.env.uid != SUPERUSER_ID:
-            for record in self.filtered("owner_id"):
-                record.owner_id.check_access_rights(operation)
-                record.owner_id.check_access_rule(operation)
-        return super().check_access_rule(operation)
+    def _check_access(self, operation):
+        return restrict_access(
+            self, operation, super()._check_access(operation), self._can_access_owner
+        )
+
+    @api.model
+    def _can_access_owner(self, record, operation):
+        owner = record.sudo().owner_id
+        return not owner or owner.with_env(self.env).has_access(operation)
 
     @api.model
     def _selection_owner_id(self):
@@ -121,13 +126,13 @@ class CustomInfoValue(models.Model):
     def _compute_field_name(self):
         """Get the technical name where the real typed value is stored."""
         for s in self:
-            s.field_name = "value_{!s}".format(s.property_id.field_type)
+            s.field_name = f"value_{s.property_id.field_type!s}"
 
     @api.depends("res_id", "model")
     def _compute_owner_id(self):
         """Get the id from the linked record."""
         for record in self:
-            record.owner_id = "{},{}".format(record.model, record.res_id)
+            record.owner_id = f"{record.model},{record.res_id}"
 
     def _inverse_owner_id(self):
         """Store the owner according to the model and ID."""
@@ -266,7 +271,7 @@ class CustomInfoValue(models.Model):
             value = self.env["custom.info.option"].search(
                 [
                     ("property_ids", "in", properties.ids),
-                    ("name", "ilike", "%{}%".format(value)),
+                    ("name", "ilike", f"%{value}%"),
                 ],
                 limit=1,
             )
@@ -284,7 +289,7 @@ class CustomInfoValue(models.Model):
         elif format_ in {"datetime"}:
             value = fields.Datetime.from_string(value)
         elif format_ not in {"str", "id"}:
-            value = safe_eval("{!s}({!r})".format(format_, value))
+            value = safe_eval(f"{format_!s}({value!r})")
         return value
 
     @api.model

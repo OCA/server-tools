@@ -3,10 +3,13 @@
 
 from odoo import fields, models
 
+from .access import can_access_any_property, restrict_access
+
 
 class CustomInfoCategory(models.Model):
     _description = "Categorize custom info properties"
     _name = "custom.info.category"
+    _inherit = "custom.info.access.mixin"
     _order = "sequence, name"
 
     name = fields.Char(index=True, translate=True, required=True)
@@ -18,18 +21,7 @@ class CustomInfoCategory(models.Model):
         help="Properties in this category.",
     )
 
-    def check_access_rule(self, operation):
-        """You access a category if you access at least one property."""
-        last_error = None
-        if not self.env.context.get("check_access_rule_once"):
-            for prop in self.with_context(check_access_rule_once=True).mapped(
-                "property_ids"
-            ):
-                try:
-                    prop.check_access_rule(operation)
-                    return
-                except Exception as err:
-                    last_error = err
-        if last_error:
-            raise last_error
-        return super().check_access_rule(operation)
+    def _check_access(self, operation):
+        return restrict_access(
+            self, operation, super()._check_access(operation), can_access_any_property
+        )

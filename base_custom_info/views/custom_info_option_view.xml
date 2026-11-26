@@ -7,11 +7,11 @@
         <field name="model">custom.info.option</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name" />
                 <!-- Hidden for now from backend UI -->
-                <field name="template_id" invisible="1" />
-            </tree>
+                <field name="template_id" column_invisible="True" />
+            </list>
         </field>
     </record>
     <record id="custom_info_option_tree_full" model="ir.ui.view">
@@ -19,9 +19,9 @@
         <field name="inherit_id" ref="custom_info_option_tree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="editable" />
-            </tree>
+            </list>
             <field name="name" position="before">
                 <field name="property_ids" widget="many2many_tags" />
             </field>
@@ -66,6 +66,7 @@
         <field name="name">Options</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">custom.info.option</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">custom-info-options</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -48,7 +48,7 @@ class CustomInfo(models.AbstractModel):
             }
             if prop.default_value:
                 if prop.field_type != "id":
-                    vals["value_%s" % prop.field_type] = prop.default_value
+                    vals[f"value_{prop.field_type}"] = prop.default_value
                 else:
                     vals["value_id"] = (
                         self.env["custom.info.option"]
@@ -98,13 +98,19 @@ class CustomInfo(models.AbstractModel):
         )
 
     @api.model
+    @api.readonly
     def get_views(self, views, options=None):
         result = super().get_views(views, options=options)
         if "form" in result["views"] and "custom_info_ids" in result["models"].get(
             self._name, {}
-        ):
-            # The 16.0 client processes the custom subview with the parent form.
-            result["models"]["custom.info.value"] = self.env[
-                "custom.info.value"
-            ].fields_get(attributes=self._get_view_field_attributes())
+        ).get("fields", {}):
+            # Core view metadata does not include fields of the custom subview.
+            related_model = result["models"].setdefault(
+                "custom.info.value", {"fields": {}}
+            )
+            related_model["fields"].update(
+                self.env["custom.info.value"].fields_get(
+                    attributes=self._get_view_field_attributes()
+                )
+            )
         return result
