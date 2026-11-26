@@ -1,0 +1,2 @@
+# DO NOT MERGE — pin removed once #3614 publishes the 19.0 wheel.
+odoo-addon-attachment_queue @ git+https://github.com/ledoent/server-tools.git@19.0-mig-attachment_queue#subdirectory=attachment_queue

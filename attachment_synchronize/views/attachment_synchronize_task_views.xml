@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_attachment_task_form" model="ir.ui.view">
+        <field name="model">attachment.synchronize.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="run"
+                        type="object"
+                        string="Run"
+                        class="oe_read_only oe_highlight"
+                        icon="fa-play-circle"
+                        invisible="not active"
+                    />
+                </header>
+                <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="%(action_attachment_queue_related)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-thumbs-o-down"
+                            title="Failed attachments"
+                            context="{'search_default_failed': 1}"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="count_attachment_failed"
+                                        widget="statinfo"
+                                        nolabel="1"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Fail</span>
+                            </div>
+                        </button>
+                        <button
+                            name="%(action_attachment_queue_related)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-spinner"
+                            title="Pending attachments"
+                            context="{'search_default_pending': 1}"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="count_attachment_pending"
+                                        widget="statinfo"
+                                        nolabel="1"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Pending</span>
+                            </div>
+                        </button>
+                        <button
+                            name="%(action_attachment_queue_related)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-thumbs-o-up"
+                            title="Done attachments"
+                            context="{'search_default_done': 1}"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="count_attachment_done"
+                                        widget="statinfo"
+                                        nolabel="1"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Success</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Name" />
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
+                        <field name="create_date" invisible="1" />
+                        <field
+                            name="method_type"
+                            widget="radio"
+                            options="{'horizontal': true}"
+                            readonly="create_date"
+                        />
+                    </div>
+                    <group string="Storage Location" class="col-12 col-lg-6">
+                        <field name="backend_id" />
+                        <field name="filepath" />
+                        <field name="pattern" invisible="method_type != 'import'" />
+                    </group>
+                    <group
+                        name="action"
+                        string="Importation"
+                        invisible="method_type != 'import'"
+                        class="col-12 col-lg-6"
+                    >
+                        <field name="avoid_duplicated_files" />
+                        <field name="after_import" />
+                        <field
+                            name="move_path"
+                            invisible="after_import not in ('move', 'move_rename')"
+                            required="after_import in ('move', 'move_rename')"
+                        />
+                        <field
+                            name="new_name"
+                            invisible="after_import not in ('rename', 'move_rename')"
+                            required="after_import in ('rename', 'move_rename')"
+                        />
+                        <field name="file_type" />
+                    </group>
+                    <group string="Notification">
+                        <field name="failure_emails" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_attachment_task_list" model="ir.ui.view">
+        <field name="model">attachment.synchronize.task</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="active == False">
+                <field name="name" select="1" />
+                <field name="backend_id" />
+                <field name="filepath" />
+                <button name="run" type="object" string="Run" icon="fa-play-circle" />
+                <field name="count_attachment_failed" string=" " />
+                <button
+                    name="%(action_attachment_queue_related)d"
+                    type="action"
+                    icon="fa-thumbs-o-down"
+                    title="Failed attachments"
+                    context="{'search_default_failed': 1}"
+                />
+                <field name="count_attachment_pending" string=" " />
+                <button
+                    name="%(action_attachment_queue_related)d"
+                    type="action"
+                    icon="fa-spinner"
+                    title="Pending attachments"
+                    context="{'search_default_pending': 1}"
+                />
+                <field name="count_attachment_done" string=" " />
+                <button
+                    name="%(action_attachment_queue_related)d"
+                    type="action"
+                    icon="fa-thumbs-o-up"
+                    title="Done attachments"
+                    context="{'search_default_done': 1}"
+                />
+                <field name="active" widget="boolean_toggle" />
+                <button
+                    name="button_duplicate_record"
+                    type="object"
+                    icon="fa-clone"
+                    title="Duplicate"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_attachment_task_search" model="ir.ui.view">
+        <field name="model">attachment.synchronize.task</field>
+        <field name="arch" type="xml">
+            <search string="Attachments">
+                <field
+                    name="name"
+                    filter_domain="[('name','ilike',self)]"
+                    string="Attachment Task"
+                />
+                <field name="create_date" />
+                <filter
+                    string="Backend"
+                    name="backend"
+                    context="{'group_by':'backend_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Attachments Import Tasks Menu -->
+    <record id="action_attachment_import_task" model="ir.actions.act_window">
+        <field name="name">Attachments Import Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attachment.synchronize.task</field>
+        <field name="path">attachment-import-task</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" eval="False" />
+        <field name="search_view_id" ref="view_attachment_task_search" />
+        <field name="domain">[('method_type', '=', 'import')]</field>
+        <field
+            name="context"
+        >{'default_method_type': 'import', "active_test": False}</field>
+    </record>
+
+    <menuitem
+        id="menu_attachment_import_task"
+        parent="fs_storage.menu_storage"
+        sequence="21"
+        action="action_attachment_import_task"
+    />
+
+    <!-- Attachments Export Tasks Menu -->
+    <record id="action_attachment_export_task" model="ir.actions.act_window">
+        <field name="name">Attachments Export Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="path">attachment-export-task</field>
+        <field name="res_model">attachment.synchronize.task</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" eval="False" />
+        <field name="search_view_id" ref="view_attachment_task_search" />
+        <field name="domain">[('method_type', '=', 'export')]</field>
+        <field
+            name="context"
+        >{'default_method_type': 'export', "active_test": False}</field>
+    </record>
+
+    <menuitem
+        id="menu_attachment_export_task"
+        parent="fs_storage.menu_storage"
+        sequence="22"
+        action="action_attachment_export_task"
+    />
+</odoo>
