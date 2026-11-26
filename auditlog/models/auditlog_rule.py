@@ -119,6 +119,19 @@ class ThrowAwayCache:
                     env._field_cache_memo[key] = value
 
 
+class _Sentinel:
+    """A falsy sentinel object as a placeholder for absent values."""
+
+    def __str__(self):
+        return ""
+
+    def __bool__(self):
+        return False
+
+
+_SENTINEL = _Sentinel()
+
+
 class AuditlogRule(models.Model):
     _name = "auditlog.rule"
     _description = "Auditlog - Rule"
@@ -510,7 +523,7 @@ class AuditlogRule(models.Model):
             # afterwards as it could not represent the real state
             # of the data in the database
             vals2 = dict(vals)
-            old_vals2 = dict.fromkeys(list(vals2.keys()), False)
+            old_vals2 = dict.fromkeys(list(vals2.keys()), _SENTINEL)
             old_values = {id_: old_vals2 for id_ in self.ids}
             new_values = {id_: vals2 for id_ in self.ids}
             result = write_fast.origin(self, vals, **kwargs)
