@@ -6,7 +6,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.1.0",
     "author": "Yenthe Van Ginneken, "
     "Agile Business Group, "
     "Grupo ESOC Ingenieria de Servicios, "
