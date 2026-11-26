@@ -1,0 +1,299 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* attachment_delete_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-06-04 16:26+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_res_groups
+msgid "Access Groups"
+msgstr "Gruppi di accesso"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_ir_attachment
+msgid "Attachment"
+msgstr "Allegato"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
+msgid "Attachment Deletion Groups"
+msgstr "Gruppi cancellazione allegato"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__delete_attachment_model_ids
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_groups_form
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_users_form
+msgid "Attachment Deletion Models"
+msgstr "Modelli cancellazione allegato"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
+msgid "Attachment Deletion Users"
+msgstr "Utenti cancellazione allegato"
+
+#. module: attachment_delete_restrict
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
+msgid "Authorized Groups:"
+msgstr "Gruppi autorizzati:"
+
+#. module: attachment_delete_restrict
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
+msgid "Authorized Users:"
+msgstr "Utenti autorizzati:"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Modifiche dell'insieme di modifiche"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__changeset_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__changeset_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__changeset_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Insiemi di modifiche"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__count_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__count_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__count_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr "Conteggio insieme di modifiche"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conteggio insieme di modifiche in attesa"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__custom
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__custom
+msgid "Custom: For each model, selected groups and users can delete them"
+msgstr ""
+"Personalizzato: per ogni modello, gruppi e utenti selezionati lo possono "
+"cancellare"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_restrict_delete_attachment
+msgid "Define a default value for Attachments Deletion"
+msgstr "Definire un valore predefinito per la cancellazione allegati"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_ir_model
+msgid "Models"
+msgstr "Modelli"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__none
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__none
+msgid "No restriction: All users / groups can delete them"
+msgstr "Nessuna restrizione: tutti gli utenti / gruppi li possono cancellare"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner_custom
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__owner_custom
+msgid ""
+"Owner + Custom: Creator and admin can delete them + for each model, selected"
+" groups and users can delete them"
+msgstr ""
+"Proprietario + personalizzato: il creatore e l'amministratore li possono "
+"cancellare + per ogni modello, gruppi e utenti selezionati"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__owner
+msgid "Owner: Only creator and admin can delete them"
+msgstr "Proprietario: solo il creatore e l'amministratore li possono cancellare"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
+msgid "Restrict Attachment Deletion"
+msgstr "Limita cancellazione allegato"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_restrict_delete_attachment
+msgid "Restrict Delete Attachments"
+msgstr "Limita cancellazione allegati"
+
+#. module: attachment_delete_restrict
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
+msgid "Restrict Deletion on attachment"
+msgstr "Limita la cancellazione sugli allegati"
+
+#. module: attachment_delete_restrict
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
+msgid "Select default level of delete restriction on attachments"
+msgstr ""
+"Selezionare il livello predefinito della limitazione di cancellazione sugli "
+"allegati"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__smart_search
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_attachment__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Numero di modifiche di questo record in attesa"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_attachment__count_pending_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__count_pending_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__count_pending_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Numero di insiemi di modifiche in attesa di questo record"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_attachment__count_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__count_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__count_changesets
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Numero totale di insiemi di modifiche di questo record"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__delete_attachment_model_ids
+msgid ""
+"The user can delete the attachments related to the models assigned here. "
+"Restrict Attachment Deletion must be'Custom' or 'Owner + Custom' for the "
+"model to be selected here."
+msgstr ""
+"L'utente può eliminare gli allegati relativi ai modelli assegnati qui. "
+"L'opzione \"Limita eliminazione allegati\" deve essere \"Personalizzata\" o "
+"\"Proprietario + personalizzata\" affinché il modello venga selezionato qui."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
+msgid "The users in the groups selected here can delete all the attachments."
+msgstr ""
+"Gli utenti nei gruppi selezionati qui possono eliminare tutti gli allegati."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
+msgid ""
+"The users in the groups selected here can delete the attachments related to "
+"this model."
+msgstr ""
+"Gli utenti nei gruppi selezionati qui possono eliminare gli allegati "
+"relativi a questo modello."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
+msgid ""
+"The users of the group can delete the attachments related to the models "
+"assigned here. Restrict Attachment Deletion must be'Custom' or 'Owner + "
+"Custom' for the model to be selected here."
+msgstr ""
+"Gli utenti del gruppo possono eliminare gli allegati relativi ai modelli "
+"assegnati qui. L'opzione \"Limita eliminazione allegati\" deve essere "
+"\"Personalizzata\" o \"Proprietario + personalizzata\" affinché il modello "
+"venga selezionato qui."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
+msgid "The users selected here can delete all the attachments"
+msgstr "Gli utenti selezionati qui possono eliminare tutti gli allegati"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
+msgid ""
+"The users selected here can delete the attachments related to this model."
+msgstr ""
+"Gli utenti selezionati qui possono eliminare gli allegati relativi a questo "
+"modello."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__default
+msgid "Use global configuration"
+msgstr "Usa configurazione globale"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_res_users
+msgid "User"
+msgstr "Utente"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utente può vedere l'insieme delle modifiche"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
+msgid ""
+"When selected, the deletion of the attachments related to this model is "
+"restricted to certain users."
+msgstr ""
+"Quando selezionata, la cancellazione degli allegati relativi a questo "
+"modello è limitata ad alcuni utenti."
+
+#. module: attachment_delete_restrict
+#. odoo-python
+#: code:addons/attachment_delete_restrict/models/ir_attachment.py:0
+#, python-format
+msgid ""
+"You are not allowed to delete this attachment.\n"
+"\n"
+"Users with the delete permission:\n"
+"%s"
+msgstr ""
+"Non si è autorizzati ad eliminare questo allegato.\n"
+"\n"
+"Utenti con permesso di cancellazione:\n"
+"%s"
