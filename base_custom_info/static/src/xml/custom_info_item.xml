@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<template>
-    <t t-name="base_custom_info.table">
-        <div class="o_group">
-            <table class="o_group o_inner_group">
-                <tbody>
+<templates xml:space="preserve">
+    <t t-name="base_custom_info.table" owl="1">
+        <table class="table table-borderless">
+            <tbody>
+                <tr t-foreach="props.list.records" t-as="item" t-key="item.id">
+                    <t t-set="fieldProps" t-value="getFieldProps(item)" />
+                    <t t-if="fieldProps">
+                        <th scope="row" class="o_td_label">
+                            <label
+                                class="o_form_label"
+                                t-att-for="fieldProps.id"
+                                t-out="item.data.name"
+                            />
+                        </th>
+                        <td class="custom_info_value">
+                            <CustomInfoField
+                                t-key="item.data.widget"
+                                t-props="fieldProps"
+                            />
+                        </td>
+                    </t>
+                </tr>
+            </tbody>
+        </table>
+    </t>
 
-                </tbody>
-            </table>
-        </div>
+    <t
+        t-name="base_custom_info.X2ManyField"
+        t-inherit="web.X2ManyField"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//KanbanRenderer" position="before">
+            <CustomInfoRenderer
+                t-elif="viewMode === 'custom_info'"
+                t-props="rendererProps"
+            />
+        </xpath>
     </t>
-    <t t-name="base_custom_info.item">
-        <tr>
-            <td class="o_td_label">
-                <label class="o_form_label" t-esc="data.data['name']" />
-            </td>
-            <td style="width: 100%" class="result_data custom_info_value" />
-        </tr>
-    </t>
-</template>
+</templates>

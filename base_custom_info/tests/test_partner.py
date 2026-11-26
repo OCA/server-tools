@@ -67,6 +67,15 @@ class PartnerCase(TransactionCase):
         with self.assertRaises(AccessError):
             agrolait.env.ref("base_custom_info.opt_food").name = "Changed!"
 
+    def test_template_search_with_restricted_model_access(self):
+        templates = self.env["custom.info.template"].with_user(self.demouser)
+        self.assertIn(
+            (self.tpl.id, self.tpl.name),
+            templates.name_search(
+                self.tpl.name, [("model", "=", "res.partner")], operator="="
+            ),
+        )
+
     def test_apply_unapply_template(self):
         """(Un)apply a template to a owner and it gets filled."""
         # Applying a template autofills the values

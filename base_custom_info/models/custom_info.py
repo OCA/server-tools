@@ -32,19 +32,6 @@ class CustomInfo(models.AbstractModel):
         string="Custom Properties",
     )
 
-    # HACK: Until https://github.com/odoo/odoo/pull/10557 is merged
-    # https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
-    def onchange(self, values, field_name, field_onchange):  # pragma: no cover
-        x2many_field = "custom_info_ids"
-        if x2many_field in field_onchange:
-            subfields = getattr(self, x2many_field)._fields.keys()
-            for subfield in subfields:
-                field_onchange.setdefault(
-                    "{}.{}".format(x2many_field, subfield),
-                    "",
-                )
-        return super().onchange(values, field_name, field_onchange)
-
     @api.onchange("custom_info_template_id")
     def _onchange_custom_info_template_id(self):
         tmpls = self.all_custom_info_templates()
@@ -109,3 +96,15 @@ class CustomInfo(models.AbstractModel):
         return self.mapped("custom_info_template_id") | self.mapped(
             "custom_info_ids.value_id.template_id"
         )
+
+    @api.model
+    def get_views(self, views, options=None):
+        result = super().get_views(views, options=options)
+        if "form" in result["views"] and "custom_info_ids" in result["models"].get(
+            self._name, {}
+        ):
+            # The 16.0 client processes the custom subview with the parent form.
+            result["models"]["custom.info.value"] = self.env[
+                "custom.info.value"
+            ].fields_get(attributes=self._get_view_field_attributes())
+        return result

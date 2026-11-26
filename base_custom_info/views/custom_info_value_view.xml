@@ -41,8 +41,8 @@
                 <field name="value_int" />
                 <field name="value_float" />
                 <field name="value_date" />
-                <field name="value" />
-                <field name="value_id" />
+                <field name="value" readonly="1" />
+                <field name="value_id" options="{'no_create': True, 'no_open': True}" />
             </custom_info>
         </field>
     </record>

@@ -56,7 +56,8 @@ class CustomInfoTemplate(models.Model):
 
     @api.model
     def _search_model(self, operator, value):
-        models = self.env["ir.model"].search([("model", operator, value)])
+        # This lookup only translates a technical model name into a template domain.
+        models = self.env["ir.model"].sudo().search([("model", operator, value)])
         return [("model_id", "in", models.ids)]
 
     @api.onchange("model")
