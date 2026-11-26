@@ -377,7 +377,10 @@ class TestAuditlogFastWriteEmptyValue(AuditLogRuleCommon):
                 }
             )
         )
-        cls.auditlog_rule.subscribe()
+
+    def setUp(self):
+        super().setUp()
+        self.auditlog_rule.subscribe()
 
     def assert_has_one_log_line_with_empty_values(self):
         logs = self.env["auditlog.log"].search(
