@@ -7,6 +7,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import Command
 from odoo.orm.identifiers import NewId
+from odoo.tools.misc import StackMap
 
 FIELDS_BLACKLIST = [
     "id",
@@ -73,28 +74,22 @@ class ThrowAwayCache:
         self._transaction = env.transaction
 
     def __enter__(self):
-        """Replace the cache data storage of the transaction.
+        """Set the contents of the transaction caches aside.
 
-        Environments share a common cache that is stored in various properties
-        of the shared transaction. The transaction object itself is also linked
-        to the cursor, so if we want to keep using the same cursor, we need to
-        patch out these properties.
+        The containers are emptied in place, never replaced: environments cache
+        them (``env._field_dirty``, ``env._protected``), so one first used within
+        this context would keep using a throwaway container afterwards.
         """
+        self._original_contents = {}
         for attribute in self.transaction_attributes:
-            instance = getattr(self._transaction, attribute)
-            setattr(
-                self,
-                f"_original_{attribute}",
-                instance,
-            )
-            # Create an empty copy of the container instance
-            replacement = copy.copy(instance)
-            replacement.clear()
-            setattr(
-                self._transaction,
-                attribute,
-                replacement,
-            )
+            container = getattr(self._transaction, attribute)
+            if isinstance(container, StackMap):
+                # StackMap has no public API to set all of its maps aside
+                self._original_contents[attribute] = container._maps
+                container._maps = []
+            else:
+                self._original_contents[attribute] = dict(container)
+                container.clear()
 
         # Store a copy of the field cache memo of each env. This is slightly more
         # elaborate because its value is different for each env.
@@ -105,10 +100,15 @@ class ThrowAwayCache:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Restore the original cache data storage of the transaction."""
+        """Restore the original contents of the cache data storage."""
         for attribute in self.transaction_attributes:
-            attr = getattr(self, f"_original_{attribute}")
-            setattr(self._transaction, attribute, attr)
+            container = getattr(self._transaction, attribute)
+            contents = self._original_contents[attribute]
+            if isinstance(container, StackMap):
+                container._maps = contents
+            else:
+                container.clear()
+                container.update(contents)
 
         # Restore the contents of the field_cache_memo of each env. Environments
         # are read-only objects, so we cannot patch back the actual stashed copies.
