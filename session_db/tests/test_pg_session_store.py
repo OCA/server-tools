@@ -1,4 +1,5 @@
 import logging
+import time
 from unittest import mock
 
 import psycopg2
@@ -34,9 +35,14 @@ class TestPGSessionStore(TransactionCase):
     def setUp(self):
         super().setUp()
         _, connection_info = connection_info_for(config["db_name"][0])
-        self.session_store = PGSessionStore(
-            _make_postgres_uri(**connection_info), session_class=http.Session
-        )
+        self.uri = _make_postgres_uri(**connection_info)
+        self.session_store = PGSessionStore(self.uri, session_class=http.Session)
+
+    def _new_user_session(self):
+        session = self.session_store.new()
+        session.update(uid=self.env.uid, create_time=time.time())
+        self.session_store.save(session)
+        return session
 
     def test_session_crud(self):
         session = self.session_store.new()
@@ -128,3 +134,67 @@ class TestPGSessionStore(TransactionCase):
     def test_delete_from_identifiers_invalid_format(self):
         with self.assertRaises(ValueError):
             self.session_store.delete_from_identifiers("xxx")
+
+    def test_logout_survives_a_stale_save(self):
+        """A session read before logout and saved after it stays deleted"""
+        session = self._new_user_session()
+        sid = session.sid
+        # e.g. the bus websocket handshake, running while the user logs out
+        stale = self.session_store.get(sid)
+        self.session_store.delete(session)
+        self.session_store.save(stale)
+        self.assertEqual(stale.sid, sid)
+        restored = self.session_store.get(sid)
+        self.assertNotEqual(restored.sid, sid)
+        self.assertIsNone(restored.get("uid"))
+        self.assertEqual(
+            self.session_store.get_missing_session_identifiers([sid[:42]]),
+            {sid[:42]},
+        )
+
+    def test_anonymous_save_on_deleted_sid_gets_a_new_sid(self):
+        session = self.session_store.new()
+        session["test"] = "test"
+        self.session_store.save(session)
+        sid = session.sid
+        self.session_store.delete(session)
+        self.session_store.save(session)
+        self.assertNotEqual(session.sid, sid)
+        self.assertEqual(self.session_store.get(session.sid)["test"], "test")
+        self.assertIsNone(self.session_store.get(sid).get("test"))
+
+    def test_soft_rotation_after_logout(self):
+        """A stale request that soft-rotates the session cannot log it back in"""
+        session = self._new_user_session()
+        sid = session.sid
+        stale = self.session_store.get(sid)
+        self.session_store.delete(session)
+        self.session_store.rotate(stale, self.env, soft=True)
+        self.assertNotEqual(stale.sid, sid)
+        self.assertNotEqual(self.session_store.get(stale.sid).sid, stale.sid)
+
+    def test_soft_rotation(self):
+        session = self._new_user_session()
+        self.session_store.rotate(session, self.env, soft=True)
+        self.assertEqual(self.session_store.get(session.sid)["uid"], self.env.uid)
+
+    def test_upgrade_table_without_deleted_column(self):
+        """A table created by an earlier version is upgraded, keeping its rows"""
+        cursor = self.session_store._cursor
+        session = self.session_store.new()
+        session["test"] = "test"
+        try:
+            cursor.execute("ALTER TABLE http_sessions DROP COLUMN deleted")
+            cursor.execute(
+                "INSERT INTO http_sessions(sid, write_date, payload) "
+                "VALUES (%s, now() at time zone 'UTC', %s)",
+                (session.sid, '{"test": "test"}'),
+            )
+        finally:
+            session_store = PGSessionStore(self.uri, session_class=http.Session)
+        sid = session.sid
+        self.assertEqual(session_store.get(sid)["test"], "test")
+        session_store.delete(session)
+        session_store.save(session)
+        self.assertNotEqual(session.sid, sid)
+        self.assertIsNone(session_store.get(sid).get("test"))
