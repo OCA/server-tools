@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  Unchanged top-level entry  -->
+    <menuitem
+        name="Audit Dashboard"
+        id="audit.menu"
+        action="dashboard_action"
+        groups="audit.group_audit_permission"
+        web_icon="audit,static/description/icon.png"
+    />
+    <!-- ===============================================================
+         TEAM MANAGEMENT
+    =============================================================== -->
+    <menuitem
+        id="audit.team_management"
+        name="Team Management"
+        parent="audit.menu"
+        sequence="10"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Teams list (create / link members), Action with access control -->
+    <menuitem
+        id="audit.menu_teams"
+        name="Teams"
+        parent="audit.team_management"
+        action="teams_menu_action"
+        sequence="5"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Inspectors, Action with access control -->
+    <menuitem
+        id="audit.menu_inspectors"
+        name="Inspectors"
+        parent="audit.team_management"
+        action="inspectors_menu_action"
+        sequence="10"
+        groups="audit.group_audit_permission"
+    />
+    <!-- ===============================================================
+         AUDIT DESIGN
+    =============================================================== -->
+    <menuitem
+        id="audit.audit_design"
+        name="Audit Design"
+        parent="audit.menu"
+        sequence="20"
+        groups="audit.group_audit_permission"
+    />
+    <menuitem
+        id="audit.menu_design"
+        name="Audits"
+        action="design_action"
+        parent="audit.audit_design"
+        sequence="10"
+        groups="audit.group_audit_permission"
+    />
+    <menuitem
+        id="audit.menu_target"
+        name="Audit Targets"
+        action="target_action"
+        parent="audit.audit_design"
+        sequence="20"
+        groups="audit.group_audit_permission"
+    />
+    <!-- ===============================================================
+         SNAPSHOT HISTORY
+    =============================================================== -->
+    <menuitem
+        id="audit.menu_configuration"
+        name="Snapshot History"
+        parent="audit.menu"
+        sequence="30"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Action with access control -->
+    <menuitem
+        id="audit.menu_configuration_snapshots"
+        name="Snapshots"
+        parent="audit.menu_configuration"
+        action="snapshots_menu_action"
+        sequence="10"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Action with access control -->
+    <menuitem
+        id="audit.menu_configuration_snapshot_sections"
+        name="Snapshot Sections"
+        parent="audit.menu_configuration"
+        action="snapshot_sections_menu_action"
+        sequence="20"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Action with access control -->
+    <menuitem
+        id="audit.menu_configuration_archive_snapshot"
+        name="Archived Snapshots"
+        parent="audit.menu_configuration"
+        action="archived_snapshots_menu_action"
+        sequence="30"
+        groups="audit.group_audit_permission"
+    />
+    <!-- Action with access control -->
+    <menuitem
+        id="audit.menu_configuration_snapshot_questions"
+        name="Snapshot Questions"
+        parent="audit.menu_configuration"
+        action="snapshot_questions_menu_action"
+        sequence="40"
+        groups="audit.group_audit_permission"
+    />
+</odoo>

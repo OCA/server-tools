@@ -94,6 +94,7 @@ repos:
         args:
           - --color
           - --fix
+          - --no-warn-ignored
         verbose: true
         types: [javascript]
         language: node
