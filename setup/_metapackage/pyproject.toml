@@ -1,10 +1,11 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "20.0.20261117.0"
+version = "20.0.20261127.0"
 dependencies = [
     "odoo-addon-auto_backup==20.0.*",
     "odoo-addon-base_cron_exclusion==20.0.*",
     "odoo-addon-base_view_inheritance_extension==20.0.*",
+    "odoo-addon-scheduler_error_mailer==20.0.*",
     "odoo-addon-upgrade_analysis==20.0.*",
 ]
 classifiers=[
