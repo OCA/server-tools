@@ -1,10 +1,6 @@
-import logging
-
 from odoo.addons.base.models import ir_module
 
 from .....odoo_patch import OdooPatch
-
-_logger = logging.getLogger(__name__)
 
 
 class IrModulePatch(OdooPatch):
