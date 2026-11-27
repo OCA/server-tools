@@ -62,7 +62,9 @@ class UpgradeComparisonConfig(models.Model):
         elif "api_key" in inspect.signature(odoorpc.ODOO.login).parameters:
             login_args.update(api_key=self.api_key)
         else:
-            UserError(self.env._("Your version of odoorpc does not support api keys"))
+            raise UserError(
+                self.env._("Your version of odoorpc does not support api keys")
+            )
         remote.login(**login_args)
         self.version = remote.version
         return remote

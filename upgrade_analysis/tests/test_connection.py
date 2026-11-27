@@ -5,6 +5,7 @@ from urllib.request import HTTPCookieProcessor, build_opener
 
 import odoorpc
 
+from odoo.exceptions import UserError
 from odoo.release import version
 from odoo.tests.common import HOST, TEST_CURSOR_COOKIE_NAME, HttpCase, tagged
 from odoo.tests.form import Form
@@ -82,6 +83,33 @@ class TestConnection(HttpCase):
         with self.allow_requests():
             config.test_connection()
         self.assertEqual(config.version, version)
+
+    def test_connection_api_key_unsupported(self):
+        """
+        Test that an api key with an odoorpc without api key support fails
+        instead of logging in with odoorpc's default credentials
+        """
+        original_login = odoorpc.ODOO.login
+
+        def login(ODOO_self, db, login="admin", password="admin"):
+            return original_login(ODOO_self, db, login=login, password=password)
+
+        self.startPatcher(mock.patch("odoorpc.ODOO.login", login))
+        with Form(self.env["upgrade.comparison.config"]) as form:
+            form.server = HOST
+            form.port = self.http_port()
+            form.database = self.env.cr.dbname
+            form.username = None
+            form.password = None
+            form.api_key = "not a valid api key"
+            config = form.save()
+
+        with (
+            self.allow_requests(),
+            mute_logger("odoo.addons.rpc.controllers.jsonrpc"),
+            self.assertRaisesRegex(UserError, "does not support api keys"),
+        ):
+            config.test_connection()
 
     def test_connection_login(self):
         """
