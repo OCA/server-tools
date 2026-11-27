@@ -279,6 +279,8 @@ class TestBaseException(TransactionCase):
         self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
 
     def test_locked_records_current_transaction(self):
+        postrollback = self.cr.postrollback._funcs
+        nb_callbacks = len(postrollback)
         with (
             patch.object(type(self.po), "_new_cursor_can_lock", return_value=False),
             patch(
@@ -290,6 +292,18 @@ class TestBaseException(TransactionCase):
             with self.assertRaises(BaseExceptionError):
                 self.po.detect_exceptions()
             mocked_env.assert_not_called()
+        self.po.invalidate_recordset()
+        self.assertFalse(self.po.exception_ids)
+        callbacks = list(postrollback)[nb_callbacks:]
+        self.assertEqual(len(callbacks), 1)
+        for callback in callbacks:
+            postrollback.remove(callback)
+        # Once rolled back, a new transaction writes them again.
+        self.registry.enter_test_mode(self.cr)
+        self.addCleanup(self.registry.leave_test_mode)
+        callbacks[0]()
+        self.po.invalidate_recordset()
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     def test_ignore_exception_of_ongoing_transaction(self):
         self.po.exception_ids = self.exception_rule

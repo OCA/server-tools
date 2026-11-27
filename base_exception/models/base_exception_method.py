@@ -112,23 +112,25 @@ class BaseExceptionMethod(models.AbstractModel):
             records_to_write = main_records.browse().union(
                 *rules_to_remove.values(), *rules_to_add.values()
             )
+            writes = [
+                (records, {"exception_ids": [Command.unlink(rule_id)]})
+                for rule_id, records in rules_to_remove.items()
+            ] + [
+                (records, {"exception_ids": [Command.link(rule_id)]})
+                for rule_id, records in rules_to_add.items()
+            ]
             if not test_mode and not self._new_cursor_can_lock(
                 new_cr, records_to_write
             ):
                 test_mode = True
+                self._write_after_rollback(writes)
             new_env = (
                 Environment(new_cr, self.env.uid, self.env.context)
                 if not test_mode
                 else self.env
             )
-            for rule_id, records in rules_to_remove.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.unlink(rule_id)]}
-                )
-            for rule_id, records in rules_to_add.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.link(rule_id)]}
-                )
+            for records, vals in writes:
+                records.with_env(new_env).write(vals)
             # In case we have new exception, or exceptions that were not ignored yet, or
             #  blocking exceptions, we need to raise an exception to rollback the
             #  ongoing transaction.
@@ -178,6 +180,32 @@ class BaseExceptionMethod(models.AbstractModel):
             )
         )
         return new_cr.rowcount == len(records)
+
+    @api.model
+    def _write_after_rollback(self, writes):
+        """Write again each ``(records, vals)`` of ``writes`` in a new
+        transaction if the ongoing one is rolled back, as it is when the
+        exception is raised to the user, so the exception popup still finds
+        them once the locks of the ongoing transaction are released.
+        """
+        registry = self.env.registry
+        uid, context = self.env.uid, dict(self.env.context)
+        writes = [(records._name, records.ids, vals) for records, vals in writes]
+
+        @self.env.cr.postrollback.add
+        def write_after_rollback():
+            # An error here would break closing the rolled back cursor.
+            try:
+                with registry.cursor() as cr:
+                    env = Environment(cr, uid, context)
+                    for model, ids, vals in writes:
+                        # Records created by the rolled back transaction are gone.
+                        env[model].browse(ids).exists().write(vals)
+            except Exception:
+                _logger.warning(
+                    "Exceptions could not be written after a rollback",
+                    exc_info=True,
+                )
 
     def _must_rollback_on_exception(self):
         """Establish if transaction must be rolled back in case of exception.
