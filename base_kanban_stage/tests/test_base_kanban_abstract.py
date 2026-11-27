@@ -2,9 +2,7 @@
 # Copyright 2019 ForgeFlow.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from collections import deque
-
-from odoo import api, models
+from odoo import models
 from odoo.tests.common import TransactionCase
 
 
@@ -15,39 +13,34 @@ class BaseKanbanAbstractTester(models.Model):
 
 
 class TestBaseKanbanAbstract(TransactionCase):
-    def _init_test_model(self, model_cls):
-        model_cls._build_model(self.registry, self.cr)
-        model = self.env[model_cls._name]
-        # setup_models():
-        model._prepare_setup()
-        model._setup_base()
-        model._setup_fields()
-        model._setup_complete()
-        # init_models():
-        self.registry._post_init_queue = deque()
-        self.registry._foreign_keys = {}
-        model._auto_init()
-        model.init()
-        self.env["ir.model"]._reflect_models([model._name])
-        self.env["ir.model.fields"]._reflect_fields([model._name])
-        self.env["ir.model.fields.selection"]._reflect_selections([model._name])
-        self.env["ir.model.constraint"]._reflect_constraints([model._name])
-        while self.registry._post_init_queue:
-            func = self.registry._post_init_queue.popleft()
-            func()
-        del self.registry._post_init_queue
-        del self.registry._foreign_keys
+    @classmethod
+    def _init_test_model(cls, model_cls):
+        registry = cls.registry
+        model_cls._build_model(registry, cls.cr)
+        registry.setup_models(cls.cr)
+        registry.init_models(cls.cr, [model_cls._name], {}, install=False)
+        model = cls.env[model_cls._name]
+        cls.attrs_before[model._name] = set(vars(type(model)))
+        cls.addClassCleanup(cls._remove_test_model, model_cls)
         return model
+
+    @classmethod
+    def _remove_test_model(cls, model_cls):
+        registry = cls.registry
+        for parent in ("base", "base.kanban.abstract"):
+            registry[parent]._inherit_children.discard(model_cls._name)
+        registry.models.pop(model_cls._name, None)
+        module_models = models.MetaModel.module_to_models["base_kanban_stage"]
+        if model_cls in module_models:
+            module_models.remove(model_cls)
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.test_model = cls._init_test_model(BaseKanbanAbstractTester)
 
     def setUp(self):
         super().setUp()
-
-        self.registry.enter_test_mode(self.cr)
-        self.old_cursor = self.cr
-        self.cr = self.registry.cursor()
-        self.env = api.Environment(self.cr, self.uid, {})
-        self.test_model = self._init_test_model(BaseKanbanAbstractTester)
-
         test_model_record = self.env["ir.model"].search(
             [
                 ("model", "=", self.test_model._name),
@@ -70,15 +63,6 @@ class TestBaseKanbanAbstract(TransactionCase):
             }
         )
 
-    def tearDown(self):
-        self.registry.leave_test_mode()
-        self.registry[self.test_model._name]._abstract = True
-        self.registry[self.test_model._name]._auto = False
-        self.cr = self.old_cursor
-        self.env = api.Environment(self.cr, self.uid, {})
-
-        super().tearDown()
-
     def test_default_stage_id_no_stages(self):
         """It should return empty recordset when model has no stages"""
         self.env["base.kanban.stage"].search(
@@ -99,12 +83,11 @@ class TestBaseKanbanAbstract(TransactionCase):
     def test_read_group_stage_ids(self):
         """It should return all corresponding stages in requested sort order"""
         result = self.test_model._read_group_stage_ids(
-            self.env["base.kanban.stage"], None, "id"
+            self.env["base.kanban.stage"], None
         )
 
         expected = self.env["base.kanban.stage"].search(
             [("res_model_id.model", "=", self.test_model._name)],
-            order="id",
         )
         self.assertEqual(result[0], expected[0])
         self.assertEqual(result[1], expected[1])

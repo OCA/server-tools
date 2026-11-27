@@ -11,7 +11,7 @@
             <field name="transient" position="after">
                 <field
                     name="is_kanban"
-                    attrs="{'readonly': [('state','!=', 'manual')]}"
+                    readonly="state != 'manual'"
                     groups="base.group_no_one"
                 />
             </field>
