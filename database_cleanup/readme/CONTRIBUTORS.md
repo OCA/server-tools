@@ -1,0 +1,6 @@
+- Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- Holger Brunn \<<hbrunn@therp.nl>\>
+- Stéphane Mangin \<<stephane.mangin@camptocamp.com>\>
+- [360ERP](https://www.360erp.com):
+  - Andrea Stirpe
+- Juliano Henriquez \<<juliano@consultoriahenca.com>\> (Grupo de Consultoria Henca)
