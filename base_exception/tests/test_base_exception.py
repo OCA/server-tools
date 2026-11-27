@@ -271,6 +271,13 @@ class TestBaseException(TransactionCase):
         self.addCleanup(new_cr.close)
         self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
 
+    def test_new_cursor_can_lock_uncommitted_record(self):
+        # Created by the ongoing transaction: the second cursor cannot see it.
+        partner = self.env["res.partner"].create({"name": "Uncommitted"})
+        new_cr = db_connect(self.cr.dbname).cursor()
+        self.addCleanup(new_cr.close)
+        self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
+
     def test_locked_records_current_transaction(self):
         with (
             patch.object(type(self.po), "_new_cursor_can_lock", return_value=False),

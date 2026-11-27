@@ -8,8 +8,6 @@ import json
 import logging
 from collections import defaultdict
 
-from psycopg2.errors import LockNotAvailable
-
 from odoo import Command, _, api, models
 from odoo.api import Environment
 from odoo.exceptions import UserError
@@ -166,27 +164,25 @@ class BaseExceptionMethod(models.AbstractModel):
     def _new_cursor_can_lock(self, new_cr, records):
         """Return whether ``new_cr`` can lock the rows of ``records`` now.
 
-        When the ongoing transaction already wrote on them, the second cursor
-        would wait forever on its row lock: the exceptions must then be
-        written in the ongoing transaction.
+        The second cursor would wait forever on the rows the ongoing
+        transaction already wrote, and cannot see the ones it created: the
+        exceptions must then be written in the ongoing transaction. This
+        cannot tell those locks from the ones of a concurrent transaction (a
+        cron, another user), so rows locked by it are handled the same way
+        instead of waiting for it.
         """
         if not records:
             return True
         # Pending writes only lock the rows once they reach the database.
         records.flush_recordset()
-        try:
-            with new_cr.savepoint(flush=False):
-                new_cr.execute(
-                    SQL(
-                        "SELECT 1 FROM %s WHERE id IN %s FOR NO KEY UPDATE NOWAIT",
-                        SQL.identifier(records._table),
-                        tuple(records.ids),
-                    ),
-                    log_exceptions=False,
-                )
-        except LockNotAvailable:
-            return False
-        return True
+        new_cr.execute(
+            SQL(
+                "SELECT 1 FROM %s WHERE id IN %s FOR NO KEY UPDATE SKIP LOCKED",
+                SQL.identifier(records._table),
+                tuple(records.ids),
+            )
+        )
+        return new_cr.rowcount == len(records)
 
     def _must_rollback_on_exception(self):
         """Establish if transaction must be rolled back in case of exception.
