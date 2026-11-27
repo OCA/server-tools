@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tracking_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-06-16 17:40+0000\n"
+"Last-Translator: xtanuiha <feihu.zhang@live.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Change :</b>"
+msgstr "<b>更改：</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Delete :</b>"
+msgstr "<b>删除：</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>New :</b>"
+msgstr "<b>新建：</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Active"
+msgstr "激活"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__active_custom_tracking
+msgid "Active Custom Tracking"
+msgstr "激活自定义跟踪"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking
+msgid "Automatic Custom Tracking"
+msgstr "自动自定义跟踪"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Automatic configuration"
+msgstr "自动配置"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_base
+msgid "Base"
+msgstr "基础"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "Changed"
+msgstr "已更改"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Custom Tracking"
+msgstr "自定义跟踪"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+msgid "Custom Tracking OFF"
+msgstr "自定义跟踪关闭"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+msgid "Custom Tracking ON"
+msgstr "自定义跟踪开启"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
+msgid "Domain"
+msgstr "域"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_mail_thread
+msgid "Email Thread"
+msgstr "邮件线索"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model_fields
+msgid "Fields"
+msgstr "字段"
+
+#. module: tracking_manager
+#: model:ir.model.fields,help:tracking_manager.field_ir_model__automatic_custom_tracking
+msgid ""
+"If marked, the fields matching the matched by the domain below will be "
+"automatically tracked for this model."
+msgstr "如果标记，与下面域匹配的字段将自动跟踪此模型。"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_mail_tracking_value
+msgid "Mail Tracking Value"
+msgstr "邮件跟踪值"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model
+msgid "Models"
+msgstr "模型"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__native_tracking
+msgid "Native Tracking"
+msgstr "本地跟踪"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__trackable
+msgid "Trackable"
+msgstr "可跟踪"
+
+#. module: tracking_manager
+#: model:ir.actions.act_window,name:tracking_manager.ir_model_fields_action
+msgid "Trackable Fields"
+msgstr "可跟踪字段"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__tracked_field_count
+msgid "Tracked Field Count"
+msgstr "跟踪字段数量"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Tracked Fields"
+msgstr "已跟踪字段"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Update"
+msgstr "更新"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Update fields configuration"
+msgstr "更新字段配置"
