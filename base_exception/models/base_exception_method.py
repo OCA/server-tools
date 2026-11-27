@@ -12,7 +12,7 @@ from odoo import Command, _, api, models
 from odoo.api import Environment
 from odoo.exceptions import UserError
 from odoo.osv import expression
-from odoo.tools import config
+from odoo.tools import SQL, config
 from odoo.tools.safe_eval import safe_eval
 
 from ..exceptions import BaseExceptionError
@@ -109,19 +109,28 @@ class BaseExceptionMethod(models.AbstractModel):
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
+            records_to_write = main_records.browse().union(
+                *rules_to_remove.values(), *rules_to_add.values()
+            )
+            writes = [
+                (records, {"exception_ids": [Command.unlink(rule_id)]})
+                for rule_id, records in rules_to_remove.items()
+            ] + [
+                (records, {"exception_ids": [Command.link(rule_id)]})
+                for rule_id, records in rules_to_add.items()
+            ]
+            if not test_mode and not self._new_cursor_can_lock(
+                new_cr, records_to_write
+            ):
+                test_mode = True
+                self._write_after_rollback(writes)
             new_env = (
                 Environment(new_cr, self.env.uid, self.env.context)
                 if not test_mode
                 else self.env
             )
-            for rule_id, records in rules_to_remove.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.unlink(rule_id)]}
-                )
-            for rule_id, records in rules_to_add.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.link(rule_id)]}
-                )
+            for records, vals in writes:
+                records.with_env(new_env).write(vals)
             # In case we have new exception, or exceptions that were not ignored yet, or
             #  blocking exceptions, we need to raise an exception to rollback the
             #  ongoing transaction.
@@ -135,6 +144,8 @@ class BaseExceptionMethod(models.AbstractModel):
             # main_records itself was already resolved above through the
             # current cursor, so only rebinding it to new_env is needed here.
             main_records_new_env = main_records.with_env(new_env)
+            if not test_mode:
+                main_records._sync_new_env_values(main_records_new_env)
             if (
                 rules_to_add
                 or main_records_new_env._must_raise_exception_after_detection()
@@ -145,6 +156,56 @@ class BaseExceptionMethod(models.AbstractModel):
                 json.dumps(self._detect_exception_get_exc_class_values())
             )
         return all_exception_ids
+
+    @api.model
+    def _new_cursor_can_lock(self, new_cr, records):
+        """Return whether ``new_cr`` can lock the rows of ``records`` now.
+
+        The second cursor would wait forever on the rows the ongoing
+        transaction already wrote, and cannot see the ones it created: the
+        exceptions must then be written in the ongoing transaction. This
+        cannot tell those locks from the ones of a concurrent transaction (a
+        cron, another user), so rows locked by it are handled the same way
+        instead of waiting for it.
+        """
+        if not records:
+            return True
+        # Pending writes only lock the rows once they reach the database.
+        records.flush_recordset()
+        new_cr.execute(
+            SQL(
+                "SELECT 1 FROM %s WHERE id IN %s FOR NO KEY UPDATE SKIP LOCKED",
+                SQL.identifier(records._table),
+                tuple(records.ids),
+            )
+        )
+        return new_cr.rowcount == len(records)
+
+    @api.model
+    def _write_after_rollback(self, writes):
+        """Write again each ``(records, vals)`` of ``writes`` in a new
+        transaction if the ongoing one is rolled back, as it is when the
+        exception is raised to the user, so the exception popup still finds
+        them once the locks of the ongoing transaction are released.
+        """
+        registry = self.env.registry
+        uid, context = self.env.uid, dict(self.env.context)
+        writes = [(records._name, records.ids, vals) for records, vals in writes]
+
+        @self.env.cr.postrollback.add
+        def write_after_rollback():
+            # An error here would break closing the rolled back cursor.
+            try:
+                with registry.cursor() as cr:
+                    env = Environment(cr, uid, context)
+                    for model, ids, vals in writes:
+                        # Records created by the rolled back transaction are gone.
+                        env[model].browse(ids).exists().write(vals)
+            except Exception:
+                _logger.warning(
+                    "Exceptions could not be written after a rollback",
+                    exc_info=True,
+                )
 
     def _must_rollback_on_exception(self):
         """Establish if transaction must be rolled back in case of exception.
@@ -164,6 +225,16 @@ class BaseExceptionMethod(models.AbstractModel):
             "src_model": self._name,
             "target_model": self._name,
         }
+
+    def _sync_new_env_values(self, records_new_env):
+        """Copy to ``records_new_env``, ``self`` read through the second
+        cursor, the values written by the ongoing transaction that
+        ``_must_raise_exception_after_detection()`` reads, as the second cursor
+        cannot see them, like the ``ignore_exception`` set by the exception
+        wizard. Extend it when an override reads other fields.
+        """
+        for record, current in zip(records_new_env, self, strict=True):
+            record._cache["ignore_exception"] = current.ignore_exception
 
     def _must_raise_exception_after_detection(self):
         main_records = self._get_main_records()

@@ -9,6 +9,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo import SUPERUSER_ID
 from odoo.api import Environment
 from odoo.exceptions import UserError, ValidationError
+from odoo.sql_db import db_connect
 from odoo.tests import TransactionCase
 
 from ..exceptions import BaseExceptionError
@@ -233,3 +234,88 @@ class TestBaseException(TransactionCase):
         )
         with self.assertRaises(BaseExceptionError):
             po.detect_exceptions()
+
+    def test_check_exception_current_transaction(self):
+        with patch(
+            "odoo.addons.base_exception.models.base_exception_method.Environment"
+        ) as mocked_env:
+            # The constraint rejects the change: no BaseExceptionError and no
+            # second cursor.
+            with self.assertRaises(ValidationError):
+                self.po.button_confirm()
+            mocked_env.assert_not_called()
+        self.po.with_context(raise_exception=False).button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+
+    def test_new_cursor_can_lock(self):
+        partner = self.env.ref("base.main_partner")
+        self.assertTrue(self.po._new_cursor_can_lock(self.cr, partner.browse()))
+        # Lock the row as a write of the ongoing transaction would.
+        self.cr.execute(
+            "SELECT 1 FROM res_partner WHERE id = %s FOR NO KEY UPDATE",
+            [partner.id],
+        )
+        # A separate connection, as the second cursor in production.
+        new_cr = db_connect(self.cr.dbname).cursor()
+        self.addCleanup(new_cr.close)
+        self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
+        other = self.env.ref("base.partner_root")
+        self.assertTrue(self.po._new_cursor_can_lock(new_cr, other))
+
+    def test_new_cursor_can_lock_pending_write(self):
+        partner = self.env.ref("base.main_partner")
+        # Not flushed yet: only the cache of the ongoing transaction has it.
+        partner.comment = "Pending"
+        new_cr = db_connect(self.cr.dbname).cursor()
+        self.addCleanup(new_cr.close)
+        self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
+
+    def test_new_cursor_can_lock_uncommitted_record(self):
+        # Created by the ongoing transaction: the second cursor cannot see it.
+        partner = self.env["res.partner"].create({"name": "Uncommitted"})
+        new_cr = db_connect(self.cr.dbname).cursor()
+        self.addCleanup(new_cr.close)
+        self.assertFalse(self.po._new_cursor_can_lock(new_cr, partner))
+
+    def test_locked_records_current_transaction(self):
+        postrollback = self.cr.postrollback._funcs
+        nb_callbacks = len(postrollback)
+        with (
+            patch.object(type(self.po), "_new_cursor_can_lock", return_value=False),
+            patch(
+                "odoo.addons.base_exception.models.base_exception_method.Environment"
+            ) as mocked_env,
+        ):
+            # The exceptions are written in the ongoing transaction, which is
+            # still rolled back.
+            with self.assertRaises(BaseExceptionError):
+                self.po.detect_exceptions()
+            mocked_env.assert_not_called()
+        self.po.invalidate_recordset()
+        self.assertFalse(self.po.exception_ids)
+        callbacks = list(postrollback)[nb_callbacks:]
+        self.assertEqual(len(callbacks), 1)
+        for callback in callbacks:
+            postrollback.remove(callback)
+        # Once rolled back, a new transaction writes them again.
+        self.registry.enter_test_mode(self.cr)
+        self.addCleanup(self.registry.leave_test_mode)
+        callbacks[0]()
+        self.po.invalidate_recordset()
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+
+    def test_ignore_exception_of_ongoing_transaction(self):
+        self.po.exception_ids = self.exception_rule
+        self.env.flush_all()
+        # Not flushed yet: the second cursor reads False from the database.
+        self.po.ignore_exception = True
+        self.registry.enter_test_mode(self.cr)
+        self.addCleanup(self.registry.leave_test_mode)
+        with (
+            self.registry.cursor() as new_cr,
+            patch.object(type(self.po), "_get_exceptions", return_value=([], {}, {})),
+        ):
+            new_env = Environment(new_cr, SUPERUSER_ID, {})
+            with mock_base_exception_method_env(self, env=new_env):
+                self.assertEqual(self.po.detect_exceptions(), [])
