@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo import SUPERUSER_ID
+from odoo import SUPERUSER_ID, Command
 from odoo.api import Environment
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import TransactionCase
@@ -67,6 +67,30 @@ class TestBaseException(TransactionCase):
         self.partner.write({"zip": "00000"})
         self.exception_rule.active = False
         self.po.button_confirm()
+        self.assertFalse(self.po.exception_ids)
+
+    def test_detect_exceptions_keeps_sudo(self):
+        # no rule matches, so the main records are read through the new env
+        self.partner.write({"zip": "00000"})
+        user = self.env["res.users"].create(
+            {
+                "name": "No access to the test model",
+                "login": "base_exception_no_access",
+                "groups_id": [Command.set([self.env.ref("base.group_user").id])],
+            }
+        )
+
+        def same_cursor_env(cr, uid, context, su=False):
+            env = Environment(self.env.cr, uid, context, su=su)
+            # a new cursor starts with an empty cache, so reads check access
+            env.invalidate_all()
+            return env
+
+        with patch(
+            "odoo.addons.base_exception.models.base_exception_method.Environment",
+            side_effect=same_cursor_env,
+        ):
+            self.po.with_user(user).sudo().detect_exceptions()
         self.assertFalse(self.po.exception_ids)
 
     def test_exception_rule_confirm(self):
