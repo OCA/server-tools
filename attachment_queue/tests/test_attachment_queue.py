@@ -10,6 +10,7 @@ from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.queue_job.exception import RetryableJobError
+from odoo.addons.queue_job.job import Job
 from odoo.addons.queue_job.tests.common import trap_jobs
 
 DUMMY_AQ_VALS = {
@@ -132,6 +133,31 @@ class TestAttachmentBaseQueue(BaseCommon):
                 [("subject", "ilike", "dummy_aq.doc")]
             )
             self.assertEqual(failure_email.email_to, "test@test.com")
+
+    @mute_logger("odoo.addons.attachment_queue.models.attachment_queue")
+    def test_failed_job_sets_attachment_failure(self):
+        """The failure of the job is stored on the attachment, with the error
+
+        A retryable error does not flag the attachment as failed, so the failure
+        (and its description) must be stored when the job is definitively failed.
+        """
+        attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
+        job = attachment.with_delay().run_as_job()
+        job_record = Job.load(self.env, job.uuid)
+        job_record.set_failed(
+            exc_name="FailedJobError",
+            exc_message="Max. retries (5) reached: Connection not open",
+        )
+        job_record.store()
+        self.assertEqual(attachment.state, "failed")
+        self.assertEqual(
+            attachment.state_message,
+            "Max. retries (5) reached: Connection not open",
+        )
+        failure_email = self.env["mail.mail"].search(
+            [("email_to", "=", "test@test.com")]
+        )
+        self.assertEqual(len(failure_email), 1)
 
     def test_set_done(self):
         """Test set_done manually"""
