@@ -42,6 +42,23 @@ class ExtractorCase(TransactionCase):
             "I'm a title I'm a paragraph ¡Pues",
         )
 
+    def test_adjacent_blocks(self):
+        """Words of adjacent block elements are not glued together."""
+        self.assertEqual(
+            self.text_from_html("<h1>Title</h1><p>First</p><p>Second</p>"),
+            "Title First Second",
+        )
+        self.assertEqual(self.text_from_html("<p>One<br>Two</p>"), "One Two")
+        self.assertEqual(self.text_from_html("<ul><li>a</li><li>b</li></ul>"), "a b")
+        self.assertEqual(
+            self.text_from_html("<div>Outer<p>Inner</p>Tail</div>"),
+            "Outer Inner Tail",
+        )
+        # Inline elements do not split a word
+        self.assertEqual(
+            self.text_from_html("<p>un<b>believ</b>able</p>"), "unbelievable"
+        )
+
     @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_empty_html(self):
         """Empty HTML handled correctly."""

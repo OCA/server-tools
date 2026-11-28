@@ -5,10 +5,13 @@
 import logging
 
 from lxml import etree, html
+from lxml.html import defs
 
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
+
+BLOCK_TAGS = defs.block_tags | {"br"}
 
 
 class IrFieldsConverter(models.AbstractModel):
@@ -50,6 +53,11 @@ class IrFieldsConverter(models.AbstractModel):
             else:
                 _logger.exception("Failure parsing this HTML:\n%s", html_content)
                 return ""
+
+        # Keep the text of block elements apart, e.g. "<p>a</p><p>b</p>"
+        for element in doc.iter(*BLOCK_TAGS):
+            element.text = f" {element.text or ''}"
+            element.tail = f" {element.tail or ''}"
 
         # Get words
         words = "".join(doc.xpath("//text()")).split()
