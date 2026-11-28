@@ -61,9 +61,9 @@ excel_import_export_demo/report_sale_order)
 2.  Create report's wizard for search criteria. The view inherits
     `excel_import_export.xlsx_report_view` and mode="primary". In this
     view, you only need to add criteria fields, the rest will reuse from
-    interited view -- \<report.xml\>
+    inherited view -- \<report.xml\>
 3.  Create report model as models.Transient, then define search criteria
-    fields, and get reporing data into `results` field -- \<report\>.py
+    fields, and get reporting data into `results` field -- \<report\>.py
 4.  Create/Design Excel Template File (.xlsx), in the template, name the
     underlining tab used for report results -- \<report_file\>.xlsx
 5.  Create instruction dictionary for report in xlsx.template model --
