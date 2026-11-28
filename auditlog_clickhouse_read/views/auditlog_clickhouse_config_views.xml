@@ -1,0 +1,33 @@
+<odoo>
+    <record id="view_auditlog_clickhouse_config_form_read" model="ir.ui.view">
+        <field name="name">auditlog.clickhouse.config.form.read</field>
+        <field name="model">auditlog.clickhouse.config</field>
+        <field
+            name="inherit_id"
+            ref="auditlog_clickhouse_write.view_auditlog_clickhouse_config_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button
+                    name="action_enable_fdw_read"
+                    type="object"
+                    string="Enable FDW read"
+                    class="btn-secondary"
+                    invisible="not is_active or fdw_enabled"
+                />
+                <button
+                    name="action_disable_fdw_read"
+                    type="object"
+                    string="Disable FDW read"
+                    class="btn-secondary"
+                    invisible="not is_active or not fdw_enabled"
+                    confirm="This will restore PostgreSQL auditlog tables and disable FDW read mode. Continue?"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='is_active']" position="after">
+                <field name="fdw_enabled" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
