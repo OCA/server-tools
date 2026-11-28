@@ -44,7 +44,7 @@ class CleanupPurgeLineField(models.TransientModel):
         if self:
             objs = self
         else:
-            objs = self.env["cleanup.purge.line.action"].browse(
+            objs = self.env["cleanup.purge.line.field"].browse(
                 self._context.get("active_ids")
             )
         to_unlink = objs.filtered(lambda x: not x.purged and x.field_id)

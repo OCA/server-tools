@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purge_data_batch_view_form" model="ir.ui.view">
+        <field name="model">cleanup.purge.wizard.data.batch</field>
+        <field name="arch" type="xml">
+            <form string="Purge data entries in batches">
+                <header>
+                    <button
+                        type="object"
+                        name="action_purge_batch"
+                        string="Purge next batch"
+                        class="oe_highlight"
+                        invisible="not remaining_count"
+                    />
+                    <button
+                        type="object"
+                        name="action_purge_all"
+                        string="Purge all (in batches)"
+                        confirm="All orphaned data entries will be purged in batches. This cannot be undone. Continue?"
+                        invisible="not remaining_count"
+                    />
+                </header>
+                <div invisible="orphan_count">Nothing found to clean up.</div>
+                <group invisible="not orphan_count">
+                    <group>
+                        <field name="batch_size" />
+                        <field name="progress" widget="progressbar" />
+                    </group>
+                    <group>
+                        <field name="orphan_count" />
+                        <field name="purged_count" />
+                        <field name="remaining_count" />
+                    </group>
+                </group>
+                <field name="line_ids" invisible="not orphan_count">
+                    <list create="false" delete="false" edit="false">
+                        <field name="sequence" column_invisible="1" />
+                        <field name="model" />
+                        <field name="table_name" optional="hide" />
+                        <field name="missing_model" optional="hide" />
+                        <field name="orphan_count" />
+                        <field name="purged_count" />
+                        <field name="remaining_count" />
+                        <field name="last_id" optional="hide" />
+                        <field name="done" optional="hide" />
+                    </list>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purge_data_batch" model="ir.actions.server">
+        <field name="name">Purge data entries in batches</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_wizard_data_batch"
+        />
+        <field name="code">
+            action = env.get('cleanup.purge.wizard.data.batch').get_wizard_action()
+        </field>
+    </record>
+</odoo>

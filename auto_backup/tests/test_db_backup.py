@@ -6,15 +6,18 @@
 
 import logging
 import os
+import stat
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from unittest.mock import PropertyMock, patch
+from unittest.mock import MagicMock, PropertyMock, call, patch
 
-import pysftp
+import paramiko
 
 from odoo import tools
 from odoo.exceptions import UserError
 from odoo.tests import common
+
+from odoo.addons.auto_backup.models.db_backup import SFTP_TIMEOUT
 
 _logger = logging.getLogger(__name__)
 
@@ -23,9 +26,8 @@ model = "odoo.addons.auto_backup.models.db_backup"
 class_name = f"{model}.DbBackup"
 
 
-class TestConnectionException(pysftp.ConnectionException):
-    def __init__(self):
-        super().__init__("test", "test")
+class TestConnectionException(paramiko.SSHException):
+    pass
 
 
 class TestDbBackup(common.TransactionCase):
@@ -101,15 +103,14 @@ class TestDbBackup(common.TransactionCase):
                 rec_id.action_sftp_test_connection()
         _.assert_called_once_with("Connection Test Succeeded!")
 
-    @patch(f"{model}._")
-    def _test_action_sftp_test_connection_fail(self, _):
+    def test_action_sftp_test_connection_fail(self):
         """It should raise connection fail warning"""
-        with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock) as conn:
-            rec_id = self.new_record()
-            conn().side_effect = TestConnectionException
-            with self.assertRaises(UserError):
+        rec_id = self.new_record()
+        with patch(
+            f"{class_name}.sftp_connection", side_effect=TestConnectionException
+        ):
+            with self.assertRaisesRegex(UserError, "Connection Test Failed!"):
                 rec_id.action_sftp_test_connection()
-            _.assert_called_once_with("Connection Test Failed!")
 
     def test_action_backup_local(self):
         """It should backup local database"""
@@ -135,27 +136,16 @@ class TestDbBackup(common.TransactionCase):
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
 
-    def _test_action_backup_sftp_mkdirs(self):
-        """It should create remote dirs"""
+    def test_action_backup_sftp_makedirs(self):
+        """It should create the remote folder before copying the backup"""
         rec_id = self.new_record()
         with self.mock_assets():
             with self.patch_filtered_sftp(rec_id):
                 with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
-                    conn = rec_id.sftp_connection().__enter__()
-                    rec_id.action_backup()
-                    conn.makedirs.assert_called_once_with(rec_id.folder)
-
-    def _test_action_backup_sftp_mkdirs_conn_exception(self):
-        """It should guard from ConnectionException on remote.mkdirs"""
-        rec_id = self.new_record()
-        with self.mock_assets():
-            with self.patch_filtered_sftp(rec_id):
-                with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
-                    conn = rec_id.sftp_connection().__enter__()
-                    conn.makedirs.side_effect = TestConnectionException
-                    rec_id.action_backup()
-                    # No error was raised, test pass
-                    self.assertTrue(True)
+                    with patch(f"{class_name}._sftp_makedirs") as makedirs:
+                        conn = rec_id.sftp_connection().__enter__()
+                        rec_id.action_backup()
+        makedirs.assert_called_once_with(conn, rec_id.folder)
 
     def test_action_backup_sftp_remote_open(self):
         """It should open remote file w/ proper args"""
@@ -164,6 +154,7 @@ class TestDbBackup(common.TransactionCase):
             with self.patch_filtered_sftp(rec_id):
                 with patch(f"{class_name}.cleanup", new_callable=PropertyMock):
                     conn = rec_id.sftp_connection().__enter__()
+                    conn.stat.return_value = MagicMock(st_mode=stat.S_IFDIR)
                     rec_id.action_backup()
                     conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
 
@@ -181,41 +172,78 @@ class TestDbBackup(common.TransactionCase):
             res = rec_id.action_backup_all()
             self.assertEqual(rec_id.search().action_backup(), res)
 
-    @patch(f"{model}.pysftp")
-    def test_sftp_connection_init_passwd(self, pysftp):
+    @patch(f"{model}.paramiko.SSHClient")
+    def test_sftp_connection_init_passwd(self, ssh_client):
         """It should initiate SFTP connection w/ proper args and pass"""
         rec_id = self.new_record()
-        rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
-            host=rec_id.sftp_host,
+        with rec_id.sftp_connection():
+            pass
+        ssh_client().connect.assert_called_once_with(
+            hostname=rec_id.sftp_host,
             username=rec_id.sftp_user,
             port=rec_id.sftp_port,
+            allow_agent=False,
+            look_for_keys=False,
+            timeout=SFTP_TIMEOUT,
             password=rec_id.sftp_password,
         )
 
-    @patch(f"{model}.pysftp")
-    def test_sftp_connection_init_key(self, pysftp):
+    @patch(f"{model}.paramiko.SSHClient")
+    def test_sftp_connection_init_key(self, ssh_client):
         """It should initiate SFTP connection w/ proper args and key"""
         rec_id = self.new_record()
         rec_id.write({"sftp_private_key": "pkey", "sftp_password": "pkeypass"})
-        rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
-            host=rec_id.sftp_host,
+        with rec_id.sftp_connection():
+            pass
+        ssh_client().connect.assert_called_once_with(
+            hostname=rec_id.sftp_host,
             username=rec_id.sftp_user,
             port=rec_id.sftp_port,
-            private_key=rec_id.sftp_private_key,
-            private_key_pass=rec_id.sftp_password,
+            allow_agent=False,
+            look_for_keys=False,
+            timeout=SFTP_TIMEOUT,
+            key_filename=rec_id.sftp_private_key,
+            password=rec_id.sftp_password,
         )
 
-    @patch(f"{model}.pysftp")
-    def test_sftp_connection_return(self, pysftp):
-        """It should return new sftp connection"""
+    @patch(f"{model}.paramiko.SSHClient")
+    def test_sftp_connection_checks_host_keys(self, ssh_client):
+        """It should reject hosts that are not in the known hosts files"""
         rec_id = self.new_record()
-        res = rec_id.sftp_connection()
+        with rec_id.sftp_connection():
+            pass
+        ssh_client().load_system_host_keys.assert_called_once_with()
+
+    @patch(f"{model}.paramiko.SSHClient")
+    def test_sftp_connection_closes_clients(self, ssh_client):
+        """It should close both SFTP and SSH clients."""
+        rec_id = self.new_record()
+        with rec_id.sftp_connection() as connection:
+            self.assertEqual(ssh_client().open_sftp(), connection)
+        ssh_client().open_sftp().close.assert_called_once_with()
+        ssh_client().close.assert_called_once_with()
+
+    def test_sftp_makedirs(self):
+        """It should create missing remote directories from top to bottom."""
+        sftp = MagicMock()
+        sftp.stat.side_effect = [
+            FileNotFoundError,
+            FileNotFoundError,
+            MagicMock(st_mode=stat.S_IFDIR),
+        ]
+        self.Model._sftp_makedirs(sftp, "/parent/child/grandchild")
         self.assertEqual(
-            pysftp.Connection(),
-            res,
+            [call("/parent/child"), call("/parent/child/grandchild")],
+            sftp.mkdir.call_args_list,
         )
+
+    def test_sftp_makedirs_not_a_directory(self):
+        """It should not treat a file where a folder is expected as a folder."""
+        sftp = MagicMock()
+        sftp.stat.return_value = MagicMock(st_mode=stat.S_IFREG)
+        with self.assertRaises(NotADirectoryError):
+            self.Model._sftp_makedirs(sftp, "/parent/file/child")
+        sftp.mkdir.assert_not_called()
 
     def test_filename_default(self):
         """It should not error and should return a .dump.zip file str"""
