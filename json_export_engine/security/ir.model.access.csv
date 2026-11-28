@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_json_export_schema_manager,json.export.schema manager,model_json_export_schema,group_manager,1,1,1,1
+access_json_export_schema_user,json.export.schema user,model_json_export_schema,group_user,1,0,0,0
+access_json_export_endpoint_manager,json.export.endpoint manager,model_json_export_endpoint,group_manager,1,1,1,1
+access_json_export_endpoint_user,json.export.endpoint user,model_json_export_endpoint,group_user,1,0,0,0
+access_json_export_webhook_manager,json.export.webhook manager,model_json_export_webhook,group_manager,1,1,1,1
+access_json_export_webhook_header_manager,json.export.webhook.header manager,model_json_export_webhook_header,group_manager,1,1,1,1
+access_json_export_schedule_manager,json.export.schedule manager,model_json_export_schedule,group_manager,1,1,1,1
+access_json_export_log_manager,json.export.log manager,model_json_export_log,group_manager,1,1,1,1
+access_json_export_log_user,json.export.log user,model_json_export_log,group_user,1,0,0,0
+access_json_export_autovacuum_manager,json.export.autovacuum manager,model_json_export_autovacuum,group_manager,1,1,1,1

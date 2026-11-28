@@ -9,5 +9,6 @@ openupgradelib
 paramiko<4.0.0
 pygount
 pysftp
+requests
 sentry_sdk>=2.0.0,<=2.22.0
 unittest-xml-reporting
