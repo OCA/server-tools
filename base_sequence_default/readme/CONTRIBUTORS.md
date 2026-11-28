@@ -1,0 +1,5 @@
+- Rafael Blasco ([Moduon](https://www.moduon.team/))
+- Eduardo de Miguel ([Moduon](https://www.moduon.team/))
+- Jairo Llopis ([Moduon](https://www.moduon.team/))
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
