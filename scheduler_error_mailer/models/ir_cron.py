@@ -28,7 +28,7 @@ class IrCron(models.Model):
         super()._handle_callback_exception(
             cron_name, server_action_id, job_id, job_exception
         )
-        my_cron = self.browse(job_id)
+        my_cron = self.browse(job_id).sudo()
 
         if my_cron.email_template_id:
             # we put the job_exception in context to be able to print it inside
