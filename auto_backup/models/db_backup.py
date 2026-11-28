@@ -253,7 +253,7 @@ class DbBackup(models.Model):
                     f"<p>{_('Cleanup of old database backups failed.')}</p>"
                     f"<pre>{escaped_tb}</pre>"
                 ),
-                subtype_id=self.env.ref("auto_backup.failure").id,
+                subtype_id=self.env.ref("auto_backup.mail_message_subtype_failure").id,
             )
         else:
             _logger.info(f"Cleanup of old database backups succeeded: {self.name}")
